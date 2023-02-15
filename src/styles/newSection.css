@@ -1,0 +1,105 @@
+.newContainer {
+    background-image: linear-gradient(25deg, #c9a0ee 30%, #784BA0 100%);
+    margin: 4rem 5rem;
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+}
+
+
+.newSection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+.topTitle {
+    font-size: 2rem;
+}
+
+
+.newCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 320px;
+    border-radius: 15px;
+    background-color: rgba(245, 245, 245, 0.942);
+    color: black;
+    position: relative;
+}
+
+
+.newCardImage {
+    width: 320px;
+    height: 250px;
+    border-radius: 15px;
+    position: relative;
+    text-align: center;
+}
+
+
+
+.gradnt {
+    display: flex;
+    align-items: flex-end;
+    position: absolute;
+    width: 320px;
+    height: 250px;
+    border-radius: 15px;
+    top: 10;
+    left: 10;
+    background: rgb(53, 53, 57);
+    background: linear-gradient(360deg, rgba(53, 53, 57, 1) 22%, rgba(0, 0, 0, 0) 68%);
+
+
+}
+
+
+.newCard h2 {
+    margin: 10px 0px;
+    padding: 10px;
+    color: antiquewhite;
+}
+
+.newCardH5 {
+    display: block;
+    display: -webkit-box;
+    height: 3.9em;
+    line-height: 1.3em;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0px;
+    margin: 15px 0px;
+}
+
+
+
+.newCard h6 {
+    margin: 10px 0px;
+}
+
+.newCard:hover {
+    cursor: pointer;
+    color: #ee2482;
+    border: 2px solid #ee2482;
+
+}
+
+@media only screen and (max-width: 800px) {
+
+    .newContainer {
+        margin: 2px;
+        margin-top: 15px;
+
+    }
+
+
+
+
+}
