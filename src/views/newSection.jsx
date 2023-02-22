@@ -12,6 +12,7 @@ function NewPart() {
             <section className="newSection">
                 {cards}
             </section>
+            <div className="newBtn">Add Your App Now</div>
         </div>
 
     );
