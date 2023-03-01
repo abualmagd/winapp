@@ -1,0 +1,144 @@
+.myAlert {
+    background-color: #FFFF;
+    width: 50vw;
+    height: 500px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+
+}
+
+.alertCloser {
+    position: absolute;
+    top: 5px;
+    right: 25px;
+    font-size: 25px;
+    color: #27447E;
+
+}
+
+.alertCloser:hover {
+    cursor: pointer;
+}
+
+.myAlert img {
+    width: 300px;
+    height: 300px;
+
+}
+
+.myAlert h2 {
+    margin: -20px;
+    color: #27447E;
+    text-transform: uppercase;
+}
+
+.myAlert h3 {
+    color: #7181A8;
+    margin: 0px;
+}
+
+.myAlert input[type=email] {
+    width: 290px;
+    margin-right: 10px;
+    height: 33px;
+    border-radius: 10px;
+    outline: none;
+    background-color: #C8DCF3;
+    padding-left: 5px;
+    border: 0px transparent;
+}
+
+.myAlert input[type=email]:focus {
+    outline: none;
+}
+
+.inputSubmit {
+    display: flex;
+    flex-direction: row;
+}
+
+.submit {
+    margin-right: 10px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #27447E;
+    padding: 5px 10px 0px 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.submit:hover {
+    cursor: pointer;
+}
+
+
+
+
+.alertContainer {
+    position: fixed;
+    margin-top: -65px;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    z-index: 2000;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;
+}
+
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+@media only screen and (max-width: 800px) {
+
+    .myAlert {
+        width: 90%;
+        height: 300px;
+    }
+
+    .myAlert img {
+        display: none;
+    }
+
+    .myAlert input[type=email] {
+        width: 300px;
+    }
+
+    .myAlert h3 {
+        margin: 0px 5px;
+        margin-top: 10px;
+
+    }
+
+    .submit {
+        width: 70px;
+        margin-top: 10px;
+    }
+
+    .inputSubmit {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-between;
+
+    }
+
+}

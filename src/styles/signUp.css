@@ -1,0 +1,107 @@
+.signPage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.inputPart {
+    background-image: linear-gradient(25deg, #784BA0 30%, #130C20 100%);
+    margin: 30px;
+    border-radius: 15px;
+    width: 500px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    position: relative;
+}
+
+.already {
+    position: absolute;
+    top: 30px;
+    right: 15px;
+    display: flex;
+    justify-content: center;
+    color: #616e7f;
+}
+
+.alreadyP {
+    margin: 0;
+}
+
+.already div {
+    margin-left: 5px;
+    margin-top: 2px;
+    height: 20px;
+    border-radius: 10px;
+    border: .3px solid grey;
+    padding: 0px 15px;
+    padding-top: 2px;
+    font-size: 13px;
+}
+
+.already div:hover {
+    cursor: pointer;
+}
+
+
+.inputPart h3 {
+    margin-top: 70px;
+    font-size: 1.5rem;
+    margin-bottom: 0px;
+}
+
+.registerP {
+    margin: 0;
+    font-weight: 200px;
+    color: #616e7f;
+    margin-bottom: 30px;
+}
+
+.inputPart label {
+    margin-top: 15px;
+}
+
+.inputPart input {
+    width: 90%;
+    margin-right: 10px;
+    height: 33px;
+    border-radius: 10px;
+    outline: none;
+    background-color: #C8DCF3;
+    padding-left: 5px;
+    border: 0px transparent;
+    padding-left: 10px;
+
+}
+
+.inputPart input[type=submit] {
+    width: 25%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    justify-content: center;
+    background-color: rgb(4, 142, 4);
+    border-radius: 8px;
+    padding: 10px 60px;
+    margin: 25px 0px;
+    font-weight: 500;
+}
+
+.inputPart input[type=submit]:hover {
+    cursor: pointer;
+}
+
+
+.googleSpan {
+    color: rgb(135, 235, 135);
+
+    padding-left: 5px;
+}
+
+
+.googleSpan:hover {
+    cursor: pointer;
+}

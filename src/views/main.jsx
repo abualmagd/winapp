@@ -13,7 +13,7 @@ export default function Main() {
                     A simple,<br />     super-fast way to increase your installs and new users.
                 </p>
             </div>
-            <div className="addBtn">Add Your Tool</div>
+            <div className="addBtn">Add Your Tool Free</div>
             <TopSection />
         </main>
     );
