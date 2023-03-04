@@ -1,7 +1,9 @@
 
 import { useEffect, useState } from 'react';
 import MyAlert from './helper/myAlert';
+import AddTool from './views/addTool';
 import Footer from './views/footer';
+import Login from './views/login';
 import Main from './views/main';
 import NewPart from './views/newSection';
 import SignUp from './views/signUp';
@@ -25,8 +27,12 @@ function App() {
   }, []);
   return (
     <div className="App" >
-      <SignUp />
-      { /* {showed && <MyAlert close={closeAlert} />}
+
+
+      <AddTool />
+      { /*  <SignUp />
+       <Login />
+      {showed && <MyAlert close={closeAlert} />}
       <Main />
       <NewPart />
       <Footer />*/}

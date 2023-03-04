@@ -17,6 +17,7 @@
     flex-direction: column;
     padding: 40px;
     position: relative;
+
 }
 
 .already {
@@ -61,9 +62,7 @@
     margin-bottom: 30px;
 }
 
-.inputPart label {
-    margin-top: 15px;
-}
+
 
 .inputPart input {
     width: 90%;
@@ -75,7 +74,7 @@
     padding-left: 5px;
     border: 0px transparent;
     padding-left: 10px;
-
+    margin-bottom: 20px;
 }
 
 .inputPart input[type=submit] {
@@ -104,4 +103,20 @@
 
 .googleSpan:hover {
     cursor: pointer;
+}
+
+
+
+
+
+@media only screen and (max-width: 700px) {
+
+    .inputPart {
+        margin: 0%;
+        padding-top: 100px;
+        height: 100%;
+        border-radius: 0px;
+
+    }
+
 }
