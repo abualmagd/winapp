@@ -6,6 +6,12 @@
     background-image: linear-gradient(25deg, #784BA0 30%, #130C20 100%);
     border-radius: 15px;
 
+
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
 }
 
 .titl {
@@ -62,9 +68,120 @@ select {
 
 .right span {
     font-size: .8rem;
-    color: rgb(210, 105, 30);
+    color: rgb(191, 153, 126);
     position: absolute;
     top: 0px;
     margin-left: 5px;
+
+}
+
+
+
+
+.left {
+    margin-top: 30px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+
+}
+
+
+
+.left {
+    margin-top: 30px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+
+}
+
+.left label {
+    margin-left: 3px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.left input {
+    margin-right: 10px;
+    height: 33px;
+    border-radius: 10px;
+    outline: none;
+    background-color: #C8DCF3;
+    padding-left: 5px;
+    border: 0px transparent;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.left h4 {
+    display: flex;
+    width: 160px;
+    position: relative;
+}
+
+.left span {
+    font-size: .8rem;
+    color: rgb(185, 143, 116);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-left: 5px;
+
+}
+
+
+.left textarea {
+    margin-right: 10px;
+    border-radius: 10px;
+    outline: none;
+    background-color: #C8DCF3;
+    padding-left: 5px;
+    border: 0px transparent;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    padding: 10px;
+    resize: none;
+
+}
+
+input [type="file"] {
+    display: none;
+}
+
+
+@media only screen and (max-width: 1100px) {
+
+    .addTool {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+    }
+}
+
+
+@media only screen and (max-width: 700px) {
+
+    .content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .addTool {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+    }
+
+    .right,
+    .left {
+        width: 90%;
+    }
+
 
 }
