@@ -1,8 +1,7 @@
 .addTool {
     width: 80vw;
-    height: 93vh;
     margin: auto;
-    margin-top: 35px;
+    margin: 35px auto;
     background-image: linear-gradient(25deg, #784BA0 30%, #130C20 100%);
     border-radius: 15px;
 
@@ -30,6 +29,7 @@
     flex-direction: column;
     width: 40%;
     justify-content: space-evenly;
+    padding-bottom: 20px;
 }
 
 .right label {
@@ -128,8 +128,8 @@ select {
     font-size: .8rem;
     color: rgb(185, 143, 116);
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: -5px;
+    left: 105px;
     margin-left: 5px;
 
 }
@@ -147,11 +147,28 @@ select {
     font-size: 1rem;
     padding: 10px;
     resize: none;
-
 }
 
-input [type="file"] {
-    display: none;
+
+.publish {
+    display: flex;
+    border-radius: 8px;
+    margin-right: 1rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(4, 142, 4);
+    padding: 5px;
+    width: 120px;
+    align-self: flex-end;
+    margin-bottom: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.publish:hover {
+    background-color: rgb(4, 95, 4);
+
 }
 
 

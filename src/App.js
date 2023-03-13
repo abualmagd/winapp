@@ -6,6 +6,7 @@ import Footer from './views/footer';
 import Login from './views/login';
 import Main from './views/main';
 import NewPart from './views/newSection';
+import Plans from './views/plans';
 import SignUp from './views/signUp';
 
 
@@ -27,15 +28,17 @@ function App() {
   }, []);
   return (
     <div className="App" >
-
-
-      <AddTool />
-      { /*  <SignUp />
-       <Login />
-      {showed && <MyAlert close={closeAlert} />}
       <Main />
       <NewPart />
-      <Footer />*/}
+      <Plans />
+      <Footer />
+
+      { /*  <AddTool />
+       <SignUp />
+       <Login />
+      {showed && <MyAlert close={closeAlert} />}
+     
+      */}
 
 
     </div>
