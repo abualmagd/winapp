@@ -1,0 +1,25 @@
+.reviewCard {
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    margin: 15px;
+    color: rgb(23, 11, 11);
+}
+
+.reviewer {
+    display: flex;
+}
+
+.reviewAvatar {
+    vertical-align: middle;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    margin-top: -5px;
+    margin-right: 10px;
+}
+
+.userNameRev {
+    font-weight: 600;
+    font-size: 1rem;
+}

@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import MyAlert from './helper/myAlert';
 import AddTool from './views/addTool';
+import AppPage from './views/appPage';
 import Footer from './views/footer';
 import Login from './views/login';
 import Main from './views/main';
@@ -28,12 +29,14 @@ function App() {
   }, []);
   return (
     <div className="App" >
-      <Main />
+
+      <AppPage />
+      { /*  <Main />
       <NewPart />
       <Plans />
       <Footer />
 
-      { /*  <AddTool />
+       <AddTool />
        <SignUp />
        <Login />
       {showed && <MyAlert close={closeAlert} />}

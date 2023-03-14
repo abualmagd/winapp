@@ -135,6 +135,21 @@
   justify-content: flex-start;
 }
 
+.search {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: auto;
+  height: 40px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  font-size: 1rem;
+  padding-left: 10px;
+  border: 0px;
+  outline: 0;
+
+}
+
 .card {
   display: flex;
   flex-direction: column;

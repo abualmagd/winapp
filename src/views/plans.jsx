@@ -1,31 +1,16 @@
 import "../styles/plans.css";
 import PlanCard from "./palnCard";
+import myPlans from "../data/pricePlanes";
 
 function Plans() {
 
-    let features1 = ['1 app submissions',
-        'Limited support',
-        '96 hours to approve'];
 
-    let features2 = ['Limit: 3 apps',
-        'Instant Approval',
-        'Feature on HomePage',
-        'Dedicated support',
-        'Collect Reviews'];
-
-    let features3 = ['Limit: 10 apps',
-        'Limited support',
-        'Auto Approval',
-        'Featured on HomePage',
-        'Collect Reviews',
-        'Monthly Newsletters'];
 
     return (
-        <div className="plans">
-            <PlanCard features={features1} name="FREE" message="free to listing your app " price="0" />
-            <PlanCard features={features2} name="DIAMOND" message="Submit up to 3 apps and collect reviews " price="8" />
-            <PlanCard features={features3} name="GOLD" message="submit up to 10 listings 
-            and get more visibility and Newsletters" price="32" />
+        <div className="plans" id="pricing">
+            <PlanCard features={myPlans[0]} name="FREE" message="free to listing your app " price="0" />
+            <PlanCard features={myPlans[1]} popular={true} color="rgb(131, 238, 131)" name="DIAMOND" message="   Submit your app and collect reviews " price="8" />
+            <PlanCard features={myPlans[2]} name="GOLD" message="list your app immediately and include it in users Newsletters" price="32" />
         </div>
     );
 }
