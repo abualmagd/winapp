@@ -6,15 +6,26 @@
     border-radius: 20px;
     padding: 1.5rem 2rem;
     justify-content: space-between;
+    position: relative;
 
 }
+
+
+.step {
+    position: absolute;
+    top: -5px;
+    left: 10px;
+    color: rgb(248, 229, 229);
+}
+
+
 
 
 .CardPlan {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 380px;
     border-radius: 15px;
     background-color: rgba(245, 245, 245, 0.942);

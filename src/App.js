@@ -1,48 +1,32 @@
 
-import { useEffect, useState } from 'react';
-import MyAlert from './helper/myAlert';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import AddTool from './views/addTool';
 import AppPage from './views/appPage';
-import Footer from './views/footer';
+import ErrorPage from './views/error';
+import Home from './views/home';
 import Login from './views/login';
-import Main from './views/main';
-import NewPart from './views/newSection';
-import Plans from './views/plans';
 import SignUp from './views/signUp';
+import StepOne from './views/stepOne';
 
 
 
 function App() {
-  const [showed, updateShowed] = useState(false);
 
-  const showAlert = () => {
-    updateShowed(current => current = true);
-  }
-
-  const closeAlert = () => {
-    updateShowed(current => current = false);
-    console.log('callded');
-  }
-
-  useEffect(() => {
-    setTimeout(() => { showAlert(); }, 5000);
-  }, []);
   return (
     <div className="App" >
 
-      <AppPage />
-      { /*  <Main />
-      <NewPart />
-      <Plans />
-      <Footer />
-
-       <AddTool />
-       <SignUp />
-       <Login />
-      {showed && <MyAlert close={closeAlert} />}
-     
-      */}
-
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
+          <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />
+          <Route path='/login' element={<Login />} errorElement={<ErrorPage />} />
+          <Route path='/add' element={<AddTool />} errorElement={<ErrorPage />} />
+          <Route path='/app/:id' element={<AppPage />} errorElement={<ErrorPage />} />
+          <Route path='/plan' element={<StepOne />} errorElement={<ErrorPage />} />
+        </Routes>
+      </BrowserRouter>
 
     </div>
   );

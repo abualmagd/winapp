@@ -2,9 +2,39 @@ import AppBar from "./appBar";
 import '../styles/appPage.css';
 import ReviewCard from "./reviewCard";
 import NewCard from "./newCard";
+import { useState } from "react";
+import React from "react";
+import { useEffect } from "react";
+
 
 
 function AppPage() {
+
+    const [display, updateDisplay] = useState("none");
+
+
+
+
+    function showStickyBtn() {
+        updateDisplay(current => current = "flex");
+    }
+
+
+    function hideStickyBtn() {
+        updateDisplay(current => current = "none");
+    }
+
+
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                showStickyBtn();
+            } else {
+                hideStickyBtn();
+            }
+        });
+    }, []);
+
 
     let reviews = [1, 2, 3, 4, 5];
 
@@ -19,20 +49,13 @@ function AppPage() {
         return <NewCard key={index} props={item} />
 
     });
-    let mybutton = document.getElementsByClassName("stickButton");
-    window.onscroll = function () { scrollFunction() };
 
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-        } else {
-            mybutton.style.display = "none";
-        }
-    }
+
+
 
     return (
         <div>
-            <div className="appPageContainer">
+            <div className="appPageContainer" >
                 <AppBar />
                 <img className="imageApp" src="./assets/images/app.png" alt="something error sory " />
                 <div className="buttons">
@@ -104,20 +127,20 @@ function AppPage() {
 
                 </div>
             </div>
-            <div className="reviewPart">
+            <div className="reviewPart" >
                 {reviewCards}
             </div>
             <div className="suggestion">
                 <h4>
                     Similar apps
                 </h4>
-                <div className="suggestCard">
+                <div className="suggestCards">
                     {cards}
                 </div>
 
             </div>
             <div className="stick" id="myBtn">
-                <div className="stickButton">
+                <div className="stickButton" style={{ display: display }}>
                     Visit App Website
                 </div>
             </div>

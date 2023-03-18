@@ -39,7 +39,7 @@ function PlanCard(props) {
             </div>
 
 
-            <div className="getStartedBtn" style={{ backgroundColor: props.color }} >List Your App Now</div>
+            <div className="getStartedBtn" style={{ backgroundColor: props.color }} >{props.btnContent}</div>
 
         </div>
     );

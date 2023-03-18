@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import '../styles/main.css';
 import AppBar from './appBar';
 import TopSection from './top';
@@ -13,7 +14,8 @@ export default function Main() {
                     A simple,<br />     super-fast way to increase your installs and new users.
                 </p>
             </div>
-            <div className="addBtn">Add Your Tool Free</div>
+
+            <Link to={"/add"} className="addBtn">Add Your App Free</Link>
             <TopSection />
         </main>
     );
