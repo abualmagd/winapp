@@ -3,17 +3,17 @@ import Main from "./main";
 import NewPart from "./newSection";
 import Plans from "./plans";
 import { useState, useEffect } from "react";
-import MyAlert from "../helper/myAlert";
+import MyAlert from "../components/myAlert";
 
 function Home() {
     const [showed, updateShowed] = useState(false);
 
     const showAlert = () => {
-        updateShowed(current => current = true);
+        updateShowed(true);
     }
 
     const closeAlert = () => {
-        updateShowed(current => current = false);
+        updateShowed(false);
         console.log('callded');
     }
 
@@ -22,12 +22,12 @@ function Home() {
     }, []);
     return (
         <div>
+            {showed && <MyAlert close={closeAlert} />}
             <Main />
             <NewPart />
             <Plans />
             <Footer />
 
-            {showed && <MyAlert close={closeAlert} />}
         </div>
     );
 }

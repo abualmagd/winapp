@@ -1,6 +1,8 @@
 
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import ProtectedRoute from './components/protectedRoute';
+import AuthProvider from './controllers/authProvider';
 
 import AddTool from './views/addTool';
 import AppPage from './views/appPage';
@@ -14,20 +16,25 @@ import StepOne from './views/stepOne';
 
 function App() {
 
+
+
   return (
     <div className="App" >
-
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
-          <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />
-          <Route path='/login' element={<Login />} errorElement={<ErrorPage />} />
-          <Route path='/add' element={<AddTool />} errorElement={<ErrorPage />} />
-          <Route path='/app/:id' element={<AppPage />} errorElement={<ErrorPage />} />
-          <Route path='/plan' element={<StepOne />} errorElement={<ErrorPage />} />
-        </Routes>
-      </BrowserRouter>
-
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
+            <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />
+            <Route path='/login' element={<Login />} errorElement={<ErrorPage />} />
+            <Route path='/add' element={<AddTool />} errorElement={<ErrorPage />} />
+            <Route path='/app/:id' element={<AppPage />} errorElement={<ErrorPage />} />
+            <Route path='/plan' element={<ProtectedRoute>
+              <StepOne />
+            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            <Route path='*' element={<Navigate to="/" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }

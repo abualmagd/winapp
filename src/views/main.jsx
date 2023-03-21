@@ -15,7 +15,7 @@ export default function Main() {
                 </p>
             </div>
 
-            <Link to={"/add"} className="addBtn">Add Your App Free</Link>
+            <Link to={"/plan"} className="addBtn">Add Your App Free</Link>
             <TopSection />
         </main>
     );

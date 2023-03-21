@@ -15,9 +15,11 @@
 
 .titl {
     display: flex;
+    flex-direction: column;
     height: 50px;
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     font-size: 25px;
     padding-top: 20px;
 }
@@ -149,6 +151,30 @@ select {
     resize: none;
 }
 
+.divider {
+    height: 20px;
+}
+
+.priceModel {
+    display: flex;
+}
+
+.checkbox {
+    margin: 0px;
+    height: 10px;
+    cursor: pointer;
+    border-radius: 100%;
+}
+
+input:checked {
+    accent-color: blue;
+}
+
+.priceModel label {
+    margin-right: 15px;
+    margin-top: 2px;
+    margin-left: -5px;
+}
 
 .publish {
     display: flex;

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import '../styles/signUp.css';
 
 
@@ -14,7 +15,7 @@ function SignUp() {
             <div className="inputPart">
                 <div className='already'>
                     <p className='alreadyP'>Already have account ?</p>
-                    <div className='signIn' >Sign in</div>
+                    <Link to={"/login"} className='signIn' >Sign in</Link>
                 </div>
                 <h3> Welcome to Winapp!</h3>
                 <p className='registerP'>Register your account</p>

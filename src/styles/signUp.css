@@ -33,7 +33,7 @@
     margin: 0;
 }
 
-.already div {
+.already a {
     margin-left: 5px;
     margin-top: 2px;
     height: 20px;
@@ -42,11 +42,11 @@
     padding: 0px 15px;
     padding-top: 2px;
     font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
 }
 
-.already div:hover {
-    cursor: pointer;
-}
 
 
 .inputPart h3 {

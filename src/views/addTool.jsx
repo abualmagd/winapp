@@ -1,5 +1,6 @@
 
 import "../styles/addTool.css";
+import StepsIndicator from "./stepsIndicator";
 
 function AddTool() {
 
@@ -12,7 +13,8 @@ function AddTool() {
     return (
         <div className="addTool">
             <div className="titl">
-                Add Yoor App
+
+                <StepsIndicator value={"75%"} />
             </div>
             <div className="content">
                 <div className="right">
@@ -43,21 +45,33 @@ function AddTool() {
                 <div className="left">
                     <label>Calendly Link : <span >optional</span></label>
                     <input type="text" className="calendly" placeholder="https://www.calendly.com/yourname" />
-                    <h4>Founder Data <span >optional</span></h4>
-                    <label>Creator Name : </label>
-                    <input type="text" className="creator" placeholder="your name" />
-                    <label>Creator Job : </label>
-                    <input type="text" className="job" placeholder="your job" />
-                    <label >About :</label>
-                    <textarea name="about" id="#about" maxLength={250} cols="10" rows="6" placeholder="write about yourself"
+                    <label>Who need your app : </label>
+                    <input type="text" className="job" placeholder="like developrs teachers ...etc" />
+                    <label >Why to use your app ?</label>
+                    <textarea name="about" id="#about" maxLength={250} cols="10" rows="6" placeholder="write the needs make others use your app"
                         required></textarea>
-                    <label >Choose a profile picture:</label>
-                    <input type="button" id="onpress" onClick={clickAvatar}
-                        value="upload image" style={{ width: "140px", cursor: "pointer" }} />
-                    <input type="file" style={{ display: "none" }}
-                        id="avatar" name="avatar"
-                        accept="image/png, image/jpeg" alt="llllll"></input>
+                    <label>Your app is alternative to : </label>
+                    <input type="text" className="job" placeholder="notion salesforse firebase ...etc" />
+                    <label>Price starts from : </label>
+                    <div className="priceStarts">
+                        <input type="text" className="creator" placeholder="in dollars.." />
+                        <select name="plansPeriod" id="period">
+                            <option value="monthely">month</option>
+                            <option value="yearly">year</option>
+                        </select>
+                    </div>
+                    <div className="divider">
 
+                    </div>
+                    <label  >Choose Your Pricing model :</label>
+                    <div className="priceModel">
+                        <input className="checkbox" type="checkbox" name="Subscription" id="free" />
+                        <label htmlFor="free">free plan</label>
+                        <input className="checkbox" type="checkbox" name="Subscription" id="Subscription" />
+                        <label htmlFor="Subscription">Subscription</label>
+                        <input className="checkbox" type="checkbox" name="Subscription" id="trial" />
+                        <label htmlFor="free trial">free trial</label>
+                    </div>
 
                     <div className="publish" >Publish</div>
 
