@@ -1,11 +1,12 @@
 
 
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './components/protectedRoute';
 import AuthProvider from './controllers/authProvider';
 
 import AddTool from './views/addTool';
 import AppPage from './views/appPage';
+import DashBoard from './views/dashboard';
 import ErrorPage from './views/error';
 import Home from './views/home';
 import Login from './views/login';
@@ -20,20 +21,22 @@ function App() {
 
   return (
     <div className="App" >
+
       <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
-            <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />
-            <Route path='/login' element={<Login />} errorElement={<ErrorPage />} />
-            <Route path='/add' element={<AddTool />} errorElement={<ErrorPage />} />
-            <Route path='/app/:id' element={<AppPage />} errorElement={<ErrorPage />} />
-            <Route path='/plan' element={<ProtectedRoute>
-              <StepOne />
-            </ProtectedRoute>} errorElement={<ErrorPage />} />
-            <Route path='*' element={<Navigate to="/" replace />} />
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
+          <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />
+          <Route path='/login' element={<Login />} errorElement={<ErrorPage />} />
+          <Route path='/add' element={<AddTool />} errorElement={<ErrorPage />} />
+          <Route path='/app/:id' element={<AppPage />} errorElement={<ErrorPage />} />
+          <Route path='/plan' element={<ProtectedRoute>
+            <StepOne />
+          </ProtectedRoute>} errorElement={<ErrorPage />} />
+          <Route path='/dashboard' element={<ProtectedRoute>
+            <DashBoard />
+          </ProtectedRoute>} errorElement={<ErrorPage />} />
+          <Route path='*' element={<Navigate to="/" replace />} />
+        </Routes>
       </AuthProvider>
     </div>
   );
