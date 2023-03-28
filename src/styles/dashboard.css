@@ -6,6 +6,7 @@
     border-radius: 20px;
     padding: 1.5rem 2rem;
     justify-content: space-between;
+
 }
 
 
@@ -117,4 +118,19 @@
     font-size: 1.5rem;
     font-weight: 500;
     color: black;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+
+    .dashboard {
+        margin: 0px;
+    }
+
+    .reviewsPart {
+        margin: 0;
+
+    }
+
 }

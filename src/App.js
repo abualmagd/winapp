@@ -7,6 +7,7 @@ import AuthProvider from './controllers/authProvider';
 import AddTool from './views/addTool';
 import AppPage from './views/appPage';
 import DashBoard from './views/dashboard';
+import EditTool from './views/editApp';
 import ErrorPage from './views/error';
 import Home from './views/home';
 import Login from './views/login';
@@ -34,6 +35,9 @@ function App() {
           </ProtectedRoute>} errorElement={<ErrorPage />} />
           <Route path='/dashboard' element={<ProtectedRoute>
             <DashBoard />
+          </ProtectedRoute>} errorElement={<ErrorPage />} />
+          <Route path='/edit' element={<ProtectedRoute>
+            <EditTool />
           </ProtectedRoute>} errorElement={<ErrorPage />} />
           <Route path='*' element={<Navigate to="/" replace />} />
         </Routes>

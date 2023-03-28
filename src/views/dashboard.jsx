@@ -2,6 +2,8 @@ import DashCard from '../components/dashCard';
 import useAuth from '../myHooks/useAuth';
 import '../styles/dashboard.css';
 import ReviewCard from './reviewCard';
+import { Link } from 'react-router-dom';
+import ReviewModal from '../components/reviewModal';
 
 function DashBoard() {
     const { token } = useAuth();
@@ -24,11 +26,12 @@ function DashBoard() {
 
     return (
         <div className="dashboard">
+            <ReviewModal />
             <div className="dashboardHead">
                 <div className="lgo">WinApp</div>
                 <div className="barEnd">
                     <div className="btton">
-                        <a href="/#" className="linkBttn">list new app</a>
+                        <Link to="/add" className="linkBttn">list new app</Link>
                     </div>
                     <img src="https://picsum.photos/seed/picsum/200/300" alt="!" className="avatar" />
                 </div>
@@ -44,7 +47,7 @@ function DashBoard() {
                         doitylla overview
                     </div>
                     <div className="btton">
-                        edit app details
+                        <Link to={"/edit"} style={{ textDecoration: "none" }}>edit app details</Link>
                     </div>
                 </div>
                 <img className="imageAppDash" src="./assets/images/app.png" alt="something error sory " />

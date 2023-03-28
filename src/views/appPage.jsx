@@ -5,12 +5,24 @@ import NewCard from "./newCard";
 import { useState } from "react";
 import React from "react";
 import { useEffect } from "react";
+import ReviewModal from "../components/reviewModal";
 
 
 
 function AppPage() {
 
     const [display, updateDisplay] = useState("none");
+    const [RevModal, updateRevModal] = useState(false);
+
+    function showModal() {
+        updateRevModal(true);
+    }
+
+
+    function hideModal() {
+        updateRevModal(false);
+    }
+
 
 
 
@@ -53,10 +65,12 @@ function AppPage() {
 
 
 
+
     return (
         <div>
             <div className="appPageContainer" >
-                <AppBar />
+                {RevModal && <ReviewModal close={hideModal} />
+                }                <AppBar />
                 <img className="imageApp" src="./assets/images/app.png" alt="something error sory " />
                 <div className="buttons">
                     <div className="visit">Visit App Website</div>
@@ -115,7 +129,7 @@ function AppPage() {
                             <div>
 
                             </div>
-                            <div className="review">
+                            <div className="review" onClick={showModal}>
                                 Submit a Review
                             </div>
                             <div className="report">
