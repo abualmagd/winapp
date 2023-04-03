@@ -4,7 +4,7 @@ import React from "react";
 
 export const AuthContext = React.createContext(null);
 const AuthProvider = ({ children }) => {
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useState("llll");
     const navigate = useNavigate();
     const location = useLocation();
 

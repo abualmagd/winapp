@@ -1,17 +1,13 @@
-import Footer from "./footer";
 import Main from "./main";
 import NewPart from "./newSection";
 import Plans from "./plans";
 import { useState, useEffect } from "react";
 import MyAlert from "../components/myAlert";
-import useAuth from "../myHooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import MyFooter from "./footer";
 
 function Home() {
     const [showed, updateShowed] = useState(false);
-    const { onLogin } = useAuth();
 
-    const navigate = useNavigate();
     const showAlert = () => {
         updateShowed(true);
     }
@@ -19,9 +15,6 @@ function Home() {
     const closeAlert = () => {
         updateShowed(false);
         console.log('callded');
-        const t = "tooooooooooooooooooooooooooooooooooken2";
-        onLogin(t);
-        navigate("dashboard")
     }
 
     useEffect(() => {
@@ -33,7 +26,7 @@ function Home() {
             <Main />
             <NewPart />
             <Plans />
-            <Footer />
+            <MyFooter />
 
         </div>
     );

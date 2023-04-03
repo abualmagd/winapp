@@ -16,7 +16,7 @@ function ReviewCard(props) {
 
 
     return (
-        <div>
+        <div className='reviewCont'>
 
             <div className="reviewCard" onClick={showReplays}>
                 <div className="reviewer">

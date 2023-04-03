@@ -6,7 +6,7 @@
     border-radius: 20px;
     padding: 1.5rem 2rem;
     position: relative;
-
+    align-items: center;
 }
 
 .imageApp {
@@ -28,16 +28,20 @@
 .buttons div {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     border-radius: 8px;
-    padding: 10px 60px;
+    padding: 10px 40px;
     margin: 10px auto;
     font-weight: 500;
     cursor: pointer;
     margin-bottom: 30px;
-    width: 150px;
+    width: 160px;
     color: black;
     background-color: rgb(131, 238, 131);
+}
+
+.icony {
+    margin-right: 10px;
 }
 
 .content {
@@ -128,7 +132,7 @@
 
 
 .suggestion {
-    background-image: linear-gradient(25deg, #c9a0ee 30%, #c3bdc8 100%);
+    background-image: linear-gradient(25deg, #b779ee 30%, #b370ea 100%);
     margin: 4rem 5rem;
     border-radius: 20px;
     padding: 1.5rem 2rem;

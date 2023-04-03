@@ -1,11 +1,15 @@
 import AppBar from "./appBar";
 import '../styles/appPage.css';
+import '../styles/main.css';
+
 import ReviewCard from "./reviewCard";
 import NewCard from "./newCard";
 import { useState } from "react";
 import React from "react";
 import { useEffect } from "react";
 import ReviewModal from "../components/reviewModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark, faCalendar, faEnvelope, faLink } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -71,12 +75,28 @@ function AppPage() {
             <div className="appPageContainer" >
                 {RevModal && <ReviewModal close={hideModal} />
                 }                <AppBar />
-                <img className="imageApp" src="./assets/images/app.png" alt="something error sory " />
+                <img className="imageApp" src="../assets/images/app.png" alt="something error sory " />
                 <div className="buttons">
-                    <div className="visit">Visit App Website</div>
-                    <div className="call">Book a Demo Call</div>
-                    <div className="favorite">favorite this app</div>
-                    <div className="message">Send Message</div>
+                    <div className="visit">
+                        <span className="icony">
+                            <FontAwesomeIcon icon={faLink} color="#000" />
+                        </span>
+                        Visit App Website</div>
+                    <div className="call">
+                        <span className="icony">
+                            <FontAwesomeIcon icon={faCalendar} color="#000" />
+                        </span>
+                        Book a Demo Call</div>
+                    <div className="favorite">
+                        <span className="icony">
+                            <FontAwesomeIcon icon={faBookmark} color="#000" />
+                        </span>
+                        Bookmark this app</div>
+                    <div className="message">
+                        <span className="icony">
+                            <FontAwesomeIcon icon={faEnvelope} color="#000" />
+                        </span>
+                        Send Message</div>
                 </div>
                 <div className="content">
                     <div className="appInfo">
@@ -155,6 +175,9 @@ function AppPage() {
             </div>
             <div className="stick" id="myBtn">
                 <div className="stickButton" style={{ display: display }}>
+                    <span className="icony">
+                        <FontAwesomeIcon icon={faLink} color="#000" />
+                    </span>
                     Visit App Website
                 </div>
             </div>

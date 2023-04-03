@@ -1,5 +1,7 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/replayPart.css"
 import ReplayCard from "./replayCard";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -19,7 +21,9 @@ function ReplayPart(props) {
         {reps}
         <textarea className="replayTo" maxLength={255} name="replayTo" id="repTo" cols="35" rows="7"></textarea>
         <div className="replayToBtn" onClick={() => console.log('send replsy')
-        } >S</div>
+        } >
+            <FontAwesomeIcon icon={faPaperPlane} />
+        </div>
     </div>);
 }
 

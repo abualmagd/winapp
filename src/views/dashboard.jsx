@@ -3,7 +3,6 @@ import useAuth from '../myHooks/useAuth';
 import '../styles/dashboard.css';
 import ReviewCard from './reviewCard';
 import { Link } from 'react-router-dom';
-import ReviewModal from '../components/reviewModal';
 
 function DashBoard() {
     const { token } = useAuth();
@@ -18,15 +17,14 @@ function DashBoard() {
 
     let reviewCards = reviews.map((rev, index) => {
 
-        return <div className="revContainer" key={index} >
-            <ReviewCard review={rev} />
-        </div>
+        return <ReviewCard review={rev} key={index} />
+
     });
 
 
     return (
         <div className="dashboard">
-            <ReviewModal />
+
             <div className="dashboardHead">
                 <div className="lgo">WinApp</div>
                 <div className="barEnd">

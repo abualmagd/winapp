@@ -30,7 +30,7 @@
 .replayToBtn {
     position: absolute;
     bottom: 1px;
-    right: 18px;
+    right: 5%;
     background-color: rgb(47, 45, 45);
     color: #faf8f8;
     display: flex;
@@ -62,7 +62,7 @@
     }
 
     .replayTo {
-        width: 70%;
+        width: 85%;
 
     }
 

@@ -1,18 +1,17 @@
-.myAlert {
+.revModal {
     background-color: #FFFF;
-    width: 50vw;
-    height: 500px;
+    width: 35vw;
+    height: 300px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-evenly;
     position: relative;
-
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 
-.alertCloser {
+.modalCloser {
     position: absolute;
     top: 5px;
     right: 25px;
@@ -21,59 +20,48 @@
 
 }
 
-.alertCloser:hover {
+.modalCloser:hover {
     cursor: pointer;
 }
 
-.myAlert img {
-    width: 300px;
-    height: 300px;
-
-}
-
-.myAlert h2 {
-    margin: -20px;
-    color: #27447E;
-    text-transform: uppercase;
-}
-
-.myAlert h3 {
-    color: #7181A8;
+.revModal h3 {
+    color: #000;
     margin: 0px;
+    margin-left: 10px;
 }
 
-.myAlert input[type=email] {
-    width: 290px;
-    margin-right: 10px;
-    height: 33px;
+.areaRev {
     border-radius: 10px;
     outline: none;
-    background-color: #C8DCF3;
-    padding-left: 5px;
+    padding-left: 25px;
     border: 0px transparent;
+
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    resize: none;
+    background-color: rgb(228, 227, 223);
+    width: 90%;
+
 }
 
-.myAlert input[type=email]:focus {
-    outline: none;
-}
-
-.inputSubmit {
-    display: flex;
-    flex-direction: row;
-}
-
-.submit {
+.submitRev {
     margin-right: 10px;
     height: 30px;
     border-radius: 10px;
-    background-color: #27447E;
-    padding: 5px 10px 0px 10px;
+    background-color: rgb(131, 238, 131);
+    color: black;
+    padding: 5px 30px 0px 30px;
     display: flex;
     justify-content: center;
+    margin: 0px auto;
+    font-weight: 600;
 }
 
-.submit:hover {
+.submitRev:hover {
     cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 
@@ -108,38 +96,25 @@
 
 
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
 
-    .myAlert {
+    .revModal {
         width: 90%;
-        height: 300px;
+        height: 400px;
     }
 
-    .myAlert img {
-        display: none;
-    }
 
-    .myAlert input[type=email] {
-        width: 300px;
-    }
-
-    .myAlert h3 {
+    .revModal h3 {
         margin: 0px 5px;
         margin-top: 10px;
 
     }
 
-    .submit {
-        width: 70px;
-        margin-top: 10px;
-    }
 
-    .inputSubmit {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: space-between;
 
+    .areaRev {
+        width: 80%;
+        font-size: 1.2rem;
     }
 
 }

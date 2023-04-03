@@ -13,6 +13,7 @@ import Home from './views/home';
 import Login from './views/login';
 import SignUp from './views/signUp';
 import StepOne from './views/stepOne';
+import Explore from './views/explorePage';
 
 
 
@@ -29,6 +30,7 @@ function App() {
           <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />
           <Route path='/login' element={<Login />} errorElement={<ErrorPage />} />
           <Route path='/add' element={<AddTool />} errorElement={<ErrorPage />} />
+          <Route path='/explore/:content' element={<Explore />} errorElement={<ErrorPage />} />
           <Route path='/app/:id' element={<AppPage />} errorElement={<ErrorPage />} />
           <Route path='/plan' element={<ProtectedRoute>
             <StepOne />

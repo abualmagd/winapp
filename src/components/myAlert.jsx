@@ -1,3 +1,5 @@
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/myAlert.css"
 
 
@@ -6,7 +8,9 @@ function MyAlert(props) {
 
     return <div className="alertContainer" >
         <div className="myAlert" >
-            <div className="alertCloser" onClick={() => props.close()}>X</div>
+            <div className="alertCloser" onClick={() => props.close()}>
+                <FontAwesomeIcon icon={faXmark} size="lg" />
+            </div>
             <img src="assets/images/emails.png" alt="/" className="imgEmail" />
             <h2>Subscribe</h2>
             <h3>Subscribe to our newsletter and stay updated</h3>
