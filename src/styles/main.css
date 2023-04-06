@@ -109,7 +109,8 @@
   height: 30px;
   color: black;
   border-radius: 50%;
-  background-color: gray;
+  background-color: rgb(194, 193, 193);
+
   display: flex;
   justify-content: center;
   align-items: center;

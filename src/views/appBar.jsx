@@ -8,7 +8,7 @@ export default function AppBar() {
         <header className="headery">
             <div className="logo">
                 <img src="favic.ico" alt=" " />
-                Winapp</div>
+                WinApp</div>
             <div className="navigation">
 
                 <a href="/#" className="link">blog</a>

@@ -2,7 +2,7 @@ import "../styles/searchCard.css";
 
 
 
-function ResultCard() {
+function SearchCard() {
 
     return (
         <div className="resultCard">
@@ -12,4 +12,4 @@ function ResultCard() {
 }
 
 
-export default ResultCard;
+export default SearchCard;
