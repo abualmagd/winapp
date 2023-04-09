@@ -129,13 +129,15 @@ input[type="text"]:not(:placeholder-shown)+.clear {
   margin-bottom: 20px;
   width: 280px;
   border-radius: 15px;
+  color: rgb(223, 219, 219);
 }
 
 .card:hover {
   background-color: rgba(245, 245, 245, 0.942);
-  color: black;
+  background-color: #202438;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
+  color: white;
 }
 
 .cardImage {
@@ -166,6 +168,7 @@ input[type="text"]:not(:placeholder-shown)+.clear {
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0px;
+
 }
 
 
@@ -173,6 +176,7 @@ input[type="text"]:not(:placeholder-shown)+.clear {
 .card h2 {
   margin: 10px 0px;
   font-weight: 600;
+  color: white;
 }
 
 .card h6 {

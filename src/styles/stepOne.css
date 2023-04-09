@@ -1,6 +1,4 @@
 .stepOneContainer {
-
-    background-image: linear-gradient(25deg, #c9a0ee 30%, #784BA0 100%);
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

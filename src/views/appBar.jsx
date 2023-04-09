@@ -1,34 +1,43 @@
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/appBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faGear, faRightFromBracket, faTh } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function AppBar() {
+    const navigat = useNavigate();
+
     return (
         <header className="headery">
-            <div className="logo">
+            <div className="logo" onClick={() => navigat('/')}>
                 <img src="/favic.ico" alt="W" />
                 WinApp</div>
             <div className="navigation">
 
                 <a href="/#" className="link">blog</a>
-                <a href="#pricing" className="link">pricing</a>
+                <a href="http://localhost:3000/#pricing" className="link">pricing</a>
                 <div className="submitButton">
                     <Link to="/plan" className="linkBtn">list your app</Link>
                 </div>
                 <div class="dropdown">
                     <img src="https://picsum.photos/seed/picsum/200/300" alt="error" className="avatar" />
                     <div class="dropdown-content">
-                        <Link to={"/add"} >
+                        <Link to={"/dashboard"} >
+                            <FontAwesomeIcon icon={faTh} />
+                            <span className='link-t'>
+                                Dashboard
+                            </span>
+
+                        </Link>
+                        <Link to={"/settings"} >
                             <FontAwesomeIcon icon={faGear} />
                             <span className='link-t'>
                                 Settings
                             </span>
 
                         </Link>
-                        <Link to={"/bookmark"} >
+                        <Link to={"/saved"} >
                             <FontAwesomeIcon icon={faBookmark} />
                             <span className='link-t'>
                                 Saved

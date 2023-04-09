@@ -1,5 +1,5 @@
 .myAlert {
-    background-color: #FFFF;
+    background-color: #202438;
     width: 50vw;
     height: 500px;
     border-radius: 15px;
@@ -17,7 +17,7 @@
     top: 5px;
     right: 25px;
     font-size: 25px;
-    color: #27447E;
+    color: rgb(210, 208, 208);
 
 }
 
@@ -33,12 +33,12 @@
 
 .myAlert h2 {
     margin: -20px;
-    color: #27447E;
+    color: white;
     text-transform: uppercase;
 }
 
 .myAlert h3 {
-    color: #7181A8;
+    color: rgb(210, 208, 208);
     margin: 0px;
 }
 

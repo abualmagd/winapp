@@ -3,18 +3,17 @@
     width: 400px;
     flex-direction: column;
     margin: 15px;
-    color: rgb(23, 11, 11);
+
     position: relative;
     cursor: pointer;
     padding: 10px;
 }
 
 .reviewCard:hover {
-    background-color: aliceblue;
+    background-color: #404768;
     padding: 10px;
     border-radius: 15px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 .reviewer {

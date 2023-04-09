@@ -14,6 +14,8 @@ import Login from './views/login';
 import SignUp from './views/signUp';
 import StepOne from './views/stepOne';
 import Explore from './views/explorePage';
+import Saved from './views/saved';
+import Settings from './views/settings';
 
 
 
@@ -37,6 +39,12 @@ function App() {
           </ProtectedRoute>} errorElement={<ErrorPage />} />
           <Route path='/dashboard' element={<ProtectedRoute>
             <DashBoard />
+          </ProtectedRoute>} errorElement={<ErrorPage />} />
+          <Route path='/saved' element={<ProtectedRoute>
+            <Saved />
+          </ProtectedRoute>} errorElement={<ErrorPage />} />
+          <Route path='/settings' element={<ProtectedRoute>
+            <Settings />
           </ProtectedRoute>} errorElement={<ErrorPage />} />
           <Route path='/edit' element={<ProtectedRoute>
             <EditTool />

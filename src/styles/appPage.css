@@ -1,5 +1,4 @@
 .appPageContainer {
-    background-image: linear-gradient(25deg, #784BA0 30%, #130C20 100%);
     display: flex;
     flex-direction: column;
 
@@ -116,11 +115,11 @@
     cursor: pointer;
     margin-bottom: 30px;
     width: 120px;
-    color: black;
+    color: gray;
+    background-color: #131624;
 }
 
 .reviewPart {
-    background-image: linear-gradient(25deg, #c9a0ee 30%, #784BA0 100%);
     margin: 4rem 0px;
     border-radius: 20px;
     padding: 1.5rem 2rem;
@@ -132,7 +131,6 @@
 
 
 .suggestion {
-    background-image: linear-gradient(25deg, #b779ee 30%, #b370ea 100%);
     margin: 4rem 0px;
     border-radius: 20px;
     padding: 1.5rem 2rem;
@@ -142,7 +140,7 @@
 }
 
 .suggestion h4 {
-    color: black;
+    color: white;
 }
 
 .suggestCards {

@@ -1,8 +1,6 @@
 .dashboard {
-    background-image: linear-gradient(25deg, #c9a0ee 30%, #c3bdc8 100%);
     display: flex;
     flex-wrap: wrap;
-
     border-radius: 20px;
     padding: 1.5rem 2rem;
     justify-content: space-between;
@@ -56,7 +54,7 @@
     background-color: rgb(131, 238, 131);
     padding: 0px 5px;
     cursor: pointer;
-    color: black;
+    color: white;
     text-decoration: none;
     padding: 2px 15px;
     font-weight: 400;
@@ -93,7 +91,6 @@
 
 
 .reviewsPart {
-    background-image: linear-gradient(25deg, #c9a0ee 30%, #784BA0 100%);
     margin: 15px auto;
     border-radius: 20px;
     padding: 1.5rem 2rem;
@@ -101,6 +98,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
+
 }
 
 
@@ -117,7 +115,7 @@
     margin-left: 5px;
     font-size: 1.5rem;
     font-weight: 500;
-    color: black;
+
 }
 
 
