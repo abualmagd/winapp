@@ -2,11 +2,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 400px;
-    height: 200px;
+    width: 100%;
     background-color: rgb(243, 242, 242);
     border-radius: 10px;
-    margin: 10px;
+    margin-bottom: 10px;
     color: black;
 }
 
@@ -17,4 +16,61 @@
     background-color: rgb(253, 250, 250);
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.head-card {
+    display: flex;
+    align-items: flex-start;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.square {
+    height: 70px;
+    width: 70px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.head-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.rating-search {
+    margin: 0;
+    font-weight: 400;
+    color: #b9b5c1;
+    display: flex;
+    align-items: center;
+}
+
+.rating-search span {
+    width: 5px;
+}
+
+.app-name {
+    margin: 0px;
+
+    font-size: 1.5rem;
+
+}
+
+
+.divid {
+    display: flex;
+    width: 100%;
+    height: 1px;
+    background-color: #8e8a8a;
+}
+
+
+.secription-search {
+    margin: 10px 15px;
+    height: 65px;
+    overflow: hidden;
+    font-size: 1rem;
 }

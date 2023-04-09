@@ -1,7 +1,6 @@
 .addTool {
     width: 80vw;
     margin: auto;
-    margin: 35px auto;
     background-image: linear-gradient(25deg, #784BA0 30%, #130C20 100%);
     border-radius: 15px;
 
@@ -41,7 +40,7 @@
 }
 
 .right input,
-select {
+.category-sel {
     margin-right: 10px;
     height: 33px;
     border-radius: 10px;
@@ -197,6 +196,26 @@ input:checked {
 
 }
 
+.image-uploader {
+    display: flex;
+
+}
+
+.logo-image-shower {
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.screen-image-shower {
+    width: 95px;
+    height: 55px;
+    border-radius: 5px;
+    overflow: hidden;
+    object-fit: cover;
+}
 
 @media only screen and (max-width: 1100px) {
 

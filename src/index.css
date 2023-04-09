@@ -8,11 +8,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #cbcbcbc4;
-  background-image: url("/public/assets/images/bk.jpg");
+  /* background-image: url("/public/assets/images/bk.jpg");*/
   color: azure;
+  background-color: #202124;
+  padding: 10px 5rem;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', 'Lobster'
     monospace;
+}
+
+
+@media screen and (max-width: 800px) {
+  body {
+
+    padding: 0px 2px;
+  }
+
 }

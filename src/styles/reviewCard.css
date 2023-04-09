@@ -6,7 +6,7 @@
     color: rgb(23, 11, 11);
     position: relative;
     cursor: pointer;
-
+    padding: 10px;
 }
 
 .reviewCard:hover {
