@@ -1,0 +1,62 @@
+.settings {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    margin: 30px auto;
+    border-radius: 15px;
+    max-width: 500px;
+    height: 80vh;
+    flex-direction: column;
+    padding: 40px;
+    border: 2px solid gray;
+
+
+}
+
+.hd-set {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.bod-set {
+    margin: 15px 30px;
+}
+
+.acc-info {
+    margin-bottom: 15px;
+    cursor: pointer;
+    display: flex;
+}
+
+.info-body {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+
+
+.acc-hd {
+    display: flex;
+
+}
+
+.more-details {
+    color: gray;
+    margin-top: -3px;
+
+}
+
+
+@media only screen and(max-width:800px) {
+
+    .settings {
+        font-size: 2rem;
+        background-color: blue;
+    }
+
+    .hd-set {
+        font-size: 2rem;
+    }
+}

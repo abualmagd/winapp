@@ -16,6 +16,7 @@ import StepOne from './views/stepOne';
 import Explore from './views/explorePage';
 import Saved from './views/saved';
 import Settings from './views/settings';
+import PlanChanger from './views/shiftPlan';
 
 
 
@@ -34,6 +35,7 @@ function App() {
           <Route path='/add' element={<AddTool />} errorElement={<ErrorPage />} />
           <Route path='/explore/:content' element={<Explore />} errorElement={<ErrorPage />} />
           <Route path='/app/:id' element={<AppPage />} errorElement={<ErrorPage />} />
+          <Route path='/changePlan' element={<PlanChanger />} errorElement={<ErrorPage />} />
           <Route path='/plan' element={<ProtectedRoute>
             <StepOne />
           </ProtectedRoute>} errorElement={<ErrorPage />} />

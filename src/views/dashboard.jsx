@@ -34,13 +34,13 @@ function DashBoard() {
                     WinApp</div>
                 <div className="barEnd">
                     <div className="btton">
-                        <Link to="/add" className="linkBttn">list new app</Link>
+                        <Link to="/settings" className="linkBttn">list new app</Link>
                     </div>
                     <div class="dropdown">
                         <img src="https://picsum.photos/seed/picsum/200/300" alt="error" className="avatar" />
                         <div class="dropdown-content">
 
-                            <Link to={"/add"} >
+                            <Link to={"/settings"} >
                                 <FontAwesomeIcon icon={faGear} />
                                 <span className='link-t'>
                                     Settings
