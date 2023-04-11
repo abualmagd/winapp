@@ -41,10 +41,10 @@ function Settings() {
                         <FontAwesomeIcon icon={faGear} /> Your Settings :
                     </div>
                     <div className="bod-set">
-                        <div className="acc-info">
+                        <div className="acc-info" onClick={() => navigat("/edit")}>
                             <FontAwesomeIcon icon={faUser} style={{ marginTop: "12px" }} />
                             <div className="info-body">
-                                <div className="acc-hd">
+                                <div className="acc-hd" >
                                     Account information
                                 </div>
                                 <p className="more-details">

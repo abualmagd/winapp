@@ -6,7 +6,7 @@ function NewCard() {
     return (
         <div className="newCard">
 
-            <img src="https://picsum.photos/seed/picsum/200/300" alt="error" className="newCardImage" />
+            <img src="https://picsum.photos/seed/picsum/200/300" alt="" className="newCardImage" />
 
             <div className="gradnt" >
                 <h2>app name</h2>

@@ -8,7 +8,7 @@ function PlanChanger() {
 
 
     return (
-        <div className="stepOneContainer">
+        <div className="stepOneContainer" style={{ justifyContent: "center" }}>
             <div className="user-plan" style={{ marginLeft: "20px", fontSize: "1.5rem" }}>
                 your current plan is  {userPlan}
             </div>

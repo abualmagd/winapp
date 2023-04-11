@@ -144,6 +144,8 @@ input[type="text"]:not(:placeholder-shown)+.clear {
   width: 280px;
   height: 200px;
   border-radius: 15px;
+  background-color: rgb(159, 159, 164);
+
 
 }
 

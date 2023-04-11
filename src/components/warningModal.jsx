@@ -4,8 +4,6 @@ import "../styles/warningModal.css";
 
 function WariningModal(props) {
 
-
-
     return (
         <div className="WarnContainer" >
             <div className="warn-modal" >

@@ -11,7 +11,7 @@ function Card() {
     let url = "/app/" + id;
     return (
         <div className="card" onClick={() => navigate(url)}>
-            <img src="https://picsum.photos/seed/picsum/200/300" alt="error" className="cardImage" />
+            <img src="https://picsum.photos/seed/picsum/200/300" alt="" className="cardImage" />
             <div className="myHeadCard">
                 <h2>app name</h2>
                 <div className="rating">4.2
