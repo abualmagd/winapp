@@ -12,6 +12,7 @@ function Settings() {
     const navigat = useNavigate();
     const [WModal, updateModal] = useState(false);
     const [changePass, updateChangePass] = useState(false);
+  
 
 
     function showModal() {

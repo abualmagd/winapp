@@ -95,7 +95,7 @@ function AddTool() {
                     <label>Price starts from : </label>
                     <div className="priceStarts">
                         <input type="text" className="creator" placeholder="in dollars.." />
-                        <select name="plansPeriod" id="period">
+                        <select name="plansPeriod" id="period" className="plans-period">
                             <option value="monthely">month</option>
                             <option value="yearly">year</option>
                         </select>

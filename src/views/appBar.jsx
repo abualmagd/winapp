@@ -20,9 +20,9 @@ export default function AppBar() {
                 <div className="submitButton">
                     <Link to="/plan" className="linkBtn">list your app</Link>
                 </div>
-                <div class="dropdown">
+                <div className="dropdown">
                     <img src="https://picsum.photos/seed/picsum/200/300" alt="error" className="avatar" />
-                    <div class="dropdown-content">
+                    <div className="dropdown-content">
                         <Link to={"/dashboard"} >
                             <FontAwesomeIcon icon={faTh} />
                             <span className='link-t'>

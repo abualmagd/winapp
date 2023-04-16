@@ -19,6 +19,7 @@ function Home() {
 
     useEffect(() => {
         setTimeout(() => { showAlert(); }, 5000);
+
     }, []);
     return (
         <div>

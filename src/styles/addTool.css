@@ -39,7 +39,8 @@
 }
 
 .right input,
-.category-sel {
+.category-sel,
+.plans-period {
     margin-right: 10px;
     height: 33px;
     border-radius: 10px;

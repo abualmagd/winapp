@@ -21,8 +21,6 @@ function SignUp() {
                 <p className='registerP'>Register your account</p>
 
                 <form onSubmit={onSubmit}>
-                    <label >Name</label>
-                    <input type="text" placeholder='your name' required />
                     <label >Email</label>
                     <input type="email" placeholder='example@gmail.com' required />
                     <label >Password</label>
@@ -38,3 +36,9 @@ function SignUp() {
 
 
 export default SignUp;
+
+
+/**
+ *      <label >Name</label>
+                    <input type="text" placeholder='your name' required />
+ */

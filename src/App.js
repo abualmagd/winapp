@@ -23,6 +23,7 @@ import AccountInfo from './views/accountInfo';
 
 function App() {
 
+  console.log("url : ", process.env.REACT_APP_URL_KEY);
 
 
   return (
