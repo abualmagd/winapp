@@ -2,21 +2,22 @@ import { mybase } from "./global";
 
 
 export async function register(userEmail, userPassword) {
-  await mybase.auth.signUp(
-    {
-      email: userEmail,
-      password: userPassword,
-    }
-  );
+  return await mybase.auth.signUp({
+    email: userEmail,
+    password: userPassword,
+  });
 }
 
 
 
 export async function login(userEmail, userPassword) {
-  await mybase.auth.signInWithPassword(
+  return await mybase.auth.signInWithPassword(
     {
       email: userEmail,
       password: userPassword,
+      options: {
+        emailRedirectTo: "/confirmed"
+      }
     }
   );
 }
@@ -28,7 +29,7 @@ export async function authState() {
         const expires = new Date(0).toUTCString()
         document.cookie = `my-session=; path=/; expires=${expires}; SameSite=Lax; secure`
       } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
-        const maxAge = 5 * 365 * 24 * 60 * 60;
+        const maxAge = 100 * 365 * 24 * 60 * 60;
         document.cookie = `my-session=${session}; path=/; max-age=${maxAge}; SameSite=Lax; secure`
 
       }
@@ -55,16 +56,15 @@ export async function restoreSession() {
 }
 
 export async function restorePassword(email) {
-  await mybase.auth.resetPasswordForEmail(email);
+  return await mybase.auth.resetPasswordForEmail(email);
 
 }
 
 
 export async function changePassword(newPassword, oldPassword) {
-  await mybase.auth.updateUser({
+  return await mybase.auth.updateUser({
     password: newPassword,
     oldPassword: oldPassword
   });
 }
-
 

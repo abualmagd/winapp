@@ -18,23 +18,26 @@ import Saved from './views/saved';
 import Settings from './views/settings';
 import PlanChanger from './views/shiftPlan';
 import AccountInfo from './views/accountInfo';
+import { Confirmation } from './views/confirmationEmail';
+import { EmailConfirmed } from './views/emailConfirmed';
 
 
 
 function App() {
 
-  console.log("url : ", process.env.REACT_APP_URL_KEY);
+  console.log("lets paly");
 
 
   return (
     <div className="App" >
-
       <AuthProvider>
         <Routes>
           <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
           <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />
           <Route path='/login' element={<Login />} errorElement={<ErrorPage />} />
           <Route path='/add' element={<AddTool />} errorElement={<ErrorPage />} />
+          <Route path='/sent' element={<Confirmation />} errorElement={<ErrorPage />} />
+          <Route path='/confirm' element={<EmailConfirmed />} errorElement={<ErrorPage />} />
           <Route path='/explore/:content' element={<Explore />} errorElement={<ErrorPage />} />
           <Route path='/app/:id' element={<AppPage />} errorElement={<ErrorPage />} />
           <Route path='/changePlan' element={<PlanChanger />} errorElement={<ErrorPage />} />

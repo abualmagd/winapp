@@ -4,11 +4,13 @@ import React from "react";
 
 export const AuthContext = React.createContext(null);
 const AuthProvider = ({ children }) => {
-    const [token, setToken] = useState("llll");
+    const [token, setToken] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
 
     const handleLogin = (t) => {
+        console.log("handling login")
+        console.log("token :", t)
         setToken(t);
         navigate(location.state?.from?.pathname || '/');
 
