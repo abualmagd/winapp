@@ -6,6 +6,7 @@ const ProtectedRoute = ({ children }) => {
     const { token } = useAuth();
     if (!token) {
         console.log(token);
+        console.log("no token")
         return <Navigate to="/login" replace />;
     }
     console.log("second option protected");

@@ -1,4 +1,4 @@
-import { mybase } from "./global";
+import { mybase, removeToken } from "./global";
 
 
 export async function register(userEmail, userPassword) {
@@ -22,6 +22,8 @@ export async function login(userEmail, userPassword) {
   );
 }
 
+
+
 export async function authState() {
   mybase.auth.onAuthStateChange(
     (event, session) => {
@@ -30,7 +32,7 @@ export async function authState() {
         document.cookie = `my-session=; path=/; expires=${expires}; SameSite=Lax; secure`
       } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
         const maxAge = 100 * 365 * 24 * 60 * 60;
-        document.cookie = `my-session=${session}; path=/; max-age=${maxAge}; SameSite=Lax; secure`
+        document.cookie = `my-session=${JSON.stringify(session)}; path=/; max-age=${maxAge}; SameSite=Lax; secure`
 
       }
     }
@@ -40,18 +42,17 @@ export async function authState() {
 export async function restoreSession() {
   const session = document.cookie.split('; ').find(row => row.startsWith("my-session="))?.split('=')[1];
   if (session) {
-
-    const { expires_at } = session;
-    const now = new Date.now() / 1000;
+    const { expires_at } = JSON.parse(session);
+    const now = new Date() / 1000;
     const timeToExpiry = expires_at - now;
     if (timeToExpiry < 60) {
       const newSession = await mybase.auth.refreshSession();
-      await mybase.auth.setSession(newSession);
+      return await mybase.auth.setSession(newSession);
     } else {
-      await mybase.auth.setSession(session);
+      return await mybase.auth.setSession(session);
     }
   } else {
-    throw Error("no session");
+    removeToken();
   }
 }
 
@@ -68,3 +69,7 @@ export async function changePassword(newPassword, oldPassword) {
   });
 }
 
+
+export async function logMeOut() {
+  return mybase.auth.signOut();
+}

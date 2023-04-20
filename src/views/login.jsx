@@ -38,7 +38,7 @@ function Login() {
             notify(error.message)
         } else {
             console.log("user : ", data.user);
-            onLogin(data.user)
+            onLogin(data.user.id)
         }
 
     }

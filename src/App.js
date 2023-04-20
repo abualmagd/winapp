@@ -20,12 +20,20 @@ import PlanChanger from './views/shiftPlan';
 import AccountInfo from './views/accountInfo';
 import { Confirmation } from './views/confirmationEmail';
 import { EmailConfirmed } from './views/emailConfirmed';
+import { useCallback, useEffect } from 'react';
+import { authState, restoreSession } from './services/authServices';
 
 
 
 function App() {
+  const sessionrecover = useCallback(() => restoreSession(), []);
+  useEffect(() => {
+    console.log("once our app started");
+    sessionrecover();
+    authState();
+  }, [sessionrecover]);
 
-  console.log("lets paly");
+
 
 
   return (

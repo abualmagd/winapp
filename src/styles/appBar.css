@@ -52,6 +52,7 @@
 
 
 
+
 .linkBtn {
     text-decoration: none;
     color: beige;
@@ -67,6 +68,7 @@
     height: 35px;
     margin-top: -5px;
     cursor: pointer;
+    margin-right: 4px;
 
 }
 

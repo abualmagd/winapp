@@ -4,11 +4,24 @@ import '../styles/appBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faBookmark, faGear, faRightFromBracket, faTh } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '../myHooks/useAuth';
+import { logMeOut } from '../services/authServices';
 
 
 export default function AppBar() {
     const navigat = useNavigate();
-    const { token } = useAuth();
+    const { token, onLogout } = useAuth();
+
+
+    const tryLogOut = async () => {
+        try {
+            await logMeOut();
+            onLogout();
+            console.log("loged out ")
+            navigat("/login", -1);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <header className="headery">
@@ -22,10 +35,10 @@ export default function AppBar() {
                 <div className="submitButton">
                     <Link to="/plan" className="linkBtn">list your app</Link>
                 </div>
-                {token ? <div className="dropdown">
+                {token !== null ? <div className="dropdown">
 
-                    {/* <img src="https://picsum.photos/seed/picsum/200/300" alt="error" className="avatar" />*/}
-                    <FontAwesomeIcon icon={faBars} />
+                    <img src="https://picsum.photos/seed/picsum/200/300" alt="error" className="avatar" />
+                    <FontAwesomeIcon icon={faBars} size='xl' cursor={'pointer'} />
 
                     <div className="dropdown-content">
                         <Link to={"/dashboard"} >
@@ -47,13 +60,13 @@ export default function AppBar() {
                             <span className='link-t'>
                                 Saved
                             </span> </Link>
-                        <Link to={'/login'} >
+                        <Link onClick={tryLogOut} >
                             <FontAwesomeIcon icon={faRightFromBracket} />
                             <span className='link-t'>
                                 Log out
                             </span> </Link>
                     </div>
-                </div> : <Link to={"/login"}>Join</Link>}
+                </div> : <Link to={"/login"} className='link'>Join</Link>}
 
 
             </div>

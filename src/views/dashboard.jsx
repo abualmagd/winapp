@@ -36,9 +36,9 @@ function DashBoard() {
                     <div className="btton">
                         <Link to="/settings" className="linkBttn">list new app</Link>
                     </div>
-                    <div class="dropdown">
+                    <div className="dropdown">
                         <img src="https://picsum.photos/seed/picsum/200/300" alt="error" className="avatar" />
-                        <div class="dropdown-content">
+                        <div className="dropdown-content">
 
                             <Link to={"/settings"} >
                                 <FontAwesomeIcon icon={faGear} />
