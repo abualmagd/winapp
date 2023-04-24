@@ -105,7 +105,13 @@
 }
 
 
-
+.forget-pass {
+    color: var(--unhoverText);
+    display: flex;
+    margin-right: 30px;
+    justify-content: flex-end;
+    cursor: pointer;
+}
 
 
 @media only screen and (max-width: 700px) {

@@ -36,7 +36,7 @@
     margin-right: 1rem;
     align-items: center;
     justify-content: center;
-    background-color: rgb(4, 142, 4);
+    background-color: var(--btnbgColor);
     padding: 0px 5px;
 
 }
@@ -68,7 +68,7 @@
     height: 35px;
     margin-top: -5px;
     cursor: pointer;
-    margin-right: 4px;
+    margin-right: 8px;
 
 }
 
@@ -82,7 +82,7 @@
     display: none;
     position: absolute;
     left: -30px;
-    background-color: #161927;
+    background-color: var(--notifyColor);
     border-radius: 15px;
     min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(99, 97, 97, 0.2);
@@ -95,7 +95,7 @@
 }
 
 .dropdown-content a {
-    color: white;
+    color: var(--textColor);
     padding: 12px 16px;
     border-radius: 15px;
     text-decoration: none;

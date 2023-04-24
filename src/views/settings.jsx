@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import WariningModal from "../components/warningModal";
 import { useState } from "react";
 import ChangePass from "../components/changePass";
+import { ToastContainer } from "../components/toastContainer";
 
 
 
@@ -12,7 +13,20 @@ function Settings() {
     const navigat = useNavigate();
     const [WModal, updateModal] = useState(false);
     const [changePass, updateChangePass] = useState(false);
-  
+    const [message, updateMessage] = useState();
+    const [display, updateDisplay] = useState("none");
+    const [error, updateError] = useState(true);
+
+    const notify = (mesg, error) => {
+        updateMessage(mesg);
+        updateError(error);
+        updateDisplay("flex");
+        setTimeout(() => {
+            updateDisplay("none");
+            console.log('close')
+        }, 3000);
+        console.log('nottttttttttttt')
+    }
 
 
     function showModal() {
@@ -34,9 +48,9 @@ function Settings() {
     return (
         <div>
             {WModal && <WariningModal close={hideModal} />}
-            {changePass && <ChangePass close={hideChangePass} />}
+            {changePass && <ChangePass close={hideChangePass} notify={(mesg, ror) => notify(mesg, ror)} />}
+            <ToastContainer display={display} message={message} error={error} />
             <div className="settings">
-
                 <div className="account-set">
                     <div className="hd-set">
                         <FontAwesomeIcon icon={faGear} /> Your Settings :

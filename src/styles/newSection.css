@@ -35,7 +35,7 @@
     margin-bottom: 20px;
     width: 290px;
     border-radius: 15px;
-    color: rgb(223, 219, 219);
+    color: var(--unhoverText);
     position: relative;
 
 
@@ -44,11 +44,9 @@
 
 .newCard:hover {
     cursor: pointer;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-        0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: rgba(245, 245, 245, 0.942);
-    background-color: #202438;
-    color: white;
+    box-shadow: var(--bxShadow);
+    background-color: var(--cardColor);
+    color: var(--textColor);
 }
 
 .newCardImage {
@@ -110,14 +108,13 @@
 .newBtn {
     display: flex;
     justify-content: center;
-    background-color: rgb(4, 142, 4);
+    background-color: var(--btnbgColor);
     border-radius: 8px;
     padding: 10px 60px;
     margin: 10px auto;
     font-size: 1.2rem;
     font-weight: 500;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.35),
-        0 6px 20px 0 rgba(0, 0, 0, 0.35);
+    box-shadow: var(--bxShadow);
 
 
 }

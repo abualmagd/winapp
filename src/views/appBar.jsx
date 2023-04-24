@@ -2,7 +2,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/appBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faBookmark, faGear, faRightFromBracket, faTh } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faEllipsisVertical, faGear, faRightFromBracket, faTh } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '../myHooks/useAuth';
 import { logMeOut } from '../services/authServices';
 
@@ -38,7 +38,7 @@ export default function AppBar() {
                 {token !== null ? <div className="dropdown">
 
                     <img src="https://picsum.photos/seed/picsum/200/300" alt="error" className="avatar" />
-                    <FontAwesomeIcon icon={faBars} size='xl' cursor={'pointer'} />
+                    <FontAwesomeIcon icon={faEllipsisVertical} size='xl' cursor={'pointer'} />
 
                     <div className="dropdown-content">
                         <Link to={"/dashboard"} >

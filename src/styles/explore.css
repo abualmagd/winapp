@@ -36,11 +36,11 @@
 
 .filters {
     width: 25%;
-    background-color: rgb(250, 250, 250);
+    background-color: var(--cardColor);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    color: #000;
+    color: var(--textColor);
 
 }
 
@@ -59,7 +59,7 @@
 
 .catego-selector {
     width: 80%;
-    color: #000;
+    color: var(--textColor);
     margin: 20px;
     height: 30px;
     border: 0px transparent;
@@ -98,11 +98,11 @@
     font-weight: 500;
     cursor: pointer;
     width: 40px;
-    color: black;
+    color: var(--textColor);
 }
 
 .head-btn-reset:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: var(--bxShadow);
 
 }
 

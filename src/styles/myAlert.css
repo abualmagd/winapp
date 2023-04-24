@@ -1,5 +1,5 @@
 .myAlert {
-    background-color: #202438;
+    background-color: var(--notifyColor);
     width: 50vw;
     height: 500px;
     border-radius: 15px;
@@ -32,7 +32,7 @@
 
 .myAlert h2 {
     margin: -20px;
-    color: white;
+    color: var(--textColor);
     text-transform: uppercase;
 }
 

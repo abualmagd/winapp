@@ -53,11 +53,14 @@ export async function restoreSession() {
     }
   } else {
     removeToken();
+    return Error('no session')
   }
 }
 
 export async function restorePassword(email) {
-  return await mybase.auth.resetPasswordForEmail(email);
+  return await mybase.auth.resetPasswordForEmail(email, {
+    redirectTo: "http://localhost:3000/recover"
+  });
 
 }
 
@@ -73,3 +76,25 @@ export async function changePassword(newPassword, oldPassword) {
 export async function logMeOut() {
   return mybase.auth.signOut();
 }
+
+export async function updatePassword(newPassword) {
+  return mybase.auth.updateUser({
+    password: newPassword,
+  });
+}
+
+
+export async function updateUserEmail(newEmail) {
+  return mybase.auth.updateUser({
+    email: newEmail,
+    options: {
+      removeToken
+    }
+  })
+}
+
+
+
+
+
+

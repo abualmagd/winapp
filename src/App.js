@@ -22,11 +22,21 @@ import { Confirmation } from './views/confirmationEmail';
 import { EmailConfirmed } from './views/emailConfirmed';
 import { useCallback, useEffect } from 'react';
 import { authState, restoreSession } from './services/authServices';
+import RecoveryPassword from './views/recoverPass';
 
 
 
 function App() {
-  const sessionrecover = useCallback(() => restoreSession(), []);
+
+  const sessionrecover = useCallback(() => {
+    try {
+      restoreSession();
+
+    } catch (error) {
+      window.location.reload();
+    }
+
+  }, []);
   useEffect(() => {
     console.log("once our app started");
     sessionrecover();
@@ -48,6 +58,7 @@ function App() {
           <Route path='/confirm' element={<EmailConfirmed />} errorElement={<ErrorPage />} />
           <Route path='/explore/:content' element={<Explore />} errorElement={<ErrorPage />} />
           <Route path='/app/:id' element={<AppPage />} errorElement={<ErrorPage />} />
+          <Route path='/recover' element={<RecoveryPassword />} errorElement={<ErrorPage />} />
           <Route path='/changePlan' element={<PlanChanger />} errorElement={<ErrorPage />} />
           <Route path='/edit' element={<ProtectedRoute>
             <AccountInfo />
