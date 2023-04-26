@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faEllipsisVertical, faGear, faRightFromBracket, faTh } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '../myHooks/useAuth';
 import { logMeOut } from '../services/authServices';
+import { useCallback, useEffect } from 'react';
+import { getUserData, saveUserLocal } from '../services/userServices';
 
 
 export default function AppBar() {
@@ -22,6 +24,22 @@ export default function AppBar() {
             console.log(error);
         }
     }
+    const getMyUser = useCallback(async () => {
+        console.log('get my user')
+        const { data, error } = await getUserData();
+
+        if (data) {
+            saveUserLocal(data[0]);
+            console.log("user-name", data[0]['name'])
+        }
+        if (error) {
+            console.log(error.message)
+        }
+    }, []);
+
+    useEffect(() => {
+        getMyUser();
+    }, [getMyUser]);
 
     return (
         <header className="headery">

@@ -5,6 +5,8 @@ import useAuth from "../myHooks/useAuth";
 import { ErrorToastContainer } from "../components/toastContainer";
 import { login } from "../services/authServices";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -12,6 +14,7 @@ export function EmailConfirmed() {
     const { onLogin } = useAuth();
     const [message, updateMessage] = useState();
     const [display, updateDisplay] = useState("none");
+    const [loading, updateLoading] = useState(true);
     const navTo = useNavigate();
 
     const notify = (mesg) => {
@@ -30,6 +33,7 @@ export function EmailConfirmed() {
 
 
     const confirm = async () => {
+
         const params = new URLSearchParams(window.location.search);
         const confirmUrl = params.get("confirmation_url");
         console.log(confirmUrl);
@@ -44,7 +48,7 @@ export function EmailConfirmed() {
 
             })
 
-
+            updateLoading(false);
         } catch (error) {
             console.log(error)
         }
@@ -76,10 +80,13 @@ export function EmailConfirmed() {
         height: "100%",
         position: "absolute"
     }}>
-        <ErrorToastContainer display={display} message={message} />
-        <p className="messa">
-            press to cofirm your email adress,
-        </p>
-        <input type="button" value="confirm" />
+        {loading ? <div style={{ display: "flex", flexDirection: "column" }}>
+            <ErrorToastContainer display={display} message={message} />
+            <p className="messa">
+                cofirming your email adress,
+            </p>
+            <FontAwesomeIcon icon={faSpinner} pulse size="lg" /></div> : <p className="messa">
+            your email adress confirmed succesfuly,
+        </p>}
     </div>
 }

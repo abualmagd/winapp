@@ -3,6 +3,8 @@ import '../styles/signUp.css';
 import { useState, useRef } from 'react';
 import { register } from '../services/authServices';
 import { ErrorToastContainer } from '../components/toastContainer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -14,8 +16,10 @@ function SignUp() {
 
     const emailRef = useRef();
     const passwordRef = useRef();
+    const nameRef = useRef();
     const [message, updateMessage] = useState();
     const [display, updateDisplay] = useState("none");
+    const [loading, updateLoading] = useState(false);
     const navTo = useNavigate();
 
 
@@ -36,12 +40,13 @@ function SignUp() {
 
 
     const onSubmit = async (event) => {
+        updateLoading(true);
         console.log("email", emailRef.current.value)
         console.log("pass", passwordRef.current.value)
         event.preventDefault();
         console.log('submit');
         try {
-            const { data, error } = await register(emailRef.current.value, passwordRef.current.value);
+            const { data, error } = await register(emailRef.current.value, passwordRef.current.value, nameRef.current.value);
             console.log("daata : ", data)
 
             if (error) throw error;
@@ -54,6 +59,7 @@ function SignUp() {
         } catch (error) {
             console.log('An error occurred:', error.message);
             notify(error.message);
+            updateLoading(false);
         }
 
 
@@ -74,11 +80,15 @@ function SignUp() {
                 <p className='registerP'>Register your account</p>
 
                 <form onSubmit={onSubmit}>
+                    <label >Name</label>
+                    <input type="text" placeholder='my name' ref={nameRef} required />
                     <label >Email</label>
                     <input type="email" placeholder='example@gmail.com' ref={emailRef} required />
                     <label >Password</label>
-                    <input type="password" placeholder='8 digits' ref={passwordRef} required />
-                    <input type="submit" value="Register" />
+                    <input type="password" placeholder='6 digits or more' ref={passwordRef} required />
+                    {loading ? <div className='div-submit'>
+                        <FontAwesomeIcon icon={faSpinner} pulse size="lg" />
+                    </div> : <input type="submit" value="Register" />}
                 </form>
 
                 <p className="create">or create account with <span className='googleSpan'> Google</span> </p>

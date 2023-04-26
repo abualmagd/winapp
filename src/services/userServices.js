@@ -8,15 +8,23 @@ export async function getCurrentUser() {
 
 export async function getUserData() {
     const id = await getToken();
-    return await mybase.from('profiles').select('*').eq('id', id);
+    return await mybase.from('profiles').select("*").eq('id', id);
 }
 
 
-export async function updateUser(name, avatarUrl) {
+export async function updateUserAvatar(avatarUrl) {
     const id = await getToken();
+
+    return await mybase.from('profiles').update({
+        'avatar_url': avatarUrl
+    }).eq('id', id);
+}
+
+
+export async function updateUserName(name, id) {
+
     return await mybase.from('profiles').update({
         'name': name,
-        'avatar-url': avatarUrl
     }).eq('id', id);
 }
 
@@ -29,5 +37,5 @@ export function saveUserLocal(user) {
 
 
 export function getLocalUser() {
-    return JSON.stringify(localStorage.getItem('my-user'));
+    return JSON.parse(localStorage.getItem('my-user'));
 }

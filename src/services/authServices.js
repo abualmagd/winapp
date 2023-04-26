@@ -1,11 +1,29 @@
 import { mybase, removeToken } from "./global";
 
 
-export async function register(userEmail, userPassword) {
-  return await mybase.auth.signUp({
-    email: userEmail,
-    password: userPassword,
-  });
+export async function register(userEmail, userPassword, userName) {
+  return await mybase.auth.signUp(
+    {
+      email: userEmail,
+      password: userPassword,
+      options: {
+        data: {
+          name: userName
+        }
+      }
+    });
+}
+
+
+export async function createNewProfile(userEmail, userName, userId) {
+  return await mybase.from('profiles').insert(
+    {
+      id: userId,
+      email: userEmail,
+      name: userName,
+
+    }
+  );
 }
 
 

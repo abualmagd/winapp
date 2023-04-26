@@ -5,6 +5,8 @@ import { useRef } from 'react';
 import useAuth from '../myHooks/useAuth';
 import { useState } from 'react';
 import { ToastContainer } from '../components/toastContainer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -16,6 +18,7 @@ function Login() {
     const [message, updateMessage] = useState();
     const [display, updateDisplay] = useState("none");
     const [error, updateError] = useState(true);
+    const [loading, updateLoading] = useState(false);
 
     const notify = (mesg, error) => {
         updateMessage(mesg);
@@ -33,9 +36,11 @@ function Login() {
         console.log('email', emailRef.current.value)
         const em = emailRef.current.value.trim();
         if (em.length > 0) {
+            updateLoading(true)
             const { data, error } = await restorePassword(em);
             if (error) {
                 notify(error.message, true);
+                updateLoading(false)
             } else {
                 notify(data.name + "recovery email sent to your email", false)
             }
@@ -47,15 +52,17 @@ function Login() {
 
 
     const onSubmit = async (event) => {
+        updateLoading(true);
         event.preventDefault();
         console.log('submit');
         const { data, error } = await login(emailRef.current.value, passwordRef.current.value);
 
         if (error) {
             notify(error.message, true)
+            updateLoading(false);
         } else {
             console.log("user : ", data.user);
-            onLogin(data.user.aud)
+            onLogin(data.user.id)
         }
 
     }
@@ -79,8 +86,9 @@ function Login() {
                     <div className="forget-pass" onClick={restorePass}>
                         forget password
                     </div>
-
-                    <input type="submit" value="Login" />
+                    {loading ? <div className='div-submit'>
+                        <FontAwesomeIcon icon={faSpinner} pulse size="lg" />
+                    </div> : <input type="submit" value="Login" />}
                 </form>
                 <p className="create">or create account with <span className='googleSpan'> Google</span> </p>
 
