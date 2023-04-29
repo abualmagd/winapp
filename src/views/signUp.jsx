@@ -5,7 +5,7 @@ import { register } from '../services/authServices';
 import { ErrorToastContainer } from '../components/toastContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-
+//import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 
 
@@ -91,7 +91,10 @@ function SignUp() {
                     </div> : <input type="submit" value="Register" />}
                 </form>
 
-                <p className="create">or create account with <span className='googleSpan'> Google</span> </p>
+                {/* <p className="create">or create account with <span className='googleSpan'>
+                    Linked
+                    <FontAwesomeIcon icon={faLinkedin} size='lg' style={{ color: "rgb(55, 87, 147)", }} />
+    </span> </p>*/}
             </div>
         </div >
     );

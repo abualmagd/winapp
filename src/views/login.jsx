@@ -90,7 +90,10 @@ function Login() {
                         <FontAwesomeIcon icon={faSpinner} pulse size="lg" />
                     </div> : <input type="submit" value="Login" />}
                 </form>
-                <p className="create">or create account with <span className='googleSpan'> Google</span> </p>
+                {/* <p className="create">or create account with <span className='googleSpan'>
+                    Linked
+                    <FontAwesomeIcon icon={faLinkedin} size='lg' style={{ color: "rgb(55, 87, 147)", }} />
+    </span> </p>*/}
 
             </div>
 

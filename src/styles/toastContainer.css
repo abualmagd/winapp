@@ -1,35 +1,39 @@
 .toast-container {
     height: 70px;
-    width: 300px;
+    width: 310px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(47, 0, 255);
     position: absolute;
     z-index: 1000;
-    right: -300px;
+    right: -310px;
     top: 10px;
     border-radius: 15px;
-    animation: move 2.5s ease-out;
+    animation: move 3s ease-out;
 
 }
 
 
 @keyframes move {
     0% {
-        right: -300px;
+        right: -310px;
     }
 
     50% {
-        right: -150px;
+        right: -100px;
     }
 
     70% {
-        right: 0px;
+        right: 40px;
+    }
+
+    80% {
+        right: 40px;
     }
 
     100% {
-        right: 0px;
+        right: 40px;
     }
 }
 
