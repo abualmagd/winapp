@@ -127,7 +127,7 @@ input[type="text"]:not(:placeholder-shown)+.clear {
   padding: 10px;
   margin-bottom: 20px;
   width: 280px;
-  border-radius: 15px;
+  border-radius: 10px;
   color: var(--unhoverText);
 }
 
@@ -142,10 +142,9 @@ input[type="text"]:not(:placeholder-shown)+.clear {
 .cardImage {
   width: 280px;
   height: 200px;
-  border-radius: 15px;
+  border-radius: 10px;
   background-color: rgb(159, 159, 164);
-
-
+  object-fit: cover;
 }
 
 

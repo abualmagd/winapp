@@ -6,12 +6,13 @@ import { faBookmark, faEllipsisVertical, faGear, faRightFromBracket, faTh } from
 import useAuth from '../myHooks/useAuth';
 import { logMeOut } from '../services/authServices';
 import { useCallback, useEffect } from 'react';
-import { getUserData, saveUserLocal } from '../services/userServices';
+import { getLocalUser, getUserData, saveUserLocal } from '../services/userServices';
 
 
 export default function AppBar() {
     const navigat = useNavigate();
     const { token, onLogout } = useAuth();
+    const { avatar_url } = getLocalUser();
 
 
     const tryLogOut = async () => {
@@ -55,7 +56,7 @@ export default function AppBar() {
                 </div>
                 {token !== null ? <div className="dropdown">
 
-                    <img src="https://picsum.photos/seed/picsum/200/300" alt="error" className="avatar" />
+                    <img src={avatar_url} alt="error" className="avatar" />
                     <FontAwesomeIcon icon={faEllipsisVertical} size='xl' cursor={'pointer'} />
 
                     <div className="dropdown-content">

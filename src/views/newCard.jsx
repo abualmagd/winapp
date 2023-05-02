@@ -1,18 +1,17 @@
 import "../styles/newSection.css";
 
-function NewCard() {
+function NewCard(props) {
 
-
+    const app = props.data;
     return (
         <div className="newCard">
 
-            <img src="https://picsum.photos/seed/picsum/200/300" alt="" className="newCardImage" />
+            <img src={app['shot_url']} alt="" className="newCardImage" />
 
             <div className="gradnt" >
-                <h2>app name</h2>
+                <h2>{app['app_name']}</h2>
             </div>
-            <h5 className='newCardH5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae ad, consequuntur nemo aliquid reprehenderit
-                beatae mollitia perferendis sit, quas odit assumenda et est dicta labore voluptatibus voluptate ipsa dolore atque!
+            <h5 className='newCardH5'>{app['description']}
             </h5>
         </div>
     );

@@ -4,25 +4,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 
-function Card() {
+function Card(props) {
 
+    const app = props.data;
     const navigate = useNavigate();
-    const id = 3;
-    let url = "/app/" + id;
+    const name = app['app_name'];
+    let url = "/" + name;
     return (
         <div className="card" onClick={() => navigate(url)}>
-            <img src="https://picsum.photos/seed/picsum/200/300" alt="" className="cardImage" />
+            <img src={app['shot_url']} alt='' className="cardImage" />
             <div className="myHeadCard">
-                <h2>app name</h2>
-                <div className="rating">4.2
+                <h2>{name}</h2>
+                <div className="rating">{app['avg_rating']}
                     <span className="space"></span>
                     <FontAwesomeIcon icon={faStar} size='xs' />
                 </div>
             </div>
-            <h5 className='cardH5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae ad, consequuntur nemo aliquid reprehenderit
-                beatae mollitia perferendis sit, quas odit assumenda et est dicta labore voluptatibus voluptate ipsa dolore atque!
+            <h5 className='cardH5'>{app['description']}
             </h5>
-            <h6>category</h6>
+            <h6>{app['category']}</h6>
         </div>
 
     );

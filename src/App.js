@@ -57,7 +57,7 @@ function App() {
           <Route path='/sent' element={<Confirmation />} errorElement={<ErrorPage />} />
           <Route path='/confirm' element={<EmailConfirmed />} errorElement={<ErrorPage />} />
           <Route path='/explore/:content' element={<Explore />} errorElement={<ErrorPage />} />
-          <Route path='/app/:id' element={<AppPage />} errorElement={<ErrorPage />} />
+          <Route path='/:name' element={<AppPage />} errorElement={<ErrorPage />} />
           <Route path='/recover' element={<RecoveryPassword />} errorElement={<ErrorPage />} />
           <Route path='/changePlan' element={<PlanChanger />} errorElement={<ErrorPage />} />
           <Route path='/edit' element={<ProtectedRoute>

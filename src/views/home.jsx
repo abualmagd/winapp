@@ -18,7 +18,12 @@ function Home() {
     }
 
     useEffect(() => {
-        setTimeout(() => { showAlert(); }, 5000);
+
+        const hasSeenPopup = localStorage.getItem('subscribe_pop');
+        if (!hasSeenPopup) {
+            setTimeout(() => { showAlert(); }, 6000);
+            localStorage.setItem('subscribe_pop', true);
+        }
 
     }, []);
     return (

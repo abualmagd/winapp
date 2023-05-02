@@ -1,13 +1,39 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Card from "./card";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { getHeighlyApps } from "../services/appServices";
 
 
 function TopSection() {
     const searchRef = useRef();
     const naigate = useNavigate();
+    const [lista, updateLista] = useState([]);
+    const [loading, updateLoading] = useState(false);
+
+
+    const getTopApps = async () => {
+        updateLoading(true);
+
+        const { data, error } = await getHeighlyApps(0);
+        if (error) {
+            console.log(error.message);
+            updateLoading(false);
+
+        } else {
+            console.log('data', data);
+            updateLista(data);
+            updateLoading(false);
+
+        }
+
+
+    }
+
+    useEffect(() => {
+        getTopApps();
+    }, []);
 
     function handleEnter(e) {
         const str = searchRef.current.value;
@@ -19,10 +45,10 @@ function TopSection() {
         }
     }
 
-    const lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
 
     var cards = lista.map((item, index) => {
-        return <Card key={index} props={item} />
+        return <Card key={index} data={item} />
     });
     return (
         <div >
@@ -35,9 +61,9 @@ function TopSection() {
                 </div>
             </div>
 
-            <section className="topApps">
+            {loading ? <div className='center_progress'><FontAwesomeIcon icon={faSpinner} pulse size="lg" /> </div> : <section className="topApps">
                 {cards}
-            </section>
+            </section>}
         </div>
 
     );

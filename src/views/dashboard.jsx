@@ -5,10 +5,13 @@ import ReviewCard from './reviewCard';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { getLocalUser } from '../services/userServices';
 
 function DashBoard() {
     const { token } = useAuth();
     const navigat = useNavigate();
+    const { avatar_url } = getLocalUser();
+
     let list = [1, 2, 3, 4];
     const dashCards = list.map((app, index) => {
         return <DashCard app={app} key={index} />
@@ -37,7 +40,7 @@ function DashBoard() {
                         <Link to="/settings" className="linkBttn">list new app</Link>
                     </div>
                     <div className="dropdown">
-                        <img src="https://picsum.photos/seed/picsum/200/300" alt="error" className="avatar" />
+                        <img src={avatar_url} alt="error" className="avatar" />
                         <div className="dropdown-content">
 
                             <Link to={"/settings"} >
