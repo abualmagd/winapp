@@ -3,8 +3,12 @@ import '../styles/reviewCard.css';
 import { useState } from 'react';
 
 import ReplayPart from '../components/replayPart';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 function ReviewCard(props) {
     const [expand, updateExpand] = useState(false);
+
+    const data = props.data;
 
     const showReplays = () => {
         updateExpand(!expand);
@@ -14,21 +18,40 @@ function ReviewCard(props) {
 
     }
 
+    const stars = (rating) => {
+
+        const maxRating = 5; // set the maximum rating value
+        const starIcons = [];
+
+        for (let i = 0; i < maxRating; i++) {
+
+            const starIcon = i < rating ? <FontAwesomeIcon icon={faStar} size='xs' className='icon-rev' /> :
+                <FontAwesomeIcon icon={faStar} size='xs' className='icon-rev' color='gray' />
+            starIcons.push(starIcon);
+        }
+
+        return starIcons;
+    }
 
     return (
         <div className='reviewCont'>
 
             <div className="reviewCard" onClick={showReplays}>
-                <div className="reviewer">
-                    <img src="https://picsum.photos/seed/picsum/200/300" alt="error" className="reviewAvatar" />
-                    <div className="userNameRev">ahmed badewy</div>
+                <div className="head-rev">
+                    <div className="reviewer">
+                        <img src={data['creator_avatar_url']} alt="error" className="reviewAvatar" />
+                        <div className="userNameRev">ahmed badewy</div>
+                    </div>
+                    {data['rating'] && <div className="rating-star">
+                        {stars(data['rating'])}
+                    </div>}
                 </div>
+
                 <div className="content">
-                    {props.review}"  "
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur non laudantium porro nostrum inventore molestiae eveniet molestias libero saepe, fuga voluptate voluptas neque, suscipit cupiditate aperiam vel pariatur delectus incidunt.
+                    {data['content']}
                 </div>
             </div>
-            {expand && <ReplayPart close={hideReplays} expand={expand} />}
+            {expand && <ReplayPart close={hideReplays} expand={expand} id={data['id']} />}
 
         </div>
 
@@ -37,3 +60,7 @@ function ReviewCard(props) {
 
 
 export default ReviewCard;
+
+
+
+

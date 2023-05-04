@@ -16,8 +16,28 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.head-rev {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.rating-star {
+    color: rgb(255, 149, 0);
+    display: flex;
+}
+
+.icon-rev {
+    margin-top: 5px;
+}
+
+.rating-star span {
+    width: 5px;
+}
+
 .reviewer {
     display: flex;
+
 }
 
 .reviewAvatar {

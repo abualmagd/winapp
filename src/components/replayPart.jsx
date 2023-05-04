@@ -1,15 +1,85 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/replayPart.css"
 import ReplayCard from "./replayCard";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { useCallback } from "react";
+import { createReplay, getReplaysforReview } from "../services/appServices";
+import { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 
 
 
 function ReplayPart(props) {
 
-    let repls = [1, 2];
-    const reps = repls.map((r, index) => {
+    const reviewId = props.id;
+    const [state, updateState] = useState('loading');
+    const [replays, updateReplays] = useState(null);
+    const [newContent, updateContent] = useState(null);
+
+    const replay = async () => {
+        console.log(newContent)
+        if (newContent !== null && newContent.trim() !== '') {
+            const { data, error } = await createReplay(reviewId, newContent.trim());
+
+            if (error) {
+                console.log('error', error.message);
+            }
+            if (data) {
+                updateReplays([...replays, data[0]]);
+            }
+        }
+
+    }
+
+
+    const getReplays = useCallback(async () => {
+        const { data, error } = await getReplaysforReview(reviewId);
+        if (error) {
+            updateState('error');
+        }
+        if (data) {
+            console.log('replays : ', data)
+            updateState('data');
+            updateReplays(data);
+        }
+    }, [reviewId])
+
+
+
+    useEffect(() => {
+        getReplays();
+    }, [getReplays]);
+
+
+
+    if (state === 'error') {
+        return (
+            <div className="centerCircular">
+                <p className="error">
+                    Sorry something error happened inloading replays
+                </p>
+            </div>
+        );
+    }
+    if (state === 'loading') {
+        let myHeight = props.expand ? "100%" : "0%";
+        console.log(myHeight)
+        return (<div className="replayContainer" style={{ height: myHeight }}>
+            <div className="divider"></div>
+            <FontAwesomeIcon icon={faSpinner} spin size="lg" />
+            <textarea className="replayTo" maxLength={255} name="replayTo" id="repTo" cols="35" rows="7" onChange={(e) => updateContent(e.target.value)}></textarea>
+            <div className="replayToBtn" onClick={() => replay('replaytooo')
+            } >
+                <FontAwesomeIcon icon={faPaperPlane} />
+            </div>
+        </div>);
+    }
+
+
+
+    const reps = replays.map((r, index) => {
         return <ReplayCard replay={r} key={index} />
     })
 
@@ -19,9 +89,8 @@ function ReplayPart(props) {
     return (<div className="replayContainer" style={{ height: myHeight }}>
         <div className="divider"></div>
         {reps}
-        <textarea className="replayTo" maxLength={255} name="replayTo" id="repTo" cols="35" rows="7"></textarea>
-        <div className="replayToBtn" onClick={() => console.log('send replsy')
-        } >
+        <textarea className="replayTo" maxLength={255} name="replayTo" id="repTo" cols="35" rows="7" onChange={(e) => updateContent(e.target.value)}></textarea>
+        <div className="replayToBtn" onClick={() => replay('replaytooo')}>
             <FontAwesomeIcon icon={faPaperPlane} />
         </div>
     </div>);

@@ -13,7 +13,7 @@ export async function addNewApp(object) {
 
 export async function getAppByName(appName) {
 
-    return await mybase.from('apps').select("*").eq('name', appName)
+    return await mybase.from('apps').select("*").eq('app_name', appName)
 
 }
 
@@ -30,7 +30,8 @@ export async function getNewApps() {
 
 export async function getAPPInfo(appName) {
     const userId = getToken();
-    return await mybase.rpc('get_app_inf', { 'appName': appName, 'userId': userId });//check parameters 
+    return await mybase.rpc('get_app_info', { 'appname': appName, 'userid': userId });
+    //check parameters  names  small letter supabase perefer small letters only
 }
 
 export async function updateApp(object, id) {
@@ -70,10 +71,9 @@ export async function getAppReviews(appId) {
 
 }
 
-export async function createReplay(replayTo, reviewId, content) {
+export async function createReplay(reviewId, content) {
     const { id, avatar_url, name } = getLocalUser();
     return await mybase.from('reviews').insert({
-        replay_to: replayTo,
         review_id: reviewId,
         content: content,
         user_id: id,

@@ -8,6 +8,15 @@
     align-items: center;
 }
 
+
+.centerCircular {
+    display: flex;
+    width: 100%;
+    height: 800px;
+    justify-content: center;
+    align-items: center;
+}
+
 .imageApp {
     width: 90%;
     height: 500px;
@@ -47,6 +56,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .appInfo {
@@ -127,6 +137,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
+
 }
 
 
@@ -178,7 +189,7 @@
 @media only screen and (max-width: 800px) {
 
     .appPageContainer {
-        background-color: red;
+
         margin: 0px 2px;
     }
 
