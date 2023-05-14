@@ -1,31 +1,34 @@
 import DashCard from '../components/dashCard';
 import useAuth from '../myHooks/useAuth';
 import '../styles/dashboard.css';
-import ReviewCard from './reviewCard';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { getLocalUser } from '../services/userServices';
+import { useState } from 'react';
+import ReviewsPart from '../components/reviewPart';
 
 function DashBoard() {
     const { token } = useAuth();
     const navigat = useNavigate();
     const { avatar_url } = getLocalUser();
+    const [appId, updateAppId] = useState(null);
+
+
+    const chooseApp = (id) => {
+        updateAppId(id);
+        console.log('from dash card : ', id);
+    }
 
     let list = [1, 2, 3, 4];
     const dashCards = list.map((app, index) => {
-        return <DashCard app={app} key={index} />
+        return <DashCard app={app} key={index} click={chooseApp} id={index} />
     })
 
     console.log("token from dashboard page :", token);
 
-    let reviews = [1, 2, 3, 4, 5];
 
-    let reviewCards = reviews.map((rev, index) => {
 
-        return <ReviewCard review={rev} key={index} />
-
-    });
 
 
     return (
@@ -69,13 +72,13 @@ function DashBoard() {
                 {dashCards}
             </div>
 
-            <div className="activeAppDetails">
+            {appId && <div className="activeAppDetails">
                 <div className="medPart">
                     <div className="detailsTitle">
                         doitylla overview
                     </div>
                     <div className="btton">
-                        <Link to={"/edit"} style={{ textDecoration: "none" }}>edit app details</Link>
+                        <Link to={"/editApp"} style={{ textDecoration: "none" }}>edit app details</Link>
                     </div>
                 </div>
                 <img className="imageAppDash" src="./assets/images/app.png" alt="something error sory " />
@@ -85,10 +88,11 @@ function DashBoard() {
                         app reviews :
                     </div>
                 </div>
+
                 <div className="reviewsPart" >
-                    {reviewCards}
+                    <ReviewsPart id={appId} />
                 </div>
-            </div>
+            </div>}
 
         </div>
     );

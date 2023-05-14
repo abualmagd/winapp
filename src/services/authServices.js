@@ -46,7 +46,7 @@ export async function authState() {
   mybase.auth.onAuthStateChange(
     (event, session) => {
       if (event === 'SIGNED_OUT' || event === 'USER_DELETED') {
-        const expires = new Date(0).toUTCString()
+        const expires = new Date(0).toUTCString();
         document.cookie = `my-session=; path=/; expires=${expires}; SameSite=Lax; secure`
       } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
         const maxAge = 100 * 365 * 24 * 60 * 60;
@@ -61,14 +61,23 @@ export async function restoreSession() {
   const session = document.cookie.split('; ').find(row => row.startsWith("my-session="))?.split('=')[1];
   if (session) {
     const { expires_at } = JSON.parse(session);
-    const now = new Date() / 1000;
-    const timeToExpiry = expires_at - now;
-    if (timeToExpiry < 60) {
-      const newSession = await mybase.auth.refreshSession();
-      return await mybase.auth.setSession(newSession);
+    const expDate = new Date(expires_at * 1000);
+    const now = new Date();
+
+    const diffInMs = expDate - now;
+    const diffInMin = Math.floor(diffInMs / (1000 * 60));
+    if (diffInMin < 60) {
+      const { data, error } = await mybase.auth.refreshSession();
+      if (error) {
+        removeToken();
+        return Error('no session')
+      } else {
+        return await mybase.auth.setSession(data.session);
+      }
     } else {
       return await mybase.auth.setSession(session);
     }
+
   } else {
     removeToken();
     return Error('no session')

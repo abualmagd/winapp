@@ -1,4 +1,3 @@
-
 import { getToken, mybase } from "./global";
 import { getLocalUser } from "./userServices";
 
@@ -30,7 +29,7 @@ export async function getNewApps() {
 
 export async function getAPPInfo(appName) {
     const userId = getToken();
-    return await mybase.rpc('get_app_info', { 'appname': appName, 'userid': userId });
+    return await mybase.rpc('get_app_inf', { 'appname': appName, 'userid': userId });
     //check parameters  names  small letter supabase perefer small letters only
 }
 
@@ -54,6 +53,14 @@ export async function bookmark(userId, appId) {
 
 }
 
+
+export async function getSuggestions(categoryId) {
+    return await mybase.from('apps').select('*').eq('category_id', categoryId).limit(5);
+}
+
+
+
+
 export async function createReview(appId, content, userRating) {
     const { id, avatar_url, name } = getLocalUser();
     return await mybase.from('reviews').insert({
@@ -73,7 +80,7 @@ export async function getAppReviews(appId) {
 
 export async function createReplay(reviewId, content) {
     const { id, avatar_url, name } = getLocalUser();
-    return await mybase.from('reviews').insert({
+    return await mybase.from('replays').insert({
         review_id: reviewId,
         content: content,
         user_id: id,
@@ -89,3 +96,43 @@ export async function getReplaysforReview(reviewId) {
     return await mybase.from('replays').select('*').eq("review_id", reviewId).limit(10);
 
 }
+
+
+export async function createNewApp(newData) {
+    return await mybase.from('apps').insert(newData).select('id');
+
+}
+
+
+export async function getAllCategory() {
+    return await mybase.from('category').select('id,name');
+}
+
+export async function updateAppImages(logoUrl, shotUrl, appId) {
+    return await mybase.from('app').update({
+        logo_url: logoUrl,
+        sht_url: shotUrl
+    }).eq('id', appId);
+}
+
+
+
+/*objy={
+        user_id: id,
+        category_id: categoryId,
+        plan_name: plan_name,
+        app_name: appName,
+        app_url: appUrl,
+        what_app: whatApp,
+        description: appDescription,
+        contact_email: contactEmail,
+        shot_url: shotUrl,
+        calendly_url: calendlyUrl,
+        who_need: whoNeed,
+        why_use: whyUse,
+        alternatives: appAlternatives,
+        start_price: startPrice,
+        fees_per: feesPer,
+        logo_url: logoUrl,
+        price_model: priceModel,
+    }*/

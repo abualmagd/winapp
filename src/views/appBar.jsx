@@ -12,7 +12,7 @@ import { getLocalUser, getUserData, saveUserLocal } from '../services/userServic
 export default function AppBar() {
     const navigat = useNavigate();
     const { token, onLogout } = useAuth();
-    const { avatar_url } = getLocalUser();
+    const { avatar_url } = getLocalUser() || '';
 
 
     const tryLogOut = async () => {
@@ -26,17 +26,20 @@ export default function AppBar() {
         }
     }
     const getMyUser = useCallback(async () => {
-        console.log('get my user')
-        const { data, error } = await getUserData();
+        if (token) {
+            console.log('get my user', token)
+            const { data, error } = await getUserData();
 
-        if (data) {
-            saveUserLocal(data[0]);
-            console.log("user-name", data[0]['name'])
+            if (data) {
+                saveUserLocal(data[0]);
+                console.log("user-name", data[0]['name'])
+            }
+            if (error) {
+                console.log(error.message)
+            }
         }
-        if (error) {
-            console.log(error.message)
-        }
-    }, []);
+        console.log('no user logined ');
+    }, [token]);
 
     useEffect(() => {
         getMyUser();

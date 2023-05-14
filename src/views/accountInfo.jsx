@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/setting.css";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "../components/toastContainer";
-import { createImageUrl, getRandomFileName, uploadAvatar } from "../services/filesServices";
+import { createImageUrl, uploadAvatar } from "../services/filesServices";
 import { getLocalUser, updateUserAvatar, updateUserName } from "../services/userServices";
 import { updateUserEmail } from "../services/authServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,11 +41,9 @@ export default function AccountInfo() {
         document.getElementById('screen').addEventListener("change", async (e) => {
             const fileList = e.target.files;
             console.log(fileList);
-
-            var random_number = getRandomFileName();
             updateAvatarChange(true)
             //upload image first And get url 
-            const { data, error } = await uploadAvatar(random_number, fileList[0]);
+            const { data, error } = await uploadAvatar(fileList[0]);
             const imageData = data;
             if (error) {
                 notify(error.message, true)
@@ -54,8 +52,7 @@ export default function AccountInfo() {
             } else {
                 updateAvatarChange(true);
                 console.log(imageData);
-                const { data } = createImageUrl(imageData.path);
-
+                const { data } = createImageUrl('avatars', imageData.path);
                 console.log("url", data.publicUrl)
                 const { error } = await updateUserAvatar(data.publicUrl, user[0]['id']);
 

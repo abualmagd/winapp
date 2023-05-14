@@ -17,6 +17,7 @@ function ReplayPart(props) {
     const [state, updateState] = useState('loading');
     const [replays, updateReplays] = useState(null);
     const [newContent, updateContent] = useState(null);
+    const [sendReplay, updateSending] = useState(false);
 
     const replay = async () => {
         console.log(newContent)
@@ -27,6 +28,7 @@ function ReplayPart(props) {
                 console.log('error', error.message);
             }
             if (data) {
+                console.log('resukt data : ', data);
                 updateReplays([...replays, data[0]]);
             }
         }
@@ -65,15 +67,19 @@ function ReplayPart(props) {
     }
     if (state === 'loading') {
         let myHeight = props.expand ? "100%" : "0%";
-        console.log(myHeight)
         return (<div className="replayContainer" style={{ height: myHeight }}>
             <div className="divider"></div>
             <FontAwesomeIcon icon={faSpinner} spin size="lg" />
             <textarea className="replayTo" maxLength={255} name="replayTo" id="repTo" cols="35" rows="7" onChange={(e) => updateContent(e.target.value)}></textarea>
-            <div className="replayToBtn" onClick={() => replay('replaytooo')
-            } >
-                <FontAwesomeIcon icon={faPaperPlane} />
-            </div>
+            <div className="replayToBtn" onClick={() => {
+                updateSending(true)
+                replay().then(() => {
+                    document.getElementById("repTo").value = ''; updateSending(false)
+                });
+
+            }} >
+                {sendReplay ? <FontAwesomeIcon icon={faSpinner} spin size="lg" /> : <FontAwesomeIcon icon={faPaperPlane} />
+                }            </div>
         </div>);
     }
 
@@ -84,14 +90,23 @@ function ReplayPart(props) {
     })
 
     let myHeight = props.expand ? "100%" : "0%";
-    console.log(myHeight)
 
     return (<div className="replayContainer" style={{ height: myHeight }}>
         <div className="divider"></div>
         {reps}
-        <textarea className="replayTo" maxLength={255} name="replayTo" id="repTo" cols="35" rows="7" onChange={(e) => updateContent(e.target.value)}></textarea>
-        <div className="replayToBtn" onClick={() => replay('replaytooo')}>
-            <FontAwesomeIcon icon={faPaperPlane} />
+        <textarea className="replayTo" maxLength={255} name="replayTo" id="repTo" cols="35" rows="7" onChange={(e) => {
+            updateContent(e.target.value);
+
+        }}></textarea>
+        <div className="replayToBtn" onClick={() => {
+            updateSending(true)
+            replay().then(() => {
+                document.getElementById("repTo").value = ''; updateSending(false);
+            });
+
+        }}>
+            {sendReplay ? <FontAwesomeIcon icon={faSpinner} spin size="lg" /> : <FontAwesomeIcon icon={faPaperPlane} />
+            }
         </div>
     </div>);
 }

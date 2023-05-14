@@ -23,15 +23,15 @@ import { EmailConfirmed } from './views/emailConfirmed';
 import { useCallback, useEffect } from 'react';
 import { authState, restoreSession } from './services/authServices';
 import RecoveryPassword from './views/recoverPass';
+import AppImageUploader from './views/addAppImages';
 
 
 
 function App() {
 
-  const sessionrecover = useCallback(() => {
+  const sessionrecover = useCallback(async () => {
     try {
-      restoreSession();
-
+      await restoreSession();
     } catch (error) {
       window.location.reload();
     }
@@ -53,7 +53,6 @@ function App() {
           <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
           <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />
           <Route path='/login' element={<Login />} errorElement={<ErrorPage />} />
-          <Route path='/add' element={<AddTool />} errorElement={<ErrorPage />} />
           <Route path='/sent' element={<Confirmation />} errorElement={<ErrorPage />} />
           <Route path='/confirm' element={<EmailConfirmed />} errorElement={<ErrorPage />} />
           <Route path='/explore/:content' element={<Explore />} errorElement={<ErrorPage />} />
@@ -63,6 +62,12 @@ function App() {
           <Route path='/edit' element={<ProtectedRoute>
             <AccountInfo />
           </ProtectedRoute>} errorElement={<ErrorPage />} />
+          <Route path='/add' element={<ProtectedRoute>
+            <AddTool />
+          </ProtectedRoute>} errorElement={<ErrorPage />} />
+          <Route path='/uploader/:id' element={
+            <AppImageUploader />
+          } errorElement={<ErrorPage />} />
           <Route path='/plan' element={<ProtectedRoute>
             <StepOne />
           </ProtectedRoute>} errorElement={<ErrorPage />} />
@@ -76,6 +81,9 @@ function App() {
             <Settings />
           </ProtectedRoute>} errorElement={<ErrorPage />} />
           <Route path='/edit' element={<ProtectedRoute>
+            <EditTool />
+          </ProtectedRoute>} errorElement={<ErrorPage />} />
+          <Route path='/editApp' element={<ProtectedRoute>
             <EditTool />
           </ProtectedRoute>} errorElement={<ErrorPage />} />
           <Route path='*' element={<Navigate to="/" replace />} />

@@ -1,10 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import "../styles/newSection.css";
 
 function NewCard(props) {
 
     const app = props.data;
+    const navigate = useNavigate();
+    const name = app['app_name'];
+    let url = "/" + name;
     return (
-        <div className="newCard">
+        <div className="newCard" onClick={() => { navigate(url); window.scrollTo(0, 0); }}>
 
             <img src={app['shot_url']} alt="" className="newCardImage" />
 

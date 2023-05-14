@@ -1,8 +1,10 @@
 import '../styles/dashCard.css';
 
-function DashCard() {
+function DashCard(props) {
+
+    const press = props.click;
     return (
-        <div className="dashCard">
+        <div className="dashCard" onClick={() => press(props.id)}>
             <div className="dashCardHead">
                 <div className="appTitl">
                     doitylla

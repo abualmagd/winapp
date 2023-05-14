@@ -25,8 +25,8 @@ function ReviewCard(props) {
 
         for (let i = 0; i < maxRating; i++) {
 
-            const starIcon = i < rating ? <FontAwesomeIcon icon={faStar} size='xs' className='icon-rev' /> :
-                <FontAwesomeIcon icon={faStar} size='xs' className='icon-rev' color='gray' />
+            const starIcon = i < rating ? <FontAwesomeIcon icon={faStar} size='xs' className='icon-rev' key={i} /> :
+                <FontAwesomeIcon icon={faStar} size='xs' className='icon-rev' color='gray' key={i} />
             starIcons.push(starIcon);
         }
 

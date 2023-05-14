@@ -1,17 +1,33 @@
 import { mybase } from "./global";
 
 
-export async function uploadAvatar(url, file) {
-    return await mybase.storage.from('avatars').upload(url, file, {
+export async function uploadAvatar(file) {
+    const randomName = getRandomFileName();
+    return await mybase.storage.from('avatars').upload(randomName, file, {
         cacheControl: '3600',
         upsert: false
     })
 
 }
 
+export async function uploadAppLogo(file) {
+    const randomName = getRandomFileName();
+    return await mybase.storage.from('logos').upload(randomName, file, {
+        cacheControl: '3600',
+        upsert: false
+    });
+}
 
-export function createImageUrl(path) {
-    return mybase.storage.from('avatars').getPublicUrl(path);
+export async function uploadAppShot(file) {
+    const randomName = getRandomFileName();
+    return await mybase.storage.from('screenshots').upload(randomName, file, {
+        cacheControl: '3600',
+        upsert: false
+    });
+}
+
+export function createImageUrl(bucket, path) {
+    return mybase.storage.from(bucket).getPublicUrl(path);
 }
 
 export function getRandomFileName() {

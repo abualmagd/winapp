@@ -188,6 +188,7 @@ input:checked {
     margin-bottom: 20px;
     cursor: pointer;
     box-shadow: var(--bxShadow);
+    color: var(--textColor);
 }
 
 .publish:hover {
@@ -195,26 +196,11 @@ input:checked {
 
 }
 
-.image-uploader {
-    display: flex;
 
-}
 
-.logo-image-shower {
-    width: 45px;
-    height: 45px;
-    border-radius: 5px;
-    overflow: hidden;
-    object-fit: cover;
-}
 
-.screen-image-shower {
-    width: 95px;
-    height: 55px;
-    border-radius: 5px;
-    overflow: hidden;
-    object-fit: cover;
-}
+
+
 
 @media only screen and (max-width: 1100px) {
 

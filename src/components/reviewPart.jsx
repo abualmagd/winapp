@@ -46,8 +46,8 @@ export default function ReviewsPart(props) {
         );
     }
     if (state === 'data' && reviews !== null) {
-        var revCards = reviews.map((item, index) => {
-            return <ReviewCard key={index} data={item} />
+        var revCards = reviews.map((rev, index) => {
+            return <ReviewCard key={index} data={rev} />
 
         });
 

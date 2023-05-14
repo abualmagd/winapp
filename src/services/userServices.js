@@ -21,6 +21,13 @@ export async function updateUserAvatar(avatarUrl) {
 }
 
 
+export async function getUserPlan(id) {
+    const { data } = await mybase.from('user_plan').select('type').eq('user_id', id);
+    console.log(data[0]['type']);
+    return data[0]['type'];
+}
+
+
 export async function updateUserName(name, id) {
 
     return await mybase.from('profiles').update({
