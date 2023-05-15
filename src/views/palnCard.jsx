@@ -1,10 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import "../styles/plans.css";
 
 
 
 function PlanCard(props) {
 
-
+    const navigator = useNavigate();
 
     let feats = props.features.map((feat, index) => {
         let myClass = feat.include ? "feature" : "inActiveFeature";
@@ -20,6 +21,14 @@ function PlanCard(props) {
         </div>
     })
 
+
+    const handlePress = async () => {
+        if (props.name === "FREE") {
+
+            navigator('/add',);
+        }
+
+    }
 
 
 
@@ -39,7 +48,7 @@ function PlanCard(props) {
             </div>
 
 
-            <div className="getStartedBtn" style={{ backgroundColor: props.color }} >{props.btnContent}</div>
+            <div className="getStartedBtn" style={{ backgroundColor: props.color }} onClick={handlePress}>{props.btnContent}</div>
 
         </div>
     );

@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import "../styles/addTool.css";
 import StepsIndicator from "./stepsIndicator";
 import { useEffect } from "react";
-import { createNewApp, getAllCategory } from "../services/appServices";
+import { createNewApp } from "../services/appServices";
 import { ToastContainer } from "../components/toastContainer";
 import { getLocalUser } from "../services/userServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,13 +12,12 @@ import { useNavigate } from "react-router-dom";
 
 function AddTool() {
     const { id, plan } = getLocalUser();
-    const navigator = useNavigate();
+    const navigat = useNavigate();
     const [loading, updateLoading] = useState(false);
-    const [priceModel, updatePriceModel] = useState([]);
     const [message, updateMessage] = useState();
     const [display, updateDisplay] = useState("none");
     const [errory, updateErrory] = useState(true);
-    const [categories, setCategories] = useState([
+    const [categories] = useState([
         {
             "id": 2,
             "name": "Project Management & Planning"
@@ -193,32 +192,18 @@ function AddTool() {
         console.log('nottttttttttttt')
     }
 
-    const handlePriceModelChange = (event) => {
-        var myValue = event.target.value;
-        if (event.target.checked) {
 
-
-            updatePriceModel([...priceModel, myValue]);
-
-        } else {
-
-            updatePriceModel((current) => current.filter((element) => element !== myValue));
-        }
-        console.log(priceModel);
-    }
 
     function handleInputChange(event) {
         const { name, value } = event.target;
-        console.log('handle change ', name + " " + value.replace(/\s+/g, ''));
-        console.log(typeof (value));
         setValues({ ...allValues, [name]: value });//here seting the value per name
+        console.log('values : ', allValues);
     };
 
     function handleCategoryChange(event) {
         const { name, value } = event.target;
         console.log('handle change ', name + " " + value.replace(/\s+/g, ''));
         console.log(typeof (value));
-        setValues({ ...allValues, [name]: parseInt(value) });//here seting the value per name
     };
 
 
@@ -236,7 +221,7 @@ function AddTool() {
             notify('success process ', false);
             updateLoading(false);
             const url = '/uploader/' + data[0]['id'];
-            navigator(url, -1);
+            navigat(url, -1);
         }
     }
 
@@ -251,13 +236,13 @@ function AddTool() {
 
 
     const getCategoryList = useCallback(async () => {
-        const { data, error } = await getAllCategory();
-        if (error) {
-            notify(error.message, true);
-        } else {
-            console.log(data);
-            setCategories(data);
-        }
+        /* const { data, error } = await getAllCategory();
+         if (error) {
+             notify(error.message, true);
+         } else {
+             console.log(data);
+             setCategories(data);
+         }*/
     }, []);
 
 
@@ -288,13 +273,10 @@ function AddTool() {
             </div>
 
             <form className="content" id='form_id' onSubmit={async (event) => {
-                setValues({ ...allValues, price_model: priceModel });
                 preventReload(event);
                 updateLoading(true);
                 try {
                     await addNewApp();
-
-
                 } catch (error) {
                     notify(error.message, true);
 
@@ -320,10 +302,6 @@ function AddTool() {
                     <label>Contact Email : <span >optional</span></label>
                     <input type="text" name="contact_email" value={allValues.contact_email} onChange={handleInputChange} className="email" placeholder="solutrendSupport@gmail.com" />
 
-                    <div className="image-uploader">
-
-
-                    </div>
 
                 </div>
                 <div className="left">
@@ -348,14 +326,21 @@ function AddTool() {
                     <div className="divider">
                     </div>
                     <label  >Choose Your Pricing model :</label>
-                    <div className="priceModel">
+                    { /* <div className="priceModel">
                         <input className="checkbox" onChange={handlePriceModelChange} value={'free'} type="checkbox" name="Subscription" id="free" />
                         <label htmlFor="free">free plan</label>
                         <input className="checkbox" type="checkbox" onChange={handlePriceModelChange} value={'subscription'} name="Subscription" id="Subscription" />
                         <label htmlFor="Subscription">Subscription</label>
                         <input className="checkbox" onChange={handlePriceModelChange} value={'trial'} type="checkbox" name="Subscription" id="trial" />
                         <label htmlFor="free trial">free trial</label>
-                    </div>
+                    </div>*/}'
+                    <select required name="price_model" value={allValues.price_model} id="#priceModel" className="category-sel" onChange={handleInputChange}>
+                        <option value={['free']} >free</option>
+                        <option value={['subscription']} >subscription</option>
+                        <option value={['free', 'subscription']} >free and subscription</option>
+                        <option value={['freeTrial', 'supscription']} >free trial and subscription</option>
+                        <option value={['oneTime']} >one time fees</option>
+                    </select>
                     {loading ? <div className="publish">
                         <FontAwesomeIcon icon={faSpinner} spin />
                     </div> : <input type="submit" className="publish" value={'publish'} style={{ backgroundColor: " var(--btnbgColor)" }} />}

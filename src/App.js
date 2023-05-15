@@ -83,7 +83,7 @@ function App() {
           <Route path='/edit' element={<ProtectedRoute>
             <EditTool />
           </ProtectedRoute>} errorElement={<ErrorPage />} />
-          <Route path='/editApp' element={<ProtectedRoute>
+          <Route path='/editApp/:id' element={<ProtectedRoute>
             <EditTool />
           </ProtectedRoute>} errorElement={<ErrorPage />} />
           <Route path='*' element={<Navigate to="/" replace />} />

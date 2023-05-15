@@ -16,6 +16,12 @@ export async function getAppByName(appName) {
 
 }
 
+export async function getAppById(appId) {
+
+    return await mybase.from('apps').select("*").eq('id', appId);
+
+}
+
 
 export async function getHeighlyApps(ofset) {
     return await mybase.rpc('get_rand_apps', { 'myoffset': ofset });
@@ -33,8 +39,8 @@ export async function getAPPInfo(appName) {
     //check parameters  names  small letter supabase perefer small letters only
 }
 
-export async function updateApp(object, id) {
-    return mybase.from('apps').update(object).eq('id', id);
+export async function updateApp(updatedData, id) {
+    return mybase.from('apps').update(updatedData).eq('id', id).select('*');
 }
 
 
@@ -104,17 +110,30 @@ export async function createNewApp(newData) {
 }
 
 
+
+
 export async function getAllCategory() {
     return await mybase.from('category').select('id,name');
 }
 
-export async function updateAppImages(logoUrl, shotUrl, appId) {
-    return await mybase.from('app').update({
-        logo_url: logoUrl,
-        sht_url: shotUrl
+export async function updateAppLogo(logoUrl, appId) {
+    console.log('urls : ', appId + " " + logoUrl)
+    return await mybase.from('apps').update({
+        logo_url: logoUrl
     }).eq('id', appId);
 }
 
+
+export async function updateAppShot(shotUrl, appId) {
+    console.log('urls : ', appId + " " + shotUrl)
+    return await mybase.from('apps').update({
+        shot_url: shotUrl
+    }).eq('id', appId);
+}
+
+export async function getAppImages(id) {
+    return await mybase.from('apps').select('logo_url,shot_url').eq('id', id);
+}
 
 
 /*objy={

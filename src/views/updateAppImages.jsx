@@ -4,12 +4,12 @@ import "../styles/addAppImages.css";
 import { createImageUrl, uploadAppLogo, uploadAppShot } from "../services/filesServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { updateAppLogo, updateAppShot } from "../services/appServices";
+import { getAppImages, updateAppLogo, updateAppShot } from "../services/appServices";
 import { useNavigate, useParams } from "react-router-dom";
 import StepsIndicator from "./stepsIndicator";
 
 
-export default function AppImageUploader() {
+export default function AppImageUpdator() {
     const [logoFile, setLogoFile] = useState(null);
     const [shotFile, setShotFile] = useState(null);
     const [message, updateMessage] = useState();
@@ -35,7 +35,15 @@ export default function AppImageUploader() {
         console.log('nottttttttttttt')
     }
 
-
+    const loadAppImages = async () => {
+        const { error, data } = await getAppImages(id);
+        if (error) {
+            notify(error.message, true);
+        } else {
+            setLogo(data[0]['logo_url']);
+            setScreen(data[0]['shot_url']);
+        }
+    }
 
     function clickScreenShot() {
         console.log('pressed')
@@ -132,7 +140,8 @@ export default function AppImageUploader() {
     useEffect(() => {
         handleChange();
         handleChangeScreen();
-    }, [handleChange, handleChangeScreen])
+        loadAppImages();
+    }, [handleChange, handleChangeScreen, loadAppImages])
 
 
     return (
@@ -177,7 +186,7 @@ export default function AppImageUploader() {
                         updateLoading(false);
 
                     }
-                }} >Save</div>}
+                }} >Update</div>}
 
             </div>
         </div>
