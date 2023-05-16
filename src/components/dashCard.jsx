@@ -1,32 +1,37 @@
+import { convertStampToDate } from '../services/appServices';
 import '../styles/dashCard.css';
 
 function DashCard(props) {
 
+    const app = props.app;
     const press = props.click;
+
+    const createdAt = convertStampToDate(app['created_at']);
+
     return (
         <div className="dashCard" onClick={() => press(props.id)}>
             <div className="dashCardHead">
                 <div className="appTitl">
-                    doitylla
+                    {app['app_name']}
                 </div>
-                <div className="addingDate">
-                    12/10
+                <div className="addingDate" >
+                    {createdAt}
                 </div>
             </div>
             <div className="appRecords">
                 <div className="views">
-                    100 v
+                    {app['views_count'] + " "} <span className="detail">views</span>
                 </div>
 
                 <div className="reviews">
-                    10 r
+                    {app['reviews_count'] + " "}  <span className="detail">reviews</span>
                 </div>
                 <div className="reports">
-                    0 re
+                    {app['reports_count'] + " "}  <span className="detail">reports</span>
                 </div>
 
                 <div className="shares">
-                    3 shares
+                    {app['share_count'] + " "}  <span className="detail">shares</span>
                 </div>
             </div>
 

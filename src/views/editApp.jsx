@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from "../components/toastContainer";
 
+
+
 function EditTool() {
     const navigat = useNavigate();
     const [state, updateState] = useState('loading');
@@ -185,14 +187,11 @@ function EditTool() {
     };
 
 
-    function handleCategoryChange(event) {
-        const { name, value } = event.target;
-        console.log('handle change ', name + " " + value.replace(/\s+/g, ''));
-        console.log(typeof (value));
-    };
 
+    //failing in caching 
     const loadAppData = useCallback(
         async () => {
+
             const { error, data } = await getAppById(id);
             if (error) {
                 updateState('error');
@@ -200,10 +199,11 @@ function EditTool() {
             } else {
                 setValues(data[0]);
                 updateState('data');
-                console.log(data[0]);
+                console.log('data: ', data[0]);
             }
-
         }
+
+        // eslint-disable-next-line
         , [id]);
 
 
@@ -228,11 +228,18 @@ function EditTool() {
     }
 
     useEffect(() => {
+
         loadAppData();
 
     }, [loadAppData]);
 
 
+    function handleCategoryChange(event) {
+        const { name, value } = event.target;
+        console.log('handle change ', name + " " + value.replace(/\s+/g, ''));
+        console.log(typeof (value));
+        setValues({ ...allValues, [name]: value });//here seting the value per name
+    };
 
     const categoryOption = categories.map((category, index) => {
 
@@ -272,9 +279,10 @@ function EditTool() {
                     try {
                         await updateMyApp();
                         navigat('/dashboard', -1);
+                        updateLoading(false);
                     } catch (error) {
                         notify(error.message, true);
-
+                        updateLoading(false);
 
                     }
 
@@ -332,10 +340,10 @@ function EditTool() {
                         <label htmlFor="free trial">free trial</label>
                     </div>*/}'
                         <select required name="price_model" value={allValues.price_model} id="#priceModel" className="category-sel" onChange={handleInputChange}>
-                            <option value={['free']} >free</option>
+                            <option value={["free"]} >free</option>
                             <option value={['subscription']} >subscription</option>
-                            <option value={['free', 'subscription']} >free and subscription</option>
-                            <option value={['freeTrial', 'supscription']} >free trial and subscription</option>
+                            <option value={["subscription", "free"]} >free and subscription</option>
+                            <option value={['freeTrial', 'subscription']} >free trial and subscription</option>
                             <option value={['oneTime']} >one time fees</option>
                         </select>
                         {loading ? <div className="publish">

@@ -136,6 +136,23 @@ export async function getAppImages(id) {
 }
 
 
+export async function getUserApps() {
+    const userId = getToken();
+    //get_my_apps_details
+    return await mybase.rpc('get_my_apps_details', { 'userid': userId });
+
+}
+
+
+export function convertStampToDate(stamp) {
+    const timestamp = new Date(stamp); // create a Date object from the timestamp string
+    const year = timestamp.getUTCFullYear(); // get the year (in UTC)
+    const month = timestamp.getUTCMonth() + 1; // get the month (in UTC); add 1 because getUTCMonth returns 0-indexed values
+    const day = timestamp.getUTCDate(); // get the day (in UTC)
+    const date = `${year}-${month}-${day}`; // format the date as a string
+    return date;
+}
+
 /*objy={
         user_id: id,
         category_id: categoryId,

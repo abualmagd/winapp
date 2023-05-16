@@ -3,33 +3,75 @@ import useAuth from '../myHooks/useAuth';
 import '../styles/dashboard.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faGear, faRightFromBracket, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { getLocalUser } from '../services/userServices';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ReviewsPart from '../components/reviewPart';
+import { getUserApps } from '../services/appServices';
 
 function DashBoard() {
     const { token } = useAuth();
     const navigat = useNavigate();
+    const [state, updateState] = useState('loading');
+    const [data, updateData] = useState([]);
     const { avatar_url } = getLocalUser();
     const [appId, updateAppId] = useState(null);
 
+
+    const fetchData = useCallback(async () => {
+        const { data, error } = await getUserApps();
+        if (error) {
+            updateState('error');
+        } else {
+            updateState('data');
+            updateData(data);
+            console.log(data);
+
+        }
+    }, []);
 
     const chooseApp = (id) => {
         updateAppId(id);
         console.log('from dash card : ', id);
     }
 
-    let list = [1, 2, 3, 4];
-    const dashCards = list.map((app, index) => {
-        return <DashCard app={app} key={index} click={chooseApp} id={index} />
+
+    const dashCards = data.map((app, index) => {
+        return <DashCard app={app} key={index} click={chooseApp} id={app['id']} />
     })
 
     console.log("token from dashboard page :", token);
 
 
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
 
+    const index = data.findIndex(obj => obj['id'] === appId);
+    const app = data[index];
 
+    if (state === 'loading') {
+
+        <div>
+            <div className="dashboard" >
+                <div className="centerCircular">
+                    <FontAwesomeIcon icon={faSpinner} spin size="lg" />
+                </div>
+            </div>
+        </div>
+    }
+    if (state === 'error') {
+
+        <div className="dashboard" >
+            <div className="centerCircular">
+                <p className="error">
+                    Sorry something error happened
+                </p>
+            </div>
+
+        </div>
+
+    }
 
     return (
         <div className="dashboard">
@@ -75,13 +117,13 @@ function DashBoard() {
             {appId && <div className="activeAppDetails">
                 <div className="medPart">
                     <div className="detailsTitle">
-                        doitylla overview
+                        {app['app_name']}
                     </div>
                     <div className="btton">
-                        <Link to={"/editApp"} style={{ textDecoration: "none" }}>edit app details</Link>
+                        <Link to={"/editApp/" + appId} style={{ textDecoration: "none" }}>edit app details</Link>
                     </div>
                 </div>
-                <img className="imageAppDash" src="./assets/images/app.png" alt="something error sory " />
+                <img className="imageAppDash" src={app['shot_url']} alt="something error sory " />
 
                 <div className="medPart">
                     <div className="detailsTitle">

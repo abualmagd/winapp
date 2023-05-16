@@ -178,7 +178,7 @@ function AddTool() {
         alternatives: '',
         start_price: '',
         fees_per: 'month',
-        price_model: '',
+        price_model: '[]',
     });
 
     const notify = (mesg, error) => {
@@ -204,6 +204,7 @@ function AddTool() {
         const { name, value } = event.target;
         console.log('handle change ', name + " " + value.replace(/\s+/g, ''));
         console.log(typeof (value));
+        setValues({ ...allValues, [name]: value });//here seting the value per name
     };
 
 

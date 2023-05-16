@@ -49,6 +49,8 @@ function App() {
   return (
     <div className="App" >
       <AuthProvider>
+
+
         <Routes>
           <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
           <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />

@@ -7,9 +7,11 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { getAppImages, updateAppLogo, updateAppShot } from "../services/appServices";
 import { useNavigate, useParams } from "react-router-dom";
 import StepsIndicator from "./stepsIndicator";
+import NodeCache from "node-cache";
 
 
 export default function AppImageUpdator() {
+    const myCache = new NodeCache({ stdTTL: 60 * 60 });
     const [logoFile, setLogoFile] = useState(null);
     const [shotFile, setShotFile] = useState(null);
     const [message, updateMessage] = useState();
@@ -36,12 +38,17 @@ export default function AppImageUpdator() {
     }
 
     const loadAppImages = async () => {
-        const { error, data } = await getAppImages(id);
-        if (error) {
-            notify(error.message, true);
+        const value = myCache.get('solutrend/' + id);
+        if (value) {
+            return value;
         } else {
-            setLogo(data[0]['logo_url']);
-            setScreen(data[0]['shot_url']);
+            const { error, data } = await getAppImages(id);
+            if (error) {
+                notify(error.message, true);
+            } else {
+                setLogo(data[0]['logo_url']);
+                setScreen(data[0]['shot_url']);
+            }
         }
     }
 
