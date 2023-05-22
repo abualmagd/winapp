@@ -5,6 +5,8 @@ import { getAppById, updateApp } from "../services/appServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from "../components/toastContainer";
+import { APP } from "../model/appModel";
+import { getToken } from "../services/global";
 
 
 
@@ -12,8 +14,11 @@ function EditTool() {
     const navigat = useNavigate();
     const [state, updateState] = useState('loading');
     const { id } = useParams('id');
-    console.log(id);
+    const userId = getToken();
+    console.log('id user', userId);
     const [loading, updateLoading] = useState(false);
+    const [selectedDevices, setSelectedDevices] = useState([]);
+    const [priceModels, setPriceModels] = useState([]);
     const [message, updateMessage] = useState();
     const [display, updateDisplay] = useState("none");
     const [errory, updateErrory] = useState(true);
@@ -164,7 +169,7 @@ function EditTool() {
         }
     ]);
     const [allValues, setValues] = useState({
-        user_id: id,
+        user_id: userId,
         app_name: '',
         app_url: '',
         category_id: 2,
@@ -178,7 +183,10 @@ function EditTool() {
         start_price: '',
         fees_per: 'month',
         price_model: '',
+        devices: ''
     });
+
+
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -187,17 +195,40 @@ function EditTool() {
     };
 
 
+    const handleCheckboxChange = (event) => {
+        const selectedDevice = event.target.value;
+        const isChecked = event.target.checked;
 
-    //failing in caching 
+        if (isChecked) {
+            setSelectedDevices([...selectedDevices, selectedDevice]);
+        } else {
+            setSelectedDevices(selectedDevices.filter(device => device !== selectedDevice));
+        }
+    }
+
+    const handlePriceChange = (event) => {
+        const selectedModel = event.target.value;
+        const isChecked = event.target.checked;
+
+        if (isChecked) {
+            setPriceModels([...priceModels, selectedModel]);
+        } else {
+            setPriceModels(priceModels.filter(model => model !== selectedModel));
+        }
+    }
+
     const loadAppData = useCallback(
         async () => {
-
             const { error, data } = await getAppById(id);
             if (error) {
                 updateState('error');
                 console.log(error.message);
             } else {
                 setValues(data[0]);
+                const devs = data[0]['devices'] !== null ? data[0]['devices'] : [];
+                const models = data[0]['price_model'] !== null ? data[0]['price_model'] : [];
+                setSelectedDevices(devs);
+                setPriceModels(models);
                 updateState('data');
                 console.log('data: ', data[0]);
             }
@@ -207,9 +238,24 @@ function EditTool() {
         , [id]);
 
 
+    const check = (value, myArray) => {
+
+        if (myArray.includes(value)) {
+            return true;
+        }
+
+        return false;
+    }
+
     const updateMyApp = async () => {
+        const myApp = new APP(userId, allValues.category_id, '', allValues.app_name, allValues.app_url, allValues.calendly_url,
+            allValues.what_app, allValues.description, allValues.contact_email, '', allValues.who_need,
+            allValues.why_use, allValues.alternatives, allValues.start_price, allValues.fees_per,
+            '', priceModels, selectedDevices);
+        const newData = myApp.toData();
         console.log('update');
-        const { error, data } = await updateApp(allValues, id);
+        console.log('values', allValues);
+        const { error, data } = await updateApp(newData, id);
         if (error) {
             throw error;
         } else {
@@ -274,6 +320,7 @@ function EditTool() {
 
             <div className="content">
                 <form className="content" id='form_id' onSubmit={async (event) => {
+
                     event.preventDefault();
                     updateLoading(true);
                     try {
@@ -303,7 +350,16 @@ function EditTool() {
                             required></textarea>
                         <label>Contact Email : <span >optional</span></label>
                         <input type="text" name="contact_email" value={allValues.contact_email} onChange={handleInputChange} className="email" placeholder="solutrendSupport@gmail.com" />
-
+                        <div className="devices" style={{ marginTop: '5px' }}> Supported Platforms :</div>
+                        <div class="device-checkboxes">
+                            <label><input type="checkbox" checked={check('web', selectedDevices)} name="web" value="web" onChange={handleCheckboxChange} />Web</label>
+                            <label><input type="checkbox" checked={check('ios', selectedDevices)} name="ios" value="ios" onChange={handleCheckboxChange} />Ios</label>
+                            <label><input type="checkbox" checked={check('android', selectedDevices)} name="android" value="android" onChange={handleCheckboxChange} />Android</label>
+                            <label><input type="checkbox" checked={check('mac', selectedDevices)} name="mac" value="mac" onChange={handleCheckboxChange} />Mac</label>
+                            <label><input type="checkbox" checked={check('extension', selectedDevices)} name="extension" value="extension" onChange={handleCheckboxChange} />Extension</label>
+                            <label><input type="checkbox" checked={check('linux', selectedDevices)} name="linux" value="linux" onChange={handleCheckboxChange} />Linux</label>
+                            <label><input type="checkbox" checked={check('windows', selectedDevices)} name="windows" value="windows" onChange={handleCheckboxChange} />Windows</label>
+                        </div>
 
 
 
@@ -331,21 +387,12 @@ function EditTool() {
                         <div className="divider">
                         </div>
                         <label  >Choose Your Pricing model :</label>
-                        { /* <div className="priceModel">
-                        <input className="checkbox" onChange={handlePriceModelChange} value={'free'} type="checkbox" name="Subscription" id="free" />
-                        <label htmlFor="free">free plan</label>
-                        <input className="checkbox" type="checkbox" onChange={handlePriceModelChange} value={'subscription'} name="Subscription" id="Subscription" />
-                        <label htmlFor="Subscription">Subscription</label>
-                        <input className="checkbox" onChange={handlePriceModelChange} value={'trial'} type="checkbox" name="Subscription" id="trial" />
-                        <label htmlFor="free trial">free trial</label>
-                    </div>*/}'
-                        <select required name="price_model" value={allValues.price_model} id="#priceModel" className="category-sel" onChange={handleInputChange}>
-                            <option value={["free"]} >free</option>
-                            <option value={['subscription']} >subscription</option>
-                            <option value={["subscription", "free"]} >free and subscription</option>
-                            <option value={['freeTrial', 'subscription']} >free trial and subscription</option>
-                            <option value={['oneTime']} >one time fees</option>
-                        </select>
+                        <div class="device-checkboxes">
+                            <label><input type="checkbox" checked={check('free', priceModels)} name="free" value="free" onChange={handlePriceChange} />Free</label>
+                            <label><input type="checkbox" checked={check('subscription', priceModels)} name="subscription" value="subscription" onChange={handlePriceChange} />Subscription</label>
+                            <label><input type="checkbox" checked={check('freetrial', priceModels)} name="freetrial" value="freetrial" onChange={handlePriceChange} />Free Trial</label>
+                            <label><input type="checkbox" checked={check('onetime', priceModels)} name="onetime" value="onetime" onChange={handlePriceChange} />One Time Fees</label>
+                        </div>
                         {loading ? <div className="publish">
                             <FontAwesomeIcon icon={faSpinner} spin />
                         </div> : <input type="submit" className="publish" value={'update'} style={{ backgroundColor: " var(--btnbgColor)" }} />}

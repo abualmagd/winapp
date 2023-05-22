@@ -79,10 +79,12 @@ function DashBoard() {
             <div className="dashboardHead">
                 <div className="logo" onClick={() => navigat('/')}>
                     <img src="/favic.ico" alt="W" />
-                    WinApp</div>
+                    SoluTrend</div>
                 <div className="barEnd">
                     <div className="btton">
-                        <Link to="/settings" className="linkBttn">list new app</Link>
+                        <Link to="/add" className="linkBttn">
+                            list new app
+                        </Link>
                     </div>
                     <div className="dropdown">
                         <img src={avatar_url} alt="error" className="avatar" />

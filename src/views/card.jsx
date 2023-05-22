@@ -15,10 +15,10 @@ function Card(props) {
             <img src={app['shot_url']} alt='' className="cardImage" />
             <div className="myHeadCard">
                 <h2>{name}</h2>
-                <div className="rating">{app['avg_rating']}
+                {app['avg_rating'] !== 0 && <div className="rating">{app['avg_rating']}
                     <span className="space"></span>
                     <FontAwesomeIcon icon={faStar} size='xs' />
-                </div>
+                </div>}
             </div>
             <h5 className='cardH5'>{app['description']}
             </h5>

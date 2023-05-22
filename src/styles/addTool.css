@@ -198,7 +198,22 @@ input:checked {
 
 
 
+.device-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.device-checkboxes label {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 16px;
+    margin-bottom: 8px;
+}
+
+.device-checkboxes input[type="checkbox"] {
+    margin: 0;
+    margin-right: 5px;
+}
 
 
 

@@ -42,6 +42,7 @@
     flex-direction: column;
     color: var(--textColor);
 
+
 }
 
 .filters-title {
@@ -60,13 +61,17 @@
 .catego-selector {
     width: 80%;
     color: var(--textColor);
-    margin: 20px;
-    height: 30px;
+    margin: 20px 8px;
+    height: 40px;
+    padding: 5px;
     border: 0px transparent;
     background-color: transparent;
     outline: none;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 400;
+    background-color: var(--notifyColor);
+    border-radius: 10px;
+    width: 90%;
 }
 
 .price-model {
@@ -135,9 +140,7 @@
 
 .search-result {
     width: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
 }
 
 

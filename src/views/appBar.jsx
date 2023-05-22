@@ -49,7 +49,7 @@ export default function AppBar() {
         <header className="headery">
             <div className="logo" onClick={() => navigat('/')}>
                 <img src="/favic.ico" alt="W" />
-                WinApp</div>
+                SoluTrend</div>
             <div className="navigation">
 
                 <a href="/#" className="link">blog</a>

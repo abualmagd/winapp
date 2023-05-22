@@ -9,6 +9,7 @@ import { getLocalUser } from "../services/userServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { APP } from "../model/appModel";
 
 function AddTool() {
     const { id, plan } = getLocalUser();
@@ -17,6 +18,8 @@ function AddTool() {
     const [message, updateMessage] = useState();
     const [display, updateDisplay] = useState("none");
     const [errory, updateErrory] = useState(true);
+    const [selectedDevices, setSelectedDevices] = useState([]);
+    const [priceModels, setPriceModels] = useState([]);
     const [categories] = useState([
         {
             "id": 2,
@@ -179,6 +182,7 @@ function AddTool() {
         start_price: '',
         fees_per: 'month',
         price_model: '[]',
+
     });
 
     const notify = (mesg, error) => {
@@ -192,12 +196,22 @@ function AddTool() {
         console.log('nottttttttttttt')
     }
 
+    const handleCheckboxChange = (event) => {
+        const selectedDevice = event.target.value;
+        const isChecked = event.target.checked;
+
+        if (isChecked) {
+            setSelectedDevices([...selectedDevices, selectedDevice]);
+        } else {
+            setSelectedDevices(selectedDevices.filter(device => device !== selectedDevice));
+        }
+    }
 
 
     function handleInputChange(event) {
         const { name, value } = event.target;
         setValues({ ...allValues, [name]: value });//here seting the value per name
-        console.log('values : ', allValues);
+
     };
 
     function handleCategoryChange(event) {
@@ -208,9 +222,24 @@ function AddTool() {
     };
 
 
+    const handlePriceChange = (event) => {
+        const selectedModel = event.target.value;
+        const isChecked = event.target.checked;
+
+        if (isChecked) {
+            setPriceModels([...priceModels, selectedModel]);
+        } else {
+            setPriceModels(priceModels.filter(model => model !== selectedModel));
+        }
+    }
     const addNewApp = async () => {
         console.log('values : ', allValues);
-        const { error, data } = await createNewApp(allValues);
+        const myApp = new APP(id, allValues.category_id, allValues.plan_name, allValues.app_name, allValues.app_url, allValues.calendly_url,
+            allValues.what_app, allValues.description, allValues.contact_email, '', allValues.who_need,
+            allValues.why_use, allValues.alternatives, allValues.start_price, allValues.fees_per,
+            '', priceModels, selectedDevices);
+        const newData = myApp.toData();
+        const { error, data } = await createNewApp(newData);
         if (error) {
             console.log('here in post app');
             notify(error.message, true);
@@ -302,7 +331,16 @@ function AddTool() {
                         required></textarea>
                     <label>Contact Email : <span >optional</span></label>
                     <input type="text" name="contact_email" value={allValues.contact_email} onChange={handleInputChange} className="email" placeholder="solutrendSupport@gmail.com" />
-
+                    <div className="devices" style={{ marginTop: '5px' }}> Supported Platforms :</div>
+                    <div class="device-checkboxes">
+                        <label><input type="checkbox" name="web" value="web" onChange={handleCheckboxChange} />Web</label>
+                        <label><input type="checkbox" name="ios" value="ios" onChange={handleCheckboxChange} />Ios</label>
+                        <label><input type="checkbox" name="android" value="android" onChange={handleCheckboxChange} />Android</label>
+                        <label><input type="checkbox" name="mac" value="mac" onChange={handleCheckboxChange} />Mac</label>
+                        <label><input type="checkbox" name="extension" value="extension" onChange={handleCheckboxChange} />Extension</label>
+                        <label><input type="checkbox" name="linux" value="linux" onChange={handleCheckboxChange} />Linux</label>
+                        <label><input type="checkbox" name="linux" value="windows" onChange={handleCheckboxChange} />Windows</label>
+                    </div>
 
                 </div>
                 <div className="left">
@@ -327,21 +365,12 @@ function AddTool() {
                     <div className="divider">
                     </div>
                     <label  >Choose Your Pricing model :</label>
-                    { /* <div className="priceModel">
-                        <input className="checkbox" onChange={handlePriceModelChange} value={'free'} type="checkbox" name="Subscription" id="free" />
-                        <label htmlFor="free">free plan</label>
-                        <input className="checkbox" type="checkbox" onChange={handlePriceModelChange} value={'subscription'} name="Subscription" id="Subscription" />
-                        <label htmlFor="Subscription">Subscription</label>
-                        <input className="checkbox" onChange={handlePriceModelChange} value={'trial'} type="checkbox" name="Subscription" id="trial" />
-                        <label htmlFor="free trial">free trial</label>
-                    </div>*/}'
-                    <select required name="price_model" value={allValues.price_model} id="#priceModel" className="category-sel" onChange={handleInputChange}>
-                        <option value={['free']} >free</option>
-                        <option value={['subscription']} >subscription</option>
-                        <option value={['free', 'subscription']} >free and subscription</option>
-                        <option value={['freeTrial', 'supscription']} >free trial and subscription</option>
-                        <option value={['oneTime']} >one time fees</option>
-                    </select>
+                    <div class="device-checkboxes">
+                        <label><input type="checkbox" name="free" value="free" onChange={handlePriceChange} />Free</label>
+                        <label><input type="checkbox" name="subscription" value="subscription" onChange={handlePriceChange} />Subscription</label>
+                        <label><input type="checkbox" name="freetrial" value="freetrial" onChange={handlePriceChange} />Free Trial</label>
+                        <label><input type="checkbox" name="onetime" value="onetime" onChange={handlePriceChange} />One Time Fees</label>
+                    </div>
                     {loading ? <div className="publish">
                         <FontAwesomeIcon icon={faSpinner} spin />
                     </div> : <input type="submit" className="publish" value={'publish'} style={{ backgroundColor: " var(--btnbgColor)" }} />}

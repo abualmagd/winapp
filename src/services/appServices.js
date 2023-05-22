@@ -153,6 +153,24 @@ export function convertStampToDate(stamp) {
     return date;
 }
 
+
+export async function searchApps(searchText, devices, priceModel, categoryId) {
+
+
+
+    console.log('serchTerm', searchText);
+    console.log('devices', devices);
+    console.log('pricemodel', priceModel);
+    console.log('categoryid', categoryId);
+    //function search_apps_filter(keyword text,categoryid bigint, platforms text[],pricemodel text[])
+
+    return mybase.rpc('search_apps_filter', {
+        'keyword': searchText,
+        'categoryid': categoryId,
+        'platforms': devices,
+        'pricemodel': priceModel
+    });
+}
 /*objy={
         user_id: id,
         category_id: categoryId,
