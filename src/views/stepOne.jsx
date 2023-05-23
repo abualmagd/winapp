@@ -2,23 +2,65 @@
 
 import "../styles/stepOne.css";
 import PlanCard from "./palnCard";
-import myPlans from "../data/pricePlanes";
+import { getPlans } from "../services/appServices";
 import StepsIndicator from "./stepsIndicator";
+import { useCallback, useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 function StepOne() {
+    const [state, updateState] = useState('loading');
+    const [plans, updatePlans] = useState([]);
+
+    const loadPlans = useCallback(async () => {
+        const { error, data } = await getPlans();
+        if (error) {
+            updateState('error');
+        }
+
+        updateState('data');
+        updatePlans(data);
 
 
+    }, []);
 
-    return (
-        <div className="stepOneContainer">
-            <StepsIndicator value="25%" />
-            <div className="planz" id="pricing">
-                <PlanCard features={myPlans[0]} name="FREE" message="free to listing your app " price="0" btnContent="Select Free " />
-                <PlanCard features={myPlans[1]} popular={true} color="rgb(131, 238, 131)" name="DIAMOND" message="   Submit your app and collect reviews " price="8" btnContent="Select Diamond" />
-                <PlanCard features={myPlans[2]} name="GOLD" message="list your app immediately and include it in users Newsletters" price="32" btnContent=" Select Gold " />
+    useEffect(() => {
+        loadPlans();
+    }, [loadPlans]);
+
+    if (state === 'error') {
+
+        return <div>
+            <div className="plans" >
+
+                <p className="error">
+                    Sorry something error happened
+                </p>
+
+            </div>
+        </div>
+    }
+    if (state === 'loading') {
+        return <div className="plans" >
+            <div className="centerCircular">
+                <FontAwesomeIcon icon={faSpinner} spin size="lg" />
             </div>
         </div>
 
+    }
+
+    const cards = plans.map((plan, index) => {
+        return <PlanCard item={plan} btnContent={`select ${plan['name']}`} key={index} />
+    })
+    return (
+
+        <div className="stepOneContainer">
+            <StepsIndicator value="25%" />
+            <div className="plans" id="pricing">
+                {cards}
+
+            </div>
+        </div>
     );
 }
 

@@ -171,22 +171,9 @@ export async function searchApps(searchText, devices, priceModel, categoryId) {
         'pricemodel': priceModel
     });
 }
-/*objy={
-        user_id: id,
-        category_id: categoryId,
-        plan_name: plan_name,
-        app_name: appName,
-        app_url: appUrl,
-        what_app: whatApp,
-        description: appDescription,
-        contact_email: contactEmail,
-        shot_url: shotUrl,
-        calendly_url: calendlyUrl,
-        who_need: whoNeed,
-        why_use: whyUse,
-        alternatives: appAlternatives,
-        start_price: startPrice,
-        fees_per: feesPer,
-        logo_url: logoUrl,
-        price_model: priceModel,
-    }*/
+
+
+
+export async function getPlans() {
+    return await mybase.from('plans').select('*');
+}

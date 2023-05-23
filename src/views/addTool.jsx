@@ -332,7 +332,7 @@ function AddTool() {
                     <label>Contact Email : <span >optional</span></label>
                     <input type="text" name="contact_email" value={allValues.contact_email} onChange={handleInputChange} className="email" placeholder="solutrendSupport@gmail.com" />
                     <div className="devices" style={{ marginTop: '5px' }}> Supported Platforms :</div>
-                    <div class="device-checkboxes">
+                    <div className="device-checkboxes">
                         <label><input type="checkbox" name="web" value="web" onChange={handleCheckboxChange} />Web</label>
                         <label><input type="checkbox" name="ios" value="ios" onChange={handleCheckboxChange} />Ios</label>
                         <label><input type="checkbox" name="android" value="android" onChange={handleCheckboxChange} />Android</label>
@@ -365,7 +365,7 @@ function AddTool() {
                     <div className="divider">
                     </div>
                     <label  >Choose Your Pricing model :</label>
-                    <div class="device-checkboxes">
+                    <div className="device-checkboxes">
                         <label><input type="checkbox" name="free" value="free" onChange={handlePriceChange} />Free</label>
                         <label><input type="checkbox" name="subscription" value="subscription" onChange={handlePriceChange} />Subscription</label>
                         <label><input type="checkbox" name="freetrial" value="freetrial" onChange={handlePriceChange} />Free Trial</label>

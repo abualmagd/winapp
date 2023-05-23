@@ -24,6 +24,7 @@ import { useCallback, useEffect } from 'react';
 import { authState, restoreSession } from './services/authServices';
 import RecoveryPassword from './views/recoverPass';
 import AppImageUploader from './views/addAppImages';
+import Plans from './views/plans';
 
 
 
@@ -54,6 +55,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
           <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />
+          <Route path='/pricing' element={<Plans />} errorElement={<ErrorPage />} />
           <Route path='/login' element={<Login />} errorElement={<ErrorPage />} />
           <Route path='/sent' element={<Confirmation />} errorElement={<ErrorPage />} />
           <Route path='/confirm' element={<EmailConfirmed />} errorElement={<ErrorPage />} />

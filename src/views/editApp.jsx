@@ -351,7 +351,7 @@ function EditTool() {
                         <label>Contact Email : <span >optional</span></label>
                         <input type="text" name="contact_email" value={allValues.contact_email} onChange={handleInputChange} className="email" placeholder="solutrendSupport@gmail.com" />
                         <div className="devices" style={{ marginTop: '5px' }}> Supported Platforms :</div>
-                        <div class="device-checkboxes">
+                        <div className="device-checkboxes">
                             <label><input type="checkbox" checked={check('web', selectedDevices)} name="web" value="web" onChange={handleCheckboxChange} />Web</label>
                             <label><input type="checkbox" checked={check('ios', selectedDevices)} name="ios" value="ios" onChange={handleCheckboxChange} />Ios</label>
                             <label><input type="checkbox" checked={check('android', selectedDevices)} name="android" value="android" onChange={handleCheckboxChange} />Android</label>

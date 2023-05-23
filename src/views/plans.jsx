@@ -1,18 +1,67 @@
+
 import "../styles/plans.css";
 import PlanCard from "./palnCard";
-import myPlans from "../data/pricePlanes";
+import { useCallback, useEffect, useState } from "react";
+import { getPlans } from "../services/appServices";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 function Plans() {
 
+    const [state, updateState] = useState('loading');
+    const [plans, updatePlans] = useState([]);
+
+    const loadPlans = useCallback(async () => {
+        const { error, data } = await getPlans();
+        if (error) {
+            updateState('error');
+            console.log('error', error.message);
+        }
+
+        console.log('data', data);
+        updateState('data');
+        updatePlans(data);
 
 
-    return (
-        <div className="plans" id="pricing">
-            <PlanCard features={myPlans[0]} name="FREE" message="free to listing your app " price="0" btnContent="List Your App Now" />
-            <PlanCard features={myPlans[1]} popular={true} color="rgb(131, 238, 131)" name="DIAMOND" message="   Submit your app and collect reviews " price="8" btnContent="List Your App Now" />
-            <PlanCard features={myPlans[2]} name="GOLD" message="list your app immediately and include it in users Newsletters" price="32" btnContent="List Your App Now" />
+    }, []);
+
+    useEffect(() => {
+        loadPlans();
+    }, [loadPlans]);
+
+    if (state === 'error') {
+
+        return <div>
+            <div className="plans" >
+
+                <p className="error">
+                    Sorry something error happened
+                </p>
+
+            </div>
         </div>
-    );
+    }
+    if (state === 'loading') {
+        return <div className="plans" >
+            <div className="centerCircular">
+                <FontAwesomeIcon icon={faSpinner} spin size="lg" />
+            </div>
+        </div>
+
+    } else {
+
+        const cards = plans.map((plan, index) => {
+            return <PlanCard item={plan} btnContent="List Your App Now" key={index} />
+        })
+
+        return (
+            <div className="plans" id="pricing">
+
+                {cards}
+
+            </div>
+        );
+    }
 }
 
 
