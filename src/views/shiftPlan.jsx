@@ -1,11 +1,14 @@
 import "../styles/stepOne.css";
-import PlanCard from "./palnCard";
-import myPlans from "../data/pricePlanes";
+import { getLocalUser } from "../services/userServices";
 
 
 function PlanChanger() {
-    const userPlan = "free";
+    const { plan } = getLocalUser();
+    const userPlan = plan;
 
+    // will change here after add subscription plans 
+    //get plans from mybase and get user plan 
+    //change it by calling billing gateway 
 
     return (
         <div className="stepOneContainer" style={{ justifyContent: "center" }}>
@@ -13,10 +16,7 @@ function PlanChanger() {
                 your current plan is  {userPlan}
             </div>
             <div className="planz" id="pricing">
-                {userPlan !== "diamond" && <PlanCard features={myPlans[1]} popular={true} color="rgb(131, 238, 131)" name="DIAMOND" message="   Submit your app and collect reviews " price="8" btnContent="Select Diamond" />}
-                {userPlan !== "gold" && <PlanCard features={myPlans[2]} name="GOLD" message="list your app immediately and include it in users Newsletters" price="32" btnContent=" Select Gold " />}
-                {userPlan !== "free" && <PlanCard features={myPlans[0]} name="FREE" message="free to listing your app " price="0" btnContent="Select Free " />
-                }
+                We have now the only free plan, thanks
             </div>
         </div>
 

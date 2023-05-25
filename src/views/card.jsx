@@ -22,6 +22,7 @@ function Card(props) {
             </div>
             <h5 className='cardH5'>{app['description']}
             </h5>
+            <div className="grey-line"></div>
             <h6>{app['category']}</h6>
         </div>
 

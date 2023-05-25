@@ -161,7 +161,7 @@ input[type="text"]:not(:placeholder-shown)+.clear {
 .cardH5 {
   display: block;
   display: -webkit-box;
-  height: 3.9em;
+  max-height: 3.9em;
   line-height: 1.3em;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -179,8 +179,18 @@ input[type="text"]:not(:placeholder-shown)+.clear {
   color: var(--textColor);
 }
 
+.grey-line {
+  display: flex;
+  height: 1px;
+  width: 90%;
+  background-color: gray;
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+
 .card h6 {
-  margin: 10px 0px;
+  margin: 0px;
+  margin-bottom: 10px;
 }
 
 

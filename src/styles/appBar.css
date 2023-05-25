@@ -16,13 +16,15 @@
     font-weight: 400;
     cursor: pointer;
     display: flex;
-    color: #d16cdb;
+    color: var(--logoColor);
 
 }
 
 .logo img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
+    margin: 5px;
+    margin-top: -5px;
 }
 
 .link {
@@ -39,7 +41,7 @@
     justify-content: center;
     background-color: var(--btnbgColor);
     padding: 0px 5px;
-
+    height: 30px;
 }
 
 .submitButton:hover,

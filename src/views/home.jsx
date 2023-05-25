@@ -4,6 +4,7 @@ import Plans from "./plans";
 import { useState, useEffect } from "react";
 import MyAlert from "../components/myAlert";
 import MyFooter from "./footer";
+import WhyUs from "./whyUs";
 
 function Home() {
     const [showed, updateShowed] = useState(false);
@@ -31,6 +32,7 @@ function Home() {
             {showed && <MyAlert close={closeAlert} />}
             <Main />
             <NewPart />
+            <WhyUs />
             <Plans />
             <MyFooter />
 

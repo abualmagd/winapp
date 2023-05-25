@@ -8,9 +8,10 @@ import ReviewModal from "../components/reviewModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark, faCalendar, faEnvelope, faLink, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "react-router-dom";
-import { getAPPInfo } from "../services/appServices";
+import { bookmark, getAPPInfo, unBookmark } from "../services/appServices";
 import ReviewsPart from "../components/reviewPart";
 import Suggestion from "../components/suggestionPart";
+import { ToastContainer } from "../components/toastContainer";
 
 
 
@@ -18,12 +19,39 @@ function AppPage() {
 
     const [display, updateDisplay] = useState("none");
     const [RevModal, updateRevModal] = useState(false);
+    const [bookmarked, updateBookmarked] = useState(false);
     const [state, updateState] = useState('loading');
     const [app, updateApp] = useState(null);
-
-
-
     const { name } = useParams();
+    const [message, updateMessage] = useState();
+    const [displ, updateDispl] = useState("none");
+    const [errory, updateErrory] = useState(true);
+
+
+    const saveApp = async () => {
+        const { error } = await bookmark(app["id"]);
+        if (error) {
+            // notify  the user
+            notify(error.message, true);
+        }
+        //notify user every thing ok 
+        updateBookmarked(true);
+        notify("this app saved to your bookmarks", false)
+
+    }
+
+    const unSaveApp = async () => {
+        const { error } = await unBookmark(app["id"]);
+        if (error) {
+            // notify  the user
+            notify(error.message, true);
+        }
+        //notify user every thing ok 
+        updateBookmarked(false);
+        notify("this app removed from your bookmarks", false)
+
+    }
+
 
     function showModal() {
         updateRevModal(true);
@@ -55,12 +83,22 @@ function AppPage() {
         } else {
             updateState('data');
             console.log(data);
+            updateBookmarked(data[0]['is_favorite']);
             updateApp(data[0]);
 
         }
     }, [name]);
 
-
+    const notify = (mesg, error) => {
+        updateMessage(mesg);
+        updateErrory(error);
+        updateDispl("flex");
+        setTimeout(() => {
+            updateDispl("none");
+            console.log('close')
+        }, 3000);
+        console.log('nottttttttttttt')
+    }
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -102,6 +140,7 @@ function AppPage() {
     return (
         <div>
             <div className="appPageContainer" >
+                <ToastContainer display={displ} message={message} error={errory} />
                 {RevModal && <ReviewModal close={hideModal} />
                 }                <AppBar />
                 <img className="imageApp" src={app['shot_url']} alt="something error sory " style={{ backgroundColor: "grey" }} />
@@ -118,15 +157,21 @@ function AppPage() {
                         Book a Demo Call
                     </div>}
 
-                    {app['is_favorite'] ?
-                        <div className="favorite" >
-                            <span className="icony">
+                    {bookmarked ?
+                        <div className="favorite" onClick={() => {
+                            // remove frome save 
+                            unSaveApp();
+                        }} >
+                            <span className="icony" >
                                 <FontAwesomeIcon icon={faBookmark} color="#000" />
                             </span>
                             UnSaved this app
                         </div>
 
-                        : <div className="favorite" >
+                        : <div className="favorite" onClick={() => {
+                            // ADD this app to saved 
+                            saveApp();
+                        }} >
                             <span className="icony">
                                 <FontAwesomeIcon icon={faBookmark} color="#000" />
                             </span>

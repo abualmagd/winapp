@@ -33,12 +33,10 @@
     align-items: flex-start;
     padding: 10px;
     margin-bottom: 20px;
-    width: 290px;
+    width: 250px;
     border-radius: 10px;
     color: var(--unhoverText);
     position: relative;
-
-
 
 }
 
@@ -50,8 +48,8 @@
 }
 
 .newCardImage {
-    width: 290px;
-    height: 250px;
+    width: 250px;
+    height: 200px;
     border-radius: 13px;
     position: relative;
     text-align: center;
@@ -65,8 +63,8 @@
     display: flex;
     align-items: flex-end;
     position: absolute;
-    width: 290px;
-    height: 250px;
+    width: 250px;
+    height: 200px;
     border-radius: 10px;
     top: 10;
     left: 10;

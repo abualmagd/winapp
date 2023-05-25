@@ -48,7 +48,7 @@ export default function AppBar() {
     return (
         <header className="headery">
             <div className="logo" onClick={() => navigat('/')}>
-                <img src="/favic.ico" alt="W" />
+                <img src="assets/images/logo512.png" alt="W" />
                 SoluTrend</div>
             <div className="navigation">
 

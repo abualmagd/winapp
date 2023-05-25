@@ -1,13 +1,17 @@
 import "../styles/searchCard.css";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 
 function SearchCard(props) {
     const app = props.app;
+    const navigate = useNavigate();
+    const name = app['app_name'];
+    let url = "/" + name;
 
     return (
-        <div className="resultCard">
+        <div className="resultCard" onClick={() => navigate(url)}>
             <div className="head-card">
                 <img src={app['logo_url']} alt="error" className="square" />
                 <div className="head-card-content">

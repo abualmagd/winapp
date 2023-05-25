@@ -53,9 +53,15 @@ export async function getUserSavedApps(userId) {
     return await mybase.rpc('get_bookmarked_apps', { 'userid': userId });
 }
 
-export async function bookmark(userId, appId) {
+export async function bookmark(appId) {
+    const { id } = getLocalUser();
+    return await mybase.from('favorite').insert({ user_id: id, app_id: appId });
 
-    return await mybase.from('favorite').insert({ user_id: userId, app_id: appId });
+}
+
+export async function unBookmark(appId) {
+    const { id } = getLocalUser();
+    return await mybase.from('favorite').delete().eq({ user_id: id, app_id: appId });
 
 }
 

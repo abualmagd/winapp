@@ -1,0 +1,47 @@
+.why-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.why-us {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+.feature-card {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+
+
+
+.icon-container {
+    background-color: rgb(186, 199, 225);
+    height: 65px;
+    width: 65px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.more-details {
+    max-width: 300px;
+}
+
+
+.acc-hd {
+    margin-bottom: 3px;
+}
+
+.why-title {
+    display: flex;
+    margin: 0px auto;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
