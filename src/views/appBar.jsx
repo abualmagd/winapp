@@ -2,18 +2,20 @@
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/appBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faEllipsisVertical, faGear, faRightFromBracket, faTh } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faEllipsisVertical, faGear, faMoon, faRightFromBracket, faSun, faTh } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '../myHooks/useAuth';
 import { logMeOut } from '../services/authServices';
 import { useCallback, useEffect } from 'react';
 import { getLocalUser, getUserData, saveUserLocal } from '../services/userServices';
+import { useContext } from 'react';
+import { ThemeContext } from '../controllers/themeProvider';
 
 
 export default function AppBar() {
     const navigat = useNavigate();
     const { token, onLogout } = useAuth();
     const { avatar_url } = getLocalUser() || '';
-
+    const { onToggleTheme, theme } = useContext(ThemeContext);
 
     const tryLogOut = async () => {
         try {
@@ -60,7 +62,7 @@ export default function AppBar() {
                 {token !== null ? <div className="dropdown">
 
                     <img src={avatar_url} alt="error" className="avatar" />
-                    <FontAwesomeIcon icon={faEllipsisVertical} size='xl' cursor={'pointer'} />
+                    <FontAwesomeIcon icon={faEllipsisVertical} size='xl' cursor={'pointer'} className='dropButton' />
 
                     <div className="dropdown-content">
                         <Link to={"/dashboard"} >
@@ -81,6 +83,12 @@ export default function AppBar() {
                             <FontAwesomeIcon icon={faBookmark} />
                             <span className='link-t'>
                                 Saved
+                            </span> </Link>
+
+                        <Link onClick={onToggleTheme} >
+                            <FontAwesomeIcon icon={theme === "dark" ? faSun : faMoon} />
+                            <span className='link-t'>
+                                {theme === "dark" ? 'light' : 'dark'}
                             </span> </Link>
                         <Link onClick={tryLogOut} >
                             <FontAwesomeIcon icon={faRightFromBracket} />

@@ -1,5 +1,5 @@
 .revModal {
-    background-color: #404768;
+    background-color: var(--cardColor);
     width: 35vw;
     height: 300px;
     border-radius: 15px;

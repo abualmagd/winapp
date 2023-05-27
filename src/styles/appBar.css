@@ -30,7 +30,7 @@
 .link {
     text-decoration: none;
     margin-right: 1rem;
-    color: #ebdaff;
+    color: var(--ratingColor);
 }
 
 .submitButton {
@@ -58,10 +58,10 @@
 
 .linkBtn {
     text-decoration: none;
-    color: beige;
     padding: 2px 5px;
     font-size: .8rem;
     color: #ebdaff;
+    font-weight: 500;
 }
 
 .avatar {
@@ -72,7 +72,12 @@
     margin-top: -5px;
     cursor: pointer;
     margin-right: 8px;
+    border: var(--searchBorder);
 
+}
+
+.dropButton {
+    color: var(--textColor);
 }
 
 .dropdown {
@@ -95,6 +100,7 @@
 
 .link-t {
     margin-left: 5px;
+
 }
 
 .dropdown-content a {
@@ -107,7 +113,7 @@
 
 
 .dropdown-content a:hover {
-    background-color: #404768;
+    background-color: var(--cardColor);
 }
 
 

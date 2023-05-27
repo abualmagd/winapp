@@ -19,10 +19,11 @@
   font-weight: 500;
   margin-top: 60px;
   initial-letter: Uppercase;
+  color: var(--textColor);
 }
 
 .titleSpn {
-  color: #d16cdb;
+  color: var(--spanTitle);
   font-weight: 500;
   display: inline-block;
 }
@@ -35,7 +36,7 @@
   flex-direction: column;
   align-items: center;
   font-size: 1.5rem;
-  color: rgb(194, 189, 189);
+  color: var(--aboutText);
   white-space: pre-wrap;
   margin: 15px;
 }
@@ -92,7 +93,7 @@
   margin-bottom: 30px;
   font-size: 1rem;
   padding-left: 10px;
-  border: 0px;
+  border: var(--searchBorder);
   outline: 0;
 
 
@@ -143,7 +144,7 @@ input[type="text"]:not(:placeholder-shown)+.clear {
   width: 280px;
   height: 200px;
   border-radius: 10px;
-  background-color: rgb(159, 159, 164);
+  background-color: var(--imageBackground);
   object-fit: cover;
 }
 

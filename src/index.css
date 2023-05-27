@@ -7,10 +7,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #cbcbcbc4;
-  /* background-image: url("/public/assets/images/bk.jpg");*/
-  color: azure;
-  background-color: #202124;
+  /*   background-color: #cbcbcbc4;
+  background-image: url("/public/assets/images/bk.jpg");*/
+  background-color: var(--appBackground);
+  color: var(--textColor);
   padding: 10px 5rem;
 }
 
@@ -30,6 +30,7 @@ code {
 
 
 :root {
+  --appBackground: #202124;
   --bgColor: #0000;
   --cardColor: #202438;
   --notifyColor: #161927;
@@ -40,4 +41,31 @@ code {
   --ratingColor: #b9b5c1;
   --unhoverText: rgb(223, 219, 219);
   --logoColor: rgb(240, 255, 255);
+  --cardColor: #202438;
+  --cardHover: #30344c;
+  --imageBackground: rgb(159, 159, 164);
+  --searchBorder: none;
+  --aboutText: rgb(194, 189, 189);
+  --spanTitle: #d16cdb;
+}
+
+
+.light {
+  --appBackground: #ffff;
+  --bgColor: #fff;
+  --cardColor: #f2f2f2;
+  --notifyColor: #f2f2f2;
+  --btnbgColor: rgb(4, 142, 4);
+  --btnColor: #fff;
+  --bxShadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  --textColor: #000;
+  --ratingColor: #ccc;
+  --unhoverText: #333;
+  --logoColor: #000102;
+  --cardColor: #ffff;
+  --cardHover: #faf3f3;
+  --imageBackground: #ccc;
+  --searchBorder: 2px solid gray;
+  --aboutText: rgb(143 132 132);
+  --spanTitle: #c62e70;
 }

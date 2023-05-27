@@ -8,6 +8,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    color: var(--textColor);
+    font-weight: 500;
 
 }
 
@@ -44,4 +46,5 @@
     margin: 0px auto;
     margin-bottom: 30px;
     font-size: 2rem;
+    color: var(--textColor);
 }

@@ -20,7 +20,7 @@ function MyFooter() {
             <div className="support">
 
                 contact us at:
-                support@winapp.io
+                support@solutrend.com
             </div>
         </footer>
     );

@@ -25,10 +25,13 @@ import { authState, restoreSession } from './services/authServices';
 import RecoveryPassword from './views/recoverPass';
 import AppImageUploader from './views/addAppImages';
 import Plans from './views/plans';
+import { ThemeProvider } from './controllers/themeProvider';
 
 
 
 function App() {
+
+
 
   const sessionrecover = useCallback(async () => {
     try {
@@ -50,48 +53,48 @@ function App() {
   return (
     <div className="App" >
       <AuthProvider>
-
-
-        <Routes>
-          <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
-          <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />
-          <Route path='/pricing' element={<Plans />} errorElement={<ErrorPage />} />
-          <Route path='/login' element={<Login />} errorElement={<ErrorPage />} />
-          <Route path='/sent' element={<Confirmation />} errorElement={<ErrorPage />} />
-          <Route path='/confirm' element={<EmailConfirmed />} errorElement={<ErrorPage />} />
-          <Route path='/explore/:content' element={<Explore />} errorElement={<ErrorPage />} />
-          <Route path='/:name' element={<AppPage />} errorElement={<ErrorPage />} />
-          <Route path='/recover' element={<RecoveryPassword />} errorElement={<ErrorPage />} />
-          <Route path='/changePlan' element={<PlanChanger />} errorElement={<ErrorPage />} />
-          <Route path='/edit' element={<ProtectedRoute>
-            <AccountInfo />
-          </ProtectedRoute>} errorElement={<ErrorPage />} />
-          <Route path='/add' element={<ProtectedRoute>
-            <AddTool />
-          </ProtectedRoute>} errorElement={<ErrorPage />} />
-          <Route path='/uploader/:id' element={
-            <AppImageUploader />
-          } errorElement={<ErrorPage />} />
-          <Route path='/plan' element={<ProtectedRoute>
-            <StepOne />
-          </ProtectedRoute>} errorElement={<ErrorPage />} />
-          <Route path='/dashboard' element={<ProtectedRoute>
-            <DashBoard />
-          </ProtectedRoute>} errorElement={<ErrorPage />} />
-          <Route path='/saved' element={<ProtectedRoute>
-            <Saved />
-          </ProtectedRoute>} errorElement={<ErrorPage />} />
-          <Route path='/settings' element={<ProtectedRoute>
-            <Settings />
-          </ProtectedRoute>} errorElement={<ErrorPage />} />
-          <Route path='/edit' element={<ProtectedRoute>
-            <EditTool />
-          </ProtectedRoute>} errorElement={<ErrorPage />} />
-          <Route path='/editApp/:id' element={<ProtectedRoute>
-            <EditTool />
-          </ProtectedRoute>} errorElement={<ErrorPage />} />
-          <Route path='*' element={<Navigate to="/" replace />} />
-        </Routes>
+        <ThemeProvider>
+          <Routes>
+            <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
+            <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />
+            <Route path='/pricing' element={<Plans />} errorElement={<ErrorPage />} />
+            <Route path='/login' element={<Login />} errorElement={<ErrorPage />} />
+            <Route path='/sent' element={<Confirmation />} errorElement={<ErrorPage />} />
+            <Route path='/confirm' element={<EmailConfirmed />} errorElement={<ErrorPage />} />
+            <Route path='/explore/:content' element={<Explore />} errorElement={<ErrorPage />} />
+            <Route path='/:name' element={<AppPage />} errorElement={<ErrorPage />} />
+            <Route path='/recover' element={<RecoveryPassword />} errorElement={<ErrorPage />} />
+            <Route path='/changePlan' element={<PlanChanger />} errorElement={<ErrorPage />} />
+            <Route path='/edit' element={<ProtectedRoute>
+              <AccountInfo />
+            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            <Route path='/add' element={<ProtectedRoute>
+              <AddTool />
+            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            <Route path='/uploader/:id' element={
+              <AppImageUploader />
+            } errorElement={<ErrorPage />} />
+            <Route path='/plan' element={<ProtectedRoute>
+              <StepOne />
+            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            <Route path='/dashboard' element={<ProtectedRoute>
+              <DashBoard />
+            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            <Route path='/saved' element={<ProtectedRoute>
+              <Saved />
+            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            <Route path='/settings' element={<ProtectedRoute>
+              <Settings />
+            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            <Route path='/edit' element={<ProtectedRoute>
+              <EditTool />
+            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            <Route path='/editApp/:id' element={<ProtectedRoute>
+              <EditTool />
+            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            <Route path='*' element={<Navigate to="/" replace />} />
+          </Routes>
+        </ThemeProvider>
       </AuthProvider>
     </div>
   );

@@ -18,12 +18,14 @@
 
 .topTitle {
     display: flex;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 400;
     margin-top: 60px;
     margin-left: 20px;
     margin-bottom: 20px;
     justify-content: flex-start;
+    font-weight: 400;
+    color: var(--textColor);
 }
 
 
@@ -53,7 +55,7 @@
     border-radius: 13px;
     position: relative;
     text-align: center;
-    background-color: rgb(159, 159, 164);
+    background-color: var(--imageBackground);
 
 }
 
@@ -69,7 +71,7 @@
     top: 10;
     left: 10;
     background: rgb(53, 53, 57);
-    background: linear-gradient(360deg, #3d1f57 22%, rgba(0, 0, 0, 0) 68%);
+    background: linear-gradient(360deg, rgba(61, 31, 87, 0.7) 30%, rgba(45, 26, 75, 0) 68%);
 
 
 }

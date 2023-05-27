@@ -111,7 +111,7 @@ function PlanCard(props) {
                         {myPlan['featured'] ? "✔ " : "✘ "}
                     </div>
                     <div className="featureContent">
-                        featured in Sugesstions
+                        featured in Homepage
                     </div>
                 </div>
 

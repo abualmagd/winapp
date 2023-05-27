@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom";
 import React from "react";
-
 import { getToken, removeToken, saveToken } from "../services/global";
 export const AuthContext = React.createContext(null);
 const AuthProvider = ({ children }) => {

@@ -5,6 +5,7 @@
     margin-bottom: 5px;
     border-radius: 10px;
     align-items: center;
+    color: var(--textColor);
 }
 
 .social {

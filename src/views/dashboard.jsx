@@ -3,11 +3,12 @@ import useAuth from '../myHooks/useAuth';
 import '../styles/dashboard.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faGear, faRightFromBracket, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faGear, faMoon, faRightFromBracket, faSpinner, faSun } from '@fortawesome/free-solid-svg-icons';
 import { getLocalUser } from '../services/userServices';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import ReviewsPart from '../components/reviewPart';
 import { getUserApps } from '../services/appServices';
+import { ThemeContext } from '../controllers/themeProvider';
 
 function DashBoard() {
     const { token } = useAuth();
@@ -16,6 +17,7 @@ function DashBoard() {
     const [data, updateData] = useState([]);
     const { avatar_url } = getLocalUser();
     const [appId, updateAppId] = useState(null);
+    const { onToggleTheme, theme } = useContext(ThemeContext);
 
 
     const fetchData = useCallback(async () => {
@@ -77,8 +79,8 @@ function DashBoard() {
         <div className="dashboard">
 
             <div className="dashboardHead">
-                <div className="logo" onClick={() => navigat('/')}>
-                    <img src="/favic.ico" alt="W" />
+                <div className="lgo" onClick={() => navigat('/')}>
+                    <img src="assets/images/logo512.png" alt="W" />
                     SoluTrend</div>
                 <div className="barEnd">
                     <div className="btton">
@@ -101,6 +103,12 @@ function DashBoard() {
                                 <FontAwesomeIcon icon={faBookmark} />
                                 <span className='link-t'>
                                     Saved
+                                </span> </Link>
+
+                            <Link onClick={onToggleTheme} >
+                                <FontAwesomeIcon icon={theme === "dark" ? faSun : faMoon} />
+                                <span className='link-t'>
+                                    {theme === "dark" ? 'light' : 'dark'}
                                 </span> </Link>
                             <Link to={'/login'} >
                                 <FontAwesomeIcon icon={faRightFromBracket} />

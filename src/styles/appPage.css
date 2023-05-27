@@ -1,7 +1,7 @@
 .appPageContainer {
     display: flex;
     flex-direction: column;
-
+    color: var(--textColor);
     border-radius: 20px;
     padding: 1.5rem 2rem;
     position: relative;
