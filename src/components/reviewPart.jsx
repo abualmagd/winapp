@@ -36,6 +36,11 @@ export default function ReviewsPart(props) {
         getReviews();
     }, [getReviews]);
 
+    const removeData = (id) => {
+        const newData = reviews.filter((review) => review['id'] !== id);
+        updateReviews(newData);
+    }
+
     if (state === 'error') {
         return (
             <div className="centerCircular">
@@ -47,7 +52,7 @@ export default function ReviewsPart(props) {
     }
     if (state === 'data' && reviews !== null) {
         var revCards = reviews.map((rev, index) => {
-            return <ReviewCard key={index} data={rev} />
+            return <ReviewCard key={index} data={rev} removeOne={removeData} />
 
         });
 

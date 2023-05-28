@@ -35,6 +35,10 @@ function ReplayPart(props) {
 
     }
 
+    const removeData = (id) => {
+        const newData = replays.filter((review) => review['id'] !== id);
+        updateReplays(newData);
+    }
 
     const getReplays = useCallback(async () => {
         const { data, error } = await getReplaysforReview(reviewId);
@@ -86,7 +90,7 @@ function ReplayPart(props) {
 
 
     const reps = replays.map((r, index) => {
-        return <ReplayCard replay={r} key={index} />
+        return <ReplayCard replay={r} key={index} removeOne={removeData} />
     })
 
     let myHeight = props.expand ? "100%" : "0%";

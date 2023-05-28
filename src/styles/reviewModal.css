@@ -11,6 +11,12 @@
 
 }
 
+.center-send {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .modalCloser {
     position: absolute;
     top: 5px;

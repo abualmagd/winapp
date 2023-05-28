@@ -12,6 +12,8 @@ import { bookmark, getAPPInfo, unBookmark } from "../services/appServices";
 import ReviewsPart from "../components/reviewPart";
 import Suggestion from "../components/suggestionPart";
 import { ToastContainer } from "../components/toastContainer";
+import ReportModal from "../components/reportModal";
+import { PageMetaTags } from "../components/myMetTage";
 
 
 
@@ -19,6 +21,7 @@ function AppPage() {
 
     const [display, updateDisplay] = useState("none");
     const [RevModal, updateRevModal] = useState(false);
+    const [RepModal, updateRepModal] = useState(false);
     const [bookmarked, updateBookmarked] = useState(false);
     const [state, updateState] = useState('loading');
     const [app, updateApp] = useState(null);
@@ -27,6 +30,7 @@ function AppPage() {
     const [displ, updateDispl] = useState("none");
     const [errory, updateErrory] = useState(true);
 
+    const currentUrl = window.location.href;
 
     const saveApp = async () => {
         const { error } = await bookmark(app["id"]);
@@ -60,6 +64,15 @@ function AppPage() {
 
     function hideModal() {
         updateRevModal(false);
+    }
+    function showRepModal() {
+        updateRepModal(true);
+
+    }
+
+
+    function hideRepModal() {
+        updateRepModal(false);
     }
 
 
@@ -140,9 +153,13 @@ function AppPage() {
     return (
         <div>
             <div className="appPageContainer" >
+                <PageMetaTags title={app['app_name']} description={app['description']} imageUrl={app['logo_url']} url={currentUrl} />
                 <ToastContainer display={displ} message={message} error={errory} />
-                {RevModal && <ReviewModal close={hideModal} />
-                }                <AppBar />
+                {RevModal && <ReviewModal close={hideModal} appId={app['id']} />
+                }
+                {RepModal && <ReportModal close={hideRepModal} appId={app['id']} />
+                }
+                <AppBar />
                 <img className="imageApp" src={app['shot_url']} alt="something error sory " style={{ backgroundColor: "grey" }} />
                 <div className="buttons">
                     <div className="visit" onClick={() => window.open(app['app_url'], '_blank')}>
@@ -234,7 +251,7 @@ function AppPage() {
                             <div className="review" onClick={showModal}>
                                 Submit a Review
                             </div>
-                            <div className="report">
+                            <div className="report" onClick={() => showRepModal()}>
                                 report this app
                             </div>
                         </div>

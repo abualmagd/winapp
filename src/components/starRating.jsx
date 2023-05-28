@@ -14,20 +14,20 @@ function Rating(props) {
         </label>
         <input value={4} type="radio" name="rating" id="rating-4" onChange={(e) => handleChange(e.target.value)} />
 
-        <label for="rating-4" className="fas fa-star">
+        <label htmlFor="rating-4" className="fas fa-star">
           <FontAwesomeIcon icon={faStar} size="xs" />
         </label>
         <input value={3} type="radio" name="rating" id="rating-3" onChange={(e) => handleChange(e.target.value)} />
-        <label for="rating-3" className="fas fa-star">
+        <label htmlFor="rating-3" className="fas fa-star">
           <FontAwesomeIcon icon={faStar} size="xs" />
         </label>
         <input value={2} type="radio" name="rating" id="rating-2" onChange={(e) => handleChange(e.target.value)} />
 
-        <label for="rating-2" className="fas fa-star">
+        <label htmlFor="rating-2" className="fas fa-star">
           <FontAwesomeIcon icon={faStar} size="xs" />
         </label>
         <input value={1} type="radio" name="rating" id="rating-1" onChange={(e) => handleChange(e.target.value)} />
-        <label for="rating-1" className="fas fa-star">
+        <label htmlFor="rating-1" className="fas fa-star">
           <FontAwesomeIcon icon={faStar} size="xs" />
         </label>
 

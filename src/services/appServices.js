@@ -86,7 +86,7 @@ export async function createReview(appId, content, userRating) {
 }
 
 export async function getAppReviews(appId) {
-    return await mybase.from('reviews').select('*').eq('app_id', appId).order("created_at", { ascending: false }).limit(10);
+    return await mybase.from('reviews').select('*').eq('app_id', appId).order("created_at", { ascending: false }).limit(20);
 
 }
 
@@ -182,4 +182,28 @@ export async function searchApps(searchText, devices, priceModel, categoryId) {
 
 export async function getPlans() {
     return await mybase.from('plans').select('*');
+}
+
+
+export async function reportApp(appId, content) {
+    const { id } = getLocalUser();
+    return await mybase.from('app_reports').insert({
+        app_id: appId,
+        user_id: id,
+        content: content
+    }).select('*');
+}
+
+
+export async function deleteReview(revId) {
+
+    return await mybase.from('reviews').delete().eq('id', revId);
+
+}
+
+
+export async function deleteReport(repId) {
+
+    return await mybase.from('app_reports').delete().eq('id', repId);
+
 }

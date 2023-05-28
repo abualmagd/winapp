@@ -21,3 +21,23 @@ function WariningModal(props) {
 
 
 export default WariningModal;
+
+
+
+
+export function WarnModal({ type, close, remove }) {
+
+    return (
+        <div className="WarnContaine" >
+            <div className="warn-modal" >
+                <div className="war">
+                    Are you sure you want delete your {type}
+                </div>
+                <div className="modal-actions">
+                    <div className="delet-btn" onClick={remove}>delete</div>
+                    <div className="cancel-btn" onClick={close}>cancel</div>
+                </div>
+            </div>
+        </div>
+    );
+}

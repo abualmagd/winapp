@@ -37,7 +37,7 @@
 }
 
 .myAlert h3 {
-    color: rgb(210, 208, 208);
+    color: var(--aboutText);
     margin: 0px;
 }
 
@@ -65,7 +65,7 @@
     margin-right: 10px;
     height: 30px;
     border-radius: 10px;
-    background-color: #27447E;
+    background-color: var(--btnbgColor);
     padding: 5px 10px 0px 10px;
     display: flex;
     justify-content: center;

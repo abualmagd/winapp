@@ -8,6 +8,10 @@
     padding: 10px;
 }
 
+.reviewCont {
+    position: relative;
+}
+
 .reviewCard:hover {
     background-color: var(--cardColor);
     padding: 10px;
@@ -53,7 +57,19 @@
     font-size: 1rem;
 }
 
+.buttons-rev {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
 
+.buttons-rev button {
+    margin-left: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--aboutText);
+    border: 5px;
+}
 
 @media only screen and (max-width: 800px) {
     .reviewCard {
