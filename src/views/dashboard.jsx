@@ -142,7 +142,7 @@ function DashBoard() {
                 </div>
 
                 <div className="reviewsPart" >
-                    <ReviewsPart id={appId} />
+                    <ReviewsPart id={appId} isDash={true} count={app['reviews_count']} />
                 </div>
             </div>}
 

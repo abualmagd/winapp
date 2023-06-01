@@ -47,6 +47,7 @@ code {
   --searchBorder: none;
   --aboutText: rgb(194, 189, 189);
   --spanTitle: #d16cdb;
+  --inputBg: #C8DCF3;
 }
 
 
@@ -68,4 +69,5 @@ code {
   --searchBorder: 2px solid gray;
   --aboutText: rgb(143 132 132);
   --spanTitle: #c62e70;
+  --inputBg: #fff;
 }

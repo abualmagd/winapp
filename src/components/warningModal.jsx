@@ -1,8 +1,13 @@
 
+import { getLocalUser } from "../services/userServices";
 import "../styles/warningModal.css";
 
 
 function WariningModal(props) {
+
+    const { name } = getLocalUser();
+    console.log('name', name);
+
 
     return (
         <div className="WarnContainer" >

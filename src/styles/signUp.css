@@ -43,7 +43,7 @@
     font-size: 13px;
     cursor: pointer;
     text-decoration: none;
-    color: white;
+    color: var(--textColor);
 }
 
 
@@ -69,11 +69,12 @@
     height: 33px;
     border-radius: 10px;
     outline: none;
-    background-color: #C8DCF3;
+    background-color: var(--inputBg);
     padding-left: 5px;
     border: 0px transparent;
     padding-left: 10px;
     margin-bottom: 20px;
+    border: var(--searchBorder);
 }
 
 .inputPart input[type=submit] {

@@ -43,11 +43,11 @@ function ReviewCard(props) {
         // Add your delete logic here
     }
 
-    function handleEditClick(event) {
-        event.stopPropagation();
-        console.log('Edit clicked');
-        // Add your edit logic here
-    }
+    /* function handleEditClick(event) {
+         event.stopPropagation();
+         console.log('Edit clicked');
+         // Add your edit logic here
+     }*/
 
 
     const removeRev = () => {
@@ -88,7 +88,7 @@ function ReviewCard(props) {
 
                 {data['user_id'] === id && <div className="buttons-rev" onClick={(event) => event.stopPropagation()}>
                     <button onClick={handleDeleteClick}>Delete</button>
-                    <button onClick={handleEditClick}>Edit</button>
+                    {/*<button onClick={handleEditClick}>Edit</button>*/}
 
                 </div>}
 

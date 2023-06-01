@@ -58,6 +58,10 @@ export async function authState() {
 }
 
 export async function restoreSession() {
+  if (!window.navigator.onLine) {
+    console.log('from online', 'no internet')
+    return null;
+  }
   const session = document.cookie.split('; ').find(row => row.startsWith("my-session="))?.split('=')[1];
   if (session) {
     const { expires_at } = JSON.parse(session);
@@ -119,7 +123,6 @@ export async function updateUserEmail(newEmail) {
     }
   })
 }
-
 
 
 

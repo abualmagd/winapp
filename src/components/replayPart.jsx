@@ -62,9 +62,9 @@ function ReplayPart(props) {
 
     if (state === 'error') {
         return (
-            <div className="centerCircular">
+            <div className="centerCircular" style={{ height: "100px", color: "red" }}>
                 <p className="error">
-                    Sorry something error happened inloading replays
+                    Sorry error  in loading replays
                 </p>
             </div>
         );

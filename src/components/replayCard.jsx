@@ -1,6 +1,6 @@
 
 import { WarnModal } from '../components/warningModal';
-import { deleteReport } from '../services/appServices';
+import { deleteReplay } from '../services/appServices';
 import { useState } from 'react';
 import { getLocalUser } from '../services/userServices';
 
@@ -18,11 +18,11 @@ function ReplayCard(props) {
         // Add your delete logic here
     }
 
-    function handleEditClick(event) {
+    /*function handleEditClick(event) {
         event.stopPropagation();
         console.log('Edit clicked');
         // Add your edit logic here
-    }
+    }*/
     const removeRev = () => {
         //remove this review from review data to change state for user 
         //call function from review part 
@@ -30,8 +30,8 @@ function ReplayCard(props) {
     }
 
 
-    const delReview = async () => {
-        const { error } = await deleteReport(data['id']);
+    const delReplay = async () => {
+        const { error } = await deleteReplay(data['id']);
         if (error) {
 
         }
@@ -46,7 +46,7 @@ function ReplayCard(props) {
         <div>
 
             <div className="reviewCard" >
-                {warn && <WarnModal type={'review'} close={showWarn} remove={delReview} />}
+                {warn && <WarnModal type={'replay'} close={showWarn} remove={delReplay} />}
                 <div className="reviewer">
                     <img src={data['creator_avatar_url']} alt="error" className="reviewAvatar" />
                     <div className="userNameRev">{data['creator_name']}</div>
@@ -57,7 +57,7 @@ function ReplayCard(props) {
 
                 {data['user_id'] === id && <div className="buttons-rev" onClick={(event) => event.stopPropagation()}>
                     <button onClick={handleDeleteClick}>Delete</button>
-                    <button onClick={handleEditClick}>Edit</button>
+                    {/* <button onClick={handleEditClick}>Edit</button>*/}
 
                 </div>}
             </div>

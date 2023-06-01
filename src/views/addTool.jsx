@@ -291,7 +291,7 @@ function AddTool() {
 
     const categoryOption = categories.map((category, index) => {
 
-        return <option value={category['id']} key={index}>{category['name']}</option>
+        return <option value={category['id']} key={index} >{category['name']}</option>
     });
     return (
         <div className="addTool">

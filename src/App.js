@@ -8,7 +8,7 @@ import AddTool from './views/addTool';
 import AppPage from './views/appPage';
 import DashBoard from './views/dashboard';
 import EditTool from './views/editApp';
-import ErrorPage from './views/error';
+import ErrorPage from './views/errorPage';
 import Home from './views/home';
 import Login from './views/login';
 import SignUp from './views/signUp';
@@ -26,6 +26,7 @@ import RecoveryPassword from './views/recoverPass';
 import AppImageUploader from './views/addAppImages';
 import Plans from './views/plans';
 import { ThemeProvider } from './controllers/themeProvider';
+import { PageMetaTags } from './components/myMetTage';
 
 
 
@@ -54,44 +55,46 @@ function App() {
     <div className="App" >
       <AuthProvider>
         <ThemeProvider>
+          <PageMetaTags title={'Solutrend'} />
           <Routes>
-            <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
-            <Route path='/signup' element={<SignUp />} errorElement={<ErrorPage />} />
-            <Route path='/pricing' element={<Plans />} errorElement={<ErrorPage />} />
-            <Route path='/login' element={<Login />} errorElement={<ErrorPage />} />
-            <Route path='/sent' element={<Confirmation />} errorElement={<ErrorPage />} />
-            <Route path='/confirm' element={<EmailConfirmed />} errorElement={<ErrorPage />} />
-            <Route path='/explore/:content' element={<Explore />} errorElement={<ErrorPage />} />
-            <Route path='/:name' element={<AppPage />} errorElement={<ErrorPage />} />
-            <Route path='/recover' element={<RecoveryPassword />} errorElement={<ErrorPage />} />
-            <Route path='/changePlan' element={<PlanChanger />} errorElement={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/pricing' element={<Plans />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/sent' element={<Confirmation />} />
+            <Route path='/confirm' element={<EmailConfirmed />} />
+            <Route path='/explore/:content' element={<Explore />} />
+            <Route path='/:name' element={<AppPage />} />
+            <Route path='/recover' element={<RecoveryPassword />} />
+            <Route path='/changePlan' element={<PlanChanger />} />
             <Route path='/edit' element={<ProtectedRoute>
               <AccountInfo />
-            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            </ProtectedRoute>} />
             <Route path='/add' element={<ProtectedRoute>
               <AddTool />
-            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            </ProtectedRoute>} />
             <Route path='/uploader/:id' element={
               <AppImageUploader />
-            } errorElement={<ErrorPage />} />
+            } />
             <Route path='/plan' element={<ProtectedRoute>
               <StepOne />
-            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            </ProtectedRoute>} />
             <Route path='/dashboard' element={<ProtectedRoute>
               <DashBoard />
-            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            </ProtectedRoute>} />
             <Route path='/saved' element={<ProtectedRoute>
               <Saved />
-            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            </ProtectedRoute>} />
             <Route path='/settings' element={<ProtectedRoute>
               <Settings />
-            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            </ProtectedRoute>} />
             <Route path='/edit' element={<ProtectedRoute>
               <EditTool />
-            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            </ProtectedRoute>} />
             <Route path='/editApp/:id' element={<ProtectedRoute>
               <EditTool />
-            </ProtectedRoute>} errorElement={<ErrorPage />} />
+            </ProtectedRoute>} />
             <Route path='*' element={<Navigate to="/" replace />} />
           </Routes>
         </ThemeProvider>

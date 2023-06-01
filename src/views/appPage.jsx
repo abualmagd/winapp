@@ -29,6 +29,8 @@ function AppPage() {
     const [message, updateMessage] = useState();
     const [displ, updateDispl] = useState("none");
     const [errory, updateErrory] = useState(true);
+    const [build, updateBuild] = useState(false);
+
 
     const currentUrl = window.location.href;
 
@@ -55,6 +57,8 @@ function AppPage() {
         notify("this app removed from your bookmarks", false)
 
     }
+
+
 
 
     function showModal() {
@@ -155,7 +159,7 @@ function AppPage() {
             <div className="appPageContainer" >
                 <PageMetaTags title={app['app_name']} description={app['description']} imageUrl={app['logo_url']} url={currentUrl} />
                 <ToastContainer display={displ} message={message} error={errory} />
-                {RevModal && <ReviewModal close={hideModal} appId={app['id']} />
+                {RevModal && <ReviewModal close={hideModal} appId={app['id']} rebuild={() => updateBuild(!build)} />
                 }
                 {RepModal && <ReportModal close={hideRepModal} appId={app['id']} />
                 }
@@ -261,11 +265,11 @@ function AppPage() {
                 </div>
             </div>
             <div className="reviewPart" >
-                {app && <ReviewsPart id={app['id']} />}
+                {app && <ReviewsPart id={app['id']} build={build} />}
             </div>
             <div className="suggestion">
                 <h4>
-                    Similar apps
+                    Similar apps :
                 </h4>
                 {app && <Suggestion id={app['category_id']} />}
 

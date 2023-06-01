@@ -10,7 +10,7 @@ function Home() {
     const [showed, updateShowed] = useState(false);
 
     const showAlert = () => {
-        updateShowed(true);
+        /*  updateShowed(true);*/
     }
 
     const closeAlert = () => {
@@ -20,6 +20,7 @@ function Home() {
 
     useEffect(() => {
 
+        //supscription email for users 
         const hasSeenPopup = localStorage.getItem('subscribe_pop');
         if (!hasSeenPopup) {
             setTimeout(() => { showAlert(); }, 6000);

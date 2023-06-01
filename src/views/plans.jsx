@@ -16,11 +16,14 @@ function Plans() {
         if (error) {
             updateState('error');
             console.log('error', error.message);
+        } if (data) {
+
+            console.log('data', data);
+            updateState('data');
+            updatePlans(data);
         }
 
-        console.log('data', data);
-        updateState('data');
-        updatePlans(data);
+
 
 
     }, []);

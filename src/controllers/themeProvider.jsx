@@ -5,7 +5,7 @@ export const ThemeContext = React.createContext(null);
 
 export const ThemeProvider = ({ children }) => {
 
-    const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+    const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
 
     function toggleTheme() {
         const newTheme = theme === 'light' ? 'dark' : 'light';

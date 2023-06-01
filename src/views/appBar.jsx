@@ -40,7 +40,6 @@ export default function AppBar() {
                 console.log(error.message)
             }
         }
-        console.log('no user logined ');
     }, [token]);
 
     useEffect(() => {
@@ -50,7 +49,7 @@ export default function AppBar() {
     return (
         <header className="headery">
             <div className="logo" onClick={() => navigat('/')}>
-                <img src="assets/images/logo512.png" alt="W" />
+                <img src="/assets/images/logo512.png" alt="W" />
                 SoluTrend</div>
             <div className="navigation">
 

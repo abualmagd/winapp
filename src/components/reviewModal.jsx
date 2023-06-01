@@ -39,6 +39,7 @@ function ReviewModal(props) {
             } if (data) {
                 console.log(data);
                 updateState('data');
+                props.rebuild();
                 closeAlert();
             }
 

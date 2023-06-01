@@ -90,6 +90,13 @@ export async function getAppReviews(appId) {
 
 }
 
+export async function getMoreReviews(appId, offset) {
+    const end = offset + 20;
+    return await mybase.from('reviews').select('*').eq('app_id', appId).order("created_at", { ascending: false }).range(offset, end);
+
+}
+
+
 export async function createReplay(reviewId, content) {
     const { id, avatar_url, name } = getLocalUser();
     return await mybase.from('replays').insert({
@@ -202,8 +209,8 @@ export async function deleteReview(revId) {
 }
 
 
-export async function deleteReport(repId) {
+export async function deleteReplay(repId) {
 
-    return await mybase.from('app_reports').delete().eq('id', repId);
+    return await mybase.from('replays').delete().eq('id', repId);
 
 }
