@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import MyAlert from "../components/myAlert";
 import MyFooter from "./footer";
 import WhyUs from "./whyUs";
+import { PageMetaTags } from "../components/myMetTage";
 
 function Home() {
     const [showed, updateShowed] = useState(false);
@@ -36,7 +37,7 @@ function Home() {
             <WhyUs />
             <Plans />
             <MyFooter />
-
+            <PageMetaTags title={'SoluTrend'} />
         </div>
     );
 }

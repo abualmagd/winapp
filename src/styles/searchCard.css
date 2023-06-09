@@ -7,6 +7,8 @@
     border-radius: 10px;
     margin-bottom: 10px;
     color: var(--unhoverText);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 1px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 
@@ -73,4 +75,5 @@
     height: 65px;
     overflow: hidden;
     font-size: 1rem;
+
 }

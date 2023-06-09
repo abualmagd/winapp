@@ -15,7 +15,7 @@ function Card(props) {
             <img src={app['shot_url']} alt='' className="cardImage" />
             <div className="myHeadCard">
                 <h2>{name}</h2>
-                {app['avg_rating'] !== 0 && <div className="rating">{app['avg_rating']}
+                {app['avg_rating'] !== 0 && <div className="rating">{app['avg_rating'].toFixed(1)}
                     <span className="space"></span>
                     <FontAwesomeIcon icon={faStar} size='xs' />
                 </div>}

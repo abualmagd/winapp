@@ -7,7 +7,7 @@ function MyFooter() {
     return (
         <footer className="myFooter">
             <div className="copyRight">
-                ©️ 2023 WinApp
+                ©️ 2023 SoluTrend
                 All rights reserved
             </div>
             <div className="social">
@@ -20,7 +20,7 @@ function MyFooter() {
             <div className="support">
 
                 contact us at:
-                support@solutrend.com
+                hi@solutrend.com
             </div>
         </footer>
     );

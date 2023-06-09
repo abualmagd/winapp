@@ -26,7 +26,8 @@ import RecoveryPassword from './views/recoverPass';
 import AppImageUploader from './views/addAppImages';
 import Plans from './views/plans';
 import { ThemeProvider } from './controllers/themeProvider';
-import { PageMetaTags } from './components/myMetTage';
+import MyBlog from './views/blog';
+import Article from './views/article';
 
 
 
@@ -55,10 +56,12 @@ function App() {
     <div className="App" >
       <AuthProvider>
         <ThemeProvider>
-          <PageMetaTags title={'Solutrend'} />
+
           <Routes>
             <Route path="*" element={<ErrorPage />} />
             <Route path='/' element={<Home />} />
+            <Route path='/blog' element={<MyBlog />} />
+            <Route path='/blog/:id' element={<Article />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/pricing' element={<Plans />} />
             <Route path='/login' element={<Login />} />

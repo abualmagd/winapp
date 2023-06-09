@@ -8,8 +8,8 @@ function NewPart() {
     const [lista, updateLista] = useState([]);
     const [loading, updateLoading] = useState(false)
 
-
-
+    //view the newer apps 
+    //in this section 
 
     const fetchData = useCallback(async () => {
         updateLoading(true);
@@ -35,7 +35,7 @@ function NewPart() {
     });
     return (
         <div className="newContainer">
-            <div className="topTitle"> Find New Featured Apps :</div>
+            {lista.length > 0 && <div className="topTitle"> Find New Featured Apps :</div>}
             {loading ? <div className='center_progress'><FontAwesomeIcon icon={faSpinner} pulse size="lg" /> </div> : <section className="newSection">
                 {cards}
             </section>}

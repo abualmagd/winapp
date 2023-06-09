@@ -14,6 +14,7 @@ import Suggestion from "../components/suggestionPart";
 import { ToastContainer } from "../components/toastContainer";
 import ReportModal from "../components/reportModal";
 import { PageMetaTags } from "../components/myMetTage";
+import ShareButtons from "../components/shareButtons";
 
 
 
@@ -78,7 +79,6 @@ function AppPage() {
     function hideRepModal() {
         updateRepModal(false);
     }
-
 
 
 
@@ -222,6 +222,7 @@ function AppPage() {
                         <div className="whoUse">
                             {app['who_need']}
                         </div>
+                        <ShareButtons url={currentUrl} title={app['app_name']} description={app['description']} />
                     </div>
 
                     <div className="ContentRight">

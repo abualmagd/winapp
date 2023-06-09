@@ -53,14 +53,14 @@ export default function AppBar() {
                 SoluTrend</div>
             <div className="navigation">
 
-                <a href="/#" className="link">blog</a>
-                <a href="http://localhost:3000/#pricing" className="link">pricing</a>
+                <Link to="/blog" className="link">blog</Link>
+                <a href="/#pricing" className="link">pricing</a>
                 <div className="submitButton">
                     <Link to="/plan" className="linkBtn">list your app</Link>
                 </div>
                 {token !== null ? <div className="dropdown">
 
-                    <img src={avatar_url} alt="error" className="avatar" />
+                    <img src={avatar_url} alt="r" className="avatar" />
                     <FontAwesomeIcon icon={faEllipsisVertical} size='xl' cursor={'pointer'} className='dropButton' />
 
                     <div className="dropdown-content">
