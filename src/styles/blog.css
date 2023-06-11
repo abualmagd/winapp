@@ -64,7 +64,6 @@
     flex-direction: column;
     margin-left: 10px;
     max-width: 38%;
-    height: 300px;
     overflow-y: hidden;
 }
 
@@ -75,18 +74,65 @@
     max-height: 156px;
     overflow-y: hidden;
     font-size: 1.5rem;
+    overflow: hidden;
+    display: -webkit-box;
+    /* fallback for older browsers */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    /* number of lines to show */
+    line-clamp: 4;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+}
+
+.description-main-article {
+    margin: 0px;
+    margin-top: 3px;
+    overflow: hidden;
+    display: -webkit-box;
+    /* fallback for older browsers */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 6;
+    /* number of lines to show */
+    line-clamp: 6;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+
 }
 
 .title-article {
     margin: 2px 0px;
-    max-height: 60px;
-    overflow-y: hidden;
+    overflow: hidden;
+    display: -webkit-box;
+    /* fallback for older browsers */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    line-clamp: 2;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
 }
 
 .description-article {
     margin: 0px;
     margin-top: 3px;
     overflow: hidden;
+    display: -webkit-box;
+    /* fallback for older browsers */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    /* number of lines to show */
+    line-clamp: 3;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
 
 }
 

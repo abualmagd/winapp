@@ -15,6 +15,7 @@ import { ToastContainer } from "../components/toastContainer";
 import ReportModal from "../components/reportModal";
 import { PageMetaTags } from "../components/myMetTage";
 import ShareButtons from "../components/shareButtons";
+import { myUrl } from "../services/global";
 
 
 
@@ -33,7 +34,7 @@ function AppPage() {
     const [build, updateBuild] = useState(false);
 
 
-    const currentUrl = window.location.href;
+    const currentUrl = myUrl + app['name'];
 
     const saveApp = async () => {
         const { error } = await bookmark(app["id"]);

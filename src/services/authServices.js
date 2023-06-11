@@ -59,33 +59,36 @@ export async function authState() {
 
 export async function restoreSession() {
   if (!window.navigator.onLine) {
-    console.log('from online', 'no internet')
+    console.log('you are ofline ', 'no internet')
     return null;
-  }
-  const session = document.cookie.split('; ').find(row => row.startsWith("my-session="))?.split('=')[1];
-  if (session) {
-    const { expires_at } = JSON.parse(session);
-    const expDate = new Date(expires_at * 1000);
-    const now = new Date();
-
-    const diffInMs = expDate - now;
-    const diffInMin = Math.floor(diffInMs / (1000 * 60));
-    if (diffInMin < 60) {
-      const { data, error } = await mybase.auth.refreshSession();
-      if (error) {
-        removeToken();
-        return Error('no session')
-      } else {
-        return await mybase.auth.setSession(data.session);
-      }
-    } else {
-      return await mybase.auth.setSession(session);
-    }
-
   } else {
-    removeToken();
-    return Error('no session')
+
+    const session = document.cookie.split('; ').find(row => row.startsWith("my-session="))?.split('=')[1];
+    if (session) {
+      const { expires_at } = JSON.parse(session);
+      const expDate = new Date(expires_at * 1000);
+      const now = new Date();
+
+      const diffInMs = expDate - now;
+      const diffInMin = Math.floor(diffInMs / (1000 * 60));
+      if (diffInMin < 60) {
+        const { data, error } = await mybase.auth.refreshSession();
+        if (error) {
+          removeToken();
+          return Error('no session')
+        } else {
+          return await mybase.auth.setSession(data.session);
+        }
+      } else {
+        return await mybase.auth.setSession(session);
+      }
+
+    } else {
+      removeToken();
+      return Error('no session')
+    }
   }
+
 }
 
 export async function restorePassword(email) {

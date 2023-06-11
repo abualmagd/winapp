@@ -8,7 +8,7 @@
     position: absolute;
     z-index: 1000;
     right: -310px;
-    top: 30%;
+    top: 50%;
     border-radius: 15px;
     animation: move 3s ease-out;
 

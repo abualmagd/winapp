@@ -18,7 +18,26 @@ function DashBoard() {
     const { avatar_url } = getLocalUser();
     const [appId, updateAppId] = useState(null);
     const { onToggleTheme, theme } = useContext(ThemeContext);
+    //data is user apps and length of it is the count of user apps
+    //countApps=data.length
+    //check user plan and compare 
 
+    const { plan } = getLocalUser();
+
+    const limitUserApps = () => {
+        console.log('limi', plan)
+        if (plan === 'diamond' && data.length < 3) {
+            return '/add';
+        } else if (plan === 'gold' && data.length < 6) {
+            return '/add';
+        } else if (plan === 'gold' && data.length >= 6) {
+            return undefined;
+        } else {
+            console.log('else')
+            return '/plan';
+        }
+
+    }
 
     const fetchData = useCallback(async () => {
         const { data, error } = await getUserApps();
@@ -84,7 +103,7 @@ function DashBoard() {
                     SoluTrend</div>
                 <div className="barEnd">
                     <div className="btton">
-                        <Link to="/add" className="linkBttn">
+                        <Link to={limitUserApps()} className="linkBttn">
                             list new app
                         </Link>
                     </div>

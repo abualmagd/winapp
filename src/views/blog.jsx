@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useCallback } from "react";
 import { getArticles } from "../services/blogServices";
-import { dateFormat } from "../services/global";
+import { dateFormat, myUrl } from "../services/global";
 import { PageMetaTags } from "../components/myMetTage";
 
 
@@ -15,7 +15,7 @@ const MyBlog = () => {
     const [state, updateState] = useState('loading');
     const [articles, updateArticles] = useState();
 
-    const url = window.location.href;
+    const url = myUrl + '/blog';
 
     const fetchArticles = useCallback(async () => {
 
@@ -103,7 +103,7 @@ const MyBlog = () => {
                     <h1 className="title-main-article">
                         {pinnedArticle['title']}
                     </h1>
-                    <p className="description-article">
+                    <p className="description-main-article">
                         {pinnedArticle['description']}
                     </p>
                 </div>

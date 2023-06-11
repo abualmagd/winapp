@@ -47,16 +47,34 @@
 
 .title-suggest {
     margin: 5px;
-    max-height: 50px;
-    overflow-y: hidden;
     margin-bottom: 0px;
+    overflow: hidden;
+    display: -webkit-box;
+    /* fallback for older browsers */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    line-clamp: 2;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
 }
 
 .description-suggest {
     margin: 5px;
-    max-height: 45px;
     overflow: hidden;
     margin-bottom: 0px;
+    display: -webkit-box;
+    /* fallback for older browsers */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    line-clamp: 2;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
 }
 
 .read-more-suggest {

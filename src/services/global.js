@@ -6,6 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 export const mybase = createClient("https://pqfiwahrarbivadfpoix.supabase.co", process.env.REACT_APP_API_KEY);
 
 
+export const myUrl = "https://solutrend.com/";
 
 export function saveToken(token) {
     return localStorage.setItem('my-token', JSON.stringify(token));

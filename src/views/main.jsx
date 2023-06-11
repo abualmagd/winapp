@@ -2,9 +2,15 @@ import { Link } from 'react-router-dom';
 import '../styles/main.css';
 import AppBar from './appBar';
 import TopSection from './top';
+import { getLocalUser } from '../services/userServices';
 
 
 export default function Main() {
+
+    const { plan } = getLocalUser();
+
+
+
     return (
         <main className="main">
             <AppBar />
@@ -15,7 +21,7 @@ export default function Main() {
                 </p>
             </div>
 
-            <Link to={"/plan"} className="addBtn">Add Your App Free</Link>
+            <Link to={plan === 'free' ? "/plan" : '/add'} className="addBtn">Add Your App Free</Link>
             <TopSection />
         </main>
     );

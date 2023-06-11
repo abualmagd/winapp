@@ -4,6 +4,8 @@ import NewCard from "./newCard";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { getNewApps } from '../services/appServices';
+import { Link } from 'react-router-dom';
+import { getLocalUser } from '../services/userServices';
 function NewPart() {
     const [lista, updateLista] = useState([]);
     const [loading, updateLoading] = useState(false)
@@ -11,6 +13,7 @@ function NewPart() {
     //view the newer apps 
     //in this section 
 
+    const { plan } = getLocalUser();
     const fetchData = useCallback(async () => {
         updateLoading(true);
         const { data, error } = await getNewApps();
@@ -39,7 +42,7 @@ function NewPart() {
             {loading ? <div className='center_progress'><FontAwesomeIcon icon={faSpinner} pulse size="lg" /> </div> : <section className="newSection">
                 {cards}
             </section>}
-            <div className="newBtn">Add Your App Now</div>
+            <Link to={plan === 'free' ? "/plan" : "/add"} className="addBtn">Add Your App Now</Link>
         </div>
 
     );

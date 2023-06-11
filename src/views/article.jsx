@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { dateFormat } from "../services/global";
+import { dateFormat, myUrl } from "../services/global";
 import { PageMetaTags } from "../components/myMetTage";
 
 export default function Article() {
@@ -19,7 +19,7 @@ export default function Article() {
     const [state, updateState] = useState('loading');
     const [suggestion, updateSuggestion] = useState();
 
-    const url = window.location.href;
+    const url = myUrl + id;
 
     const getSuggestions = useCallback(async () => {
         const { data } = await getRandomArticles(id);

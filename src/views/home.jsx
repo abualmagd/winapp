@@ -6,6 +6,7 @@ import MyAlert from "../components/myAlert";
 import MyFooter from "./footer";
 import WhyUs from "./whyUs";
 import { PageMetaTags } from "../components/myMetTage";
+import { myUrl } from "../services/global";
 
 function Home() {
     const [showed, updateShowed] = useState(false);
@@ -37,7 +38,9 @@ function Home() {
             <WhyUs />
             <Plans />
             <MyFooter />
-            <PageMetaTags title={'SoluTrend'} />
+            <PageMetaTags title={'SoluTrend'} description={'Explore the best apps and softwares that can power your business and save your time!'}
+                imageUrl={'https://pqfiwahrarbivadfpoix.supabase.co/storage/v1/object/public/logos/solutrendlogo.png'}
+                url={myUrl} />
         </div>
     );
 }
