@@ -10,7 +10,7 @@ import { WarnModal } from '../components/warningModal';
 import { deleteReview } from '../services/appServices';
 function ReviewCard(props) {
     const [expand, updateExpand] = useState(false);
-    const { id } = getLocalUser();
+    const { id } = getLocalUser() ?? '111';
     const [warn, updateWarn] = useState(false);
     const data = props.data;
 

@@ -7,7 +7,7 @@ import { getLocalUser } from '../services/userServices';
 
 export default function Main() {
 
-    const { plan } = getLocalUser();
+    const { plan } = getLocalUser() ?? 'free';
 
 
 

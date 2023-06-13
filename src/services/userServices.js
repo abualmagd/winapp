@@ -41,6 +41,10 @@ export function saveUserLocal(user) {
     return localStorage.setItem('my-user', JSON.stringify(user));
 }
 
+export function removeUserLocal() {
+    return localStorage.setItem('my-user', null);
+}
+
 
 
 export function getLocalUser() {

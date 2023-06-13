@@ -202,6 +202,15 @@ export async function reportApp(appId, content) {
 }
 
 
+export async function increaseViewCount(appId) {
+    return await mybase.rpc('increment_views', { 'appid': appId });
+}
+
+export async function increaseShareCount(appId) {
+    return await mybase.rpc('increment_shares', { 'appid': appId });
+}
+
+
 export async function deleteReview(revId) {
 
     return await mybase.from('reviews').delete().eq('id', revId);
@@ -214,3 +223,4 @@ export async function deleteReplay(repId) {
     return await mybase.from('replays').delete().eq('id', repId);
 
 }
+

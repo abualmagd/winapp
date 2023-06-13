@@ -15,7 +15,7 @@ export default function ReviewsPart(props) {
     const [reviews, updateReviews] = useState(null);
     const [copied, updateCopied] = useState(false);
     const appId = props.id;
-    const { plan } = getLocalUser();
+    const { plan } = getLocalUser() ?? 'free';
 
     const isDashBoard = props.isDash ?? false;
 

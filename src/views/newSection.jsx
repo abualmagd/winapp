@@ -13,7 +13,7 @@ function NewPart() {
     //view the newer apps 
     //in this section 
 
-    const { plan } = getLocalUser();
+    const { plan } = getLocalUser() ?? 'free';
     const fetchData = useCallback(async () => {
         updateLoading(true);
         const { data, error } = await getNewApps();

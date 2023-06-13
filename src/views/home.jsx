@@ -38,7 +38,7 @@ function Home() {
             <WhyUs />
             <Plans />
             <MyFooter />
-            <PageMetaTags title={'SoluTrend'} description={'Explore the best apps and softwares that can power your business and save your time!'}
+            <PageMetaTags title={'SoluTrend'} description={'Explore the best apps  that can power your business and save your time!'}
                 imageUrl={'https://pqfiwahrarbivadfpoix.supabase.co/storage/v1/object/public/logos/solutrendlogo.png'}
                 url={myUrl} />
         </div>

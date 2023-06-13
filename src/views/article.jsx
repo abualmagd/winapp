@@ -1,6 +1,6 @@
 
 import { useParams, Link } from "react-router-dom";
-import ShareButtons from "../components/shareButtons";
+import { ShareButtons } from "../components/shareButtons";
 import "../styles/article.css";
 import { useState } from "react";
 import { getArticleById, getRandomArticles } from "../services/blogServices";
@@ -14,12 +14,12 @@ import { PageMetaTags } from "../components/myMetTage";
 export default function Article() {
 
     const { id } = useParams();
-    const articleUrl = window.location.href;
+
     const [article, updateArticle] = useState();
     const [state, updateState] = useState('loading');
     const [suggestion, updateSuggestion] = useState();
 
-    const url = myUrl + id;
+    const url = myUrl + '/blog/' + id;
 
     const getSuggestions = useCallback(async () => {
         const { data } = await getRandomArticles(id);
@@ -114,7 +114,7 @@ export default function Article() {
 
                 </div>
 
-                <ShareButtons url={articleUrl} description={'  '} title={' '} />
+                <ShareButtons url={url} description={article['description']} title={article['title']} image={article['image_url']} />
                 {suggestion && <><div className="recent-posts">Discover more</div>
                     <div className="suggestion-wraper">
                         {suggestion.map((r, index) => {

@@ -6,7 +6,7 @@ import { faBookmark, faEllipsisVertical, faGear, faMoon, faRightFromBracket, faS
 import useAuth from '../myHooks/useAuth';
 import { logMeOut } from '../services/authServices';
 import { useCallback, useEffect } from 'react';
-import { getLocalUser, getUserData, saveUserLocal } from '../services/userServices';
+import { getLocalUser, getUserData, removeUserLocal, saveUserLocal } from '../services/userServices';
 import { useContext } from 'react';
 import { ThemeContext } from '../controllers/themeProvider';
 
@@ -21,8 +21,9 @@ export default function AppBar() {
         try {
             await logMeOut();
             onLogout();
+            removeUserLocal();
             console.log("loged out ")
-            navigat("/login", -1);
+
         } catch (error) {
             console.log(error);
         }

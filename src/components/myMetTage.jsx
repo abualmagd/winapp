@@ -7,7 +7,7 @@ export function PageMetaTags({ title, description, imageUrl, url }) {
         <Helmet>
             <title>{title}</title>
             <meta name="description" content={description} />
-
+            <link rel="canonical" href={url} />
             {/* Open Graph metadata */}
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
@@ -20,6 +20,20 @@ export function PageMetaTags({ title, description, imageUrl, url }) {
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={imageUrl} />
+
+            {/* Facebook Instant Articles metadata */}
+            <meta property="op:markup_version" content="v1.0" />
+
+            {/* Schema.org metadata */}
+            <meta itemProp="name" content={title} />
+            <meta itemProp="description" content={description} />
+            <meta itemProp="image" content={imageUrl} />
+
+            {/* LinkedIn metadata */}
+            <meta property="linkedin:title" content={title} />
+            <meta property="linkedin:description" content={description} />
+            <meta property="linkedin:image" content={imageUrl} />
+            <meta property="linkedin:url" content={url} />
         </Helmet>
     );
 }

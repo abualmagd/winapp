@@ -140,7 +140,7 @@
     margin-bottom: 30px;
     width: 120px;
     color: gray;
-    background-color: #131624;
+    background-color: var(--cardColor);
 }
 
 .reviewPart {

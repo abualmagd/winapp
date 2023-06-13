@@ -7,15 +7,16 @@ import { useEffect } from "react";
 import ReviewModal from "../components/reviewModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark, faCalendar, faEnvelope, faLink, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { useParams } from "react-router-dom";
-import { bookmark, getAPPInfo, unBookmark } from "../services/appServices";
+import { useNavigate, useParams } from "react-router-dom";
+import { bookmark, getAPPInfo, increaseViewCount, unBookmark } from "../services/appServices";
 import ReviewsPart from "../components/reviewPart";
 import Suggestion from "../components/suggestionPart";
 import { ToastContainer } from "../components/toastContainer";
 import ReportModal from "../components/reportModal";
 import { PageMetaTags } from "../components/myMetTage";
-import ShareButtons from "../components/shareButtons";
+import { ShareButtonsForApp } from "../components/shareButtons";
 import { myUrl } from "../services/global";
+import { getLocalUser } from "../services/userServices";
 
 
 
@@ -32,19 +33,27 @@ function AppPage() {
     const [displ, updateDispl] = useState("none");
     const [errory, updateErrory] = useState(true);
     const [build, updateBuild] = useState(false);
+    const nav = useNavigate();
 
-
-    const currentUrl = myUrl + app['name'];
+    const currentUrl = myUrl + name;
 
     const saveApp = async () => {
-        const { error } = await bookmark(app["id"]);
-        if (error) {
-            // notify  the user
-            notify(error.message, true);
+        const user = getLocalUser();
+        if (!user) {
+            console.log('log in plaese')
+            nav('/login');
+        } else {
+
+
+            const { error } = await bookmark(app["id"]);
+            if (error) {
+                // notify  the user
+                notify(error.message, true);
+            }
+            //notify user every thing ok 
+            updateBookmarked(true);
+            notify("this app saved to your bookmarks", false)
         }
-        //notify user every thing ok 
-        updateBookmarked(true);
-        notify("this app saved to your bookmarks", false)
 
     }
 
@@ -64,7 +73,13 @@ function AppPage() {
 
 
     function showModal() {
-        updateRevModal(true);
+        const user = getLocalUser();
+        if (!user) {
+            console.log('log in plaese')
+            nav('/login');
+        } else {
+            updateRevModal(true);
+        }
     }
 
 
@@ -72,8 +87,13 @@ function AppPage() {
         updateRevModal(false);
     }
     function showRepModal() {
-        updateRepModal(true);
-
+        const user = getLocalUser();
+        if (!user) {
+            console.log('log in plaese')
+            nav('/login');
+        } else {
+            updateRepModal(true);
+        }
     }
 
 
@@ -103,6 +123,7 @@ function AppPage() {
             console.log(data);
             updateBookmarked(data[0]['is_favorite']);
             updateApp(data[0]);
+            await increaseViewCount(data[0]['id']);
 
         }
     }, [name]);
@@ -223,7 +244,8 @@ function AppPage() {
                         <div className="whoUse">
                             {app['who_need']}
                         </div>
-                        <ShareButtons url={currentUrl} title={app['app_name']} description={app['description']} />
+                        <ShareButtonsForApp url={currentUrl} title={app['description']} description={app['description']}
+                            image={app['logo_url']} appId={app['id']} />
                     </div>
 
                     <div className="ContentRight">

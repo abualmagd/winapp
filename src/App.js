@@ -28,6 +28,8 @@ import Plans from './views/plans';
 import { ThemeProvider } from './controllers/themeProvider';
 import MyBlog from './views/blog';
 import Article from './views/article';
+import { myUrl } from './services/global';
+import { PageMetaTags } from './components/myMetTage';
 
 
 
@@ -51,9 +53,11 @@ function App() {
 
 
 
-
   return (
     <div className="App" >
+      <PageMetaTags title={'SoluTrend - fast and easy'} description={'Explore the best apps  that can power your business and save your time!,SoluTrend, a global marketing platform that helps app developers and Software companies to get their products in front of people all across the world. Solutrend is the best app discovery platform'}
+        imageUrl={'https://www.solutrend.com/logo192.png'}
+        url={myUrl} />
       <AuthProvider>
         <ThemeProvider>
 

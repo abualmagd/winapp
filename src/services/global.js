@@ -28,8 +28,11 @@ export function removeToken() {
 
 
 
-export function shareOnTwitter(url, text) {
-    const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+export function shareOnTwitter(url, text, image) {
+    let twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+    if (image) {
+        twitterUrl += `&related=${encodeURIComponent(image)}`;
+    }
     window.open(twitterUrl, '_blank');
 }
 
