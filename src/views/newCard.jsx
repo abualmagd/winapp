@@ -6,7 +6,7 @@ function NewCard(props) {
     const app = props.data;
     const navigate = useNavigate();
     const name = app['app_name'];
-    let url = "/" + name;
+    let url = "/store/" + name;
     return (
         <div className="newCard" onClick={() => { navigate(url); window.scrollTo(0, 0); }}>
 

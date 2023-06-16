@@ -33,6 +33,20 @@
     color: var(--ratingColor);
 }
 
+.link-home {
+    text-decoration: none;
+    margin-right: 1rem;
+    color: var(--ratingColor);
+    display: none;
+}
+
+.link-join {
+    text-decoration: none;
+    margin-right: 1rem;
+    color: var(--ratingColor);
+    cursor: pointer;
+}
+
 .submitButton {
     display: flex;
     border-radius: 8px;
@@ -42,6 +56,7 @@
     background-color: var(--btnbgColor);
     padding: 0px 5px;
     height: 30px;
+
 }
 
 .submitButton:hover,
@@ -62,9 +77,11 @@
     font-size: .8rem;
     color: #ebdaff;
     font-weight: 500;
+
 }
 
-.avatar {
+.avatar,
+.small-logo {
     vertical-align: middle;
     border-radius: 50%;
     width: 35px;
@@ -75,6 +92,11 @@
     border: var(--searchBorder);
     max-width: 35px;
 
+}
+
+.small-logo {
+    border: none;
+    cursor: pointer;
 }
 
 .dropButton {
@@ -141,6 +163,19 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+
     }
 
+    .link-home {
+        display: block;
+    }
+
+}
+
+
+@media only screen and (max-width: 450px) {
+
+    .submitButton {
+        display: none;
+    }
 }

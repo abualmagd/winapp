@@ -17,6 +17,14 @@ export default function AppBar() {
     const { avatar_url } = getLocalUser() || '';
     const { onToggleTheme, theme } = useContext(ThemeContext);
 
+
+
+
+    const join = () => {
+        localStorage.setItem('beforeJoin', window.location.pathname);
+        navigat('/login');
+    }
+
     const tryLogOut = async () => {
         try {
             await logMeOut();
@@ -30,12 +38,11 @@ export default function AppBar() {
     }
     const getMyUser = useCallback(async () => {
         if (token) {
-            console.log('get my user', token)
             const { data, error } = await getUserData();
 
             if (data) {
                 saveUserLocal(data[0]);
-                console.log("user-name", data[0]['name'])
+
             }
             if (error) {
                 console.log(error.message)
@@ -53,7 +60,7 @@ export default function AppBar() {
                 <img src="/assets/images/logo512.png" alt="W" />
                 SoluTrend</div>
             <div className="navigation">
-
+                <Link to="/" className="link-home"> <img src="/assets/images/logo512.png" alt="W" className="small-logo" /></Link>
                 <Link to="/blog" className="link">blog</Link>
                 <a href="/#pricing" className="link">pricing</a>
                 <div className="submitButton">
@@ -96,7 +103,7 @@ export default function AppBar() {
                                 Log out
                             </span> </Link>
                     </div>
-                </div> : <Link to={"/login"} className='link'>Join</Link>}
+                </div> : <div onClick={join} className='link-join'>Join</div>}
 
 
             </div>

@@ -8,6 +8,7 @@ import WhyUs from "./whyUs";
 import { PageMetaTags } from "../components/myMetTage";
 import { myUrl } from "../services/global";
 
+
 function Home() {
     const [showed, updateShowed] = useState(false);
 
@@ -32,15 +33,14 @@ function Home() {
     }, []);
     return (
         <div>
+            <PageMetaTags title={"SoluTrend -the best app discovery platform"} description={"Explore the best apps  that can power your business and save your time!,SoluTrend, a global marketing platform that helps app developers and Software companies to get their products in front of people all across the world. Solutrend is the best app discovery platform"}
+                imageUrl={"https://www.solutrend.com/sollogo.png"} url={myUrl} />
             {showed && <MyAlert close={closeAlert} />}
             <Main />
             <NewPart />
             <WhyUs />
             <Plans />
             <MyFooter />
-            <PageMetaTags title={'SoluTrend'} description={'Explore the best apps  that can power your business and save your time!'}
-                imageUrl={'https://pqfiwahrarbivadfpoix.supabase.co/storage/v1/object/public/logos/solutrendlogo.png'}
-                url={myUrl} />
         </div>
     );
 }

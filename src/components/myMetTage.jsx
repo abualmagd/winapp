@@ -1,13 +1,12 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 export function PageMetaTags({ title, description, imageUrl, url }) {
 
     return (
         <Helmet>
-            <title>{title}</title>
+            <title data-rh="true">{title}</title>
             <meta name="description" content={description} />
-            <link rel="canonical" href={url} />
             {/* Open Graph metadata */}
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />

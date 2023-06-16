@@ -13,11 +13,16 @@ const AuthProvider = ({ children }) => {
 
 
     const handleLogin = (t) => {
-        console.log("handling login")
-        console.log("token :", t)
         saveToken(t);
         setToken(t);
-        navigate(location.state?.from?.pathname || '/');
+        const backToUrl = localStorage.getItem('beforeJoin');
+        if (backToUrl) {
+            localStorage.removeItem('beforeJoin');
+            navigate(backToUrl);
+        } else {
+            navigate(location.state?.from?.pathname || '/');
+        }
+
 
     }
 

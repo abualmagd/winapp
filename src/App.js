@@ -28,8 +28,7 @@ import Plans from './views/plans';
 import { ThemeProvider } from './controllers/themeProvider';
 import MyBlog from './views/blog';
 import Article from './views/article';
-import { myUrl } from './services/global';
-import { PageMetaTags } from './components/myMetTage';
+import { HelmetProvider } from 'react-helmet-async';
 
 
 
@@ -55,57 +54,55 @@ function App() {
 
   return (
     <div className="App" >
-      <PageMetaTags title={'SoluTrend - fast and easy'} description={'Explore the best apps  that can power your business and save your time!,SoluTrend, a global marketing platform that helps app developers and Software companies to get their products in front of people all across the world. Solutrend is the best app discovery platform'}
-        imageUrl={'https://www.solutrend.com/logo192.png'}
-        url={myUrl} />
-      <AuthProvider>
-        <ThemeProvider>
-
-          <Routes>
-            <Route path="*" element={<ErrorPage />} />
-            <Route path='/' element={<Home />} />
-            <Route path='/blog' element={<MyBlog />} />
-            <Route path='/blog/:id' element={<Article />} />
-            <Route path='/signup' element={<SignUp />} />
-            <Route path='/pricing' element={<Plans />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/sent' element={<Confirmation />} />
-            <Route path='/confirm' element={<EmailConfirmed />} />
-            <Route path='/explore/:content' element={<Explore />} />
-            <Route path='/:name' element={<AppPage />} />
-            <Route path='/recover' element={<RecoveryPassword />} />
-            <Route path='/changePlan' element={<PlanChanger />} />
-            <Route path='/edit' element={<ProtectedRoute>
-              <AccountInfo />
-            </ProtectedRoute>} />
-            <Route path='/add' element={<ProtectedRoute>
-              <AddTool />
-            </ProtectedRoute>} />
-            <Route path='/uploader/:id' element={
-              <AppImageUploader />
-            } />
-            <Route path='/plan' element={<ProtectedRoute>
-              <StepOne />
-            </ProtectedRoute>} />
-            <Route path='/dashboard' element={<ProtectedRoute>
-              <DashBoard />
-            </ProtectedRoute>} />
-            <Route path='/saved' element={<ProtectedRoute>
-              <Saved />
-            </ProtectedRoute>} />
-            <Route path='/settings' element={<ProtectedRoute>
-              <Settings />
-            </ProtectedRoute>} />
-            <Route path='/edit' element={<ProtectedRoute>
-              <EditTool />
-            </ProtectedRoute>} />
-            <Route path='/editApp/:id' element={<ProtectedRoute>
-              <EditTool />
-            </ProtectedRoute>} />
-            <Route path='*' element={<Navigate to="/" replace />} />
-          </Routes>
-        </ThemeProvider>
-      </AuthProvider>
+      <HelmetProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            <Routes>
+              <Route path="*" element={<ErrorPage />} />
+              <Route path='/' element={<Home />} />
+              <Route path='/blog' element={<MyBlog />} />
+              <Route path='/blog/:id' element={<Article />} />
+              <Route path='/signup' element={<SignUp />} />
+              <Route path='/pricing' element={<Plans />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/sent' element={<Confirmation />} />
+              <Route path='/confirm' element={<EmailConfirmed />} />
+              <Route path='/explore/:content' element={<Explore />} />
+              <Route path='/store/:name' element={<AppPage />} />
+              <Route path='/recover' element={<RecoveryPassword />} />
+              <Route path='/changePlan' element={<PlanChanger />} />
+              <Route path='/edit' element={<ProtectedRoute>
+                <AccountInfo />
+              </ProtectedRoute>} />
+              <Route path='/add' element={<ProtectedRoute>
+                <AddTool />
+              </ProtectedRoute>} />
+              <Route path='/uploader/:id' element={
+                <AppImageUploader />
+              } />
+              <Route path='/plan' element={<ProtectedRoute>
+                <StepOne />
+              </ProtectedRoute>} />
+              <Route path='/dashboard' element={<ProtectedRoute>
+                <DashBoard />
+              </ProtectedRoute>} />
+              <Route path='/saved' element={<ProtectedRoute>
+                <Saved />
+              </ProtectedRoute>} />
+              <Route path='/settings' element={<ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>} />
+              <Route path='/edit' element={<ProtectedRoute>
+                <EditTool />
+              </ProtectedRoute>} />
+              <Route path='/editApp/:id' element={<ProtectedRoute>
+                <EditTool />
+              </ProtectedRoute>} />
+              <Route path='*' element={<Navigate to="/" replace />} />
+            </Routes>
+          </ThemeProvider>
+        </AuthProvider>
+      </HelmetProvider>
     </div>
   );
 }

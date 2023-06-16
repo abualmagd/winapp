@@ -9,7 +9,7 @@ function Card(props) {
     const app = props.data;
     const navigate = useNavigate();
     const name = app['app_name'];
-    let url = "/" + name;
+    let url = "/store/" + name;
     return (
         <div className="card" onClick={() => navigate(url)}>
             <img src={app['shot_url']} alt='' className="cardImage" />

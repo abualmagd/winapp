@@ -35,7 +35,7 @@ function AppPage() {
     const [build, updateBuild] = useState(false);
     const nav = useNavigate();
 
-    const currentUrl = myUrl + name;
+    const currentUrl = myUrl + 'store/' + name;
 
     const saveApp = async () => {
         const user = getLocalUser();
@@ -293,7 +293,7 @@ function AppPage() {
             </div>
             <div className="suggestion">
                 <h4>
-                    Similar apps :
+                    Discover more :
                 </h4>
                 {app && <Suggestion id={app['category_id']} />}
 

@@ -19,6 +19,7 @@ function MyFooter() {
                 All rights reserved
             </div>
             <div className="social">
+                {/**add <a></a> to social */}
                 <FontAwesomeIcon icon={faTwitter} size="2x" cursor={"pointer"} color="#1DA1F2" onClick={gotoTwitter} />
                 <FontAwesomeIcon icon={faFacebook} size="2x" cursor={"pointer"} color="#3282F6" onClick={gotoFacebook} />
 

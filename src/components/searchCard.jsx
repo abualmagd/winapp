@@ -8,7 +8,7 @@ function SearchCard(props) {
     const app = props.app;
     const navigate = useNavigate();
     const name = app['app_name'];
-    let url = "/" + name;
+    let url = "/store/" + name;
 
     return (
         <div className="resultCard" onClick={() => navigate(url)}>
