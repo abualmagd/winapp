@@ -127,6 +127,16 @@
 }
 
 
+.terms {
+    color: var(--textColor);
+    font-size: 14px;
+    margin-top: -10px;
+}
+
+.terms a {
+    text-decoration: none;
+}
+
 @media only screen and (max-width: 700px) {
 
     .inputPart {

@@ -86,6 +86,10 @@ function SignUp() {
                     <input type="email" placeholder='example@gmail.com' ref={emailRef} required />
                     <label >Password</label>
                     <input type="password" placeholder='6 digits or more' ref={passwordRef} required />
+                    <p className='terms'>By signing up, you agree to the
+                        <Link to={'https://www.solutrend.com/terms.html'} target='_blank'>  Terms of Service </Link >
+                        and <Link to={'https://www.solutrend.com/privacy.html'} target='_blank'> Privacy Policy </Link>
+                        , including <Link to={'https://www.solutrend.com/cookie.html'} target='_blank'> Cookie Use. </Link></p>
                     {loading ? <div className='div-submit'>
                         <FontAwesomeIcon icon={faSpinner} pulse size="lg" />
                     </div> : <input type="submit" value="Register" />}

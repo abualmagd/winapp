@@ -123,7 +123,14 @@ function AppPage() {
             console.log(data);
             updateBookmarked(data[0]['is_favorite']);
             updateApp(data[0]);
-            await increaseViewCount(data[0]['id']);
+            try {
+                console.log('review +++++')
+                console.log(data[0]['id'])
+                await increaseViewCount(data[0]['id']);
+            } catch (error) {
+                console.log('error increase views', error)
+            }
+
 
         }
     }, [name]);
