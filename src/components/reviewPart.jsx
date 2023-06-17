@@ -74,7 +74,7 @@ export default function ReviewsPart(props) {
         });
 
         return <>
-            {isDashBoard & plan === 'free' ? <CopyToClipboard className={'float-right'} text={JSON.stringify(reviews.map(({ user_id, ...rest }) => rest))} onCopy={() => updateCopied(true)}>
+            {isDashBoard & plan !== 'free' ? <CopyToClipboard className={'float-right'} text={JSON.stringify(reviews.map(({ user_id, ...rest }) => rest))} onCopy={() => updateCopied(true)}>
                 <button>{copied ? 'copied to clipBoard' : 'export reviews'}</button>
             </CopyToClipboard> : ''}
             {revCards}

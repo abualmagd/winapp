@@ -22,7 +22,7 @@ function DashBoard() {
     //countApps=data.length
     //check user plan and compare 
 
-    const { plan } = getLocalUser();
+    const { plan } = getLocalUser() ?? 'free';
 
     const limitUserApps = () => {
         console.log('limi', plan)

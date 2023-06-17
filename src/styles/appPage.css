@@ -43,7 +43,7 @@
     font-weight: 500;
     cursor: pointer;
     margin-bottom: 30px;
-    width: 160px;
+    width: 170px;
     color: black;
     background-color: rgb(131, 238, 131);
 }
@@ -160,6 +160,7 @@
     color: var(--textColor);
     background-color: var(--cardColor);
     padding: 5px;
+    width: 120px;
 }
 
 .showMore {
@@ -251,5 +252,6 @@
 
     .buttons div {
         padding: 10px 10px;
+
     }
 }
