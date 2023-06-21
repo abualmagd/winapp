@@ -1,15 +1,29 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/main.css';
 import AppBar from './appBar';
 import TopSection from './top';
 import { getLocalUser } from '../services/userServices';
+import { userAllowedtoAdd } from '../services/appServices';
 
 
 export default function Main() {
+    const navigat = useNavigate();
 
-    const { plan } = getLocalUser() ?? 'free';
+    const limitUserApps = async () => {
+        const { plan } = getLocalUser() ?? 'free';
+        const result = await userAllowedtoAdd();
+        console.log('limi', result.data);
+        if (!result.data) {
+            navigat('/limit');
+        } else {
+            if (plan === 'free') {
+                navigat('/plan');
+            } else {
+                navigat('/add');
+            }
 
-
+        }
+    }
 
     return (
         <main className="main">
@@ -21,7 +35,7 @@ export default function Main() {
                 </p>
             </div>
 
-            <Link to={plan === 'free' ? "/plan" : '/add'} className="addBtn">Add Your App Free</Link>
+            <div onClick={() => limitUserApps()} className="addBtn">Add Your App Free</div>
             <TopSection />
         </main>
     );

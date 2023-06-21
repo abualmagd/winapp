@@ -29,6 +29,8 @@ import { ThemeProvider } from './controllers/themeProvider';
 import MyBlog from './views/blog';
 import Article from './views/article';
 import { HelmetProvider } from 'react-helmet-async';
+import Exceeded from './views/exceeded';
+
 
 
 
@@ -65,6 +67,7 @@ function App() {
               <Route path='/signup' element={<SignUp />} />
               <Route path='/pricing' element={<Plans />} />
               <Route path='/login' element={<Login />} />
+              <Route path='/limit' element={<Exceeded />} />
               <Route path='/sent' element={<Confirmation />} />
               <Route path='/confirm' element={<EmailConfirmed />} />
               <Route path='/explore/:content' element={<Explore />} />

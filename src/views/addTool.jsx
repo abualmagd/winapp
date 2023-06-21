@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import "../styles/addTool.css";
 import StepsIndicator from "./stepsIndicator";
 import { useEffect } from "react";
-import { createNewApp } from "../services/appServices";
+import { createNewApp, getAllCategory } from "../services/appServices";
 import { ToastContainer } from "../components/toastContainer";
 import { getLocalUser } from "../services/userServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,7 +20,7 @@ function AddTool() {
     const [errory, updateErrory] = useState(true);
     const [selectedDevices, setSelectedDevices] = useState([]);
     const [priceModels, setPriceModels] = useState([]);
-    const [categories] = useState([
+    const [categories, setCategories] = useState([
         {
             "id": 2,
             "name": "Project Management & Planning"
@@ -266,13 +266,12 @@ function AddTool() {
 
 
     const getCategoryList = useCallback(async () => {
-        /* const { data, error } = await getAllCategory();
-         if (error) {
-             notify(error.message, true);
-         } else {
-             console.log(data);
-             setCategories(data);
-         }*/
+        const { data, error } = await getAllCategory();
+        if (error) {
+
+        } else {
+            setCategories(data);
+        }
     }, []);
 
 
@@ -309,8 +308,6 @@ function AddTool() {
                     await addNewApp();
                 } catch (error) {
                     notify(error.message, true);
-
-
                 }
 
             }}>

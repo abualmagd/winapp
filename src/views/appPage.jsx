@@ -242,12 +242,12 @@ function AppPage() {
                             {app['what_app']}
                         </div>
 
-                        <h6 className="why">why to use figma ai ?</h6>
+                        <h6 className="why">why to use {name} ?</h6>
                         <div className="why">
                             {app['description']}
                         </div>
 
-                        <h6 className="whoUse">who need this app ?</h6>
+                        <h6 className="whoUse">who need {name} ?</h6>
                         <div className="whoUse">
                             {app['who_need']}
                         </div>
@@ -305,7 +305,7 @@ function AppPage() {
                 {app && <Suggestion id={app['category_id']} />}
 
             </div>
-            <div className="stick" id="myBtn" onClick={() => window.open(app['calendly_url'], '_blank')}>
+            <div className="stick" id="myBtn" onClick={() => window.open(app['app_url'], '_blank')}>
                 <div className="stickButton" style={{ display: display }}>
                     <span className="icony">
                         <FontAwesomeIcon icon={faLink} color="#000" />

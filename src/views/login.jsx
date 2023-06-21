@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { ToastContainer } from '../components/toastContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+//import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+//import { getCurrentUser } from '../services/userServices';
 
 
 
@@ -31,6 +33,22 @@ function Login() {
         console.log('nottttttttttttt')
     }
 
+    /* const loginGoogle = async () => {
+         const { data, error } = await loginWithGoogle();
+         if (data.provider) {
+             console.log(data);
+             const result = await getCurrentUser();
+             if (result.data) {
+                 onLogin(result.data.user.id);
+             } else {
+                 console.log(result.error.message);
+                 notify(result.error.message, true);
+             }
+ 
+         } else {
+             console.log(error.message);
+         }
+     }*/
 
     const restorePass = async () => {
         console.log('email', emailRef.current.value)
@@ -42,7 +60,7 @@ function Login() {
                 notify(error.message, true);
                 updateLoading(false)
             } else {
-                notify(data.name + "recovery email sent to your email", false)
+                notify(data.name + "  recovery email sent to your email", false)
             }
         } else {
             notify("enter your email then press forget password ", true);
@@ -77,7 +95,14 @@ function Login() {
                 </div>
                 <h3> Welcome Back ;</h3>
                 <div style={{ height: "40px" }}></div>
-
+                {/* <div className="google-sign" onClick={loginGoogle}>
+                    <FontAwesomeIcon icon={faGoogle} size='lg' style={{ color: "#f5310a", }} />
+                    <span className="google-s">
+                        Continue with Google
+                    </span>
+                </div>
+                <p className="create">or Continue with
+                </p>*/}
                 <form onSubmit={onSubmit}>
                     <label >Email</label>
                     <input type="email" ref={emailRef} required />
@@ -90,10 +115,8 @@ function Login() {
                         <FontAwesomeIcon icon={faSpinner} pulse size="lg" />
                     </div> : <input type="submit" value="Login" />}
                 </form>
-                {/* <p className="create">or create account with <span className='googleSpan'>
-                    Linked
-                    <FontAwesomeIcon icon={faLinkedin} size='lg' style={{ color: "rgb(55, 87, 147)", }} />
-    </span> </p>*/}
+
+
 
             </div>
 

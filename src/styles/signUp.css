@@ -71,10 +71,28 @@
     outline: none;
     background-color: var(--inputBg);
     padding-left: 5px;
-    border: 0px transparent;
     padding-left: 10px;
     margin-bottom: 20px;
     border: var(--searchBorder);
+}
+
+.google-sign {
+    display: flex;
+    justify-content: center;
+    padding-left: 10px;
+    align-items: center;
+    width: 90%;
+    height: 37px;
+    border-radius: 10px;
+    border: var(--searchBorder);
+    cursor: pointer;
+    color: var(--textColor);
+    font-weight: 500;
+    background-color: var(--inputBg);
+}
+
+.google-s {
+    margin-left: 20px;
 }
 
 .inputPart input[type=submit] {
@@ -82,10 +100,9 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
     justify-content: center;
-
     background-color: rgb(4, 142, 4);
     border-radius: 8px;
-
+    color: var(--textColor);
     margin: 25px 0px;
     font-weight: 500;
 }

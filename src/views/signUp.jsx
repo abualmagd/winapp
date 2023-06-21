@@ -1,10 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/signUp.css';
 import { useState, useRef } from 'react';
-import { register } from '../services/authServices';
+import { login, register } from '../services/authServices';
 import { ErrorToastContainer } from '../components/toastContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import useAuth from '../myHooks/useAuth';
 //import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 
@@ -21,7 +22,7 @@ function SignUp() {
     const [display, updateDisplay] = useState("none");
     const [loading, updateLoading] = useState(false);
     const navTo = useNavigate();
-
+    const { onLogin } = useAuth();
 
 
 
@@ -41,21 +42,31 @@ function SignUp() {
 
     const onSubmit = async (event) => {
         updateLoading(true);
-        console.log("email", emailRef.current.value)
-        console.log("pass", passwordRef.current.value)
         event.preventDefault();
         console.log('submit');
         try {
             const { data, error } = await register(emailRef.current.value, passwordRef.current.value, nameRef.current.value);
-            console.log("daata : ", data)
+            console.log("daata : ", data.user.email)
 
             if (error) throw error;
-            console.log('User registerd successfully:', data.user);
-            const maxAge = 5 * 60;
-            document.cookie = `ema=${emailRef.current.value}; path=/; max-age=${maxAge}; SameSite=Lax; secure`
-            document.cookie = `pss=${passwordRef.current.value}; path=/; max-age=${maxAge}; SameSite=Lax; secure`
+            console.log('User registerd successfully:', data.user.email);
 
-            navTo('/sent', -1)
+
+            if (data) {
+                const { data, error } = await login(emailRef.current.value, passwordRef.current.value);
+                if (data) {
+                    console.log('login succ')
+                    onLogin(data.user.id);
+
+                }
+                if (error) {
+                    navTo('/login', -1);
+                    console.log('error', error.message)
+                }
+
+
+            }
+
         } catch (error) {
             console.log('An error occurred:', error.message);
             notify(error.message);
@@ -76,7 +87,7 @@ function SignUp() {
                     <p className='alreadyP'>Already have account ?</p>
                     <Link to={"/login"} className='signIn' >Sign in</Link>
                 </div>
-                <h3> Welcome to Winapp!</h3>
+                <h3> Welcome to Solutrend!</h3>
                 <p className='registerP'>Register your account</p>
 
                 <form onSubmit={onSubmit}>

@@ -14,7 +14,6 @@ export async function getUserData() {
 
 export async function updateUserAvatar(avatarUrl) {
     const id = await getToken();
-
     return await mybase.from('profiles').update({
         'avatar_url': avatarUrl
     }).eq('id', id);
@@ -28,11 +27,15 @@ export async function getUserPlan(id) {
 }
 
 
-export async function updateUserName(name, id) {
 
+export async function updateCurrentName(name) {
+    const { email } = getLocalUser();
+    console.log('name', name);
+    console.log('email', email);
     return await mybase.from('profiles').update({
-        'name': name,
-    }).eq('id', id);
+        'name': name
+    }).eq('email', email);
+
 }
 
 

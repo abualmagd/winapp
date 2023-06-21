@@ -30,7 +30,8 @@
 .link {
     text-decoration: none;
     margin-right: 1rem;
-    color: var(--ratingColor);
+    color: var(--textColor);
+    margin-top: 5px;
 }
 
 .link-home {
@@ -43,8 +44,9 @@
 .link-join {
     text-decoration: none;
     margin-right: 1rem;
-    color: var(--ratingColor);
+    color: var(--textColor);
     cursor: pointer;
+    margin-top: 5px;
 }
 
 .submitButton {

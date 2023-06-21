@@ -83,9 +83,9 @@
     height: 33px;
     border-radius: 10px;
     outline: none;
-    background-color: #C8DCF3;
+    background-color: var(--inputBg);
     padding-left: 5px;
-    border: 0px transparent;
+    border: var(--searchBorder);
     padding-left: 10px;
     margin-bottom: 30px;
     width: 70%;

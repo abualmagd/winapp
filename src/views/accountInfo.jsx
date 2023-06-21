@@ -3,7 +3,7 @@ import "../styles/setting.css";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "../components/toastContainer";
 import { createImageUrl, uploadAvatar } from "../services/filesServices";
-import { getLocalUser, updateUserAvatar, updateUserName } from "../services/userServices";
+import { getLocalUser, updateCurrentName, updateUserAvatar } from "../services/userServices";
 import { updateUserEmail } from "../services/authServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -11,7 +11,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function AccountInfo() {
-    const user = useState(getLocalUser() || null);
+    const user = useState(getLocalUser() ?? 'null');
     const [image, setImage] = useState(user[0]['avatar_url'] || '');
     const [name, setName] = useState(user[0]['name'] || '');
     const [email, setEmail] = useState(user[0]['email'] || '');
@@ -21,6 +21,7 @@ export default function AccountInfo() {
     const [errory, updateErrory] = useState(true);
     const [loading, updateLoading] = useState(false);
     const [avatarChange, updateAvatarChange] = useState(false);
+
 
     const notify = (mesg, error) => {
         updateMessage(mesg);
@@ -75,6 +76,7 @@ export default function AccountInfo() {
 
     useEffect(() => {
         handleChangeScreen();
+        console.log('user kkkkkkkkk', user)
         // eslint-disable-next-line
     }, []);
 
@@ -87,12 +89,14 @@ export default function AccountInfo() {
         if (user[0]['name'] !== name) {
             updateLoading(true);
             console.log('step', 2);
-            const { error } = await updateUserName(name);
+            const { data, error } = await updateCurrentName(name)
             if (error) {
+                console.log('error here', error.message)
                 notify(error.message, true);
                 updateLoading(false);
             } else {
                 notify("your data updated succesfuly", false);
+                console.log(data)
                 updateLoading(false);
                 navToHome();
             }

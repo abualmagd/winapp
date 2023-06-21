@@ -224,3 +224,7 @@ export async function deleteReplay(repId) {
 
 }
 
+export async function userAllowedtoAdd() {
+    const userId = getToken();
+    return await mybase.rpc('check_allow_insert_app', { 'userid': userId });
+}

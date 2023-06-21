@@ -44,7 +44,8 @@
 .linkBttn {
     text-decoration: none;
     font-size: 1rem;
-
+    color: var(--textColor);
+    ;
 }
 
 
@@ -141,6 +142,10 @@
 
     .imageAppDash {
         height: 200px;
+    }
+
+    .dash-logo {
+        display: none;
     }
 
 }

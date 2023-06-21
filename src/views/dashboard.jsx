@@ -7,7 +7,7 @@ import { faBookmark, faGear, faMoon, faRightFromBracket, faSpinner, faSun } from
 import { getLocalUser } from '../services/userServices';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import ReviewsPart from '../components/reviewPart';
-import { getUserApps } from '../services/appServices';
+import { getUserApps, userAllowedtoAdd } from '../services/appServices';
 import { ThemeContext } from '../controllers/themeProvider';
 
 function DashBoard() {
@@ -22,21 +22,21 @@ function DashBoard() {
     //countApps=data.length
     //check user plan and compare 
 
-    const { plan } = getLocalUser() ?? 'free';
 
-    const limitUserApps = () => {
-        console.log('limi', plan)
-        if (plan === 'diamond' && data.length < 3) {
-            return '/add';
-        } else if (plan === 'gold' && data.length < 6) {
-            return '/add';
-        } else if (plan === 'gold' && data.length >= 6) {
-            return undefined;
+    const limitUserApps = async () => {
+        const { plan } = getLocalUser() ?? 'free';
+        const result = await userAllowedtoAdd();
+        console.log('limi', result.data);
+        if (!result.data) {
+            navigat('/limit');
         } else {
-            console.log('else')
-            return '/plan';
-        }
+            if (plan === 'free') {
+                navigat('/plan');
+            } else {
+                navigat('/add');
+            }
 
+        }
     }
 
     const fetchData = useCallback(async () => {
@@ -100,12 +100,12 @@ function DashBoard() {
             <div className="dashboardHead">
                 <div className="lgo" onClick={() => navigat('/')}>
                     <img src="assets/images/logo512.png" alt="W" />
-                    SoluTrend</div>
+                    <div className="dash-logo">SoluTrend</div> </div>
                 <div className="barEnd">
                     <div className="btton">
-                        <Link to={limitUserApps()} className="linkBttn">
+                        <div onClick={() => limitUserApps()} className="linkBttn">
                             list new app
-                        </Link>
+                        </div>
                     </div>
                     <div className="dropdown">
                         <img src={avatar_url} alt="error" className="avatar" />

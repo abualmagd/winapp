@@ -9,15 +9,31 @@ import { useCallback, useEffect } from 'react';
 import { getLocalUser, getUserData, removeUserLocal, saveUserLocal } from '../services/userServices';
 import { useContext } from 'react';
 import { ThemeContext } from '../controllers/themeProvider';
+import { userAllowedtoAdd } from '../services/appServices';
 
 
 export default function AppBar() {
     const navigat = useNavigate();
     const { token, onLogout } = useAuth();
-    const { avatar_url } = getLocalUser() || '';
+    const { avatar_url } = getLocalUser() || '/assets/images/avatarholder.jpg';
     const { onToggleTheme, theme } = useContext(ThemeContext);
 
 
+    const limitUserApps = async () => {
+        const { plan } = getLocalUser() ?? 'free';
+        const result = await userAllowedtoAdd();
+        console.log('limi', result.data);
+        if (!result.data) {
+            navigat('/limit');
+        } else {
+            if (plan === 'free') {
+                navigat('/plan');
+            } else {
+                navigat('/add');
+            }
+
+        }
+    }
 
 
     const join = () => {
@@ -64,7 +80,7 @@ export default function AppBar() {
                 <Link to="/blog" className="link">blog</Link>
                 <a href="/#pricing" className="link">pricing</a>
                 <div className="submitButton">
-                    <Link to="/plan" className="linkBtn">list your app</Link>
+                    <div onClick={() => limitUserApps()} className="linkBtn">list your app</div>
                 </div>
                 {token !== null ? <div className="dropdown">
 

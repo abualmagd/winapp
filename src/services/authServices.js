@@ -93,7 +93,7 @@ export async function restoreSession() {
 
 export async function restorePassword(email) {
   return await mybase.auth.resetPasswordForEmail(email, {
-    redirectTo: "http://localhost:3000/recover"
+    redirectTo: "https://solutrend.com/recover"
   });
 
 }
@@ -129,5 +129,20 @@ export async function updateUserEmail(newEmail) {
 
 
 
+
+
+export async function loginWithGoogle() {
+  return await mybase.auth.signInWithOAuth({
+    provider: 'google',
+    redirectTo: '/listen'
+  })
+}
+
+
+
+export async function setSession(access, refresh) {
+  await mybase.auth.setSession({ access_token: access, refresh_token: refresh });
+  return await mybase.auth.getUser();
+}
 
 

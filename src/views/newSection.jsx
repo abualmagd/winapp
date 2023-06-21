@@ -3,17 +3,33 @@ import '../styles/newSection.css';
 import NewCard from "./newCard";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { getNewApps } from '../services/appServices';
-import { Link } from 'react-router-dom';
+import { getNewApps, userAllowedtoAdd } from '../services/appServices';
+import { useNavigate } from 'react-router-dom';
 import { getLocalUser } from '../services/userServices';
 function NewPart() {
     const [lista, updateLista] = useState([]);
-    const [loading, updateLoading] = useState(false)
+    const [loading, updateLoading] = useState(false);
+    const navigat = useNavigate();
 
     //view the newer apps 
     //in this section 
 
-    const { plan } = getLocalUser() ?? 'free';
+    const limitUserApps = async () => {
+        const { plan } = getLocalUser() ?? 'free';
+        const result = await userAllowedtoAdd();
+        console.log('limi', result.data);
+        if (!result.data) {
+            navigat('/limit');
+        } else {
+            if (plan === 'free') {
+                navigat('/plan');
+            } else {
+                navigat('/add');
+            }
+
+        }
+    }
+
     const fetchData = useCallback(async () => {
         updateLoading(true);
         const { data, error } = await getNewApps();
@@ -42,7 +58,7 @@ function NewPart() {
             {loading ? <div className='center_progress'><FontAwesomeIcon icon={faSpinner} pulse size="lg" /> </div> : <section className="newSection">
                 {cards}
             </section>}
-            <Link to={plan === 'free' ? "/plan" : "/add"} className="addBtn">Add Your App Now</Link>
+            <div onClick={() => limitUserApps()} className="addBtn">Add Your App Now</div>
         </div>
 
     );
