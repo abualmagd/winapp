@@ -63,6 +63,16 @@ const MyBlog = () => {
     }
     if (articles.length === 0) {
         return <div className="blog-wrap">
+            <div className="blog-bar">
+                <div className="logom" >
+                    <img src="/assets/images/logo512.png" alt="W" />
+                    SoluTrend </div>
+                <div className="navigation-blog">
+                    <Link to={'/'}>
+                        About
+                    </Link>
+                </div>
+            </div>
             <div className="centerCircular">
                 <div>no articles now
                     , Coming soon ... </div>

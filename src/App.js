@@ -36,8 +36,6 @@ import Exceeded from './views/exceeded';
 
 function App() {
 
-
-
   const sessionrecover = useCallback(async () => {
     try {
       await restoreSession();
@@ -46,6 +44,10 @@ function App() {
     }
 
   }, []);
+
+
+
+
   useEffect(() => {
     console.log("once our app started");
     sessionrecover();
@@ -70,6 +72,7 @@ function App() {
               <Route path='/limit' element={<Exceeded />} />
               <Route path='/sent' element={<Confirmation />} />
               <Route path='/confirm' element={<EmailConfirmed />} />
+              <Route path='/confirm/*' element={<EmailConfirmed />} />
               <Route path='/explore/:content' element={<Explore />} />
               <Route path='/store/:name' element={<AppPage />} />
               <Route path='/recover' element={<RecoveryPassword />} />

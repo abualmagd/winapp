@@ -63,6 +63,7 @@ export async function restoreSession() {
     return null;
   } else {
 
+
     const session = document.cookie.split('; ').find(row => row.startsWith("my-session="))?.split('=')[1];
     if (session) {
       const { expires_at } = JSON.parse(session);
@@ -134,7 +135,7 @@ export async function updateUserEmail(newEmail) {
 export async function loginWithGoogle() {
   return await mybase.auth.signInWithOAuth({
     provider: 'google',
-    redirectTo: '/listen'
+    redirectTo: 'https://www.solutrend.com/confirm'
   })
 }
 

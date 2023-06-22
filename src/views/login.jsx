@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/signUp.css';
 import { login, restorePassword } from '../services/authServices';
 import { useRef } from 'react';
@@ -6,9 +6,8 @@ import useAuth from '../myHooks/useAuth';
 import { useState } from 'react';
 import { ToastContainer } from '../components/toastContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-//import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-//import { getCurrentUser } from '../services/userServices';
+import { faClose, faSpinner } from '@fortawesome/free-solid-svg-icons';
+
 
 
 
@@ -21,6 +20,7 @@ function Login() {
     const [display, updateDisplay] = useState("none");
     const [error, updateError] = useState(true);
     const [loading, updateLoading] = useState(false);
+    const navigat = useNavigate();
 
     const notify = (mesg, error) => {
         updateMessage(mesg);
@@ -33,22 +33,7 @@ function Login() {
         console.log('nottttttttttttt')
     }
 
-    /* const loginGoogle = async () => {
-         const { data, error } = await loginWithGoogle();
-         if (data.provider) {
-             console.log(data);
-             const result = await getCurrentUser();
-             if (result.data) {
-                 onLogin(result.data.user.id);
-             } else {
-                 console.log(result.error.message);
-                 notify(result.error.message, true);
-             }
- 
-         } else {
-             console.log(error.message);
-         }
-     }*/
+
 
     const restorePass = async () => {
         console.log('email', emailRef.current.value)
@@ -68,7 +53,6 @@ function Login() {
 
     }
 
-
     const onSubmit = async (event) => {
         updateLoading(true);
         event.preventDefault();
@@ -78,7 +62,9 @@ function Login() {
         if (error) {
             notify(error.message, true)
             updateLoading(false);
+
         } else {
+
             console.log("user : ", data.user);
             onLogin(data.user.id)
         }
@@ -89,20 +75,15 @@ function Login() {
         <div className="signPage">
             <ToastContainer display={display} message={message} error={error} />
             <div className="inputPart">
+                <div className="clossy" onClick={() => navigat('/')}>
+                    <FontAwesomeIcon icon={faClose} />
+                </div>
                 <div className='already'>
                     <p className='alreadyP'>Donn't have account ?</p>
                     <Link to={"/signup"} className='signIn' >Sign Up free</Link>
                 </div>
                 <h3> Welcome Back ;</h3>
                 <div style={{ height: "40px" }}></div>
-                {/* <div className="google-sign" onClick={loginGoogle}>
-                    <FontAwesomeIcon icon={faGoogle} size='lg' style={{ color: "#f5310a", }} />
-                    <span className="google-s">
-                        Continue with Google
-                    </span>
-                </div>
-                <p className="create">or Continue with
-                </p>*/}
                 <form onSubmit={onSubmit}>
                     <label >Email</label>
                     <input type="email" ref={emailRef} required />

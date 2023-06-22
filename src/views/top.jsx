@@ -18,11 +18,11 @@ function TopSection() {
 
         const { data, error } = await getHeighlyApps(0);
         if (error) {
-            console.log(error.message);
+
             updateLoading(false);
 
         } else {
-            console.log('data', data);
+
             updateLista(data);
             updateLoading(false);
 

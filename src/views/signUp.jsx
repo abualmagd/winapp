@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { login, register } from '../services/authServices';
 import { ErrorToastContainer } from '../components/toastContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '../myHooks/useAuth';
 //import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
@@ -81,8 +81,12 @@ function SignUp() {
 
     return (
         <div className="signPage">
+
             <ErrorToastContainer display={display} message={message} />
             <div className="inputPart">
+                <div className="clossy" onClick={() => navTo('/', -1)}>
+                    <FontAwesomeIcon icon={faClose} />
+                </div>
                 <div className='already'>
                     <p className='alreadyP'>Already have account ?</p>
                     <Link to={"/login"} className='signIn' >Sign in</Link>

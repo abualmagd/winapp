@@ -2,20 +2,29 @@ import { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 import { getToken, removeToken, saveToken } from "../services/global";
+import { getLocalUser, getUserData, saveUserLocal } from "../services/userServices";
 export const AuthContext = React.createContext(null);
 const AuthProvider = ({ children }) => {
 
     const [token, setToken] = useState(() => getToken());
-
+    const [currentUser, updateCurrent] = useState(() => getLocalUser() ?? '');
     const navigate = useNavigate();
     const location = useLocation();
 
+    const getDetailsOfUser = async () => {
+        const { data } = await getUserData();
+        if (data) {
+            updateCurrent(data[0]);
+            saveUserLocal(data[0]);
 
+        }
+    }
 
     const handleLogin = (t) => {
         saveToken(t);
         setToken(t);
         const backToUrl = localStorage.getItem('beforeJoin');
+        getDetailsOfUser();
         if (backToUrl) {
             localStorage.removeItem('beforeJoin');
             navigate(backToUrl);
@@ -33,10 +42,19 @@ const AuthProvider = ({ children }) => {
         navigate("/");
     }
 
+
+    const updateUser = () => {
+        getDetailsOfUser();
+    }
+
+
     const value = {
         token,
+        currentUser,
         onLogin: handleLogin,
-        onLogout: handleLogout
+        onLogout: handleLogout,
+        onUpdate: updateUser
+
     };
 
     return (

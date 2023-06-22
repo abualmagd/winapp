@@ -34,10 +34,8 @@ function NewPart() {
         updateLoading(true);
         const { data, error } = await getNewApps();
         if (error) {
-            console.log(error.message);
             updateLoading(false);
         } else {
-            console.log(data);
             updateLista(data);
             updateLoading(false);
         }

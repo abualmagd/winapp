@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faEllipsisVertical, faGear, faMoon, faRightFromBracket, faSun, faTh } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '../myHooks/useAuth';
 import { logMeOut } from '../services/authServices';
-import { useCallback, useEffect } from 'react';
-import { getLocalUser, getUserData, removeUserLocal, saveUserLocal } from '../services/userServices';
+import { useState } from 'react';
+import { getLocalUser, removeUserLocal } from '../services/userServices';
 import { useContext } from 'react';
 import { ThemeContext } from '../controllers/themeProvider';
 import { userAllowedtoAdd } from '../services/appServices';
@@ -14,13 +14,13 @@ import { userAllowedtoAdd } from '../services/appServices';
 
 export default function AppBar() {
     const navigat = useNavigate();
-    const { token, onLogout } = useAuth();
-    const { avatar_url } = getLocalUser() || '/assets/images/avatarholder.jpg';
+    const { token, onLogout, currentUser } = useAuth();
+    const [image] = useState(currentUser['avatar_url'] ?? '/assets/images/avatarholder.jpg');
     const { onToggleTheme, theme } = useContext(ThemeContext);
-
+    const { plan } = useState(getLocalUser() ?? 'free');
 
     const limitUserApps = async () => {
-        const { plan } = getLocalUser() ?? 'free';
+
         const result = await userAllowedtoAdd();
         console.log('limi', result.data);
         if (!result.data) {
@@ -52,23 +52,7 @@ export default function AppBar() {
             console.log(error);
         }
     }
-    const getMyUser = useCallback(async () => {
-        if (token) {
-            const { data, error } = await getUserData();
 
-            if (data) {
-                saveUserLocal(data[0]);
-
-            }
-            if (error) {
-                console.log(error.message)
-            }
-        }
-    }, [token]);
-
-    useEffect(() => {
-        getMyUser();
-    }, [getMyUser]);
 
     return (
         <header className="headery">
@@ -84,7 +68,7 @@ export default function AppBar() {
                 </div>
                 {token !== null ? <div className="dropdown">
 
-                    <img src={avatar_url} alt="r" className="avatar" />
+                    <img src={image} alt="r" className="avatar" />
                     <FontAwesomeIcon icon={faEllipsisVertical} size='xl' cursor={'pointer'} className='dropButton' />
 
                     <div className="dropdown-content">

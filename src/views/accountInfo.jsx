@@ -3,18 +3,19 @@ import "../styles/setting.css";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "../components/toastContainer";
 import { createImageUrl, uploadAvatar } from "../services/filesServices";
-import { getLocalUser, updateCurrentName, updateUserAvatar } from "../services/userServices";
+import { updateCurrentName, updateUserAvatar } from "../services/userServices";
 import { updateUserEmail } from "../services/authServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import useAuth from "../myHooks/useAuth";
 
 
 
 export default function AccountInfo() {
-    const user = useState(getLocalUser() ?? 'null');
-    const [image, setImage] = useState(user[0]['avatar_url'] || '');
-    const [name, setName] = useState(user[0]['name'] || '');
-    const [email, setEmail] = useState(user[0]['email'] || '');
+    const { currentUser, onUpdate } = useAuth();
+    const [image, setImage] = useState(currentUser['avatar_url'] ?? '/assets/images/avatarholder.jpg');
+    const [name, setName] = useState(currentUser['name'] || '');
+    const [email, setEmail] = useState(currentUser['email'] || '');
     const navigat = useNavigate();
     const [message, updateMessage] = useState();
     const [display, updateDisplay] = useState("none");
@@ -55,7 +56,7 @@ export default function AccountInfo() {
                 console.log(imageData);
                 const { data } = createImageUrl('avatars', imageData.path);
                 console.log("url", data.publicUrl)
-                const { error } = await updateUserAvatar(data.publicUrl, user[0]['id']);
+                const { error } = await updateUserAvatar(data.publicUrl, currentUser['id']);
 
                 if (error) {
                     notify(error.message, true);
@@ -65,6 +66,7 @@ export default function AccountInfo() {
                     setImage(data.publicUrl);
                     updateAvatarChange(false)
                     notify("your data updated succesfuly", false);
+                    onUpdate();
                     navToHome();
                 }
             }
@@ -76,7 +78,6 @@ export default function AccountInfo() {
 
     useEffect(() => {
         handleChangeScreen();
-        console.log('user kkkkkkkkk', user)
         // eslint-disable-next-line
     }, []);
 
@@ -86,7 +87,7 @@ export default function AccountInfo() {
 
 
     const updateUser = async () => {
-        if (user[0]['name'] !== name) {
+        if (currentUser['name'] !== name) {
             updateLoading(true);
             console.log('step', 2);
             const { data, error } = await updateCurrentName(name)
@@ -94,13 +95,15 @@ export default function AccountInfo() {
                 console.log('error here', error.message)
                 notify(error.message, true);
                 updateLoading(false);
+
             } else {
                 notify("your data updated succesfuly", false);
-                console.log(data)
+                console.log(data['role'])
                 updateLoading(false);
+                onUpdate();
                 navToHome();
             }
-        } else if (user[0]['email'] !== email) {
+        } else if (currentUser['email'] !== email) {
             updateLoading(true);
             console.log('step', 3);
             const { data, error } = await updateUserEmail(email);
@@ -108,9 +111,10 @@ export default function AccountInfo() {
                 notify(error.message, true);
                 updateLoading(false);
             } else {
-                console.log("user data :", data);
+                console.log("user data :", data['role']);
                 notify("sent email to new email", false);
                 updateLoading(false);
+                onUpdate();
                 navToHome();
             }
         }

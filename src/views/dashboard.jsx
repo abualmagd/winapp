@@ -46,7 +46,7 @@ function DashBoard() {
         } else {
             updateState('data');
             updateData(data);
-            console.log(data);
+
 
         }
     }, []);
@@ -61,7 +61,7 @@ function DashBoard() {
         return <DashCard app={app} key={index} click={chooseApp} id={app['id']} />
     })
 
-    console.log("token from dashboard page :", token);
+    console.log("token > :", token);
 
 
     useEffect(() => {
