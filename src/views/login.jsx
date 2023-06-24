@@ -75,7 +75,7 @@ function Login() {
         <div className="signPage">
             <ToastContainer display={display} message={message} error={error} />
             <div className="inputPart">
-                <div className="clossy" onClick={() => navigat('/')}>
+                <div className="clossy" onClick={() => navigat('/', -1)}>
                     <FontAwesomeIcon icon={faClose} />
                 </div>
                 <div className='already'>

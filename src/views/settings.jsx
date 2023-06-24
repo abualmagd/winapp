@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/setting.css";
-import { faGear, faHeartBroken, faLock, faSeedling, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faGear, faHeartBroken, faLock, faSeedling, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import WariningModal from "../components/warningModal";
 import { useState } from "react";
@@ -49,6 +49,8 @@ function Settings() {
         <div>
             {WModal && <WariningModal close={hideModal} />}
             {changePass && <ChangePass close={hideChangePass} notify={(mesg, ror) => notify(mesg, ror)} />}
+            <div className="clossy" onClick={() => navigat(-1)}>
+                <FontAwesomeIcon icon={faClose} /></div>
             <ToastContainer display={display} message={message} error={error} />
             <div className="settings">
                 <div className="account-set">

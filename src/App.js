@@ -65,7 +65,7 @@ function App() {
               <Route path="*" element={<ErrorPage />} />
               <Route path='/' element={<Home />} />
               <Route path='/blog' element={<MyBlog />} />
-              <Route path='/blog/:id' element={<Article />} />
+              <Route path='/blog/:title' element={<Article />} />
               <Route path='/signup' element={<SignUp />} />
               <Route path='/pricing' element={<Plans />} />
               <Route path='/login' element={<Login />} />

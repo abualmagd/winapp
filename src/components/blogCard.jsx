@@ -7,7 +7,7 @@ export default function BlogCard(props) {
     const article = props.article;
 
     const navigat = useNavigate();
-    const url = "/blog/" + article['id'];
+    const url = "/blog/" + article['short-title'];
 
     return (
         <>

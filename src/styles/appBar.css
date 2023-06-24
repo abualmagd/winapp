@@ -43,10 +43,11 @@
 
 .link-join {
     text-decoration: none;
-    margin-right: 1rem;
+    margin-right: .5rem;
     color: var(--textColor);
     cursor: pointer;
     margin-top: 5px;
+
 }
 
 .submitButton {
@@ -103,6 +104,7 @@
 
 .dropButton {
     color: var(--textColor);
+    margin-top: 5px;
 }
 
 .dropdown {
@@ -114,7 +116,7 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    left: -30px;
+    right: -30px;
     background-color: var(--notifyColor);
     border-radius: 15px;
     min-width: 150px;

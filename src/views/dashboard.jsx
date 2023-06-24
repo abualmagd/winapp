@@ -3,19 +3,19 @@ import useAuth from '../myHooks/useAuth';
 import '../styles/dashboard.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faGear, faMoon, faRightFromBracket, faSpinner, faSun } from '@fortawesome/free-solid-svg-icons';
-import { getLocalUser } from '../services/userServices';
+import { faBars, faBookmark, faGear, faMoon, faRightFromBracket, faSpinner, faSun } from '@fortawesome/free-solid-svg-icons';
+import { getLocalUser, removeUserLocal } from '../services/userServices';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import ReviewsPart from '../components/reviewPart';
 import { getUserApps, userAllowedtoAdd } from '../services/appServices';
 import { ThemeContext } from '../controllers/themeProvider';
+import { logMeOut } from '../services/authServices';
 
 function DashBoard() {
-    const { token } = useAuth();
+    const { token, onLogout } = useAuth();
     const navigat = useNavigate();
     const [state, updateState] = useState('loading');
     const [data, updateData] = useState([]);
-    const { avatar_url } = getLocalUser();
     const [appId, updateAppId] = useState(null);
     const { onToggleTheme, theme } = useContext(ThemeContext);
     //data is user apps and length of it is the count of user apps
@@ -64,6 +64,18 @@ function DashBoard() {
     console.log("token > :", token);
 
 
+    const tryLogOut = async () => {
+        try {
+            await logMeOut();
+            onLogout();
+            removeUserLocal();
+            console.log("loged out ")
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         fetchData();
     }, [fetchData]);
@@ -108,7 +120,8 @@ function DashBoard() {
                         </div>
                     </div>
                     <div className="dropdown">
-                        <img src={avatar_url} alt="error" className="avatar" />
+                        {/* <img src={avatar_url} alt="error" className="avatar" />*/}
+                        <FontAwesomeIcon icon={faBars} size='lg' cursor={'pointer'} className='dropButton' />
                         <div className="dropdown-content">
 
                             <Link to={"/settings"} >
@@ -129,7 +142,7 @@ function DashBoard() {
                                 <span className='link-t'>
                                     {theme === "dark" ? 'light' : 'dark'}
                                 </span> </Link>
-                            <Link to={'/login'} >
+                            <Link onClick={tryLogOut} >
                                 <FontAwesomeIcon icon={faRightFromBracket} />
                                 <span className='link-t'>
                                     Log out

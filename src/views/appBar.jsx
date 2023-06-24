@@ -2,7 +2,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/appBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faEllipsisVertical, faGear, faMoon, faRightFromBracket, faSun, faTh } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBookmark, faGear, faMoon, faRightFromBracket, faSun, faTh } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '../myHooks/useAuth';
 import { logMeOut } from '../services/authServices';
 import { useState } from 'react';
@@ -66,10 +66,9 @@ export default function AppBar() {
                 <div className="submitButton">
                     <div onClick={() => limitUserApps()} className="linkBtn">list your app</div>
                 </div>
-                {token !== null ? <div className="dropdown">
-
-                    <img src={image} alt="r" className="avatar" />
-                    <FontAwesomeIcon icon={faEllipsisVertical} size='xl' cursor={'pointer'} className='dropButton' />
+                {token !== null ? <img src={image} alt="r" className="avatar" /> : <div onClick={join} className='link-join'>Join</div>}
+                <div className="dropdown">
+                    <FontAwesomeIcon icon={faBars} size='lg' cursor={'pointer'} className='dropButton' />
 
                     <div className="dropdown-content">
                         <Link to={"/dashboard"} >
@@ -97,13 +96,13 @@ export default function AppBar() {
                             <span className='link-t'>
                                 {theme === "dark" ? 'light' : 'dark'}
                             </span> </Link>
-                        <Link onClick={tryLogOut} >
+                        {token && <Link onClick={tryLogOut} >
                             <FontAwesomeIcon icon={faRightFromBracket} />
                             <span className='link-t'>
                                 Log out
-                            </span> </Link>
+                            </span> </Link>}
                     </div>
-                </div> : <div onClick={join} className='link-join'>Join</div>}
+                </div>
 
 
             </div>

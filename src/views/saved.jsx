@@ -4,11 +4,13 @@ import NewCard from "./newCard";
 import { getUserSavedApps } from '../services/appServices';
 import { getToken } from '../services/global';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 function Saved() {
     const [lista, updateLista] = useState([]);
     const [loading, updateLoading] = useState(false);
+    const navigat = useNavigate();
 
     const getSavedApps = async () => {
         updateLoading(true);
@@ -39,6 +41,8 @@ function Saved() {
 
     return (
         <div className="newContainer" style={{ marginTop: "5px" }}>
+            <div className="clossy" onClick={() => navigat(-1)}>
+                <FontAwesomeIcon icon={faClose} /></div>
             <div className="topTitle"> Saved Apps : </div>
             {loading ? <div className='center_progress'><FontAwesomeIcon icon={faSpinner} pulse size="lg" /> </div> : <section className="newSection">
                 {cards}

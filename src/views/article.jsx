@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { ShareButtons } from "../components/shareButtons";
 import "../styles/article.css";
 import { useState } from "react";
-import { getArticleById, getRandomArticles } from "../services/blogServices";
+import { getArticleByTitle, getRandomArticles } from "../services/blogServices";
 import { useEffect } from "react";
 import { useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,25 +13,25 @@ import { PageMetaTags } from "../components/myMetTage";
 
 export default function Article() {
 
-    const { id } = useParams();
+    const { title } = useParams(); //short title 
 
     const [article, updateArticle] = useState();
     const [state, updateState] = useState('loading');
     const [suggestion, updateSuggestion] = useState();
 
-    const url = myUrl + '/blog/' + id;
+    const url = myUrl + '/blog/' + title;
 
     const getSuggestions = useCallback(async () => {
-        const { data } = await getRandomArticles(id);
+        const { data } = await getRandomArticles(title);
         if (data) {
             updateSuggestion(data);
         }
-    }, [id]);
+    }, [title]);
 
 
     const getArticle = useCallback(async () => {
 
-        const { data, error } = await getArticleById(id);
+        const { data, error } = await getArticleByTitle(title); // get article by short title 
         if (error) {
             updateState('error');
             console.log(error.message);
@@ -39,12 +39,12 @@ export default function Article() {
             updateArticle(data[0]);
             updateState('data');
             console.log(data);
-            getSuggestions();
+            getSuggestions(data[0]['id']);
         }
     }
 
 
-        , [id, getSuggestions]);
+        , [title, getSuggestions]);
 
 
 
