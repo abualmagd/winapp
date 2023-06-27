@@ -146,6 +146,7 @@ input[type="text"]:not(:placeholder-shown)+.clear {
   border-radius: 10px;
   background-color: var(--imageBackground);
   object-fit: cover;
+  border: 1px solid blueviolet;
 }
 
 

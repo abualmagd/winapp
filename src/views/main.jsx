@@ -12,26 +12,28 @@ export default function Main() {
     const limitUserApps = async () => {
         const { plan } = getLocalUser() ?? 'free';
         const result = await userAllowedtoAdd();
-        console.log('limi', result.data);
+        console.log('limit from main div : ', result.data);
         if (!result.data) {
-            navigat('/limit');
+            navigat('/limit', -1);
         } else {
             if (plan === 'free') {
-                navigat('/plan');
+                navigat('/plan', -1);
             } else {
-                navigat('/add');
+                navigat('/add', -1);
             }
 
         }
     }
 
+
+
     return (
         <main className="main">
             <AppBar />
-            <h1 className="title">Now you can tell the world about <span className='titleSpn'>  Your App</span></h1>
+            <h1 className="title">Now you can tell the business world about <span className='titleSpn'>  Your App</span></h1>
             <div className='mainAbt'>
                 <p className='paragraph'>We make it easy to get your app into the hands of more people,
-                    A simple,<br />     super-fast way to increase your installs and new users.
+                    <br />A simple, super-fast way to increase your installs and new users.
                 </p>
             </div>
 

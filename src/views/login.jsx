@@ -92,9 +92,14 @@ function Login() {
                     <div className="forget-pass" onClick={restorePass}>
                         forget password
                     </div>
+
                     {loading ? <div className='div-submit'>
                         <FontAwesomeIcon icon={faSpinner} pulse size="lg" />
                     </div> : <input type="submit" value="Login" />}
+                    <p className='terms'>By login, you agree to the
+                        <Link to={'https://www.solutrend.com/terms.html'} target='_blank'>  Terms of Service </Link >
+                        and <Link to={'https://www.solutrend.com/privacy.html'} target='_blank'> Privacy Policy </Link>
+                        , including <Link to={'https://www.solutrend.com/cookie.html'} target='_blank'> Cookie Use. </Link></p>
                 </form>
 
 

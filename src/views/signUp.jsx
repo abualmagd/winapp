@@ -45,6 +45,7 @@ function SignUp() {
         event.preventDefault();
         console.log('submit');
         try {
+
             const { data, error } = await register(emailRef.current.value, passwordRef.current.value, nameRef.current.value);
             console.log("daata : ", data.user.email)
 

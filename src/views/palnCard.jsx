@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/plans.css";
+import { userAllowedtoAdd } from "../services/appServices";
+
 
 
 
 function PlanCard(props) {
 
     const navigator = useNavigate();
-
     const myPlan = props.item;
 
 
@@ -27,11 +28,18 @@ function PlanCard(props) {
     }
 
 
+    //TODO:change after adding more than one plan
+    // this will change after adding lemonsquessy 
     const handlePress = async () => {
-        if (myPlan['name'] === "FREE") {
-
-            navigator('/add',);
+        const result = await userAllowedtoAdd();
+        console.log('limit', result.data);
+        if (result.data) {
+            console.log('allowing ', result.data)
+            navigator('/add');
+        } else {
+            navigator('/changePlan');
         }
+
 
     }
 

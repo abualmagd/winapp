@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 import { getToken, removeToken, saveToken } from "../services/global";
-import { getLocalUser, getUserData, saveUserLocal } from "../services/userServices";
+import { getLocalUser, getUserData, removeUserLocal, saveUserLocal } from "../services/userServices";
 export const AuthContext = React.createContext(null);
 const AuthProvider = ({ children }) => {
 
@@ -39,6 +39,7 @@ const AuthProvider = ({ children }) => {
     const handleLogout = () => {
         setToken(null);
         removeToken();
+        removeUserLocal();
         navigate("/");
     }
 

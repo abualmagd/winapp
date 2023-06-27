@@ -31,7 +31,18 @@
 }
 
 
+.terms-footer {
 
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 20px;
+    flex-wrap: wrap;
+}
+
+.terms-footer a {
+    text-decoration: none;
+    margin: 0px 2px;
+}
 
 @media only screen and (max-width:800px) {
 
@@ -42,4 +53,8 @@
         justify-content: space-evenly;
     }
 
+    .terms-footer {
+        justify-content: center;
+        align-items: center;
+    }
 }

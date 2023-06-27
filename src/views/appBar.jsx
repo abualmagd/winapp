@@ -6,10 +6,11 @@ import { faBars, faBookmark, faGear, faMoon, faRightFromBracket, faSun, faTh } f
 import useAuth from '../myHooks/useAuth';
 import { logMeOut } from '../services/authServices';
 import { useState } from 'react';
-import { getLocalUser, removeUserLocal } from '../services/userServices';
+import { getLocalUser } from '../services/userServices';
 import { useContext } from 'react';
 import { ThemeContext } from '../controllers/themeProvider';
 import { userAllowedtoAdd } from '../services/appServices';
+
 
 
 export default function AppBar() {
@@ -17,13 +18,12 @@ export default function AppBar() {
     const { token, onLogout, currentUser } = useAuth();
     const [image] = useState(currentUser['avatar_url'] ?? '/assets/images/avatarholder.jpg');
     const { onToggleTheme, theme } = useContext(ThemeContext);
-    const { plan } = useState(getLocalUser() ?? 'free');
 
     const limitUserApps = async () => {
-
+        const { plan } = getLocalUser() ?? 'free';
         const result = await userAllowedtoAdd();
-        console.log('limi', result.data);
-        if (!result.data) {
+        console.log('limit', result.data);
+        if (result.data === false) {
             navigat('/limit');
         } else {
             if (plan === 'free') {
@@ -45,7 +45,6 @@ export default function AppBar() {
         try {
             await logMeOut();
             onLogout();
-            removeUserLocal();
             console.log("loged out ")
 
         } catch (error) {
@@ -60,7 +59,7 @@ export default function AppBar() {
                 <img src="/assets/images/logo512.png" alt="W" />
                 SoluTrend</div>
             <div className="navigation">
-                <Link to="/" className="link-home"> <img src="/assets/images/logo512.png" alt="W" className="small-logo" /></Link>
+                <Link to="/" className="link-home"> <img src="https://solutrend.com/logo192.png" alt="r" className="small-logo" /></Link>
                 <Link to="/blog" className="link">blog</Link>
                 <a href="/#pricing" className="link">pricing</a>
                 <div className="submitButton">

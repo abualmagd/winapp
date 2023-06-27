@@ -26,8 +26,8 @@ function DashBoard() {
     const limitUserApps = async () => {
         const { plan } = getLocalUser() ?? 'free';
         const result = await userAllowedtoAdd();
-        console.log('limi', result.data);
-        if (!result.data) {
+        console.log('limit', result.data);
+        if (result.data === false) {
             navigat('/limit');
         } else {
             if (plan === 'free') {
@@ -111,7 +111,7 @@ function DashBoard() {
 
             <div className="dashboardHead">
                 <div className="lgo" onClick={() => navigat('/')}>
-                    <img src="assets/images/logo512.png" alt="W" />
+                    <img src="https://solutrend.com/logo192.png" alt="r" />
                     <div className="dash-logo">SoluTrend</div> </div>
                 <div className="barEnd">
                     <div className="btton">
