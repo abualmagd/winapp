@@ -40,6 +40,7 @@ function App() {
     try {
       await restoreSession();
     } catch (error) {
+      console.log('error from app js ', error);
       window.location.reload();
     }
 

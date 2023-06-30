@@ -1,12 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/signUp.css';
-import { login, restorePassword } from '../services/authServices';
+import { login, restorePassword, signInWithGitHub, signInWithGoogle } from '../services/authServices';
 import { useRef } from 'react';
 import useAuth from '../myHooks/useAuth';
 import { useState } from 'react';
 import { ToastContainer } from '../components/toastContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { getCurrentUser } from '../services/userServices';
+import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 
 
@@ -33,7 +35,27 @@ function Login() {
         console.log('nottttttttttttt')
     }
 
+    const logByGithup = async () => {
+        const { data, error } = await signInWithGitHub();
+        if (data) {
+            const current = await getCurrentUser();
+            onLogin(current.data.user.id);
+        } else {
+            notify(error, true);
+            console.log('error');
+        }
+    }
 
+    const logByGoogle = async () => {
+        const { data, error } = await signInWithGoogle();
+        if (data) {
+            const current = await getCurrentUser();
+            onLogin(current.data.user.id);
+        } else {
+            notify(error, true);
+            console.log('error');
+        }
+    }
 
     const restorePass = async () => {
         console.log('email', emailRef.current.value)
@@ -65,7 +87,6 @@ function Login() {
 
         } else {
 
-            console.log("user : ", data.user);
             onLogin(data.user.id)
         }
 
@@ -84,6 +105,13 @@ function Login() {
                 </div>
                 <h3> Welcome Back ;</h3>
                 <div style={{ height: "40px" }}></div>
+                <div className="google-sign" onClick={() => logByGoogle()}>
+                    <FontAwesomeIcon icon={faGoogle} /> <div className="google-s">continue with google </div>
+                </div>
+                <div className="google-sign" onClick={() => logByGithup()}>
+                    <FontAwesomeIcon icon={faGithub} /> <div className="google-s">continue with githup </div>
+                </div>
+                <div className="or">or</div>
                 <form onSubmit={onSubmit}>
                     <label >Email</label>
                     <input type="email" ref={emailRef} required />

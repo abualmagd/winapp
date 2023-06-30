@@ -58,7 +58,7 @@
 .inputPart h3 {
     margin-top: 70px;
     font-size: 1.5rem;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 
 .registerP {
@@ -79,8 +79,15 @@
     background-color: var(--inputBg);
     padding-left: 5px;
     padding-left: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: var(--searchBorder);
+}
+
+.or {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    margin: 5px;
 }
 
 .google-sign {
@@ -95,12 +102,16 @@
     cursor: pointer;
     color: var(--textColor);
     font-weight: 500;
-    background-color: var(--inputBg);
+    background-color: var(--cardColor);
+    margin-bottom: 20px;
+    margin-top: 10px;
+    min-height: 35px;
 }
 
 .google-s {
     margin-left: 20px;
 }
+
 
 .inputPart input[type=submit] {
     width: 25%;
@@ -154,7 +165,6 @@
 .terms {
     color: var(--textColor);
     font-size: 14px;
-    margin-top: -10px;
 }
 
 .terms a {

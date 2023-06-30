@@ -1,12 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/signUp.css';
 import { useState, useRef } from 'react';
-import { login, register } from '../services/authServices';
+import { register } from '../services/authServices';
 import { ErrorToastContainer } from '../components/toastContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import useAuth from '../myHooks/useAuth';
-//import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+
 
 
 
@@ -22,7 +21,7 @@ function SignUp() {
     const [display, updateDisplay] = useState("none");
     const [loading, updateLoading] = useState(false);
     const navTo = useNavigate();
-    const { onLogin } = useAuth();
+
 
 
 
@@ -54,17 +53,7 @@ function SignUp() {
 
 
             if (data) {
-                const { data, error } = await login(emailRef.current.value, passwordRef.current.value);
-                if (data) {
-                    console.log('login succ')
-                    onLogin(data.user.id);
-
-                }
-                if (error) {
-                    navTo('/login', -1);
-                    console.log('error', error.message)
-                }
-
+                navTo('/sent', -1);  // TODO:to fix send email confirmation 
 
             }
 
@@ -110,11 +99,6 @@ function SignUp() {
                         <FontAwesomeIcon icon={faSpinner} pulse size="lg" />
                     </div> : <input type="submit" value="Register" />}
                 </form>
-
-                {/* <p className="create">or create account with <span className='googleSpan'>
-                    Linked
-                    <FontAwesomeIcon icon={faLinkedin} size='lg' style={{ color: "rgb(55, 87, 147)", }} />
-    </span> </p>*/}
             </div>
         </div >
     );

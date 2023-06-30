@@ -7,6 +7,8 @@ export function PageMetaTags({ title, description, imageUrl, url }) {
         <Helmet>
             <title data-rh="true">{title}</title>
             <meta name="description" content={description} />
+            <link rel="canonical" href={url}></link>
+
             {/* Open Graph metadata */}
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />

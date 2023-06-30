@@ -33,7 +33,7 @@ export default function Main() {
             <h1 className="title">Now you can tell the business world about <span className='titleSpn'>  Your App</span></h1>
             <div className='mainAbt'>
                 <p className='paragraph'>We make it easy to get your app into the hands of more people,
-                    <br />A simple, super-fast way to increase your installs and new users.
+                    <br />A simple, super-fast way to increase your customers and new users.
                 </p>
             </div>
 

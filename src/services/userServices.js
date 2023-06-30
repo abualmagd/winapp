@@ -6,8 +6,7 @@ export async function getCurrentUser() {
 }
 
 
-export async function getUserData() {
-    const id = await getToken();
+export async function getUserData(id) {
     return await mybase.from('profiles').select("*").eq('id', id);
 }
 

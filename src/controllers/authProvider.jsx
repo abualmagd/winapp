@@ -11,8 +11,8 @@ const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const getDetailsOfUser = async () => {
-        const { data } = await getUserData();
+    const getDetailsOfUser = async (id) => {
+        const { data } = await getUserData(id);
         if (data) {
             updateCurrent(data[0]);
             saveUserLocal(data[0]);
@@ -20,11 +20,11 @@ const AuthProvider = ({ children }) => {
         }
     }
 
-    const handleLogin = (t) => {
+    const handleLogin = async (t) => {
         saveToken(t);
         setToken(t);
         const backToUrl = localStorage.getItem('beforeJoin');
-        getDetailsOfUser();
+        await getDetailsOfUser(t);
         if (backToUrl) {
             localStorage.removeItem('beforeJoin');
             navigate(backToUrl);

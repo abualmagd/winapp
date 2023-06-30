@@ -7,9 +7,10 @@ export async function register(userEmail, userPassword, userName) {
       email: userEmail,
       password: userPassword,
       options: {
+        emailRedirectTo: 'https://www.solutrend.com/confirm',
         data: {
           name: userName
-        }
+        },
       }
     });
 }
@@ -33,38 +34,36 @@ export async function login(userEmail, userPassword) {
     {
       email: userEmail,
       password: userPassword,
-      options: {
-        emailRedirectTo: "/confirmed"
-      }
     }
   );
 }
+
+
+
 
 
 
 export async function authState() {
-  mybase.auth.onAuthStateChange(
-    (event, session) => {
-      if (event === 'SIGNED_OUT' || event === 'USER_DELETED') {
-        const expires = new Date(0).toUTCString();
-        document.cookie = `my-session=; path=/; expires=${expires}; SameSite=Lax; secure`
-      } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
-        const maxAge = 100 * 365 * 24 * 60 * 60;
-        document.cookie = `my-session=${JSON.stringify(session)}; path=/; max-age=${maxAge}; SameSite=Lax; secure`
-
-      }
+  mybase.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_OUT' || event === 'USER_DELETED') {
+      localStorage.removeItem('my-session');
+    } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+      localStorage.setItem('my-session', JSON.stringify({
+        access_token: session.access_token,
+        refresh_token: session.refresh_token,
+        expires_at: session.expires_at,
+      }));
+      console.log('authstate logined ');
     }
-  );
+  });
 }
 
 export async function restoreSession() {
   if (!window.navigator.onLine) {
-    console.log('you are ofline ', 'no internet')
+    console.log('you are offline', 'no internet');
     return null;
   } else {
-
-
-    const session = document.cookie.split('; ').find(row => row.startsWith("my-session="))?.split('=')[1];
+    const session = localStorage.getItem('my-session');
     if (session) {
       const { expires_at } = JSON.parse(session);
       const expDate = new Date(expires_at * 1000);
@@ -76,25 +75,26 @@ export async function restoreSession() {
         const { data, error } = await mybase.auth.refreshSession();
         if (error) {
           removeToken();
-          return Error('no session')
+          return Error('no session');
         } else {
+          localStorage.setItem('my-session', JSON.stringify(data.session));
           return await mybase.auth.setSession(data.session);
         }
       } else {
-        return await mybase.auth.setSession(session);
+        return await mybase.auth.setSession(JSON.parse(session));
       }
-
     } else {
       removeToken();
-      return Error('no session')
+      return Error('no session');
     }
   }
-
 }
+
+
 
 export async function restorePassword(email) {
   return await mybase.auth.resetPasswordForEmail(email, {
-    redirectTo: "https://solutrend.com/recover"
+    redirectTo: "https://solutrend.com/recover"  //emailredirectto
   });
 
 }
@@ -132,10 +132,23 @@ export async function updateUserEmail(newEmail) {
 
 
 
-export async function loginWithGoogle() {
+export async function signInWithGoogle() {
   return await mybase.auth.signInWithOAuth({
     provider: 'google',
-    redirectTo: 'https://www.solutrend.com/confirm'
+    options: {
+      redirectTo: 'https://www.solutrend.com/confirm'
+    }
+  })
+
+}
+
+
+export async function signInWithGitHub() {
+  return await mybase.auth.signInWithOAuth({
+    provider: 'github',
+    options: {
+      redirectTo: 'https://www.solutrend.com/confirm'
+    }
   })
 }
 

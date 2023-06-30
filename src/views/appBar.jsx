@@ -16,7 +16,7 @@ import { userAllowedtoAdd } from '../services/appServices';
 export default function AppBar() {
     const navigat = useNavigate();
     const { token, onLogout, currentUser } = useAuth();
-    const [image] = useState(currentUser['avatar_url'] ?? '/assets/images/avatarholder.jpg');
+    const [image] = useState(currentUser['avatar_url'] ? currentUser['avatar_url'] : '/assets/images/avatarholder.jpg');
     const { onToggleTheme, theme } = useContext(ThemeContext);
 
     const limitUserApps = async () => {
