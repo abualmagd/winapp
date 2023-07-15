@@ -25,6 +25,7 @@ const MyBlog = () => {
             updateState('error');
             console.log(error.message);
         } else {
+            console.log(data)
             updateArticles(data);
             updateState('data');
             localStorage.setItem('myAarticles', JSON.stringify(data));
@@ -104,7 +105,7 @@ const MyBlog = () => {
                 </div>
             </div>
 
-            <div className="main-article" onClick={() => navigat('/blog/' + pinnedArticle['id'])}>
+            <div className="main-article" onClick={() => navigat('/blog/' + pinnedArticle['short_title'])}>
                 <img src={pinnedArticle['image_url']} alt="" className="main-image" />
                 <div className="article-details">
                     <div className="creat-at">

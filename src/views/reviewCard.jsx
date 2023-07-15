@@ -75,7 +75,7 @@ function ReviewCard(props) {
                 <div className="head-rev">
                     <div className="reviewer">
                         <img src={data['creator_avatar_url']} alt="error" className="reviewAvatar" />
-                        <div className="userNameRev">ahmed badewy</div>
+                        <div className="userNameRev">{data['creator_name']}</div>
                     </div>
                     {data['rating'] && <div className="rating-star">
                         {stars(data['rating'])}

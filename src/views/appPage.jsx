@@ -15,8 +15,9 @@ import { ToastContainer } from "../components/toastContainer";
 import ReportModal from "../components/reportModal";
 import { PageMetaTags } from "../components/myMetTage";
 import { ShareButtonsForApp } from "../components/shareButtons";
-import { myUrl } from "../services/global";
+import { maxString, myUrl, truncateString } from "../services/global";
 import { getLocalUser } from "../services/userServices";
+
 
 
 
@@ -37,6 +38,9 @@ function AppPage() {
 
     const currentUrl = myUrl + 'store/' + name;
 
+
+
+
     const saveApp = async () => {
         const user = getLocalUser();
         if (!user) {
@@ -49,10 +53,12 @@ function AppPage() {
             if (error) {
                 // notify  the user
                 notify(error.message, true);
+            } else {
+                //notify user every thing ok 
+                updateBookmarked(true);
+                notify("this app saved to your bookmarks", false)
             }
-            //notify user every thing ok 
-            updateBookmarked(true);
-            notify("this app saved to your bookmarks", false)
+
         }
 
     }
@@ -61,13 +67,18 @@ function AppPage() {
         const { error } = await unBookmark(app["id"]);
         if (error) {
             // notify  the user
+            console.log(error.message)
             notify(error.message, true);
+        } else {
+            //notify user every thing ok 
+            updateBookmarked(false);
+            notify("this app removed from your bookmarks", false)
         }
-        //notify user every thing ok 
-        updateBookmarked(false);
-        notify("this app removed from your bookmarks", false)
+
 
     }
+
+
 
 
 
@@ -186,7 +197,7 @@ function AppPage() {
     return (
         <div>
             <div className="appPageContainer" >
-                <PageMetaTags title={app['app_name']} description={app['description']} imageUrl={app['logo_url']} url={currentUrl} />
+                <PageMetaTags title={app['app_name']} description={app['description']} imageUrl={app['shot_url']} url={currentUrl} type={'website'} />
                 <ToastContainer display={displ} message={message} error={errory} />
                 {RevModal && <ReviewModal close={hideModal} appId={app['id']} rebuild={() => updateBuild(!build)} />
                 }
@@ -199,7 +210,7 @@ function AppPage() {
                         <span className="icony">
                             <FontAwesomeIcon icon={faLink} color="#000" />
                         </span>
-                        Visit App Website</div>
+                        Visit {truncateString(name)} Website</div>
                     {app['calendly_url'] && <div className="call" onClick={() => window.open(app['calendly_url'], '_blank')}>
                         <span className="icony">
                             <FontAwesomeIcon icon={faCalendar} color="#000" />
@@ -215,7 +226,7 @@ function AppPage() {
                             <span className="icony" >
                                 <FontAwesomeIcon icon={faBookmark} color="#000" />
                             </span>
-                            UnSaved this app
+                            UnSaved {maxString(name)}
                         </div>
 
                         : <div className="favorite" onClick={() => {
@@ -225,7 +236,7 @@ function AppPage() {
                             <span className="icony">
                                 <FontAwesomeIcon icon={faBookmark} color="#000" />
                             </span>
-                            Save this app
+                            Save {maxString(name)}
                         </div>}
                     {app['contact_email'] && <div className="message" onClick={() => window.open(`mailto:${app['contact_email']}?subject=Test%20Email&body=This%20is%20a%20test%20email`)}>
                         <span className="icony">
@@ -236,32 +247,44 @@ function AppPage() {
                 </div>
                 <div className="content">
                     <div className="appInfo">
-                        <h4 className="appName">{name}</h4>
-                        <h6 className="whats">whats {name} ?</h6>
-                        <div className="whatsThis">
+
+                        <h2 className="appName">{name}</h2>
+                        <div className="small-des">
                             {app['what_app']}
                         </div>
 
+                        <h6 className="whats">whats {name} ?</h6>
+                        <h1 className="whatsThis">
+                            {app['description']}
+                        </h1>
+
                         <h6 className="why">why to use {name} ?</h6>
                         <div className="why">
-                            {app['description']}
+                            {app['why_use']}
                         </div>
 
                         <h6 className="whoUse">who need {name} ?</h6>
                         <div className="whoUse">
                             {app['who_need']}
                         </div>
+                        <h6 className="whoUse">supported platforms :</h6>
+                        <div className="dev-ces">
+                            {app['devices'].map((device, index) => {
+                                return <div className="platform-one" key={index}>{device}</div>
+                            })}
+                        </div>
                         <ShareButtonsForApp url={currentUrl} title={app['description']} description={app['description']}
                             image={app['logo_url']} appId={app['id']} />
                     </div>
 
                     <div className="ContentRight">
+                        <img src={app['logo_url']} alt="logo" className="logo-img-title" />
                         <div className="pricePart">
-                            <div className="pricingMOdel">Pricing model</div>
+                            <div className="pricingMOdel"> Pricing model</div>
                             {app['price_model'].includes('free') ?
                                 <div className="free">free plan ✔</div>
                                 : <div className="free">free plan ✘</div>}
-                            {app['price_model'].includes('supscription') ? <div className="subscription">Subscription  ✔</div>
+                            {app['price_model'].includes('subscription') ? <div className="subscription">Subscription  ✔</div>
                                 : <div className="subscription">Subscription  ✘</div>}
                             {app['price_model'].includes('trial') ?
                                 <div className="freeTrial">free trial  ✔</div> :
@@ -287,7 +310,7 @@ function AppPage() {
                                 Submit a Review
                             </div>
                             <div className="report" onClick={() => showRepModal()}>
-                                report this app
+                                report this tool
                             </div>
                         </div>
 
@@ -310,7 +333,7 @@ function AppPage() {
                     <span className="icony">
                         <FontAwesomeIcon icon={faLink} color="#000" />
                     </span>
-                    Visit App Website
+                    Visit {maxString(name)} Website
                 </div>
             </div>
 

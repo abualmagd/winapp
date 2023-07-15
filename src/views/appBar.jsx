@@ -56,14 +56,14 @@ export default function AppBar() {
     return (
         <header className="headery">
             <div className="logo" onClick={() => navigat('/')}>
-                <img src="/assets/images/logo512.png" alt="W" />
+                <img src="https://www.solutrend.com/assets/images/logo512.png" alt="W" />
                 SoluTrend</div>
             <div className="navigation">
                 <Link to="/" className="link-home"> <img src="https://solutrend.com/logo192.png" alt="r" className="small-logo" /></Link>
                 <Link to="/blog" className="link">blog</Link>
                 <a href="/#pricing" className="link">pricing</a>
                 <div className="submitButton">
-                    <div onClick={() => limitUserApps()} className="linkBtn">list your app</div>
+                    <div onClick={() => limitUserApps()} className="linkBtn">list your tool</div>
                 </div>
                 {token !== null ? <img src={image} alt="r" className="avatar" /> : <div onClick={join} className='link-join'>Join</div>}
                 <div className="dropdown">

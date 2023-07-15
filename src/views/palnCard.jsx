@@ -132,7 +132,7 @@ function PlanCard(props) {
                         {myPlan['newsletters'] ? "✔ " : "✘ "}
                     </div>
                     <div className="featureContent">
-                        list your app in  our newsletters
+                        list your tool in  our newsletters
                     </div>
                 </div>
             </div>

@@ -26,13 +26,11 @@ export async function getUserPlan(id) {
 
 
 
-export async function updateCurrentName(name) {
-    const { email } = getLocalUser();
-    console.log('name', name);
-    console.log('email', email);
+export async function updateCurrentName(data) {
+    const id = await getToken();
     return await mybase.from('profiles').update({
-        'name': name
-    }).eq('email', email);
+        name: data
+    }).eq('id', id);
 
 }
 
@@ -50,4 +48,22 @@ export function removeUserLocal() {
 
 export function getLocalUser() {
     return JSON.parse(localStorage.getItem('my-user'));
+}
+
+
+
+
+export async function subscribe(email) {
+    return await mybase.from('subscribs').insert({
+        'email': email
+    });
+
+}
+
+
+
+
+export async function unSubscribe(email) {
+    return await mybase.from('subscribs').delete('*').eq('email', email);
+
 }

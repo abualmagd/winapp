@@ -54,7 +54,7 @@ function Plans() {
     } else {
 
         const cards = plans.map((plan, index) => {
-            return <PlanCard item={plan} btnContent="List Your App Now" key={index} />
+            return <PlanCard item={plan} btnContent="List Your Tool Now" key={index} />
         })
 
         return (

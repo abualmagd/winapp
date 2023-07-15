@@ -316,7 +316,7 @@ function AddTool() {
                     <label>App Name :</label>
                     <input required name="app_name" value={allValues.app_name} onChange={handleInputChange} type="text" className="appName" placeholder="donnot use white space " />
                     <label>App Url :</label>
-                    <input required name="app_url" value={allValues.app_url} onChange={handleInputChange} type="text" className="appUrl" placeholder="www.winApp.io" />
+                    <input required name="app_url" value={allValues.app_url} onChange={handleInputChange} type="text" className="appUrl" placeholder="www.solutrend.com" />
                     <label >Choose your app category :</label>
                     <select required name="category_id" value={allValues.category_id} id="#category" className="category-sel" onChange={handleCategoryChange}>
                         {categoryOption}

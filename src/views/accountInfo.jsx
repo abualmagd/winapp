@@ -87,10 +87,11 @@ export default function AccountInfo() {
 
 
     const updateUser = async () => {
+
         if (currentUser['name'] !== name) {
             updateLoading(true);
             console.log('step', 2);
-            const { data, error } = await updateCurrentName(name)
+            const { error } = await updateCurrentName(name)
             if (error) {
                 console.log('error here', error.message)
                 notify(error.message, true);
@@ -98,7 +99,6 @@ export default function AccountInfo() {
 
             } else {
                 notify("your data updated succesfuly", false);
-                console.log(data['role'])
                 updateLoading(false);
                 onUpdate();
                 navToHome();
@@ -127,14 +127,14 @@ export default function AccountInfo() {
             <ToastContainer display={display} message={message} error={errory} />
             <img src={image} alt="avatar" className="avatar-set" />
             {!avatarChange ? <div className="image-uploader">
-                <input type="file" name="avat" id="screen" style={{ display: "none" }} accept="image/*" />
+                <input type="file" name="avat" id="screen" style={{ display: "none" }} placeholder="avatar" title="avatar" accept="image/*" />
                 <input type="button" id="onpress" onClick={clickAvatar}
                     value="change avatar" style={{ width: "140px", cursor: "pointer" }} />
             </div> : <div className="image-uploader">
                 <FontAwesomeIcon icon={faSpinner} pulse size="lg" />
             </div>}
-            <input type="text" className="name-set" value={name} onChange={(e) => setName(e.currentTarget.value)} />
-            <input type="email" className="email-set" value={email} onChange={(e) => setEmail(e.currentTarget.value)} />
+            <input type="text" className="name-set" value={name} title="name" placeholder="name" onChange={(e) => setName(e.currentTarget.value)} />
+            <input type="email" className="email-set" value={email} title="email" placeholder="email" onChange={(e) => setEmail(e.currentTarget.value)} />
             <div className="actions-btn">
                 {loading ? <div className='div-submit' style={{ width: "140px", backgroundColor: "transparent" }}>
                     <FontAwesomeIcon icon={faSpinner} pulse size="lg" style={{ marginBottom: "12px" }} />

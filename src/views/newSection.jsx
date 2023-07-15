@@ -56,7 +56,7 @@ function NewPart() {
             {loading ? <div className='center_progress'><FontAwesomeIcon icon={faSpinner} pulse size="lg" /> </div> : <section className="newSection">
                 {cards}
             </section>}
-            <div onClick={() => limitUserApps()} className="addBtn">Add Your App Now</div>
+            <div onClick={() => limitUserApps()} className="addBtn">Add Your Tool Now</div>
         </div>
 
     );

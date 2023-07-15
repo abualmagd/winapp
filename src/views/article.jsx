@@ -1,25 +1,26 @@
 
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { ShareButtons } from "../components/shareButtons";
 import "../styles/article.css";
 import { useState } from "react";
-import { getArticleByTitle, getRandomArticles } from "../services/blogServices";
+import { getArticleByShortTitle, getRandomArticles } from "../services/blogServices";
 import { useEffect } from "react";
 import { useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { dateFormat, myUrl } from "../services/global";
 import { PageMetaTags } from "../components/myMetTage";
+import { Helmet } from "react-helmet-async";
 
 export default function Article() {
 
     const { title } = useParams(); //short title 
-
+    const navigat = useNavigate();
     const [article, updateArticle] = useState();
     const [state, updateState] = useState('loading');
     const [suggestion, updateSuggestion] = useState();
 
-    const url = myUrl + '/blog/' + title;
+    const url = myUrl + 'blog/' + title;
 
     const getSuggestions = useCallback(async () => {
         const { data } = await getRandomArticles(title);
@@ -28,18 +29,44 @@ export default function Article() {
         }
     }, [title]);
 
+    const injectStyle = (artcl) => {
+        const styles = artcl['styles'];
+        if (!styles) {
+            console.log('no inject style');
+        } else {
+
+
+            // Create a new style element
+            const style = document.createElement('style');
+
+            // Set the type attribute to 'text/css'
+            style.type = 'text/css';
+
+            // Add styles to the style element
+            style.innerHTML = styles;
+
+            // Insert the style element into the head section of the document
+            document.head.appendChild(style);
+
+            // Remove the style element when the component unmounts
+            return () => {
+                document.head.removeChild(style);
+            };
+        }
+    }
 
     const getArticle = useCallback(async () => {
-
-        const { data, error } = await getArticleByTitle(title); // get article by short title 
-        if (error) {
-            updateState('error');
-            console.log(error.message);
-        } else {
+        const { data, error } = await getArticleByShortTitle(title); // get article by short title 
+        if (data) {
             updateArticle(data[0]);
             updateState('data');
-            console.log(data);
+            console.log('article js ', data);
+            injectStyle(data[0]);
             getSuggestions(data[0]['id']);
+
+        } else {
+            updateState('error');
+            console.log('errrrrrrr:', error.message);
         }
     }
 
@@ -78,15 +105,17 @@ export default function Article() {
         </div>
     } else {
 
-
-
         const html = article['body'];
-
+        const imagesource = article['image_source'];
 
         return (
             <div className="article-page">
                 <PageMetaTags description={article['description']} title={article['title']} url={url}
-                    imageUrl={article['image_url']} />
+                    imageUrl={article['image_url']} type={'article'} />
+                <Helmet>
+                    <meta property="article:author" content={article['writer']} />
+                    <meta property="article:published_time" content={dateFormat(article['created_at'])} />
+                </Helmet>
                 <div className="blog-bar">
                     <div className="logom" >
                         <img src="/assets/images/logo512.png" alt="W" />
@@ -110,6 +139,7 @@ export default function Article() {
                     {dateFormat(article['created_at'])}
                 </p>
                 <img src={article['image_url']} alt="" className="article-image-page" />
+                <div className="image-source" dangerouslySetInnerHTML={{ __html: imagesource }}></div>
                 <div className="article-content-page" dangerouslySetInnerHTML={{ __html: html }}>
 
                 </div>
@@ -118,7 +148,8 @@ export default function Article() {
                 {suggestion && <><div className="recent-posts">Discover more</div>
                     <div className="suggestion-wraper">
                         {suggestion.map((r, index) => {
-                            return <div className="suggestion-articles" key={index}>
+                            const suggestUrl = '/blog/' + r['short_title'];
+                            return <div className="suggestion-articles" key={index} onClick={() => navigat(suggestUrl)}>
                                 <div className="suggest-card-article">
                                     <h3 className="title-suggest">
                                         {r['title']}
@@ -139,3 +170,7 @@ export default function Article() {
 
     }
 }
+
+
+
+

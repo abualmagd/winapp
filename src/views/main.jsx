@@ -30,14 +30,16 @@ export default function Main() {
     return (
         <main className="main">
             <AppBar />
-            <h1 className="title">Now you can tell the business world about <span className='titleSpn'>  Your App</span></h1>
+            <h1 className="title">Now you can tell the business world about <span className='titleSpn'>  Your  Tool</span></h1>
             <div className='mainAbt'>
-                <p className='paragraph'>We make it easy to get your app into the hands of more people,
-                    <br />A simple, super-fast way to increase your customers and new users.
+                <p className='paragraph'>
+                    Solutrend  provide a simple, super-fast solution that ensures your product gets into the hands of more people.
+                    List your tool and
+                    Let Solutrend be the catalyst for your success.
                 </p>
             </div>
 
-            <div onClick={() => limitUserApps()} className="addBtn">Add Your App Free</div>
+            <div onClick={() => limitUserApps()} className="addBtn">Add Your Tool Free</div>
             <TopSection />
         </main>
     );

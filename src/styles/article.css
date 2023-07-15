@@ -1,7 +1,7 @@
 .article-page {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 70%;
     margin: 0px auto;
     justify-content: center;
     position: relative;
@@ -33,7 +33,11 @@
     font-weight: 300;
 }
 
+.share-ico {
+    cursor: pointer;
+    margin-right: 10px;
 
+}
 
 .suggest-card-article {
     display: flex;
@@ -50,6 +54,7 @@
     margin-bottom: 0px;
     overflow: hidden;
     display: -webkit-box;
+    padding-bottom: 0px;
     /* fallback for older browsers */
     overflow: hidden;
     text-overflow: ellipsis;
@@ -86,7 +91,13 @@
     color: var(--textColor);
 }
 
+.image-source {
+    display: flex;
+    font-size: .7rem;
+    max-width: 300px;
+    max-height: 30px;
 
+}
 
 @media only screen and (max-width: 1000px) {
     .article-page {

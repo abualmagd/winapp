@@ -30,6 +30,7 @@ import MyBlog from './views/blog';
 import Article from './views/article';
 import { HelmetProvider } from 'react-helmet-async';
 import Exceeded from './views/exceeded';
+import Unsubscribe from './views/unsubscribe';
 
 
 
@@ -69,6 +70,7 @@ function App() {
               <Route path='/blog/:title' element={<Article />} />
               <Route path='/signup' element={<SignUp />} />
               <Route path='/pricing' element={<Plans />} />
+              <Route path='/unsub/:email' element={<Unsubscribe />} />
               <Route path='/login' element={<Login />} />
               <Route path='/limit' element={<Exceeded />} />
               <Route path='/sent' element={<Confirmation />} />

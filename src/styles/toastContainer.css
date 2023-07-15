@@ -7,35 +7,13 @@
     background-color: rgb(47, 0, 255);
     position: absolute;
     z-index: 1000;
-    right: -310px;
-    top: 50%;
+    margin: auto 0px;
+    top: 30%;
     border-radius: 15px;
-    animation: move 3s ease-out;
-
 }
 
 
-@keyframes move {
-    0% {
-        right: -310px;
-    }
 
-    50% {
-        right: -100px;
-    }
-
-    70% {
-        right: 40px;
-    }
-
-    80% {
-        right: 40px;
-    }
-
-    100% {
-        right: 40px;
-    }
-}
 
 
 .message {

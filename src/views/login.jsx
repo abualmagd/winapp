@@ -117,8 +117,11 @@ function Login() {
                     <input type="email" ref={emailRef} required />
                     <label >Password</label>
                     <input type="password" ref={passwordRef} required />
-                    <div className="forget-pass" onClick={restorePass}>
-                        forget password
+                    <div className="forget-pass" >
+                        <div onClick={restorePass} className='forget-btn'>
+                            forget password
+                        </div>
+
                     </div>
 
                     {loading ? <div className='div-submit'>

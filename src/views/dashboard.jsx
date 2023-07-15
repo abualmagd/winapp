@@ -116,7 +116,7 @@ function DashBoard() {
                 <div className="barEnd">
                     <div className="btton">
                         <div onClick={() => limitUserApps()} className="linkBttn">
-                            list new app
+                            list new tool
                         </div>
                     </div>
                     <div className="dropdown">

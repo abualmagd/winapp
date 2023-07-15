@@ -35,7 +35,7 @@ export async function getNewApps() {
 
 export async function getAPPInfo(appName) {
     const userId = getToken();
-    return await mybase.rpc('get_app_inf', { 'appname': appName, 'userid': userId });
+    return await mybase.rpc('get_app_infos', { 'appname': appName, 'userid': userId });
     //check parameters  names  small letter supabase perefer small letters only
 }
 
@@ -61,7 +61,8 @@ export async function bookmark(appId) {
 
 export async function unBookmark(appId) {
     const { id } = getLocalUser();
-    return await mybase.from('favorite').delete().eq({ user_id: id, app_id: appId });
+    console.log('appid', appId);
+    return await mybase.from('favorite').delete().match({ user_id: id, app_id: appId });
 
 }
 

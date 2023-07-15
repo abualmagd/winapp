@@ -3,7 +3,19 @@ import { increaseShareCount } from "../services/appServices";
 import { shareOnFacebook, shareOnLinkedIn, shareOnTwitter } from "../services/global"
 import "../styles/article.css";
 
+
 export function ShareButtons({ url, description, title, image }) {
+
+    const shareApp = () => {
+        try {
+
+            navigator.share({ title, description, url });
+
+            console.log('shared succfuly');
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return <>
         <div className="share-to">
@@ -20,6 +32,9 @@ export function ShareButtons({ url, description, title, image }) {
 
                 linkedin
             </div>
+            <div className="btn-link-social" onClick={shareApp} >
+                more..
+            </div>
         </div>
 
     </>
@@ -31,6 +46,18 @@ export function ShareButtons({ url, description, title, image }) {
 
 
 export function ShareButtonsForApp({ url, description, title, appId, image }) {
+
+
+    const shareApp = () => {
+        try {
+
+            navigator.share({ title, description, url });
+
+            console.log('shared succfuly');
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const shareToFace = async () => {
         shareOnFacebook(url);
@@ -62,6 +89,9 @@ export function ShareButtonsForApp({ url, description, title, appId, image }) {
             <div className="btn-link-social" onClick={() => shareToLinked()}>
 
                 linkedin
+            </div>
+            <div className="btn-link-social" onClick={shareApp} >
+                more..
             </div>
         </div>
 

@@ -14,9 +14,10 @@ const AuthProvider = ({ children }) => {
     const getDetailsOfUser = async (id) => {
         const { data } = await getUserData(id);
         if (data) {
+            console.log('frome on getdetalais');
+            console.log(data[0]);
             updateCurrent(data[0]);
             saveUserLocal(data[0]);
-
         }
     }
 
@@ -44,8 +45,8 @@ const AuthProvider = ({ children }) => {
     }
 
 
-    const updateUser = () => {
-        getDetailsOfUser();
+    const updateUser = async () => {
+        await getDetailsOfUser(token);
     }
 
 

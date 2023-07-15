@@ -1,7 +1,7 @@
 .myAlert {
-    background-color: var(--notifyColor);
+    background-color: purple;
     width: 50vw;
-    height: 500px;
+    height: 330px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -9,6 +9,7 @@
     justify-content: space-evenly;
     position: relative;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 15px;
 }
 
 .alertCloser {
@@ -25,8 +26,8 @@
 }
 
 .myAlert img {
-    width: 300px;
-    height: 300px;
+    width: 220px;
+    height: 220px;
 
 }
 
@@ -37,19 +38,19 @@
 }
 
 .myAlert h3 {
-    color: var(--aboutText);
+    color: white;
     margin: 0px;
 }
 
 .myAlert input[type=email] {
-    width: 290px;
+    width: 300px;
     margin-right: 10px;
     height: 33px;
     border-radius: 10px;
     outline: none;
-    background-color: #C8DCF3;
+    background-color: var(--inputBg);
     padding-left: 5px;
-    border: 0px transparent;
+    border: var(--searchBorder);
 }
 
 .myAlert input[type=email]:focus {
@@ -69,6 +70,8 @@
     padding: 5px 10px 0px 10px;
     display: flex;
     justify-content: center;
+    color: var(--textColor);
+    font-weight: 500;
 }
 
 .submit:hover {
@@ -107,10 +110,12 @@
 
 
 
+
+
 @media only screen and (max-width: 800px) {
 
     .myAlert {
-        width: 90%;
+        width: 80%;
         height: 300px;
     }
 
@@ -119,7 +124,7 @@
     }
 
     .myAlert input[type=email] {
-        width: 300px;
+        width: 250px;
     }
 
     .myAlert h3 {
@@ -141,4 +146,12 @@
 
     }
 
+}
+
+
+@media only screen and (max-width:400px) {
+
+    .myAlert input[type=email] {
+        width: 180px;
+    }
 }

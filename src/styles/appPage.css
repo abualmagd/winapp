@@ -46,7 +46,12 @@
     width: 170px;
     color: black;
     background-color: rgb(131, 238, 131);
+    height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 
 .icony {
     margin-right: 10px;
@@ -64,8 +69,43 @@
     margin: 5px auto;
 }
 
-.appInfo h4 {
+.title-container-div {
+    display: flex;
+}
+
+.ContentRight img {
+    height: 80px;
+    width: 80px;
+    border-radius: 5px;
+    background-color: var(--bgColor);
+    margin-bottom: 20px;
+
+}
+
+.share-ico-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgb(29, 29, 30);
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    margin: auto 10px;
+}
+
+
+.appInfo h2 {
     font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.small-des {
+    margin-top: -20px;
+}
+
+.appInfo h1 {
+    all: unset;
 }
 
 .whats,
@@ -75,6 +115,17 @@
     margin-bottom: 5px;
 }
 
+.platform-one {
+    display: inline;
+    margin: 5px;
+}
+
+.dev-ces {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .ContentRight {
     display: flex;
     flex-direction: column;
@@ -82,7 +133,7 @@
     margin: 5px;
     margin-top: 30px;
     align-items: center;
-    justify-content: space-evenly;
+
 
 }
 
@@ -219,6 +270,14 @@
     transition: all .5s ease-in-out;
 }
 
+.free,
+.subscription,
+.freeTrial {
+    margin-left: 30px;
+    color: var(--aboutText);
+}
+
+
 
 
 @media only screen and (max-width: 800px) {
@@ -227,6 +286,24 @@
 
         margin: 0px 2px;
     }
+
+
+
+    .ContentRight img {
+        height: 150px;
+        width: 150px;
+        border-radius: 5px;
+        background-color: var(--bgColor);
+        margin-bottom: 20px;
+
+    }
+
+    .pricingMOdel,
+    .startAt {
+        font-size: 1.5rem;
+        margin-top: 25px;
+    }
+
 
 
     .imageApp {

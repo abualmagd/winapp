@@ -158,9 +158,12 @@
     display: flex;
     margin-right: 30px;
     justify-content: flex-end;
-    cursor: pointer;
+
 }
 
+.forget-btn {
+    cursor: pointer;
+}
 
 .terms {
     color: var(--textColor);

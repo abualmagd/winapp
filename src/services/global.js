@@ -19,6 +19,31 @@ export function getToken() {
 }
 
 
+
+
+export function maxString(str) {
+    if (str.length > 20) {
+        // Truncate the string to the first 10 characters
+        str = str.substring(0, 10);
+
+        // Add an ellipsis at the end of the truncated string
+        str += "..";
+    }
+    return str;
+}
+
+
+export function truncateString(str) {
+    if (str.length > 9) {
+        // Truncate the string to the first 10 characters
+        str = str.substring(0, 10);
+
+        // Add an ellipsis at the end of the truncated string
+        str += "..";
+    }
+    return str;
+}
+
 export function removeToken() {
     return localStorage.removeItem('my-token')
 }
