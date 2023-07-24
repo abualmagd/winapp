@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faTwitter, faFacebook, faInstagram, faReddit } from "@fortawesome/free-brands-svg-icons";
 import "../styles/myFooter.css"
 import { Link } from "react-router-dom";
+import Sitemap from "../components/sitemap";
 
 function MyFooter() {
 
@@ -12,11 +13,17 @@ function MyFooter() {
     const gotoTwitter = () => {
         window.open('https://twitter.com/SoluTrend', '_blank');
     }
+    const gotoInsta = () => {
+        window.open('https://instagram.com/solutrendhq', '_blank');
+    }
+    const gotoReditt = () => {
+        window.open('https://www.reddit.com/r/Solutrend', '_blank');
+    }
 
 
     return (
-        <div>
-
+        <div >
+            <Sitemap />
 
             <footer className="myFooter">
                 <div className="copyRight">
@@ -27,6 +34,8 @@ function MyFooter() {
                     {/**add <a></a> to social */}
                     <FontAwesomeIcon icon={faTwitter} size="2x" cursor={"pointer"} color="#1DA1F2" onClick={gotoTwitter} />
                     <FontAwesomeIcon icon={faFacebook} size="2x" cursor={"pointer"} color="#3282F6" onClick={gotoFacebook} />
+                    <FontAwesomeIcon icon={faInstagram} size="2x" cursor={"pointer"} color="red" onClick={gotoInsta} />
+                    <FontAwesomeIcon icon={faReddit} size="2x" cursor={"pointer"} color="red" onClick={gotoReditt} />
 
                 </div>
 

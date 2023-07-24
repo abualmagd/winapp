@@ -197,7 +197,7 @@ function AppPage() {
     return (
         <div>
             <div className="appPageContainer" >
-                <PageMetaTags title={app['app_name']} description={app['description']} imageUrl={app['shot_url']} url={currentUrl} type={'website'} />
+                <PageMetaTags title={app['app_name'] + ' - ' + app['what_app']} description={app['description']} imageUrl={app['shot_url']} url={currentUrl} type={'website'} />
                 <ToastContainer display={displ} message={message} error={errory} />
                 {RevModal && <ReviewModal close={hideModal} appId={app['id']} rebuild={() => updateBuild(!build)} />
                 }
@@ -238,7 +238,7 @@ function AppPage() {
                             </span>
                             Save {maxString(name)}
                         </div>}
-                    {app['contact_email'] && <div className="message" onClick={() => window.open(`mailto:${app['contact_email']}?subject=Test%20Email&body=This%20is%20a%20test%20email`)}>
+                    {app['contact_email'] && <div className="message" onClick={() => window.open(`mailto:${app['contact_email']}?subject=subjec%20Email&body=This%20is%20a%20body%20email`)}>
                         <span className="icony">
                             <FontAwesomeIcon icon={faEnvelope} color="#000" />
                         </span>

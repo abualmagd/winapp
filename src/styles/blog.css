@@ -122,7 +122,6 @@
 .description-article {
     margin: 0px;
     margin-top: 3px;
-    overflow: hidden;
     display: -webkit-box;
     /* fallback for older browsers */
     overflow: hidden;

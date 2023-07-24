@@ -1,15 +1,14 @@
-import { useNavigate } from "react-router-dom";
 import "../styles/plans.css";
-import { userAllowedtoAdd } from "../services/appServices";
+import { getLocalUser } from "../services/userServices";
 
 
 
 
 function PlanCard(props) {
+    const { plan } = getLocalUser();
 
-    const navigator = useNavigate();
     const myPlan = props.item;
-
+    const handlePressCard = () => props.handlePress(plan, myPlan);
 
     const myclass = (value) => {
 
@@ -30,18 +29,22 @@ function PlanCard(props) {
 
     //TODO:change after adding more than one plan
     // this will change after adding lemonsquessy 
-    const handlePress = async () => {
-        const result = await userAllowedtoAdd();
-        console.log('limit', result.data);
-        if (result.data) {
-            console.log('allowing ', result.data)
-            navigator('/add');
+
+    /*const handlePress = async () => {
+        if (plan === 'free' || myPlan['name'] === 'free') {
+            const result = await userAllowedtoAdd();
+            console.log('limit', result.data);
+            if (result.data) {
+                console.log('allowing ', result.data)
+                navigator('/add');
+            } else {
+                navigator('/limit');
+            }
         } else {
-            navigator('/changePlan');
+            console.log('checkout lemonsqueezy here');
+
         }
-
-
-    }
+    }*/
 
 
 
@@ -56,7 +59,9 @@ function PlanCard(props) {
 
             <div className="price"><span>
                 {myPlan['price']}</span>$/mo</div>
-
+            {myPlan['annually'] && <div className="yearly">
+                pay yearly and save  {myPlan['year']} dollars
+            </div>}
             <div className="featureContainer">
 
 
@@ -138,7 +143,7 @@ function PlanCard(props) {
             </div>
 
 
-            <div className="getStartedBtn" style={{ backgroundColor: color }} onClick={handlePress}>{props.btnContent}</div>
+            <div className="getStartedBtn" style={{ backgroundColor: color }} onClick={handlePressCard}>{props.btnContent}</div>
 
         </div>
     );

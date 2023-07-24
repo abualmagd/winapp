@@ -9,6 +9,7 @@ import { PageMetaTags } from "../components/myMetTage";
 import { myUrl } from "../services/global";
 
 
+
 function Home() {
     const [showed, updateShowed] = useState(false);
 
@@ -33,8 +34,8 @@ function Home() {
     }, []);
     return (
         <div>
-            <PageMetaTags title={"SoluTrend -the #1 tool discovery platform"} description={"Explore the best tools  that can power your business and save your time!,SoluTrend, a global marketing platform that helps app developers and Software companies to get their products in front of people all across the world. Solutrend is the best app discovery platform"}
-                imageUrl={"https://www.solutrend.com/sollogo.png"} url={myUrl} />
+            <PageMetaTags title={"SoluTrend - Find Your Business Software Solution Now!"} description={"Solutrend, the best software discovery platform. Get powerful business solutions and save time! Find your problem's answer here,Compare software features, ratings & pricing plans to find what's right for you . "}
+                imageUrl={"https://solutrend.com/sollogo.png"} url={myUrl} />
             {showed && <MyAlert close={closeAlert} />}
             <Main />
             <NewPart />

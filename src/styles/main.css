@@ -28,6 +28,10 @@
   display: inline-block;
 }
 
+.paragraph {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
 
 .mainAbt {
   display: flex;
@@ -215,6 +219,31 @@ input[type="text"]:not(:placeholder-shown)+.clear {
   width: 100%;
 }
 
+.sitemap-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.sitemap-div h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.sitemap-div div {
+  margin-left: 10px;
+}
+
+.sitemap-div a {
+  text-decoration: none;
+  font-size: 1rem;
+
+}
+
 @media only screen and (max-width: 800px) {
 
   .main {
@@ -234,6 +263,27 @@ input[type="text"]:not(:placeholder-shown)+.clear {
     width: 100%;
     display: flex;
     justify-content: space-between;
+  }
+
+  .sitemap-div {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 15px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sitemap-div div {
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sitemap-div a {
+    margin: 5px;
+    font-size: 1.5rem;
   }
 
 }

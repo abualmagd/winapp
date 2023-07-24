@@ -1,17 +1,20 @@
 
 import "../styles/plans.css";
-import PlanCard from "./palnCard";
-import { useCallback, useEffect, useState } from "react";
+/*import { useCallback, useEffect, useState } from "react";
 import { getPlans } from "../services/appServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";*/
+import { planz } from "../data/pricePlanes";
+import { PricePlanCard } from "../components/allPlanCard";
 function Plans() {
 
-    const [state, updateState] = useState('loading');
-    const [plans, updatePlans] = useState([]);
 
-    const loadPlans = useCallback(async () => {
+
+
+    /* const [state, updateState] = useState('data');
+     const [plans, updatePlans] = useState([]);*/
+
+    /*const loadPlans = useCallback(async () => {
         const { error, data } = await getPlans();
         if (error) {
             updateState('error');
@@ -26,46 +29,46 @@ function Plans() {
 
 
 
-    }, []);
+    }, []);*/
 
-    useEffect(() => {
-        loadPlans();
-    }, [loadPlans]);
+    /* useEffect(() => {
+         loadPlans();
+     }, [loadPlans]);*/
 
-    if (state === 'error') {
+    /*  if (state === 'error') {
+  
+          return <div>
+              <div className="plans" >
+  
+                  <p className="error">
+                      Sorry something error happened
+                  </p>
+  
+              </div>
+          </div>
+      }
+      if (state === 'loading') {
+          return <div className="plans" >
+              <div className="centerCircular">
+                  <FontAwesomeIcon icon={faSpinner} spin size="lg" />
+              </div>
+          </div>
+  
+      } else {*/
 
-        return <div>
-            <div className="plans" >
+    const cards = planz.map((plan, index) => {
+        return <PricePlanCard item={plan} btnContent="List Your Tool Now" key={index} />
+    })
 
-                <p className="error">
-                    Sorry something error happened
-                </p>
+    return (
+        <div className="plans" id="pricing">
 
-            </div>
+            {cards}
+
         </div>
-    }
-    if (state === 'loading') {
-        return <div className="plans" >
-            <div className="centerCircular">
-                <FontAwesomeIcon icon={faSpinner} spin size="lg" />
-            </div>
-        </div>
-
-    } else {
-
-        const cards = plans.map((plan, index) => {
-            return <PlanCard item={plan} btnContent="List Your Tool Now" key={index} />
-        })
-
-        return (
-            <div className="plans" id="pricing">
-
-                {cards}
-
-            </div>
-        );
-    }
+    );
 }
+
 
 
 
