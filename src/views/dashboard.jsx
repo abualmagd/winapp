@@ -4,10 +4,10 @@ import '../styles/dashboard.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faBookmark, faGear, faMoon, faRightFromBracket, faSpinner, faSun } from '@fortawesome/free-solid-svg-icons';
-import { getLocalUser, removeUserLocal } from '../services/userServices';
+import { removeUserLocal } from '../services/userServices';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import ReviewsPart from '../components/reviewPart';
-import { getUserApps, userAllowedtoAdd } from '../services/appServices';
+import { getUserApps } from '../services/appServices';
 import { ThemeContext } from '../controllers/themeProvider';
 import { logMeOut } from '../services/authServices';
 
@@ -23,21 +23,7 @@ function DashBoard() {
     //check user plan and compare 
 
 
-    const limitUserApps = async () => {
-        const { plan } = getLocalUser() ?? 'free';
-        const result = await userAllowedtoAdd();
-        console.log('limit', result.data);
-        if (result.data === false) {
-            navigat('/limit');
-        } else {
-            if (plan === 'free') {
-                navigat('/plan');
-            } else {
-                navigat('/add');
-            }
 
-        }
-    }
 
     const fetchData = useCallback(async () => {
         const { data, error } = await getUserApps();
@@ -115,7 +101,7 @@ function DashBoard() {
                     <div className="dash-logo">SoluTrend</div> </div>
                 <div className="barEnd">
                     <div className="btton">
-                        <div onClick={() => limitUserApps()} className="linkBttn">
+                        <div onClick={() => navigat('/add')} className="linkBttn">
                             list new tool
                         </div>
                     </div>
@@ -161,7 +147,7 @@ function DashBoard() {
                     <div className="detailsTitle">
                         {app['app_name']}
                     </div>
-                    <div className="btton">
+                    <div className="btton-edit">
                         <Link to={"/editApp/" + appId} style={{ textDecoration: "none" }}>edit app details</Link>
                     </div>
                 </div>

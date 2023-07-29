@@ -1,0 +1,104 @@
+.price-strategy {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 20px;
+    margin: 4rem 0px;
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    justify-content: space-between;
+    background-color: var(--cardColor);
+    /*#202438*/
+}
+
+.freely-div {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.price-strategy h1 {
+    margin: 20px 0px 5px 0px;
+}
+
+.price-strategy p,
+h2 {
+    margin: 0%;
+}
+
+.price-plans {
+    display: flex;
+    width: 100%;
+    margin: 5px auto;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+}
+
+
+.plan-pro,
+.plan-advance {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0px auto;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: var(--cardColor);
+    /*#202438*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: var(--textColor);
+    position: relative;
+    padding-left: 20px;
+
+}
+
+
+
+
+.plan-name {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0px;
+    margin-bottom: 15px;
+
+}
+
+.price-div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.price-span {
+    color: "#207b19";
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.selectPromote {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 10px 60px;
+    margin: 10px auto;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: rgb(131, 238, 131);
+}
+
+.how-promot-tool ul {
+    list-style-type: decimal;
+
+}
+
+
+@media only screen and (max-width: 800px) {
+    .price-strategy {
+        margin: 15px 0px;
+        padding: 0%;
+    }
+}

@@ -72,7 +72,8 @@ const planz = [
         "featured": true,
         "newsletters": false,
         "many_apps": "up to 3 tools",
-        "export_reviews": true
+        "export_reviews": true,
+        "checkout_url": 'https://solutrend.lemonsqueezy.com/checkout/buy/0bae899a-3459-4535-9735-c213569d0a3d?desc=0'
 
     },
     {
@@ -91,7 +92,8 @@ const planz = [
         "featured": true,
         "newsletters": true,
         "many_apps": "up to 6 tools",
-        "export_reviews": true
+        "export_reviews": true,
+        "checkout_url": 'https://solutrend.lemonsqueezy.com/checkout/buy/3a7a408f-338c-4dd0-88aa-8616c1c5f662?desc=0'
 
     }
 

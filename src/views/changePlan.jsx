@@ -15,9 +15,11 @@ function PlanChanger() {
         console.log('user', userPlan);
         console.log('the plan', plan['name']);
         if (plan['name'].toLowerCase() === userPlan.toLowerCase()) {
-            return <></>
+            return null;
+        } else {
+            return <ChangePlanCard item={plan} btnContent={'Select'} key={index} />
         }
-        return <ChangePlanCard item={plan} btnContent='Select' key={index} />
+
     })
     return (
         <div className="shiftContainer" style={{ justifyContent: "center" }}>

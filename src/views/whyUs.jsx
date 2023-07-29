@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/whyUs.css";
-import { faHourglassHalf, faSun, faTools, faTrophy } from "@fortawesome/free-solid-svg-icons";
+import { faHourglassHalf, faMoneyBillWave, faSun, faTools, faTrophy, faUsers } from "@fortawesome/free-solid-svg-icons";
+
 
 export default function WhyUs() {
 
@@ -64,7 +65,33 @@ export default function WhyUs() {
 
 
 
+                <div className="feature-card">
+                    <div className="icon-container">
+                        <FontAwesomeIcon icon={faUsers} size="lg" style={{ color: 'black' }} />
+                    </div>
+                    <div className="info-body">
+                        <div className="acc-hd">
+                            More Users
+                        </div>
+                        <p className="more-details">
+                            Solutrend provide a simple, super-fast solution that ensures your product gets into the hands of more people.
+                        </p>
+                    </div>
+                </div>
 
+                <div className="feature-card">
+                    <div className="icon-container">
+                        <FontAwesomeIcon icon={faMoneyBillWave} size="lg" style={{ color: 'black' }} />
+                    </div>
+                    <div className="info-body">
+                        <div className="acc-hd">
+                            Free
+                        </div>
+                        <p className="more-details">
+                            List your tools freely and Let Solutrend be the catalyst for your success.
+                        </p>
+                    </div>
+                </div>
 
 
                 <div className="feature-card">
@@ -82,7 +109,8 @@ export default function WhyUs() {
                 </div>
             </div>
 
-        </div>
+
+        </div >
 
     );
 

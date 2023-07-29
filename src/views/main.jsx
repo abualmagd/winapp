@@ -1,45 +1,38 @@
-import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/main.css';
 import AppBar from './appBar';
 import TopSection from './top';
-import { getLocalUser } from '../services/userServices';
-import { userAllowedtoAdd } from '../services/appServices';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
 
 
 export default function Main() {
-    const navigat = useNavigate();
 
-    const limitUserApps = async () => {
-        const { plan } = getLocalUser() ?? 'free';
-        const result = await userAllowedtoAdd();
-        console.log('limit from main div : ', result.data);
-        if (!result.data) {
-            navigat('/limit', -1);
-        } else {
-            if (plan === 'free') {
-                navigat('/plan', -1);
-            } else {
-                navigat('/add', -1);
-            }
+    const searchRef = useRef();
+    const naigate = useNavigate();
+
+    function handleEnter(e) {
+        const str = searchRef.current.value;
+        if (e.key === 'Enter' & str.trim() != null) {
+            console.log(str);
+            const url = "/explore/" + searchRef.current.value;
+            naigate(url);
 
         }
     }
 
-
-
     return (
         <main className="main">
             <AppBar />
-            <h1 className="title">Now you can tell the business world about <span className='titleSpn'>  Your  Tool</span></h1>
-            <div className='mainAbt'>
-                <h2 className='paragraph'>
-                    Solutrend  provide a simple, super-fast solution that ensures your product gets into the hands of more people.
-                    List your tool and
-                    Let Solutrend be the catalyst for your success.
-                </h2>
+            <h1 className="title">Revolutionize Your Productivity with the Best <span className='titleSpn'> Software Solutions</span></h1>
+            <div className="input-container">
+                <input ref={searchRef} type="text" className="search"
+                    placeholder="search apps, tools, extensions and more" onKeyDown={(e) => handleEnter(e)} />
+                <div className="clear" onClick={() => searchRef.current.value = null}>
+                    <FontAwesomeIcon icon={faClose} />
+                </div>
             </div>
-
-            <div onClick={() => limitUserApps()} className="addBtn">Add Your Tool Now</div>
             <TopSection />
         </main>
     );

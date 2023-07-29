@@ -1,7 +1,6 @@
 .plans {
     display: flex;
     flex-wrap: wrap;
-    margin: 4rem 0px;
     border-radius: 20px;
     padding: 1.5rem 2rem;
     justify-content: space-between;

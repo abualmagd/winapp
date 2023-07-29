@@ -1,12 +1,12 @@
 import Main from "./main";
 import NewPart from "./newSection";
-import Plans from "./plans";
 import { useState, useEffect } from "react";
 import MyAlert from "../components/myAlert";
 import MyFooter from "./footer";
 import WhyUs from "./whyUs";
 import { PageMetaTags } from "../components/myMetTage";
 import { myUrl } from "../services/global";
+
 
 
 
@@ -40,7 +40,7 @@ function Home() {
             <Main />
             <NewPart />
             <WhyUs />
-            <Plans />
+            <div className="space" style={{ height: "50px" }}></div>
             <MyFooter />
         </div>
     );

@@ -4,9 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { userAllowedtoAdd } from "../services/appServices";
 import "../styles/plans.css";
 import useAuth from "../myHooks/useAuth";
+import { useEffect } from "react";
+
 
 //card for price 
 //card for change plan 
+
+
+
 
 
 function PricePlanCard(props) {
@@ -30,6 +35,25 @@ function PricePlanCard(props) {
         }
         return null;
     }
+
+
+    function openCheckout(checkoutUrl) {
+
+        window.location.href = checkoutUrl;
+
+    }
+
+    useEffect(() => {
+        window.addEventListener('message', (event) => {
+            if (event.origin === 'https://solutrend.lemonsqueezy.com/') {
+                if (event.data === 'checkoutComplete') { //Checkout.Success	
+                    console.log('Checkout complete!');
+                    // Do something when checkout is complete
+                }
+            }
+        });
+    }, []);
+
 
 
     //TODO:change after adding more than one plan
@@ -57,7 +81,7 @@ function PricePlanCard(props) {
                 }
             } else {
                 console.log('checkout lemonsqueezy here');
-
+                openCheckout(myPlan['checkout_url']);
             }
         }
 
@@ -190,6 +214,12 @@ function ChangePlanCard(props) {
     }
 
 
+    function openCheckout(checkoutUrl) {
+
+        window.location.href = checkoutUrl;
+
+    }
+
     //TODO:change after adding more than one plan
     // this will change after adding lemonsquessy 
 
@@ -198,10 +228,19 @@ function ChangePlanCard(props) {
         console.log('checkout lemonsqueezy here');
         // here go to checkout 
         //lemonsqueezy 
-
+        openCheckout(myPlan['checkout_url']);
     }
 
-
+    useEffect(() => {
+        window.addEventListener('message', (event) => {
+            if (event.origin === 'https://solutrend.lemonsqueezy.com/') {
+                if (event.data === 'checkoutComplete') { //Checkout.Success	
+                    console.log('Checkout complete!');
+                    // Do something when checkout is complete
+                }
+            }
+        });
+    }, []);
 
 
     return (

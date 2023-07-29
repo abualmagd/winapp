@@ -1,15 +1,16 @@
+import { useNavigate } from 'react-router-dom';
 import { convertStampToDate } from '../services/appServices';
 import '../styles/dashCard.css';
 
 function DashCard(props) {
-
+    const navigate = useNavigate();
     const app = props.app;
     const press = props.click;
 
     const createdAt = convertStampToDate(app['created_at']);
 
     return (
-        <div className="dashCard" onClick={() => press(props.id)}>
+        <div className="dashCard" >
             <div className="dashCardHead">
                 <div className="appTitl">
                     {app['app_name']}
@@ -17,6 +18,10 @@ function DashCard(props) {
                 <div className="addingDate" >
                     {createdAt}
                 </div>
+            </div>
+            <div className="buttons-card">
+                <div className="card-btn" onClick={() => press(props.id)} >Show my tool</div>
+                <div className="card-btn-promot" onClick={() => navigate('/plan')} >Promote my tool</div>
             </div>
             <div className="appRecords">
                 <div className="views">

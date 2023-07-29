@@ -6,10 +6,9 @@ import { faBars, faBookmark, faGear, faMoon, faRightFromBracket, faSun, faTh } f
 import useAuth from '../myHooks/useAuth';
 import { logMeOut } from '../services/authServices';
 import { useState } from 'react';
-import { getLocalUser } from '../services/userServices';
 import { useContext } from 'react';
 import { ThemeContext } from '../controllers/themeProvider';
-import { userAllowedtoAdd } from '../services/appServices';
+
 
 
 
@@ -19,21 +18,6 @@ export default function AppBar() {
     const [image] = useState(currentUser['avatar_url'] ? currentUser['avatar_url'] : '/assets/images/avatarholder.jpg');
     const { onToggleTheme, theme } = useContext(ThemeContext);
 
-    const limitUserApps = async () => {
-        const { plan } = getLocalUser() ?? 'free';
-        const result = await userAllowedtoAdd();
-        console.log('limit', result.data);
-        if (result.data === false) {
-            navigat('/limit');
-        } else {
-            if (plan === 'free') {
-                navigat('/plan');
-            } else {
-                navigat('/add');
-            }
-
-        }
-    }
 
 
     const join = () => {
@@ -61,9 +45,9 @@ export default function AppBar() {
             <div className="navigation">
                 <Link to="/" className="link-home"> <img src="https://solutrend.com/logo192.png" alt="r" className="small-logo" /></Link>
                 <Link to="/blog" className="link">blog</Link>
-                <a href="/#pricing" className="link">pricing</a>
+                <Link to="/price" className="link">pricing</Link>
                 <div className="submitButton">
-                    <div onClick={() => limitUserApps()} className="linkBtn">list your tool</div>
+                    <div onClick={() => navigat('/add')} className="linkBtn">list your tool</div>
                 </div>
                 {token !== null ? <img src={image} alt="r" className="avatar" /> : <div onClick={join} className='link-join'>Join</div>}
                 <div className="dropdown">

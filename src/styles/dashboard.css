@@ -52,19 +52,28 @@
 
 
 
-.btton {
+.btton,
+.btton-edit {
     display: flex;
     border-radius: 8px;
     margin-right: 1rem;
     align-items: center;
     justify-content: center;
-    background-color: rgb(131, 238, 131);
+    background-color: silver;
     padding: 0px 5px;
     cursor: pointer;
-    color: white;
     text-decoration: none;
     padding: 2px 15px;
     font-weight: 400;
+}
+
+.btton {
+    background-color: rgb(131, 238, 131);
+    font-weight: 500;
+}
+
+.btton-edit a {
+    color: var(--textColor);
 }
 
 .btton:hover {

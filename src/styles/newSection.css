@@ -19,12 +19,11 @@
 .topTitle {
     display: flex;
     font-size: 1.3rem;
-    font-weight: 400;
+    font-weight: 500;
     margin-top: 60px;
     margin-left: 20px;
     margin-bottom: 20px;
     justify-content: flex-start;
-    font-weight: 400;
     color: var(--textColor);
 }
 
