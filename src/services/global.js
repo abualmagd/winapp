@@ -14,7 +14,6 @@ export function saveToken(token) {
 
 
 export function getToken() {
-    console.log("token from storage", JSON.parse(localStorage.getItem('my-token')))
     return JSON.parse(localStorage.getItem('my-token'));
 }
 

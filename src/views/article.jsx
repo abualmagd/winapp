@@ -78,6 +78,7 @@ export default function Article() {
 
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getArticle();
     }, [getArticle]);
 
@@ -129,12 +130,12 @@ export default function Article() {
                         </Link>
                     </div>
                 </div>
-                <h1 className="article-title-page">
+                <h2 className="article-title-page">
                     {article['title']}
-                </h1>
-                <h3 className="description-article-page">
+                </h2>
+                <h1 className="description-article-page">
                     {article['description']}
-                </h3>
+                </h1>
                 <p className="creat-at">
                     {dateFormat(article['created_at'])}
                 </p>

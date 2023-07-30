@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { APP } from "../model/appModel";
 
 function AddTool() {
-    const { id, plan } = getLocalUser();
+    const { id } = getLocalUser();
     const navigat = useNavigate();
     const [loading, updateLoading] = useState(false);
     const [message, updateMessage] = useState();
@@ -169,7 +169,7 @@ function AddTool() {
     const [allValues, setValues] = useState({
         user_id: id,
         app_name: '',
-        plan_name: plan ?? 'free',
+        plan_name: 'free',
         app_url: '',
         category_id: 2,
         what_app: '',

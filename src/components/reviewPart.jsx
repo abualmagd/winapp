@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useCallback } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { getLocalUser } from "../services/userServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -15,7 +14,7 @@ export default function ReviewsPart(props) {
     const [reviews, updateReviews] = useState(null);
     const [copied, updateCopied] = useState(false);
     const appId = props.id;
-    const { plan } = getLocalUser() ?? 'free';
+    const plan = props.appPlan;
 
     const isDashBoard = props.isDash ?? false;
 

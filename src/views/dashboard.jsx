@@ -12,7 +12,7 @@ import { ThemeContext } from '../controllers/themeProvider';
 import { logMeOut } from '../services/authServices';
 
 function DashBoard() {
-    const { token, onLogout } = useAuth();
+    const { onLogout } = useAuth();
     const navigat = useNavigate();
     const [state, updateState] = useState('loading');
     const [data, updateData] = useState([]);
@@ -20,9 +20,6 @@ function DashBoard() {
     const { onToggleTheme, theme } = useContext(ThemeContext);
     //data is user apps and length of it is the count of user apps
     //countApps=data.length
-    //check user plan and compare 
-
-
 
 
     const fetchData = useCallback(async () => {
@@ -33,9 +30,11 @@ function DashBoard() {
             updateState('data');
             updateData(data);
 
-
+            console.log(data)
         }
     }, []);
+
+
 
     const chooseApp = (id) => {
         updateAppId(id);
@@ -43,11 +42,12 @@ function DashBoard() {
     }
 
 
+
     const dashCards = data.map((app, index) => {
         return <DashCard app={app} key={index} click={chooseApp} id={app['id']} />
     })
 
-    console.log("token > :", token);
+
 
 
     const tryLogOut = async () => {
@@ -62,12 +62,15 @@ function DashBoard() {
         }
     }
 
+
     useEffect(() => {
         fetchData();
     }, [fetchData]);
 
+
     const index = data.findIndex(obj => obj['id'] === appId);
     const app = data[index];
+
 
     if (state === 'loading') {
 
@@ -91,7 +94,6 @@ function DashBoard() {
         </div>
 
     }
-
     return (
         <div className="dashboard">
 
@@ -160,12 +162,16 @@ function DashBoard() {
                 </div>
 
                 <div className="reviewsPart" >
-                    <ReviewsPart id={appId} isDash={true} count={app['reviews_count']} />
+                    <ReviewsPart id={appId} isDash={true} count={app['reviews_count']} appPlan={app['plan_name']} />
                 </div>
             </div>}
 
         </div>
     );
+
+
+
+
 }
 
 export default DashBoard;

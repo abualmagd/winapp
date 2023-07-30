@@ -20,8 +20,9 @@ function DashCard(props) {
                 </div>
             </div>
             <div className="buttons-card">
+                {app['plan_name'] === 'free' && <div className="card-btn-promot" onClick={() => navigate('/plan')} >🚀Promote my tool</div>}
+
                 <div className="card-btn" onClick={() => press(props.id)} >Show my tool</div>
-                <div className="card-btn-promot" onClick={() => navigate('/plan')} >Promote my tool</div>
             </div>
             <div className="appRecords">
                 <div className="views">

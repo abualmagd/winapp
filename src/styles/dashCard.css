@@ -42,14 +42,22 @@
     font-weight: 100;
 }
 
-
+.buttons-card {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    height: 80px;
+    align-items: center;
+}
 
 .card-btn,
 .card-btn-promot {
     display: flex;
     justify-content: center;
+    width: 200px;
     border-radius: 8px;
-    padding: 10px 60px;
+    padding: 10px 10px;
     margin: 10px;
     font-weight: 500;
     cursor: pointer;
