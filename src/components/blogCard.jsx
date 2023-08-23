@@ -12,7 +12,7 @@ export default function BlogCard(props) {
     return (
         <>
             <div className="my-article" onClick={() => navigat(url)}>
-                <img src={article['image_url']} alt="" className="my-image" />
+                <img src={article['image_url']} alt={article['description']} className="my-image" />
                 <div className="my-article-details">
                     <div className="creat-at">
                         {dateFormat(article['created_at'])}

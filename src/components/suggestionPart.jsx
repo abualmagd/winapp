@@ -9,7 +9,7 @@ export default function Suggestion(props) {
     const [state, updateState] = useState('loading');
     const [suggests, updataeSuggests] = useState(null);
     const fetchData = useCallback(async () => {
-        const { data, error } = await getSuggestions(categoryId);
+        const { data, error } = await getSuggestions(props.appId, categoryId);
 
         if (error) {
             updateState('error');
@@ -21,7 +21,7 @@ export default function Suggestion(props) {
             console.log('data');
         }
 
-    }, [categoryId]);
+    }, [categoryId, props.appId]);
 
     useEffect(() => {
         fetchData();
@@ -55,9 +55,16 @@ export default function Suggestion(props) {
     });
 
 
-    return (<div className="suggestCards">
-        {cards}
-    </div>);
+    return (
+        <div>
+            {suggests.length > 0 && <h4>
+                Discover more :
+            </h4>}
+
+            <div className="suggestCards">
+                {cards}
+            </div>
+        </div>);
 
 
 

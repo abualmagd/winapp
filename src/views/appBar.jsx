@@ -40,10 +40,10 @@ export default function AppBar() {
     return (
         <header className="headery">
             <div className="logo" onClick={() => navigat('/')}>
-                <img src="https://solutrend.com/assets/images/logo512.png" alt="W" />
+                <img src="https://solutrend.com/assets/images/logo512.png" alt="logo" />
                 SoluTrend</div>
             <div className="navigation">
-                <Link to="/" className="link-home"> <img src="https://solutrend.com/logo192.png" alt="r" className="small-logo" /></Link>
+                <Link to="/" className="link-home"> <img src="https://solutrend.com/logo192.png" alt="solutrend logo-find business software" className="small-logo" /></Link>
                 <Link to="/blog" className="link">blog</Link>
                 <Link to="/price" className="link">pricing</Link>
                 <div className="submitButton">

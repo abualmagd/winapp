@@ -25,7 +25,7 @@ export default function WhyUs() {
                             Find Your Solution
                         </div>
                         <p className="more-details">
-                            Solutrend here to connect you with the best apps and find the solutions you need to
+                            Solutrend here to connect you with the best business software and find the solutions you need to
                             keep your business running smoothly.
                         </p>
                     </div>
@@ -41,7 +41,7 @@ export default function WhyUs() {
                             Explore Softwares
                         </div>
                         <p className="more-details">
-                            Explore best-in-class software to help you reach your goals.
+                            Explore best-in-class  business software to help you reach your goals.
                         </p>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ export default function WhyUs() {
                             Free
                         </div>
                         <p className="more-details">
-                            List your tools freely and Let Solutrend be the catalyst for your success.
+                            List your business software freely and Let Solutrend be the catalyst for your success.
                         </p>
                     </div>
                 </div>
@@ -103,7 +103,7 @@ export default function WhyUs() {
                             Save Your Time
                         </div>
                         <p className="more-details">
-                            explore and compare high-performing software that can power your business and save you time!
+                            explore and compare high-performing  business software that can power your business and save you time!
                         </p>
                     </div>
                 </div>

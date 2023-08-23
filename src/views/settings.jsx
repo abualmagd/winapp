@@ -81,14 +81,14 @@ function Settings() {
                                 </p>
                             </div>
                         </div>
-                        <div className="acc-info" onClick={() => navigat("/changeplan")}>
+                        <div className="acc-info" onClick={() => navigat("/price")}>
                             <FontAwesomeIcon icon={faSeedling} style={{ marginTop: "12px" }} />
                             <div className="info-body">
                                 <div className="acc-hd">
-                                    Manage plans
+                                    Manage promotion
                                 </div>
                                 <p className="more-details">
-                                    change your subscription plan
+                                    tool subscription plans
                                 </p>
                             </div>
 

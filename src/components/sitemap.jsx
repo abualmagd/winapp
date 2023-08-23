@@ -16,6 +16,13 @@ export default function Sitemap() {
                     </span>
 
                 </Link>
+                <Link to={"/subscribe"} >
+
+                    <span className='link-t'>
+                        Subscribe
+                    </span>
+
+                </Link>
                 <Link to={"/explore/app"} >
 
                     <span className='link-t'>
@@ -63,7 +70,7 @@ export default function Sitemap() {
                     </span>
 
                 </Link>
-                <Link to={"/pricing"} >
+                <Link to={"/price"} >
 
                     <span className='link-t'>
                         Pricing

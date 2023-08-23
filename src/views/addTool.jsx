@@ -327,7 +327,7 @@ function AddTool() {
                     <textarea name="description" value={allValues.description} onChange={handleInputChange} id="#about" maxLength={250} cols="10" rows="6" placeholder="write about your app"
                         required></textarea>
                     <label>Contact Email : <span >optional</span></label>
-                    <input type="text" name="contact_email" value={allValues.contact_email} onChange={handleInputChange} className="email" placeholder="solutrendSupport@gmail.com" />
+                    <input type="text" name="contact_email" value={allValues.contact_email} onChange={handleInputChange} className="email" placeholder="hi@solutrend.com" />
                     <div className="devices" style={{ marginTop: '5px' }}> Supported Platforms :</div>
                     <div className="device-checkboxes">
                         <label><input type="checkbox" name="web" value="web" onChange={handleCheckboxChange} />Web</label>
@@ -345,12 +345,12 @@ function AddTool() {
                     <label>Calendly Link : <span >optional</span></label>
                     <input type="text" name="calendly_url" value={allValues.calendly_url} onChange={handleInputChange} className="calendly" placeholder="https://www.calendly.com/yourname" />
                     <label>Who need your app : </label>
-                    <input type="text" name="who_need" value={allValues.who_need} onChange={handleInputChange} className="job" placeholder="like developrs teachers ...etc" />
+                    <input type="text" name="who_need" value={allValues.who_need} onChange={handleInputChange} className="job" placeholder="developrs , teachers ,...etc" />
                     <label >Why  use your app ?</label>
                     <textarea name="why_use" value={allValues.why_use} onChange={handleInputChange} id="#about" maxLength={250} cols="10" rows="6" placeholder="write the needs make others use your app"
                         required></textarea>
                     <label>Your app is alternative to : </label>
-                    <input type="text" name="alternatives" value={allValues.alternatives} onChange={handleInputChange} className="job" placeholder="notion salesforse firebase ...etc" />
+                    <input type="text" name="alternatives" value={allValues.alternatives} onChange={handleInputChange} className="job" placeholder="notion , salesforse , firebase , ...etc" />
                     <label>Price starts from : </label>
                     <div className="priceStarts">
                         <input required type="text" name="start_price" value={allValues.start_price} onChange={handleInputChange} className="creator" placeholder="in dollars.." />

@@ -1,7 +1,9 @@
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { increaseShareCount } from "../services/appServices";
 import { shareOnFacebook, shareOnLinkedIn, shareOnTwitter } from "../services/global"
 import "../styles/article.css";
+import { faShare } from "@fortawesome/free-solid-svg-icons";
 
 
 export function ShareButtons({ url, description, title, image }) {
@@ -97,4 +99,24 @@ export function ShareButtonsForApp({ url, description, title, appId, image }) {
 
     </>
 
+}
+
+
+export function SharerIcon({ url, description, title }) {
+
+    const shareApp = () => {
+        try {
+
+            navigator.share({ title, description, url });
+
+            console.log('shared succfuly');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    return (
+        <div className="btn-link-social" onClick={shareApp} style={{ marginLeft: "15px" }}>
+            <FontAwesomeIcon icon={faShare} size="xl" color="gray" />
+        </div>
+    );
 }

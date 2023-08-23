@@ -49,6 +49,27 @@ export function removeToken() {
 
 
 
+export function metaTitle(str) {
+    if (str.length > 64) {
+        // Truncate the string to the first 10 characters
+        str = str.substring(0, 64);
+    }
+    return str;
+}
+
+
+
+export function metaDescription(str) {
+    if (str.length > 160) {
+        // Truncate the string to the first 10 characters
+        str = str.substring(0, 160);
+    }
+    return str;
+}
+
+
+
+
 
 
 
@@ -80,3 +101,43 @@ export function dateFormat(tstamp) {
     return (date.toLocaleDateString('en-US', options));
 
 }
+
+export function appStatus(status) {
+
+    switch (status) {
+
+        case 1:
+            return "approved";
+        case 0:
+            return "under review";
+        case -1:
+            return "refused";
+        default:
+            return "under review";
+
+    }
+
+}
+
+export function statusColor(status) {
+
+    switch (status) {
+
+        case 1:
+            return "green";
+        case 0:
+            return "gray";
+        case -1:
+            return "red";
+        default:
+            return "gray";
+
+    }
+
+}
+
+
+
+
+
+//export const pwiki = PiwikPro.initialize('cd7f47f3-8c06-4787-bf21-49f9c95546fd', 'https://solutrend.containers.piwik.pro');

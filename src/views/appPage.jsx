@@ -6,7 +6,7 @@ import React from "react";
 import { useEffect } from "react";
 import ReviewModal from "../components/reviewModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark, faCalendar, faEnvelope, faLink, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark, faCalendar, faEnvelope, faLink, faSpinner, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { bookmark, getAPPInfo, increaseViewCount, unBookmark } from "../services/appServices";
 import ReviewsPart from "../components/reviewPart";
@@ -17,6 +17,7 @@ import { PageMetaTags } from "../components/myMetTage";
 import { ShareButtonsForApp } from "../components/shareButtons";
 import { maxString, myUrl, truncateString } from "../services/global";
 import { getLocalUser } from "../services/userServices";
+import { toolJsonld } from "../services/jsonld";
 
 
 
@@ -195,17 +196,19 @@ function AppPage() {
         </div>
     }
 
+
     return (
+
         <div>
             <div className="appPageContainer" >
-                <PageMetaTags title={app['app_name'] + ' - ' + app['what_app']} description={app['description']} imageUrl={app['shot_url']} url={currentUrl} type={'website'} />
+                <PageMetaTags title={app['app_name'] + ' - ' + app['what_app']} description={app['description']} imageUrl={app['shot_url']} url={currentUrl} type={'website'} jsonld={toolJsonld(app)} />
                 <ToastContainer display={displ} message={message} error={errory} />
                 {RevModal && <ReviewModal close={hideModal} appId={app['id']} rebuild={() => updateBuild(!build)} />
                 }
                 {RepModal && <ReportModal close={hideRepModal} appId={app['id']} />
                 }
                 <AppBar />
-                <img className="imageApp" src={app['shot_url']} alt="something error sory " style={{ backgroundColor: "grey" }} />
+                <img className="imageApp" src={app['shot_url']} alt={app['description']} style={{ backgroundColor: "grey" }} />
                 <div className="buttons">
                     <div className="visit" onClick={() => window.open(app['app_url'], '_blank')}>
                         <span className="icony">
@@ -249,37 +252,43 @@ function AppPage() {
                 <div className="content">
                     <div className="appInfo">
 
-                        <h2 className="appName">{name}</h2>
+                        <h2 className="appName">{name}
+                        </h2>
                         <div className="small-des">
                             {app['what_app']}
                         </div>
 
-                        <h6 className="whats">whats {name} ?</h6>
+                        <h6 className="whats">Whats {name} ?</h6>
                         <h1 className="whatsThis">
                             {app['description']}
                         </h1>
 
-                        <h6 className="why">why to use {name} ?</h6>
+                        <h6 className="why">Why to use {name} ?</h6>
                         <div className="why">
                             {app['why_use']}
                         </div>
 
-                        <h6 className="whoUse">who need {name} ?</h6>
+                        <h6 className="whoUse">Who need {name} ?</h6>
                         <div className="whoUse">
                             {app['who_need']}
                         </div>
-                        <h6 className="whoUse">supported platforms :</h6>
+                        <h6 className="whoUse">Supported platforms :</h6>
                         <div className="dev-ces">
                             {app['devices'].map((device, index) => {
                                 return <div className="platform-one" key={index}>{device}</div>
                             })}
+                        </div>
+                        <h6 className="whoUse">Alternative to :</h6>
+                        <div className="whoUse">
+                            {app['alternatives']}
                         </div>
                         <ShareButtonsForApp url={currentUrl} title={app['description']} description={app['description']}
                             image={app['logo_url']} appId={app['id']} />
                     </div>
 
                     <div className="ContentRight">
-                        <img src={app['logo_url']} alt="logo" className="logo-img-title" />
+
+                        <img src={app['logo_url']} className="logo-img-title" alt={app['what_app']} />
                         <div className="pricePart">
                             <div className="pricingMOdel"> Pricing model</div>
                             {app['price_model'].includes('free') ?
@@ -307,6 +316,11 @@ function AppPage() {
                             <div>
 
                             </div>
+                            {app['avg_rating'] !== 0 && <h2><div className="rating" style={{ justifyContent: "center" }}>{app['avg_rating'].toFixed(1)}
+
+                                <FontAwesomeIcon icon={faStar} size='xs' color="#FFDF00" />
+                                <span style={{ fontSize: "15px" }}>({app['rating_count']})</span>
+                            </div></h2>}
                             <div className="review" onClick={showModal}>
                                 Submit a Review
                             </div>
@@ -323,10 +337,8 @@ function AppPage() {
                 {app && <ReviewsPart id={app['id']} build={build} />}
             </div>
             <div className="suggestion">
-                <h4>
-                    Discover more :
-                </h4>
-                {app && <Suggestion id={app['category_id']} />}
+
+                {app && <Suggestion id={app['category_id']} appId={app['id']} />}
 
             </div>
             <div className="stick" id="myBtn" onClick={() => window.open(app['app_url'], '_blank')}>

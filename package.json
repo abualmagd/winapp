@@ -1,6 +1,6 @@
 {
   "name": "solutrend",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "homepage": "https://solutrend.com",
   "private": true,
   "dependencies": {
@@ -9,6 +9,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@paypal/paypal-js": "^6.0.1",
     "@piwikpro/react-piwik-pro": "^1.1.1",
     "@supabase/supabase-js": "^2.20.0",
     "@testing-library/jest-dom": "^5.16.5",

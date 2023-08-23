@@ -1,6 +1,6 @@
 
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { ShareButtons } from "../components/shareButtons";
+import { ShareButtons, SharerIcon } from "../components/shareButtons";
 import "../styles/article.css";
 import { useState } from "react";
 import { getArticleByShortTitle, getRandomArticles } from "../services/blogServices";
@@ -11,6 +11,8 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { dateFormat, myUrl } from "../services/global";
 import { PageMetaTags } from "../components/myMetTage";
 import { Helmet } from "react-helmet-async";
+import { SimpleSubscribe } from "./subscribe";
+import { articleJsonld } from "../services/jsonld";
 
 export default function Article() {
 
@@ -78,8 +80,8 @@ export default function Article() {
 
 
     useEffect(() => {
-        window.scrollTo(0, 0);
         getArticle();
+        window.scrollTo(0, 0);
     }, [getArticle]);
 
     if (state === 'loading') {
@@ -108,25 +110,25 @@ export default function Article() {
 
         const html = article['body'];
         const imagesource = article['image_source'];
-
+        const jsonLd = articleJsonld(article);
         return (
             <div className="article-page">
                 <PageMetaTags description={article['description']} title={article['title']} url={url}
-                    imageUrl={article['image_url']} type={'article'} />
+                    imageUrl={article['image_url']} type={'article'} jsonld={jsonLd} />
                 <Helmet>
                     <meta property="article:author" content={article['writer']} />
                     <meta property="article:published_time" content={dateFormat(article['created_at'])} />
                 </Helmet>
                 <div className="blog-bar">
-                    <div className="logom" >
-                        <img src="/assets/images/logo512.png" alt="W" />
+                    <div className="logom" onClick={() => navigat('/')} style={{ color: "gray" }}>
+                        <img src="/assets/images/logo512.png" alt="solutrend logo find the best business software" />
                         SoluTrend </div>
                     <div className="navigation-blog">
-                        <Link to={'/blog'}>
-                            Blog
+                        <Link to={'/blog'} style={{ fontWeight: '500', color: "gray" }}>
+                            blog
                         </Link>
-                        <Link to={'/'}>
-                            About
+                        <Link to={'/'} style={{ fontWeight: '500', color: "gray" }}>
+                            home
                         </Link>
                     </div>
                 </div>
@@ -136,16 +138,18 @@ export default function Article() {
                 <h1 className="description-article-page">
                     {article['description']}
                 </h1>
-                <p className="creat-at">
+                <p className="creat-at" style={{ display: "flex" }}>
                     {dateFormat(article['created_at'])}
+                    <SharerIcon url={url} description={article['description']} title={article['title']} />
                 </p>
-                <img src={article['image_url']} alt="" className="article-image-page" />
+                <img src={article['image_url']} alt={article['description']} className="article-image-page" />
                 <div className="image-source" dangerouslySetInnerHTML={{ __html: imagesource }}></div>
                 <div className="article-content-page" dangerouslySetInnerHTML={{ __html: html }}>
 
                 </div>
 
                 <ShareButtons url={url} description={article['description']} title={article['title']} image={article['image_url']} />
+
                 {suggestion && <><div className="recent-posts">Discover more</div>
                     <div className="suggestion-wraper">
                         {suggestion.map((r, index) => {
@@ -164,6 +168,12 @@ export default function Article() {
                         })}
 
                     </div></>}
+
+                <SimpleSubscribe />
+                <div style={{ height: "50px" }}>
+
+                </div>
+
             </div>
         );
 

@@ -103,7 +103,7 @@ function Login() {
                     <p className='alreadyP'>Donn't have account ?</p>
                     <Link to={"/signup"} className='signIn' >Sign Up free</Link>
                 </div>
-                <h3> Welcome Back ;</h3>
+                <h3> Login with ;</h3>
                 <div style={{ height: "40px" }}></div>
                 <div className="google-sign" onClick={() => logByGoogle()}>
                     <FontAwesomeIcon icon={faGoogle} /> <div className="google-s">continue with google </div>
@@ -111,7 +111,7 @@ function Login() {
                 <div className="google-sign" onClick={() => logByGithup()}>
                     <FontAwesomeIcon icon={faGithub} /> <div className="google-s">continue with githup </div>
                 </div>
-                <div className="or">or</div>
+                <div className="or">or login with</div>
                 <form onSubmit={onSubmit}>
                     <label >Email</label>
                     <input type="email" ref={emailRef} required />

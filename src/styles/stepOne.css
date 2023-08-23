@@ -41,3 +41,22 @@
     width: 100%;
     justify-content: center;
 }
+
+.custom-select {
+    position: relative;
+    font-family: Arial;
+    margin: 2px auto;
+    background-color: rgb(131, 136, 238);
+    height: 33px;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 5px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    border: var(--searchBorder);
+}
+
+.lablool {
+    margin: 1px auto;
+    margin-top: 15px;
+}

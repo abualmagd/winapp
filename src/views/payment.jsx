@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-
+import { Link } from "react-router-dom";
 
 export default function Payment() {
 
@@ -9,12 +9,18 @@ export default function Payment() {
     }, [url]);
 
 
-    return <div className="payement-listen">
-        <h1>
-            your payemnet ............
-            thank you
+    return <div className="payement-listen" style={{ textAlign: "center" }}>
+        <h3>
+            you create your promotion successfully
+            <br />
+            *********
+            <br />
+            your tool promotion will start immediatly
+            <br />
             for any help
-            hi@solutrend.com
-        </h1>
+            <span style={{ color: "green" }}>  hi@solutrend.com </span>
+        </h3>
+        <Link to={'/dashboard'}> back to dashboard </Link>
+
     </div>
 }

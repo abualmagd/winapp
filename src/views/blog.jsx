@@ -8,6 +8,7 @@ import { useCallback } from "react";
 import { getArticles } from "../services/blogServices";
 import { dateFormat, myUrl } from "../services/global";
 import { PageMetaTags } from "../components/myMetTage";
+import { blogJsonld } from "../services/jsonld";
 
 
 const MyBlog = () => {
@@ -89,24 +90,27 @@ const MyBlog = () => {
         }
         return <BlogCard key={index} article={r} />
     });
-
+    const jsonLd = blogJsonld(articles);
     return (
         <div className="blog-wrap">
-            <PageMetaTags title={'solutrend blog'}
-                description={'articles about the best softwares , compare between apps '} url={url} />
+            <PageMetaTags title={'solutrend blog'} jsonld={jsonLd}
+                description={'articles about the best softwares , compare between softwares and recommended the best business software '} url={url} />
             <div className="blog-bar">
-                <div className="logom" >
+                <div className="logom" onClick={() => navigat('/')} style={{ color: "gray" }}>
                     <img src="/assets/images/logo512.png" alt="W" />
                     SoluTrend </div>
                 <div className="navigation-blog">
-                    <Link to={'/'}>
-                        About
+                    <Link to={'/'} style={{ fontWeight: '500', color: "gray" }}>
+                        home
+                    </Link>
+                    <Link to={'/subscribe'} style={{ fontWeight: '500', color: "gray" }}>
+                        subscribe
                     </Link>
                 </div>
             </div>
 
             <div className="main-article" onClick={() => navigat('/blog/' + pinnedArticle['short_title'])}>
-                <img src={pinnedArticle['image_url']} alt="" className="main-image" />
+                <img src={pinnedArticle['image_url']} alt={pinnedArticle['description']} className="main-image" />
                 <div className="article-details">
                     <div className="creat-at">
                         {dateFormat(pinnedArticle['created_at'])}

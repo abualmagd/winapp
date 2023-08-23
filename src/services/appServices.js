@@ -28,14 +28,21 @@ export async function getHeighlyApps(ofset) {
 
 }
 
+//create get featured tools 
+
+//get hiaghly rated apps 
+
+
+// gat ai apps 
+
 export async function getNewApps() {
-    return await mybase.from('apps').select('*').order("created_at", { ascending: false }).limit(10);
+    return await mybase.from('apps').select('*').order("created_at", { ascending: false }).eq('status', 1).limit(10);
 }
 
-
+//TODO: add rating and alternatives  as columns come in this data
 export async function getAPPInfo(appName) {
     const userId = getToken();
-    return await mybase.rpc('get_app_infos', { 'appname': appName, 'userid': userId });
+    return await mybase.rpc('get_app_infos', { 'appname': appName, 'userid': userId });//add status
     //check parameters  names  small letter supabase perefer small letters only
 }
 
@@ -67,9 +74,10 @@ export async function unBookmark(appId) {
 }
 
 
-export async function getSuggestions(categoryId) {
-    return await mybase.from('apps').select('*').eq('category_id', categoryId).limit(5);
+export async function getSuggestions(appId, categoryId) {
+    return await mybase.from('apps').select('*').neq('id', appId).eq('category_id', categoryId).eq('status', 1).limit(5);
 }
+
 
 
 
@@ -228,4 +236,14 @@ export async function deleteReplay(repId) {
 export async function userAllowedtoAdd() {
     const userId = getToken();
     return await mybase.rpc('check_allow_insert_app', { 'userid': userId });
+}
+
+
+
+export async function updateAppPlan(subId, planName, appId) {
+    console.log('appid: ', appId + " " + planName)
+    return await mybase.from('apps').update({
+        plan_name: planName,
+        sub_id: subId
+    }).eq('id', appId);
 }

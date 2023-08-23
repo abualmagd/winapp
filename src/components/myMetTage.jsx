@@ -1,12 +1,13 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { metaDescription, metaTitle } from '../services/global';
 
-export function PageMetaTags({ title, description, imageUrl, url, type }) {
+export function PageMetaTags({ title, description, imageUrl, url, type, jsonld }) {
 
     return (
         <Helmet>
-            <title data-rh="true">{title}</title>
-            <meta name="description" content={description} />
+            <title data-rh="true">{metaTitle(title)}</title>
+            <meta name="description" content={metaDescription(description)} />
             <link rel="canonical" href={url}></link>
 
             {/* Open Graph metadata */}
@@ -35,6 +36,10 @@ export function PageMetaTags({ title, description, imageUrl, url, type }) {
             <meta property="linkedin:description" content={description} />
             <meta property="linkedin:image" content={imageUrl} />
             <meta property="linkedin:url" content={url} />
+
+            {jsonld && <script className='structured-data-list' type="application/ld+json">
+                {jsonld}
+            </script>}
         </Helmet>
     );
 }

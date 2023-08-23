@@ -35,8 +35,9 @@ export default function NewPlans() {
             <p>
                 you can promote your tool to get more advantages and more users
             </p>
-            <h3>we offer two promotion plans </h3>
+            <h3>We offer three promotion plans </h3>
             <div className="price-plans">
+
                 <div className="plan-pro">
                     <h1 className="plan-name">SILVER</h1>
                     <div className="price-div"><span className="price-span">
@@ -45,29 +46,40 @@ export default function NewPlans() {
                     <div className="feature">
                         <FontAwesomeIcon icon={faCheckSquare}
                             size="xl"
-                            style={{ color: "#207b19", marginBottom: '5px', marginRight: "6px" }} />
-                        dedicated support
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        list your tool in monthly newsletters
                     </div>
                     <div className="feature">
                         <FontAwesomeIcon icon={faCheckSquare}
                             size="xl"
-                            style={{ color: "#207b19", marginBottom: '5px', marginRight: "6px" }} />
-                        export reviews
-                    </div>
-                    <div className="feature">
-                        <FontAwesomeIcon icon={faCheckSquare}
-                            size="xl"
-                            style={{ color: "#207b19", marginBottom: '5px', marginRight: "6px" }} />
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
                         featured in Homepage
                     </div>
                     <div className="feature">
                         <FontAwesomeIcon icon={faCheckSquare}
                             size="xl"
-                            style={{ color: "#207b19", marginBottom: '5px', marginRight: "6px" }} />
-                        list your tool in monthly newsletters
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        export reviews
+                    </div>
+                    <div className="feature">
+                        <FontAwesomeIcon icon={faCheckSquare}
+                            size="xl"
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        dedicated support
+                    </div>
+
+                    <div className="feature">
+                        <FontAwesomeIcon icon={faCheckSquare}
+                            size="xl"
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        1$ setup fees one time payment.
                     </div>
                     <div className="selectPromote" onClick={() => navigate('/dashboard')} >Promote my tool</div>
                 </div>
+
+
+
+
                 <div className="plan-advance">
                     <h1 className="plan-name">GOLD</h1>
                     <div className="price-div"><span className="price-span">
@@ -76,31 +88,85 @@ export default function NewPlans() {
                     <div className="feature">
                         <FontAwesomeIcon icon={faCheckSquare}
                             size="xl"
-                            style={{ color: "#207b19", marginBottom: '5px', marginRight: "6px" }} />
-                        instant support
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        list your tool in weekly newsletters
                     </div>
                     <div className="feature">
                         <FontAwesomeIcon icon={faCheckSquare}
                             size="xl"
-                            style={{ color: "#207b19", marginBottom: '5px', marginRight: "6px" }} />
-                        export reviews
-                    </div>
-                    <div className="feature">
-                        <FontAwesomeIcon icon={faCheckSquare}
-                            size="xl"
-                            style={{ color: "#207b19", marginBottom: '5px', marginRight: "6px" }} />
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
                         featured in Homepage
                     </div>
                     <div className="feature">
                         <FontAwesomeIcon icon={faCheckSquare}
                             size="xl"
-                            style={{ color: "#207b19", marginBottom: '5px', marginRight: "6px" }} />
-                        list your tool in weekly newsletters
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        export reviews
+                    </div>
+                    <div className="feature">
+                        <FontAwesomeIcon icon={faCheckSquare}
+                            size="xl"
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        instant support
+                    </div>
+
+                    <div className="feature">
+                        <FontAwesomeIcon icon={faCheckSquare}
+                            size="xl"
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        1$ setup fees one time payment.
                     </div>
                     <div className="selectPromote" onClick={() => navigate('/dashboard')} >Promote my tool</div>
                 </div>
 
+
+
+
+
+                <div className="plan-advance">
+                    <h1 className="plan-name">DIAMOND</h1>
+                    <div className="price-div"><span className="price-span">
+                        98</span>$/yearly</div>
+                    <p style={{ textAlign: "center", color: "green", fontWeight: "600", fontSize: '1.4rem' }}>pay yearly and save 70$</p>
+                    <div style={{ height: "25px" }}></div>
+                    <div className="feature">
+                        <FontAwesomeIcon icon={faCheckSquare}
+                            size="xl"
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        list your tool in weekly newsletters
+                    </div>
+                    <div className="feature">
+                        <FontAwesomeIcon icon={faCheckSquare}
+                            size="xl"
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        featured in Homepage
+                    </div>
+
+                    <div className="feature">
+                        <FontAwesomeIcon icon={faCheckSquare}
+                            size="xl"
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        export reviews
+                    </div>
+                    <div className="feature">
+                        <FontAwesomeIcon icon={faCheckSquare}
+                            size="xl"
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        instant support
+                    </div>
+                    <div className="feature">
+                        <FontAwesomeIcon icon={faCheckSquare}
+                            size="xl"
+                            style={{ color: "#207b19", marginBottom: '3px', marginRight: "6px" }} />
+                        1$ setup fees one time payment.
+                    </div>
+                    <div className="selectPromote" onClick={() => navigate('/dashboard')} >Promote my tool</div>
+                </div>
+
+
             </div>
+
+
             <div className="detail-section">
 
 

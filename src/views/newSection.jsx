@@ -36,7 +36,7 @@ function NewPart() {
     });
     return (
         <div className="newContainer">
-            {lista.length > 0 && <div className="topTitle"> Find New Featured Tools :</div>}
+            {lista.length > 0 && <div className="topTitle"> Find New Featured  Business Softwares :</div>}
             {loading ? <div className='center_progress'><FontAwesomeIcon icon={faSpinner} pulse size="lg" /> </div> : <section className="newSection">
                 {cards}
             </section>}
