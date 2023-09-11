@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Card from "./card";
+import Card from "../components/card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { getHeighlyApps } from "../services/appServices";

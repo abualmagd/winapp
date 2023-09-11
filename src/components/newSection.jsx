@@ -40,7 +40,7 @@ function NewPart() {
             {loading ? <div className='center_progress'><FontAwesomeIcon icon={faSpinner} pulse size="lg" /> </div> : <section className="newSection">
                 {cards}
             </section>}
-            <div onClick={() => navigat('/add')} className="addBtn">Add Your Tool Now</div>
+            <div onClick={() => navigat('/add')} className="addBtn">Add My Tool Now</div>
         </div>
 
     );

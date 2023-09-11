@@ -3,7 +3,7 @@
 import "../styles/stepOne.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
-import AppBar from "./appBar";
+import AppBar from "../components/appBar";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { PayWall } from "../components/pay";

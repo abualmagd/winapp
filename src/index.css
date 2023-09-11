@@ -19,6 +19,10 @@ code {
     monospace;
 }
 
+a {
+  color: blue;
+  text-decoration: none;
+}
 
 @media screen and (max-width: 800px) {
   body {
@@ -41,7 +45,7 @@ code {
   --ratingColor: #b9b5c1;
   --unhoverText: rgb(223, 219, 219);
   --logoColor: rgb(240, 255, 255);
-  --cardColor: #202438;
+
   --cardHover: #30344c;
   --imageBackground: rgb(159, 159, 164);
   --searchBorder: none;
@@ -63,8 +67,7 @@ code {
   --ratingColor: #ccc;
   --unhoverText: #333;
   --logoColor: #000102;
-  --cardColor: #ffff;
-  --cardHover: #faf3f3;
+  --cardHover: #ffff;
   --imageBackground: #ccc;
   --searchBorder: 2px solid gray;
   --aboutText: rgb(143 132 132);

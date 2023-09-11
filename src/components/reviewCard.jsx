@@ -2,11 +2,11 @@
 import '../styles/reviewCard.css';
 import { useState } from 'react';
 
-import ReplayPart from '../components/replayPart';
+import ReplayPart from './replayPart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { getLocalUser } from '../services/userServices';
-import { WarnModal } from '../components/warningModal';
+import { WarnModal } from './warningModal';
 import { deleteReview } from '../services/appServices';
 function ReviewCard(props) {
     const [expand, updateExpand] = useState(false);

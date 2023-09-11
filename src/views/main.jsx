@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/main.css';
-import AppBar from './appBar';
+import AppBar from "../components/appBar";
 import TopSection from './top';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';

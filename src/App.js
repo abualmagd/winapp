@@ -30,6 +30,8 @@ import Unsubscribe from './views/unsubscribe';
 import Payment from './views/payment';
 import NewPlans from './views/newPlans';
 import { Subscribe } from './views/subscribe';
+import { Gift } from './views/gift';
+import { Ranking } from './views/ranking';
 
 
 
@@ -80,7 +82,8 @@ function App() {
               <Route path='/recover' element={<RecoveryPassword />} />
               <Route path='/subscribe' element={<Subscribe />} />
               <Route path='/payment' element={<Payment />} />
-
+              <Route path='/gifts' element={<Gift />} />
+              <Route path='/ranking' element={<Ranking />} />
               <Route path='/edit' element={<ProtectedRoute>
                 <AccountInfo />
               </ProtectedRoute>} />
@@ -122,3 +125,19 @@ function App() {
 }
 
 export default App;
+
+
+/*
+tawk chat
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/64e52986cc26a871b030c751/1h8fike42';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+*/

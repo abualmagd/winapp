@@ -17,7 +17,7 @@ export const homeJsonLd = JSON.stringify({
         {
             "@type": "SearchAction",
             "target": "https://solutrend.com/explore/{content}",
-            "query-input": "required name=content",
+            "query-input": "required name=content default=a",
             "description": "Search for business software solutions with options to filter by price and supported platforms."
         }
     ],

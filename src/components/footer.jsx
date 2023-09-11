@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faFacebook, faInstagram, faReddit } from "@fortawesome/free-brands-svg-icons";
 import "../styles/myFooter.css"
 import { Link } from "react-router-dom";
-import Sitemap from "../components/sitemap";
+import Sitemap from "./sitemap";
 
 function MyFooter() {
 

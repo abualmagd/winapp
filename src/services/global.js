@@ -87,7 +87,10 @@ export function shareOnFacebook(url) {
     window.open(facebookUrl, '_blank');
 }
 
-
+export function shareFacebook(url, title, description) {
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
+    window.open(facebookUrl, '_blank');
+}
 export function shareOnLinkedIn(url, title, summary) {
     const linkedInUrl = `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(summary)}`;
     window.open(linkedInUrl, '_blank');

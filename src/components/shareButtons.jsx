@@ -4,6 +4,7 @@ import { increaseShareCount } from "../services/appServices";
 import { shareOnFacebook, shareOnLinkedIn, shareOnTwitter } from "../services/global"
 import "../styles/article.css";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
+import { faFacebookSquare, faLinkedin, faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
 
 
 export function ShareButtons({ url, description, title, image }) {
@@ -25,17 +26,16 @@ export function ShareButtons({ url, description, title, image }) {
         </div>
         <div className="share-links">
             <div className="btn-link-social" onClick={() => shareOnFacebook(url)} >
-                facebook
+                <FontAwesomeIcon icon={faFacebookSquare} size="xl" color="#3b5998" /> facebook
             </div>
             <div className="btn-link-social" onClick={() => shareOnTwitter(url, title, image)}>
-                twitter
+                <FontAwesomeIcon icon={faTwitterSquare} size="xl" color="#00aced" /> twitter
             </div>
             <div className="btn-link-social" onClick={() => shareOnLinkedIn(url, title, description)}>
-
-                linkedin
+                <FontAwesomeIcon icon={faLinkedin} size="xl" color=" #0e76a8" /> linkedin
             </div>
             <div className="btn-link-social" onClick={shareApp} >
-                more..
+                <FontAwesomeIcon icon={faShare} size="xl" color="#3b5998" /> more..
             </div>
         </div>
 
@@ -63,17 +63,20 @@ export function ShareButtonsForApp({ url, description, title, appId, image }) {
 
     const shareToFace = async () => {
         shareOnFacebook(url);
-        await increaseShareCount(appId);
+        if (appId)
+            await increaseShareCount(appId);
     }
 
     const shareToTwit = async () => {
         shareOnTwitter(url, title, image);
-        await increaseShareCount(appId);
+        if (appId)
+            await increaseShareCount(appId);
     }
 
     const shareToLinked = async () => {
         shareOnLinkedIn(url, title, description);
-        await increaseShareCount(appId);
+        if (appId)
+            await increaseShareCount(appId);
     }
 
 
@@ -83,17 +86,17 @@ export function ShareButtonsForApp({ url, description, title, appId, image }) {
         </div>
         <div className="share-links">
             <div className="btn-link-social" onClick={() => shareToFace()} >
-                facebook
+                <FontAwesomeIcon icon={faFacebookSquare} size="xl" color="#3b5998" /> facebook
             </div>
             <div className="btn-link-social" onClick={() => shareToTwit()}>
-                twitter
+                <FontAwesomeIcon icon={faTwitterSquare} size="xl" color="#00aced" /> twitter
             </div>
             <div className="btn-link-social" onClick={() => shareToLinked()}>
 
-                linkedin
+                <FontAwesomeIcon icon={faLinkedin} size="xl" color=" #0e76a8" /> linkedin
             </div>
             <div className="btn-link-social" onClick={shareApp} >
-                more..
+                <FontAwesomeIcon icon={faShare} size="xl" color="#3b5998" /> more..
             </div>
         </div>
 

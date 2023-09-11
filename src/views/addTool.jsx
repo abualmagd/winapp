@@ -1,7 +1,7 @@
 
 import { useCallback, useState } from "react";
 import "../styles/addTool.css";
-import StepsIndicator from "./stepsIndicator";
+import StepsIndicator from "../components/stepsIndicator";
 import { useEffect } from "react";
 import { createNewApp, getAllCategory } from "../services/appServices";
 import { ToastContainer } from "../components/toastContainer";

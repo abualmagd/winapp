@@ -1,0 +1,140 @@
+.month-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2px;
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    /* background: linear-gradient(360deg, rgba(61, 31, 87, 0.7) 30%, rgba(45, 26, 75, 0) 100%);*/
+
+}
+
+
+.month-tools {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.h-head-main {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.month-card {
+    display: flex;
+    flex-direction: column;
+    flex: 2 1 300px;
+    margin: 5px;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: var(--cardHover);
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.month-card:hover {
+
+    padding: 15px;
+
+}
+
+.head-m-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+
+}
+
+
+.tool-logo {
+    height: 100px;
+    width: 100px;
+    margin: 5px;
+    border: var(--searchBorder);
+    border-radius: 15%;
+}
+
+.tool-logo img {
+    border-radius: 15%;
+    height: 100px;
+
+}
+
+.tool-name {
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+
+.tool-description {
+    margin: 10px 15px;
+    display: inline-block;
+
+}
+
+.h-bold {
+    padding: 0;
+    margin: 5px;
+    font-weight: bold;
+
+}
+
+.list {
+    margin-top: 0px;
+    line-height: 1.5;
+}
+
+.list-map {
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: -30px;
+}
+
+.list-map span {
+    color: rgb(4, 142, 4);
+
+}
+
+.tool-profile {
+    margin-top: -30px;
+    margin-left: 15px;
+    cursor: pointer;
+    background-color: rgb(125, 235, 125);
+    border-radius: 5px;
+    text-align: center;
+    width: 100px;
+    padding-bottom: 2px;
+}
+
+.trophy-container {
+    display: inline;
+    width: 10px;
+    position: relative;
+
+}
+
+.readMore {
+    text-align: end;
+    text-decoration: none;
+    color: rgb(11, 94, 32);
+
+}
+
+.shareIconn {
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+
+}
+
+.space-ranking {
+    height: 100px;
+}
+
+@media only screen and (max-width:440px) {
+
+    .month-section {
+        padding: 1.5rem 5px;
+    }
+}

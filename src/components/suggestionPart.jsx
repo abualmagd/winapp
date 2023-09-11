@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import NewCard from "../views/newCard";
+import NewCard from "./newCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { getSuggestions } from "../services/appServices";

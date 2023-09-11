@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faBookmark, faGear, faMoon, faRightFromBracket, faSpinner, faSun } from '@fortawesome/free-solid-svg-icons';
 import { removeUserLocal } from '../services/userServices';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import ReviewsPart from '../components/reviewPart';
 import { getUserApps } from '../services/appServices';
 import { ThemeContext } from '../controllers/themeProvider';
 import { logMeOut } from '../services/authServices';
@@ -16,7 +15,6 @@ function DashBoard() {
     const navigat = useNavigate();
     const [state, updateState] = useState('loading');
     const [data, updateData] = useState([]);
-    const [appId, updateAppId] = useState(null);
     const { onToggleTheme, theme } = useContext(ThemeContext);
     //data is user apps and length of it is the count of user apps
     //countApps=data.length
@@ -36,15 +34,12 @@ function DashBoard() {
 
 
 
-    const chooseApp = (id) => {
-        updateAppId(id);
-        console.log('from dash card : ', id);
-    }
+
 
 
 
     const dashCards = data.map((app, index) => {
-        return <DashCard app={app} key={index} click={chooseApp} id={app['id']} />
+        return <DashCard app={app} key={index} id={app['id']} />
     })
 
 
@@ -68,8 +63,6 @@ function DashBoard() {
     }, [fetchData]);
 
 
-    const index = data.findIndex(obj => obj['id'] === appId);
-    const app = data[index];
 
 
     if (state === 'loading') {
@@ -144,27 +137,6 @@ function DashBoard() {
                 {dashCards}
             </div>
 
-            {appId && <div className="activeAppDetails">
-                <div className="medPart">
-                    <div className="detailsTitle">
-                        {app['app_name']}
-                    </div>
-                    <div className="btton-edit">
-                        <Link to={"/editApp/" + appId} style={{ textDecoration: "none" }}>edit app details</Link>
-                    </div>
-                </div>
-                <img className="imageAppDash" src={app['shot_url']} alt="something error sory " />
-
-                <div className="medPart">
-                    <div className="detailsTitle">
-                        app reviews :
-                    </div>
-                </div>
-
-                <div className="reviewsPart" >
-                    <ReviewsPart id={appId} isDash={true} count={app['reviews_count']} appPlan={app['plan_name']} />
-                </div>
-            </div>}
 
         </div>
     );

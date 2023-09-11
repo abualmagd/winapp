@@ -13,6 +13,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    width: 100%;
 }
 
 
@@ -25,6 +26,7 @@
     margin-bottom: 20px;
     justify-content: flex-start;
     color: var(--textColor);
+
 }
 
 
@@ -38,13 +40,14 @@
     border-radius: 10px;
     color: var(--unhoverText);
     position: relative;
-
+    box-shadow: var(--bxShadow);
+    background-color: var(--cardColor);
+    margin-left: 10px;
 }
 
 .newCard:hover {
     cursor: pointer;
-    box-shadow: var(--bxShadow);
-    background-color: var(--cardColor);
+
     color: var(--textColor);
 }
 

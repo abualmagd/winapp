@@ -1,4 +1,4 @@
-import ReviewCard from "../views/reviewCard";
+import ReviewCard from "./reviewCard";
 import '../styles/appPage.css';
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { getAppReviews, getMoreReviews } from "../services/appServices";

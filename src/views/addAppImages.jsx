@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { updateAppLogo, updateAppShot } from "../services/appServices";
 import { useNavigate, useParams } from "react-router-dom";
-import StepsIndicator from "./stepsIndicator";
+import StepsIndicator from "../components/stepsIndicator";
 
 
 export default function AppImageUploader() {

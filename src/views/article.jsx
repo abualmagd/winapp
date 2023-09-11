@@ -41,8 +41,6 @@ export default function Article() {
             // Create a new style element
             const style = document.createElement('style');
 
-            // Set the type attribute to 'text/css'
-            style.type = 'text/css';
 
             // Add styles to the style element
             style.innerHTML = styles;
@@ -138,10 +136,10 @@ export default function Article() {
                 <h1 className="description-article-page">
                     {article['description']}
                 </h1>
-                <p className="creat-at" style={{ display: "flex" }}>
+                <div className="creat-at" style={{ display: "flex" }}>
                     {dateFormat(article['created_at'])}
                     <SharerIcon url={url} description={article['description']} title={article['title']} />
-                </p>
+                </div>
                 <img src={article['image_url']} alt={article['description']} className="article-image-page" />
                 <div className="image-source" dangerouslySetInnerHTML={{ __html: imagesource }}></div>
                 <div className="article-content-page" dangerouslySetInnerHTML={{ __html: html }}>

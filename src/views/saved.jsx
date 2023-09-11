@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import '../styles/newSection.css';
-import NewCard from "./newCard";
+import NewCard from '../components/newCard';
 import { getUserSavedApps } from '../services/appServices';
 import { getToken } from '../services/global';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

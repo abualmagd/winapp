@@ -6,7 +6,7 @@ import { appStatus, statusColor } from '../services/global';
 function DashCard(props) {
     const navigate = useNavigate();
     const app = props.app;
-    const press = props.click;
+
 
     const createdAt = convertStampToDate(app['created_at']);
     const stColor = statusColor(app['status']);
@@ -23,7 +23,7 @@ function DashCard(props) {
             </div>
             <div className="buttons-card">
                 {(app['plan_name'] === 'free' && app['status'] === 1) && <div className="card-btn-promot" onClick={() => navigate('/plan/' + props.id)} >🚀Promote my tool</div>}
-                <div className="card-btn" onClick={() => press(props.id)} >Show my tool</div>
+                <div className="card-btn" onClick={() => navigate('/editApp/' + app['id'])} >Edit</div>
                 {app['plan_name'] !== 'free' && <div> promoted <span style={{ backgroundColor: "yellow", fontWeight: "500", textTransform: "capitalize", borderRadius: "10px", padding: "4px 10px" }}>{app['plan_name']}</span>   </div>}
             </div>
             <div className="appRecords">

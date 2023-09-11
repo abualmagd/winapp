@@ -2,8 +2,7 @@ import { faCheckSquare, faExplosion, faWarning } from "@fortawesome/free-solid-s
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/newplans.css";
 import { useNavigate } from "react-router-dom";
-import AppBar from "./appBar";
-
+import AppBar from "../components/appBar";
 
 export default function NewPlans() {
 

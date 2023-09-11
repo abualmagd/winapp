@@ -36,7 +36,7 @@ export async function getHeighlyApps(ofset) {
 // gat ai apps 
 
 export async function getNewApps() {
-    return await mybase.from('apps').select('*').order("created_at", { ascending: false }).eq('status', 1).limit(10);
+    return await mybase.from('apps').select('*').order("created_at", { ascending: false }).eq('status', 1).limit(3);
 }
 
 //TODO: add rating and alternatives  as columns come in this data
@@ -246,4 +246,15 @@ export async function updateAppPlan(subId, planName, appId) {
         plan_name: planName,
         sub_id: subId
     }).eq('id', appId);
+}
+
+
+export async function getMonthTools() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+
+    const firstDayOfMonth = year + '-01-' + month;
+    console.log(firstDayOfMonth)
+    return await mybase.from('month_apps').select('*').eq('month', firstDayOfMonth).order('place', true);
 }

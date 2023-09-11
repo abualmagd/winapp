@@ -1,12 +1,14 @@
 import Main from "./main";
-import NewPart from "./newSection";
+import NewPart from "../components/newSection";
 import { useState, useEffect } from "react";
 import MyAlert from "../components/myAlert";
-import MyFooter from "./footer";
+import MyFooter from "../components/footer";
 import WhyUs from "./whyUs";
 import { PageMetaTags } from "../components/myMetTage";
 import { myUrl } from "../services/global";
 import { homeJsonLd } from "../services/jsonld";
+import { MonthTools } from "../components/monthTools";
+
 
 
 
@@ -42,6 +44,7 @@ function Home() {
                 imageUrl={"https://solutrend.com/sollogo.png"} url={myUrl} jsonld={homeJsonLd} />
             {showed && <MyAlert close={closeAlert} />}
             <Main />
+            <MonthTools />
             <NewPart />
             <WhyUs />
             <div className="space" style={{ height: "50px" }}></div>

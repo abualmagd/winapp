@@ -2,9 +2,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import "../styles/explore.css";
 import { useCallback, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faClose } from "@fortawesome/free-solid-svg-icons";
 
-import AppBar from "./appBar";
+import AppBar from "../components/appBar";
 import { searchApps } from "../services/appServices";
 import SearchResult from "./searchResult";
 
@@ -161,7 +161,7 @@ function Explore() {
             "name": "social app"
         }
     ]);
-
+    const [showFilters, updateFilers] = useState('filters');
     const [searchValue, setValue] = useState(content);
     const [selectedDevices, setSelectedDevices] = useState([]);
     const [categoryId, setCategoryId] = useState(null);
@@ -184,7 +184,12 @@ function Explore() {
 
 
     const handleChangeCategory = (event) => {
-        setCategoryId(event.target.value);
+        if (event.target.value === '0') {
+            setCategoryId(null);
+        } else {
+            setCategoryId(event.target.value);
+        }
+
     }
 
     const handleChangePriceModel = (event) => {
@@ -215,13 +220,20 @@ function Explore() {
         navigat(`/explore/${searchValue}`);
     }
 
+    function hide() {
+        updateFilers('inactive');
+    }
 
+    function show() {
+        updateFilers('filters');
+    }
     const fetchData = useCallback(async (value) => {
         updateState('loading');
         const myArrayString = `{${selectedDevices.join(',')}}`;
         var platforms = selectedDevices.length === 0 ? null : myArrayString;
         var category = categoryId === 0 ? null : categoryId;
         const { error, data } = await searchApps(value, platforms, priceModel, category);
+        hide();
         if (error) {
             updateState('error');
             console.log(error.message);
@@ -272,7 +284,9 @@ function Explore() {
 
             </div>
             <div className="explore-body">
-                <div className="filters">
+                <div className="show" onClick={show}><FontAwesomeIcon icon={faArrowRight} size="xl" /></div>
+                <div className={showFilters}>
+                    <div className="toggle" onClick={hide}><FontAwesomeIcon icon={faClose} /></div>
                     <div className="filters-head">
                         <div className="filters-title">
                             Filter

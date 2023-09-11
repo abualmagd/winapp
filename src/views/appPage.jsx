@@ -1,4 +1,4 @@
-import AppBar from "./appBar";
+import AppBar from "../components/appBar";
 import '../styles/appPage.css';
 import '../styles/main.css';
 import { useCallback, useState } from "react";

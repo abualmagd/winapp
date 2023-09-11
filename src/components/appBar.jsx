@@ -47,7 +47,7 @@ export default function AppBar() {
                 <Link to="/blog" className="link">blog</Link>
                 <Link to="/price" className="link">pricing</Link>
                 <div className="submitButton">
-                    <div onClick={() => navigat('/add')} className="linkBtn">list your tool</div>
+                    <div onClick={() => navigat('/add')} className="linkBtn">list my tool</div>
                 </div>
                 {token !== null ? <img src={image} alt="r" className="avatar" /> : <div onClick={join} className='link-join'>Join</div>}
                 <div className="dropdown">
