@@ -1,4 +1,4 @@
-import Main from "./main";
+import Main from "../components/main";
 import NewPart from "../components/newSection";
 import { useState, useEffect } from "react";
 import MyAlert from "../components/myAlert";

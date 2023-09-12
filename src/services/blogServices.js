@@ -25,3 +25,15 @@ export async function getArticleByShortTitle(t) {
 export async function getRandomArticles(title) {
     return await mybase.from('articles').select('*').neq('short_title', title).limit(3);
 }
+
+
+//search blogs?
+
+export async function searchBlog(keyword) {
+    await mybase
+        .from('articles')
+        .select('*')
+        .ilike('title', `%${keyword}%`)
+        .or('description', `%${keyword}%`);
+
+}

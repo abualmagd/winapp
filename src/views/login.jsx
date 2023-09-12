@@ -109,7 +109,7 @@ function Login() {
                     <FontAwesomeIcon icon={faGoogle} /> <div className="google-s">continue with google </div>
                 </div>
                 <div className="google-sign" onClick={() => logByGithup()}>
-                    <FontAwesomeIcon icon={faGithub} /> <div className="google-s">continue with githup </div>
+                    <FontAwesomeIcon icon={faGithub} /> <div className="google-s">continue with github </div>
                 </div>
                 <div className="or">or login with</div>
                 <form onSubmit={onSubmit}>

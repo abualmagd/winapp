@@ -98,7 +98,7 @@ const MyBlog = () => {
             <div className="blog-bar">
                 <div className="logom" onClick={() => navigat('/')} style={{ color: "gray" }}>
                     <img src="/assets/images/logo512.png" alt="W" />
-                    SoluTrend </div>
+                    <span className="logo-span">SoluTrend</span> </div>
                 <div className="navigation-blog">
                     <Link to={'/'} style={{ fontWeight: '500', color: "gray" }}>
                         home

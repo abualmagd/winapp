@@ -6,7 +6,7 @@ import { faArrowRight, faClose } from "@fortawesome/free-solid-svg-icons";
 
 import AppBar from "../components/appBar";
 import { searchApps } from "../services/appServices";
-import SearchResult from "./searchResult";
+import SearchResult from "../components/searchResult";
 
 function Explore() {
 
@@ -168,6 +168,8 @@ function Explore() {
     const [priceModel, setPriceModel] = useState(null);
     const [state, updateState] = useState('loading');
     const [data, setData] = useState();
+    const [holdData, setHoldData] = useState();
+
     let navigat = useNavigate();
 
 
@@ -216,6 +218,7 @@ function Explore() {
         }
     }
 
+
     function changeParam() {
         navigat(`/explore/${searchValue}`);
     }
@@ -240,7 +243,15 @@ function Explore() {
         } else {
             setData(data);
             updateState('data');
-            console.log(data);
+            if (data.length < 1) {
+
+                const { error, data } = await searchApps(value.charAt(0), null, null, null);
+                if (!error) {
+                    setHoldData(data);
+                }
+            }
+
+
 
         }
     }, [selectedDevices, priceModel, categoryId]);
@@ -367,7 +378,7 @@ function Explore() {
 
                 </div>
                 <div className="search-result">
-                    <SearchResult result={data} state={state} />
+                    <SearchResult result={data} state={state} holdResult={holdData} />
                 </div>
 
             </div>

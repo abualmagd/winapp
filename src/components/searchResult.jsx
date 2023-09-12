@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SearchCard from "../components/searchCard";
+import SearchCard from "./searchCard";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import "../styles/explore.css";
 
@@ -9,8 +9,7 @@ export default function SearchResult(props) {
 
     const state = props.state;
     const result = props.result;
-
-
+    const holdResult = props.holdResult;
 
 
 
@@ -44,12 +43,41 @@ export default function SearchResult(props) {
                 {results}
             </div>
         } else {
+            if (holdResult && holdResult.length) {
+                const resultz = holdResult.map((app, index) => {
+                    return <SearchCard app={app} key={index} />
+
+                });
+                return <div>
+                    <div className="search-result" >
+
+                        <h3 className="error">
+                            No results , like your search.
+                            <br />
+                            here 👇 some tools that may interest you
+
+                        </h3>
+
+                        {resultz}
+
+                    </div>
+                </div>
+
+            }
+
+
+
             return <div>
                 <div className="search-result" >
 
-                    <p className="error">
-                        No results , please change your search
-                    </p>
+                    <h3 className="error">
+                        No results , like your search.
+                        <br />
+                        here 👇 some tools that may interest you
+
+                    </h3>
+
+
 
                 </div>
             </div>
