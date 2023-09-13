@@ -20,14 +20,14 @@ function MyFooter() {
         window.open('https://www.reddit.com/r/Solutrend', '_blank');
     }
 
-
+const today=new Date();
     return (
         <div >
             <Sitemap />
 
             <footer className="myFooter">
                 <div className="copyRight">
-                    ©️ 2023 SoluTrend
+                    ©️ {today.getFullYear()} SoluTrend
                     All rights reserved
                 </div>
                 <div className="social">

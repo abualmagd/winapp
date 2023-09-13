@@ -89,7 +89,9 @@ export const articleJsonld = (article) => {
             "logo": {
                 "@type": "ImageObject",
                 "url": "https://solutrend.com/sollogo.png"
+
             }
+            
         },
         "description": article['description'],
         "articleBody": article['body']
@@ -121,9 +123,10 @@ export const toolJsonld = (app) => {
         },
         'rating': {
             '@type': 'AggregateRating',
-            'ratingValue': app['avg_rating'],
-            'reviewCount': app['rating_count']
+            'ratingValue': app['avg_rating'] || 0,
+            'reviewCount': app['rating_count'] || 0,
         },
+        'itemReviewed': app['app_name']       
     };
 
     return JSON.stringify(data);

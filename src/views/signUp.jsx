@@ -16,16 +16,28 @@ function SignUp() {
 
     const emailRef = useRef();
     const passwordRef = useRef();
+    const rePasswordRef=useRef();
     const nameRef = useRef();
     const [message, updateMessage] = useState();
     const [display, updateDisplay] = useState("none");
     const [loading, updateLoading] = useState(false);
+    const [misMatch,setMismatch]= useState(false);
     const navTo = useNavigate();
 
 
 
 
+    const onChange=()=>{
 
+        if(rePasswordRef.current.value!==passwordRef.current.value){
+           
+            setMismatch(true);
+        }else{
+            setMismatch(false); 
+        }
+       
+
+    }
 
 
     const notify = (mesg) => {
@@ -33,23 +45,24 @@ function SignUp() {
         updateDisplay("flex");
         setTimeout(() => {
             updateDisplay("none");
-            console.log('close')
         }, 2500);
-        console.log('nottttttttttttt')
     }
 
 
     const onSubmit = async (event) => {
-        updateLoading(true);
-        event.preventDefault();
-        console.log('submit');
+        
+             event.preventDefault();
+        if(rePasswordRef.current.value!==passwordRef.current.value){
+          notify('repeated password deosnot match your password');  
+        }else{
+
+            console.log('submit');
+            updateLoading(true);        
         try {
 
             const { data, error } = await register(emailRef.current.value, passwordRef.current.value, nameRef.current.value);
-            console.log("daata : ", data.user.email)
 
             if (error) throw error;
-            console.log('User registerd successfully:', data.user.email);
 
 
             if (data) {
@@ -58,13 +71,12 @@ function SignUp() {
             }
 
         } catch (error) {
-            console.log('An error occurred:', error.message);
             notify(error.message);
             updateLoading(false);
         }
 
 
-
+}
     };
 
 
@@ -91,7 +103,10 @@ function SignUp() {
                     <input type="email" placeholder='example@gmail.com' ref={emailRef} required />
                     <label >Password</label>
                     <input type="password" placeholder='6 digits or more' ref={passwordRef} required />
-                    <p className='terms'>By signing up, you agree to the
+                    <label >Retype password</label>
+                    <input type="password" placeholder='retype your password please' ref={rePasswordRef} onChange={onChange} required />
+                   {misMatch&& <p className="mismatch" >repeated password must match the  password</p>}
+                   <p className='terms'>By signing up, you agree to the
                         <Link to={'https://www.solutrend.com/terms.html'} target='_blank'>  Terms of Service </Link >
                         and <Link to={'https://www.solutrend.com/privacy.html'} target='_blank'> Privacy Policy </Link>
                         , including <Link to={'https://www.solutrend.com/cookie.html'} target='_blank'> Cookie Use. </Link></p>

@@ -32,7 +32,6 @@ function Login() {
             updateDisplay("none");
             console.log('close')
         }, 3000);
-        console.log('nottttttttttttt')
     }
 
     const logByGithup = async () => {
@@ -42,7 +41,6 @@ function Login() {
             onLogin(current.data.user.id);
         } else {
             notify(error, true);
-            console.log('error');
         }
     }
 
@@ -53,7 +51,6 @@ function Login() {
             onLogin(current.data.user.id);
         } else {
             notify(error, true);
-            console.log('error');
         }
     }
 
@@ -78,7 +75,6 @@ function Login() {
     const onSubmit = async (event) => {
         updateLoading(true);
         event.preventDefault();
-        console.log('submit');
         const { data, error } = await login(emailRef.current.value, passwordRef.current.value);
 
         if (error) {
