@@ -132,12 +132,9 @@ function AppPage() {
             console.log(error.message);
         } else {
             updateState('data');
-            console.log(data);
             updateBookmarked(data[0]['is_favorite']);
             updateApp(data[0]);
             try {
-                console.log('review +++++')
-                console.log(data[0]['id'])
                 await increaseViewCount(data[0]['id']);
             } catch (error) {
                 console.log('error increase views', error)

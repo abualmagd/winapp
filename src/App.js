@@ -32,8 +32,10 @@ import NewPlans from './views/newPlans';
 import { Subscribe } from './views/subscribe';
 import { Gift } from './views/gift';
 import { Ranking } from './views/ranking';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 
+const queryClient=new QueryClient();
 
 function App() {
 
@@ -59,6 +61,7 @@ function App() {
 
 
   return (
+    <QueryClientProvider client={queryClient}>
     <div className="App" >
       <HelmetProvider>
         <AuthProvider>
@@ -121,6 +124,7 @@ function App() {
         </AuthProvider>
       </HelmetProvider>
     </div>
+     </QueryClientProvider>
   );
 }
 

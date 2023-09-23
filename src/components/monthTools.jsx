@@ -2,35 +2,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/monthTools.css';
 import { ShareButtonsForApp } from './shareButtons';
 import { faMedal, faShareAlt, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { useCallback, useEffect, useState } from 'react';
 import { getMonthTools } from '../services/appServices';
 import { Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
 
 
 export function MonthTools() {
 
-    const [myData, setData] = useState('null');
-    const [state, setState] = useState('loading');
+    const {isLoading,isError,data}=useQuery({queryKey:"getMonthTools",queryFn:getMonthTools})
+    
 
-    const loadData = useCallback(async () => {
-        const { data, error } = await getMonthTools();
-        if (error) {
-            console.log('erro: ', error);
-            setState('error');
-        } else {
-            setState('data');
 
-            setData(data);
-        }
-
-    }, []);
-
-    useEffect(() => {
-        loadData();
-    }, [loadData]);
-
-    if (state === 'loading') {
+    if (isLoading) {
 
         return <div>
             <div className="appPageContainer" >
@@ -40,11 +24,11 @@ export function MonthTools() {
             </div>
         </div>
     }
-    if (state === 'error') {
+    if (isError) {
         return <div></div>
     }
 
-
+const myData=data.data;
     const cards = myData.map((t, index) => {
         return <SmallMonthCard key={index} tool={t} />
     });
@@ -63,28 +47,14 @@ export function MonthTools() {
 
 export function MonthApps() {
 
-    const [myData, setData] = useState('null');
-    const [state, setState] = useState('loading');
+   
+    const {isLoading,isError,data}=useQuery({queryKey:"getMonthTools",queryFn:getMonthTools})
 
-    const loadData = useCallback(async () => {
-        const { data, error } = await getMonthTools();
-        if (error) {
-            console.log('erro: ', error);
-            setState('error');
-        } else {
-            setState('data');
 
-            setData(data);
-        }
+ window.scrollTo(0, 0);
 
-    }, []);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        loadData();
-    }, [loadData]);
-
-    if (state === 'loading') {
+    if (isLoading) {
 
         return <div>
             <div className="appPageContainer" >
@@ -94,11 +64,12 @@ export function MonthApps() {
             </div>
         </div>
     }
-    if (state === 'error') {
+    if (isError) {
         return <div></div>
     }
 
 
+    const myData=data.data;
     const cards = myData.map((t, index) => {
         return <MonthCard key={index} tool={t} />
     });

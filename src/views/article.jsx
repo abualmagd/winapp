@@ -1,11 +1,9 @@
 
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams,  useNavigate } from "react-router-dom";
 import { ShareButtons, SharerIcon } from "../components/shareButtons";
 import "../styles/article.css";
-import { useState } from "react";
 import { getArticleByShortTitle, getRandomArticles } from "../services/blogServices";
 import { useEffect } from "react";
-import { useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { dateFormat, myUrl } from "../services/global";
@@ -13,25 +11,24 @@ import { PageMetaTags } from "../components/myMetTage";
 import { Helmet } from "react-helmet-async";
 import { SimpleSubscribe } from "./subscribe";
 import { articleJsonld } from "../services/jsonld";
-
+import { useQuery } from "react-query";
+import AppBar from "../components/appBar";
+import MyFooter from "../components/footer";
 export default function Article() {
 
     const { title } = useParams(); //short title 
     const navigat = useNavigate();
-    const [article, updateArticle] = useState();
-    const [state, updateState] = useState('loading');
-    const [suggestion, updateSuggestion] = useState();
 
+    const {isError,isLoading,data}=useQuery({queryKey:['articles',title],queryFn:()=>getArticleByShortTitle(title)})
+
+   const {data:suggestions}=useQuery({queryKey:['suggestions',title],queryFn:()=>getRandomArticles(title),enabled:!!data})
+
+
+   //console.log(suggestions['data'])
     const url = myUrl + 'blog/' + title;
 
-    const getSuggestions = useCallback(async () => {
-        const { data } = await getRandomArticles(title);
-        if (data) {
-            updateSuggestion(data);
-        }
-    }, [title]);
 
-    const injectStyle = (artcl) => {
+   /* const injectStyle = (artcl) => {
         const styles = artcl['styles'];
         if (!styles) {
             console.log('no inject style');
@@ -53,36 +50,19 @@ export default function Article() {
                 document.head.removeChild(style);
             };
         }
-    }
-
-    const getArticle = useCallback(async () => {
-        const { data, error } = await getArticleByShortTitle(title); // get article by short title 
-        if (data) {
-            updateArticle(data[0]);
-            updateState('data');
-            console.log('article js ', data);
-            injectStyle(data[0]);
-            getSuggestions(data[0]['id']);
-
-        } else {
-            updateState('error');
-            console.log('errrrrrrr:', error.message);
-        }
-    }
+    }*/
 
 
-        , [title, getSuggestions]);
-
+ window.scrollTo(0, 0);
 
 
 
 
     useEffect(() => {
-        getArticle();
-        window.scrollTo(0, 0);
-    }, [getArticle]);
+       
+    }, []);
 
-    if (state === 'loading') {
+    if (isLoading) {
 
         return <div>
             <div className="article-page" >
@@ -93,7 +73,7 @@ export default function Article() {
         </div>
     }
 
-    if (state === 'error') {
+    if (isError) {
         return <div>
             <div className="article-page" >
                 <div className="centerCircular">
@@ -106,30 +86,28 @@ export default function Article() {
         </div>
     } else {
 
+        const article=data['data'][0];
+        
         const html = article['body'];
         const imagesource = article['image_source'];
         const jsonLd = articleJsonld(article);
         return (
+            <div className="main">
+  
+            <AppBar/>
+            <div className="dividerz" style={{height:"65px"}}>
+
+            </div>
+          
             <div className="article-page">
+        
                 <PageMetaTags description={article['description']} title={article['title']} url={url}
                     imageUrl={article['image_url']} type={'article'} jsonld={jsonLd} />
                 <Helmet>
                     <meta property="article:author" content={article['writer']} />
                     <meta property="article:published_time" content={dateFormat(article['created_at'])} />
                 </Helmet>
-                <div className="blog-bar">
-                    <div className="logom" onClick={() => navigat('/')} style={{ color: "gray" }}>
-                        <img src="/assets/images/logo512.png" alt="solutrend logo find the best business software" />
-                        SoluTrend </div>
-                    <div className="navigation-blog">
-                        <Link to={'/blog'} style={{ fontWeight: '500', color: "gray" }}>
-                            blog
-                        </Link>
-                        <Link to={'/'} style={{ fontWeight: '500', color: "gray" }}>
-                            home
-                        </Link>
-                    </div>
-                </div>
+            
                 <h2 className="article-title-page">
                     {article['title']}
                 </h2>
@@ -148,9 +126,9 @@ export default function Article() {
 
                 <ShareButtons url={url} description={article['description']} title={article['title']} image={article['image_url']} />
 
-                {suggestion && <><div className="recent-posts">Discover more</div>
+                {suggestions && <><div className="recent-posts">Discover more</div>
                     <div className="suggestion-wraper">
-                        {suggestion.map((r, index) => {
+                        {suggestions['data'].map((r, index) => {
                             const suggestUrl = '/blog/' + r['short_title'];
                             return <div className="suggestion-articles" key={index} onClick={() => navigat(suggestUrl)}>
                                 <div className="suggest-card-article">
@@ -173,6 +151,11 @@ export default function Article() {
                 </div>
 
             </div>
+            <div className="dividerz" style={{height:"125px"}}>
+
+        </div>
+        <MyFooter />
+              </div>
         );
 
 

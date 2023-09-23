@@ -1,52 +1,51 @@
-import { useEffect, useState } from "react";
 import Card from "../components/card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { getHeighlyApps } from "../services/appServices";
+import { useQuery } from "react-query";
 
 
 function TopSection() {
 
-    const [lista, updateLista] = useState([]);
-    const [loading, updateLoading] = useState(false);
+    const page=0;
+    const {isLoading,isError,data}=useQuery({queryKey:["getHeighlyApps",page],queryFn:()=>getHeighlyApps(page)})
+
+if(isLoading){
+
+    return (
+        <div >
+            <div className="topTitle" > Explore the best :</div>
 
 
-    const getTopApps = async () => {
-        updateLoading(true);
+            <div className='center_progress'><FontAwesomeIcon icon={faSpinner} pulse size="lg" /> </div> 
+               
+        </div>
 
-        const { data, error } = await getHeighlyApps(0);
-        if (error) {
+    );
+}
+else if(isError){
 
-            updateLoading(false);
-
-        } else {
-
-            updateLista(data);
-            updateLoading(false);
-
-        }
+    <div >
+    <div className="topTitle" > Explore the best :</div>
 
 
-    }
-
-    useEffect(() => {
-        getTopApps();
-    }, []);
+    <div className='center_progress'>Sorry something error </div> 
+       
+</div>
 
 
+}
 
-
+const lista=data.data;
     var cards = lista.map((item, index) => {
         return <Card key={index} data={item} />
     });
     return (
         <div >
             <div className="topTitle" > Explore the best :</div>
-
-
-            {loading ? <div className='center_progress'><FontAwesomeIcon icon={faSpinner} pulse size="lg" /> </div> : <section className="topApps">
+          <section className="topApps">
                 {cards}
-            </section>}
+            </section>
         </div>
 
     );

@@ -1,46 +1,33 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/blog.css";
 import BlogCard from "../components/blogCard";
-import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { useCallback } from "react";
 import { getArticles } from "../services/blogServices";
 import { dateFormat, myUrl } from "../services/global";
 import { PageMetaTags } from "../components/myMetTage";
 import { blogJsonld } from "../services/jsonld";
+import { useQuery} from "react-query";
+import AppBar from "../components/appBar";
+import MyFooter from "../components/footer";
 
 
 const MyBlog = () => {
 
-    const [state, updateState] = useState('loading');
-    const [articles, updateArticles] = useState();
+    const {isError,isLoading,data}=useQuery({queryKey:'fetchArticles',queryFn:getArticles});
 
+
+
+    
     const url = myUrl + '/blog';
 
-    const fetchArticles = useCallback(async () => {
 
-        const { data, error } = await getArticles();
-
-        if (error) {
-            updateState('error');
-            console.log(error.message);
-        } else {
-            console.log(data)
-            updateArticles(data);
-            updateState('data');
-            localStorage.setItem('myAarticles', JSON.stringify(data));
-        }
-    }, []);
-
-    useEffect(() => {
-        fetchArticles();
-    }, [fetchArticles]);
+   
 
     const navigat = useNavigate();
 
 
-    if (state === 'loading') {
+    if (isLoading) {
 
         return <div>
             <div className="blog-wrap" >
@@ -51,7 +38,7 @@ const MyBlog = () => {
         </div>
     }
 
-    if (state === 'error') {
+    if (isError) {
         return <div>
             <div className="blog-wrap" >
                 <div className="centerCircular">
@@ -63,6 +50,7 @@ const MyBlog = () => {
             </div>
         </div>
     }
+    const articles=data['data'];
     if (articles.length === 0) {
         return <div className="blog-wrap">
             <div className="blog-bar">
@@ -92,22 +80,18 @@ const MyBlog = () => {
     });
     const jsonLd = blogJsonld(articles);
     return (
+        <div className="main">
+            <AppBar/>
+            <div className="dividerz" style={{height:"65px"}}>
+
+            </div>
+      
         <div className="blog-wrap">
             <PageMetaTags title={'solutrend blog'} jsonld={jsonLd}
                 description={'articles about the best softwares , compare between softwares and recommended the best business software '} url={url} />
-            <div className="blog-bar">
-                <div className="logom" onClick={() => navigat('/')} style={{ color: "gray" }}>
-                    <img src="/assets/images/logo512.png" alt="W" />
-                    <span className="logo-span">SoluTrend</span> </div>
-                <div className="navigation-blog">
-                    <Link to={'/'} style={{ fontWeight: '500', color: "gray" }}>
-                        home
-                    </Link>
-                    <Link to={'/subscribe'} style={{ fontWeight: '500', color: "gray" }}>
-                        subscribe
-                    </Link>
-                </div>
-            </div>
+      
+      
+           
 
             <div className="main-article" onClick={() => navigat('/blog/' + pinnedArticle['short_title'])}>
                 <img src={pinnedArticle['image_url']} alt={pinnedArticle['description']} className="main-image" />
@@ -126,7 +110,12 @@ const MyBlog = () => {
             <div className="grid-articles">
                 {articlesList}
             </div>
+        </div> 
+        <div className="dividerz" style={{height:"125px"}}>
+
         </div>
+        <MyFooter />
+         </div>
 
     );
 
