@@ -25,7 +25,7 @@ export default function Main() {
     return (
         <main className="main">
             <AppBar />
-            <h1 className="title">Revolutionize Your Productivity with the Best <span className='titleSpn'> Software Solutions</span></h1>
+            <h1 className="title">Revolutionize Your Productivity with the  <span className='titleSpn'>Best Software </span>Solutions</h1>
             <div className="input-container">
                 <input ref={searchRef} type="text" className="search"
                     placeholder="search apps, tools, extensions and more" onKeyDown={(e) => handleEnter(e)} />
@@ -33,6 +33,8 @@ export default function Main() {
                     <FontAwesomeIcon icon={faClose} />
                 </div>
             </div>
+            <h2 className='h2-head'>List Your SaaS Software Tool in a Few Clicks, We'll Promote It to the World.</h2>
+            <div onClick={() => naigate('/add')} className="addBtn">List My Tool Now</div>
             <TopSection />
         </main>
     );

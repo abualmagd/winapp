@@ -59,7 +59,11 @@
   color: var(--btnColor);
 }
 
-
+.h2-head{
+ 
+  margin:12px auto ;
+  margin-top: 38px;
+}
 
 .topApps {
   display: flex;

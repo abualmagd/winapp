@@ -41,7 +41,7 @@ function TopSection() {
     });
     return (
         <div >
-            <div className="topTitle" > Find the best apps and softwares :</div>
+            <div className="topTitle" > Explore the best :</div>
 
 
             {loading ? <div className='center_progress'><FontAwesomeIcon icon={faSpinner} pulse size="lg" /> </div> : <section className="topApps">

@@ -36,11 +36,11 @@ function NewPart() {
     });
     return (
         <div className="newContainer">
-            {lista.length > 0 && <div className="topTitle"> Find New Featured  Business Softwares :</div>}
+            {lista.length > 0 && <div className="topTitle"> The New Listed Tools :</div>}
             {loading ? <div className='center_progress'><FontAwesomeIcon icon={faSpinner} pulse size="lg" /> </div> : <section className="newSection">
                 {cards}
             </section>}
-            <div onClick={() => navigat('/add')} className="addBtn">Add My Tool Now</div>
+            <div onClick={() => navigat('/add')} className="addBtn">List My Tool Now</div>
         </div>
 
     );

@@ -270,7 +270,8 @@ function AddTool() {
         if (error) {
 
         } else {
-            setCategories(data);
+          const list=  data.sort((a, b) => a.name.localeCompare(b.name));
+            setCategories(list);
         }
     }, []);
 

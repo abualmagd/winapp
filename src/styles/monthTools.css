@@ -137,4 +137,11 @@
     .month-section {
         padding: 1.5rem 5px;
     }
+
+    .month-card{
+        margin: 0px;
+        margin-bottom: 10px;
+ 
+       
+    }
 }
