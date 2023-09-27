@@ -150,6 +150,20 @@ input[type="text"]:not(:placeholder-shown)+.clear {
 
 }
 
+.logo-panel{
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: var(--cardColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .card:hover {
   color: var(--textColor);
 }
@@ -256,8 +270,58 @@ input[type="text"]:not(:placeholder-shown)+.clear {
 
 }
 
+
+.new-listed-h{
+  margin-top: 60px;
+  margin-bottom: -40px;
+}
+
+.soluRecords{
+  display: flex;
+  justify-content: space-around;
+  margin: 30px;
+  color: blue;
+}
+.btn-panel{
+  background-color: var(--btnColor);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px auto;
+  width: 70px;
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+.btn-wrap{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.soluRecords{
+  display: flex;
+  justify-content: space-between;
+
+}
+.records-h{
+  margin: 30px;
+}
+
+.reports-h{
+  cursor: pointer;
+}
 @media only screen and (max-width: 800px) {
 
+  .soluRecords{
+    flex-direction: column;
+  }
+  .soluRecords div{
+    margin-bottom: 20px;
+  }
   .main {
 
     margin: 0px 2px;

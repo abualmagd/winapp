@@ -53,7 +53,6 @@ export async function authState() {
         refresh_token: session.refresh_token,
         expires_at: session.expires_at,
       }));
-      console.log('authstate logined ');
     }
   });
 }

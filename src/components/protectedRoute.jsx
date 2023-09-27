@@ -1,8 +1,9 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import useAuth from "../myHooks/useAuth"
+import { getLocalUser } from "../services/userServices";
 
-const ProtectedRoute = ({ children }) => {
+export const ProtectedRoute = ({ children }) => {
     const { token } = useAuth();
     if (!token) {
         console.log(token);
@@ -14,4 +15,20 @@ const ProtectedRoute = ({ children }) => {
 }
 
 
-export default ProtectedRoute;
+
+
+
+export const AdminProtectedRoute=({children})=>{
+const user=getLocalUser();
+if(!user){
+    return <Navigate to="/login" replace />;
+}else{
+    if(user['user_type']==='admin'){
+        return children;
+    }else{
+        return <Navigate to="/" replace />; 
+    }
+}
+
+
+}

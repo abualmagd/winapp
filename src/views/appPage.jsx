@@ -249,7 +249,9 @@ function AppPage() {
                 <div className="content">
                     <div className="appInfo">
 
-                        <h2 className="appName">{name}
+                        <h2 className="appName"><a href={app['app_url']}>
+                            {name}
+                            </a> 
                         </h2>
                         <div className="small-des">
                             {app['what_app']}

@@ -36,7 +36,7 @@ export async function getHeighlyApps(ofset) {
 // gat ai apps 
 
 export async function getNewApps() {
-    return await mybase.from('apps').select('*').order("created_at", { ascending: false }).eq('status', 1).limit(3);
+    return await mybase.from('apps').select('*').order("created_at", { ascending: false }).eq('status', 1).limit(4);
 }
 
 //TODO: add rating and alternatives  as columns come in this data
@@ -258,3 +258,5 @@ export async function getMonthTools() {
     console.log(firstDayOfMonth)
     return await mybase.from('month_apps').select('*').eq('month', firstDayOfMonth).order('place', true);
 }
+
+

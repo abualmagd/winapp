@@ -25,7 +25,7 @@ export default function Main() {
     return (
         <main className="main">
             <AppBar />
-            <h1 className="title">Revolutionize Your Productivity with the  <span className='titleSpn'>Best Software </span>Solutions</h1>
+            <h1 className="title">Revolutionize Your Productivity with the  <span className='titleSpn'>Best Software </span> Solutions</h1>
             <div className="input-container">
                 <input ref={searchRef} type="text" className="search"
                     placeholder="search apps, tools, extensions and more" onKeyDown={(e) => handleEnter(e)} />

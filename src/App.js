@@ -1,7 +1,7 @@
 
 
 import { Navigate, Route, Routes } from 'react-router-dom';
-import ProtectedRoute from './components/protectedRoute';
+import {AdminProtectedRoute, ProtectedRoute} from './components/protectedRoute';
 import AuthProvider from './controllers/authProvider';
 import AddTool from './views/addTool';
 import AppPage from './views/appPage';
@@ -33,12 +33,14 @@ import { Subscribe } from './views/subscribe';
 import { Gift } from './views/gift';
 import { Ranking } from './views/ranking';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Panel } from './views/panel';
 
 
 const queryClient=new QueryClient();
 
 function App() {
 
+  //use react query to cache user session restoringe 
   const sessionrecover = useCallback(async () => {
     try {
       await restoreSession();
@@ -117,6 +119,10 @@ function App() {
               <Route path='/editApp/:id' element={<ProtectedRoute>
                 <EditTool />
               </ProtectedRoute>} />
+
+              <Route path='/panel' element={<AdminProtectedRoute>
+                <Panel />
+              </AdminProtectedRoute>} />
 
               <Route path='*' element={<Navigate to="/" replace />} />
             </Routes>

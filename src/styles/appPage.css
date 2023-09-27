@@ -64,6 +64,9 @@
     width: 100%;
 }
 
+.appName a{
+    color:var(--textColor);
+}
 .appInfo {
     width: 60%;
     margin: 5px auto;
