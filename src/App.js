@@ -34,6 +34,7 @@ import { Gift } from './views/gift';
 import { Ranking } from './views/ranking';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Panel } from './views/panel';
+import UploadArticle from './views/uploadeArticle';
 
 
 const queryClient=new QueryClient();
@@ -123,6 +124,13 @@ function App() {
               <Route path='/panel' element={<AdminProtectedRoute>
                 <Panel />
               </AdminProtectedRoute>} />
+              <Route path='/panel/publish' element={
+                <AdminProtectedRoute>
+                  <UploadArticle />
+                </AdminProtectedRoute>
+              } />
+
+              
 
               <Route path='*' element={<Navigate to="/" replace />} />
             </Routes>

@@ -308,7 +308,7 @@ input[type="text"]:not(:placeholder-shown)+.clear {
 
 }
 .records-h{
-  margin: 30px;
+  margin: 30px 0px;
 }
 
 .reports-h{

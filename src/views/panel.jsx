@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { approveTool, getReports, getSolutrendRecords, getUnApprovedTools, refuseTool } from "../services/adminServices";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../styles/main.css';
 import AppBar from "../components/appBar";
 
@@ -32,6 +32,10 @@ export function Panel(){
         
                   query.data&&  <Records data={query.data.data[0]} />
       }
+
+      <div className="soluRecords">
+        <Link  className="addBtn" to={'/panel/publish'}>Add Article</Link>
+      </div>
 
         <h2 className="new-listed-h">
             new listed tools need approval:
@@ -90,6 +94,9 @@ function PanelCard({app}) {
 
 
 
+
+
+
     return (
         <div className="card">
             <div className="logo-panel" >
@@ -116,9 +123,17 @@ function PanelCard({app}) {
             
             <h6>{app['category']}</h6>
             <a href={app['app_url']}>({app['app_url']})</a>
+            {mutation.error&& <div className="error">
+                {mutation.error}
+            </div>
+          }
+              {mutation.data&& <div className="error">
+                {mutation.data.data}
+            </div>
+          }
            <div className="btn-wrap">
-                     <div className="btn-panel" onClick={()=>mutation.mutate(app['id'])}>Approve</div>
-            <div className="btn-panel" onClick={()=>refuse.mutate(app['id'])}>refuse</div>
+                     <div className="btn-panel" onClick={()=>mutation.mutate(app['id'])}>{mutation.isLoading?'loading':'Approve'}</div>
+            <div className="btn-panel" onClick={()=>refuse.mutate(app['id'])}>{refuse.isLoading?'loading':'Refuse'}</div>
            </div>
    
         </div>

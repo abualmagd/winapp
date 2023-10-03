@@ -2,7 +2,7 @@
 import { useParams,  useNavigate } from "react-router-dom";
 import { ShareButtons, SharerIcon } from "../components/shareButtons";
 import "../styles/article.css";
-import { getArticleByShortTitle, getRandomArticles } from "../services/blogServices";
+import {  getArticleWithAuthor, getRandomArticles } from "../services/blogServices";
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +19,7 @@ export default function Article() {
     const { title } = useParams(); //short title 
     const navigat = useNavigate();
 
-    const {isError,isLoading,data}=useQuery({queryKey:['articles',title],queryFn:()=>getArticleByShortTitle(title)})
+    const {isError,isLoading,data}=useQuery({queryKey:['articles',title],queryFn:()=>getArticleWithAuthor(title)})
 
    const {data:suggestions}=useQuery({queryKey:['suggestions',title],queryFn:()=>getRandomArticles(title),enabled:!!data})
 
@@ -28,38 +28,12 @@ export default function Article() {
     const url = myUrl + 'blog/' + title;
 
 
-   /* const injectStyle = (artcl) => {
-        const styles = artcl['styles'];
-        if (!styles) {
-            console.log('no inject style');
-        } else {
-
-
-            // Create a new style element
-            const style = document.createElement('style');
-
-
-            // Add styles to the style element
-            style.innerHTML = styles;
-
-            // Insert the style element into the head section of the document
-            document.head.appendChild(style);
-
-            // Remove the style element when the component unmounts
-            return () => {
-                document.head.removeChild(style);
-            };
-        }
-    }*/
-
-
- window.scrollTo(0, 0);
-
+   
 
 
 
     useEffect(() => {
-       
+        window.scrollTo(0, 0);
     }, []);
 
     if (isLoading) {
@@ -86,11 +60,20 @@ export default function Article() {
         </div>
     } else {
 
-        const article=data['data'][0];
-        
+        if(data.data!==null){
+
+        const article=data.data[0];     
         const html = article['body'];
         const imagesource = article['image_source'];
         const jsonLd = articleJsonld(article);
+        const writter={
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": article['author_name'],
+            "url": " ",
+            "image": article['author_image_url'],
+            "description": article['author_description']
+          };
         return (
             <div className="main">
   
@@ -104,7 +87,7 @@ export default function Article() {
                 <PageMetaTags description={article['description']} title={article['title']} url={url}
                     imageUrl={article['image_url']} type={'article'} jsonld={jsonLd} />
                 <Helmet>
-                    <meta property="article:author" content={article['writer']} />
+                    <meta property="article:author" content={writter} />
                     <meta property="article:published_time" content={dateFormat(article['created_at'])} />
                 </Helmet>
             
@@ -121,8 +104,22 @@ export default function Article() {
                 <img src={article['image_url']} alt={article['description']} className="article-image-page" />
                 <div className="image-source" dangerouslySetInnerHTML={{ __html: imagesource }}></div>
                 <div className="article-content-page" dangerouslySetInnerHTML={{ __html: html }}>
-
                 </div>
+                {article['author_id']&&<div className="writer-section">
+                    <p>written by </p>
+                    <div className="logo">
+                    <img src={article['author_image_url']} alt={article['author_description']} className=""/> 
+                    <div className="author-data">
+                        <h5 className="author-name">
+                            {article['author_name']} 
+                            </h5> 
+                         <p className="author-description">{article['author_description']} </p>
+                    </div>
+                  
+                    </div>
+                    
+                </div>
+                }
 
                 <ShareButtons url={url} description={article['description']} title={article['title']} image={article['image_url']} />
 
@@ -161,6 +158,8 @@ export default function Article() {
 
 
     }
+}
+return <></>;
 }
 
 

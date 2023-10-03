@@ -125,6 +125,86 @@ img {
     height: auto;
 }
 
+.add-article{
+  width: 100%;
+}
+
+.add-article-form{
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+}
+
+.add-article-form label {
+    margin-left: 3px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.add-article-form input {
+    margin-right: 10px;
+    height: 33px;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 5px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    background-color: var(--inputBg);
+    border: var(--searchBorder);
+}
+.add-article-form input[type='checkbox']{
+    height: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.add-article-form textarea {
+    margin-right: 10px;
+    border-radius: 10px;
+    outline: none;
+    background-color: var(--inputBg);
+    border: var(--searchBorder);
+    padding-left: 5px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    padding: 10px;
+    resize: none;
+}
+
+
+.add-article-form input[type='submit'] {
+    display: flex;
+    border-radius: 8px;
+    margin-right: 1rem;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--btnbgColor);
+    padding: 5px;
+    width: 120px;
+    align-self: flex-end;
+    margin-bottom: 20px;
+    cursor: pointer;
+    box-shadow: var(--bxShadow);
+    color: var(--textColor);
+}
+
+
+.author-data{
+    display: flex;
+    flex-direction: column;
+}
+.author-name , .author-description{
+    margin: 0px;
+    margin-left:4px;
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.author-name{
+    font-weight: 300px;
+    margin-top: -10px;
+}
 @media only screen and (max-width: 1000px) {
     .article-page {
         width: 90%;

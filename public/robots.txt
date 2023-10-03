@@ -10,3 +10,4 @@ Disallow:/payment/
 Disallow:/confirm/
 Disallow:/unsub/
 Disallow:/recover/
+Disallow:/panel/

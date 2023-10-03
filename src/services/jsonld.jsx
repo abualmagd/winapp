@@ -111,22 +111,11 @@ export const toolJsonld = (app) => {
         "description": app['description'],
         "operatingSystem": app['devices'],
         "applicationCategory": app['category'],
-        "author": {
-            "@type": "Organization",
-            "name": "Solutrend"
-        },
-        "image": {
-            "@type": "ImageObject",
-            "url": app['logo_url'],
-            "width": 512,
-            "height": 512
-        },
-        'rating': {
-            '@type': 'AggregateRating',
-            'ratingValue': app['avg_rating'] || 0,
-            'reviewCount': app['rating_count'] || 0,
-        },
-        'itemReviewed': app['app_name']       
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue":app['avg_rating'] || 0,
+            "ratingCount": app['rating_count'] || 0,
+          },   
     };
 
     return JSON.stringify(data);

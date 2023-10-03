@@ -28,7 +28,7 @@ export function MonthTools() {
         return <div></div>
     }
 
-const myData=data.data;
+const myData=data.data||[];
     const cards = myData.map((t, index) => {
         return <SmallMonthCard key={index} tool={t} />
     });
@@ -69,7 +69,9 @@ export function MonthApps() {
     }
 
 
-    const myData=data.data;
+
+
+    const myData=data.data||[];
     const cards = myData.map((t, index) => {
         return <MonthCard key={index} tool={t} />
     });
@@ -82,8 +84,8 @@ export function MonthApps() {
         </div>
         <p>  chosen by solutrend team depend on scores the tool achieved.</p>
     </div>
-
 }
+
 
 
 export function MonthCard({ tool }) {

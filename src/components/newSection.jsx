@@ -35,7 +35,7 @@ else if(isError){
     );
 }
 
-const lista=data.data;
+const lista=data.data||[];
     var cards = lista.map((item, index) => {
         return <NewCard key={index} data={item} />
     });

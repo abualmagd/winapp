@@ -216,8 +216,7 @@ function AddTool() {
 
     function handleCategoryChange(event) {
         const { name, value } = event.target;
-        console.log('handle change ', name + " " + value.replace(/\s+/g, ''));
-        console.log(typeof (value));
+      
         setValues({ ...allValues, [name]: value });//here seting the value per name
     };
 
@@ -244,7 +243,6 @@ function AddTool() {
             console.log('here in post app');
             notify(error.message, true);
             updateLoading(false);
-            console.error(error.message);
 
         } else {
             console.log('new app : ', data);

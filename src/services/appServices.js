@@ -128,7 +128,6 @@ export async function getReplaysforReview(reviewId) {
 
 export async function createNewApp(newData) {
     return await mybase.from('apps').insert(newData).select('id');
-
 }
 
 

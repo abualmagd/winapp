@@ -147,7 +147,7 @@ export default function AppImageUploader() {
                 <ToastContainer display={display} message={message} error={errory} />
                 {logoImage != null && <img src={logoImage} alt="error" className="logo-image-shower" />}
                 <div className="image-uploader">
-                    <input type="file" name="avat" id="logoImage" onChange={(e) => handleChange(e)} style={{ display: "none" }} accept="image/*" />
+                    <input type="file" name="avat" id="logoImage"  style={{ display: "none" }} accept="image/*" />
 
                     <input type="button" id="onpress" onClick={clickLogo}
                         value="choose logo image" style={{ width: "140px", cursor: "pointer" }} />

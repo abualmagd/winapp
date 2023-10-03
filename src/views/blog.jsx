@@ -50,7 +50,7 @@ const MyBlog = () => {
             </div>
         </div>
     }
-    const articles=data['data'];
+    const articles=data['data']||[];
     if (articles.length === 0) {
         return <div className="blog-wrap">
             <div className="blog-bar">
