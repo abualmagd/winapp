@@ -15,7 +15,6 @@ function EditTool() {
     const [state, updateState] = useState('loading');
     const { id } = useParams('id');
     const userId = getToken();
-    console.log('id user', userId);
     const [loading, updateLoading] = useState(false);
     const [selectedDevices, setSelectedDevices] = useState([]);
     const [priceModels, setPriceModels] = useState([]);
@@ -183,7 +182,10 @@ function EditTool() {
         start_price: '',
         fees_per: 'month',
         price_model: '',
-        devices: ''
+        devices: '',
+        use_cases:'',
+        features:'',
+        video_url:'',
     });
 
 
@@ -205,6 +207,15 @@ function EditTool() {
             setSelectedDevices(selectedDevices.filter(device => device !== selectedDevice));
         }
     }
+
+
+        //listing before update changes of use_cases and features
+        function handleInputChangeLister(event) {
+            const { name, value } = event.target;
+            const list=value.split(/\s*,\s*/);
+            console.log(list);
+            setValues({ ...allValues, [name]: list });//here seting the value per name
+        };
 
     const handlePriceChange = (event) => {
         const selectedModel = event.target.value;
@@ -248,14 +259,15 @@ function EditTool() {
     }
 
     const updateMyApp = async () => {
-        const myApp = new APP(userId, allValues.category_id, '', allValues.app_name, allValues.app_url, allValues.calendly_url,
+     
+        const myApp = new APP(userId, allValues.category_id, allValues.plan_name, allValues.app_name, allValues.app_url, allValues.calendly_url,
             allValues.what_app, allValues.description, allValues.contact_email, '', allValues.who_need,
             allValues.why_use, allValues.alternatives, allValues.start_price, allValues.fees_per,
-            '', priceModels, selectedDevices);
+            '', priceModels, selectedDevices,allValues.features,allValues.use_cases,allValues.video_url);
         const newData = myApp.toData();
         console.log('update');
         console.log('values', allValues);
-        const { error, data } = await updateApp(newData, id);
+        const { error, data } = await updateApp(newData,id);
         if (error) {
             throw error;
         } else {
@@ -348,6 +360,8 @@ function EditTool() {
                         <label >App description :</label>
                         <textarea name="description" value={allValues.description} onChange={handleInputChange} id="#about" maxLength={250} cols="10" rows="6" placeholder="write about your app"
                             required></textarea>
+                              <label>Use cases:</label>
+                    <input  name="use_cases" value={allValues.use_cases??''} onChange={handleInputChangeLister} type="text" className="appUrl" placeholder="frist case, second case, must seperate by comma, " />
                         <label>Contact Email : <span >optional</span></label>
                         <input type="text" name="contact_email" value={allValues.contact_email} onChange={handleInputChange} className="email" placeholder="solutrendSupport@gmail.com" />
                         <div className="devices" style={{ marginTop: '5px' }}> Supported Platforms :</div>
@@ -369,6 +383,8 @@ function EditTool() {
                     <div className="left">
                         <label>Calendly Link : <span >optional</span></label>
                         <input type="text" name="calendly_url" value={allValues.calendly_url} onChange={handleInputChange} className="calendly" placeholder="https://www.calendly.com/yourname" />
+                        <label>Youtube video id: <span >optional</span></label>
+                    <input type="text" name="video_url" value={allValues.video_url??''} onChange={handleInputChange} className="calendly" placeholder="78845547" />
                         <label>Who need your app : </label>
                         <input type="text" name="who_need" value={allValues.who_need} onChange={handleInputChange} className="job" placeholder="like developrs teachers ...etc" />
                         <label >Why  use your app ?</label>
@@ -376,6 +392,9 @@ function EditTool() {
                             required></textarea>
                         <label>Your app is alternative to : </label>
                         <input type="text" name="alternatives" value={allValues.alternatives} onChange={handleInputChange} className="job" placeholder="notion salesforse firebase ...etc" />
+                        <label >Best Features:</label>
+                    <textarea name="features" value={allValues.features??''} onChange={handleInputChangeLister} id="#about" maxLength={600} cols="10" rows="6" placeholder="write the best features of your tool, seperated by comma, "
+                        required></textarea>
                         <label>Price starts from : </label>
                         <div className="priceStarts">
                             <input required type="text" name="start_price" value={allValues.start_price} onChange={handleInputChange} className="creator" placeholder="in dollars.." />
@@ -387,7 +406,7 @@ function EditTool() {
                         <div className="divider">
                         </div>
                         <label  >Choose Your Pricing model :</label>
-                        <div class="device-checkboxes">
+                        <div className="device-checkboxes">
                             <label><input type="checkbox" checked={check('free', priceModels)} name="free" value="free" onChange={handlePriceChange} />Free</label>
                             <label><input type="checkbox" checked={check('subscription', priceModels)} name="subscription" value="subscription" onChange={handlePriceChange} />Subscription</label>
                             <label><input type="checkbox" checked={check('freetrial', priceModels)} name="freetrial" value="freetrial" onChange={handlePriceChange} />Free Trial</label>

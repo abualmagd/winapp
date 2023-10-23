@@ -4,7 +4,7 @@ export class APP {
 
     constructor(userId, categoryId, planName, appName, appUrl, calendlyUrl,
         whatApp, description, contactEmail, shotUrl, whoNeed, whyUse, alternatives,
-        startPrice, feesPer, logoUrl, priceModel, devices) {
+        startPrice, feesPer, logoUrl, priceModel, devices,features,useCases,videoUrl) {
         this.userId = userId;
         this.categoryId = categoryId;
         this.planName = planName;
@@ -24,6 +24,9 @@ export class APP {
         this.logoUrl = logoUrl;
         this.priceModel = priceModel;
         this.devices = devices;
+        this.features=features;
+        this.useCases=useCases;
+        this.videoUrl=videoUrl
     }
 
     fromDatat(data) {
@@ -47,6 +50,9 @@ export class APP {
         this.priceModel = data.price_model;
         this.createdAt = new Date(data.created_at);
         this.devices = data.devices;
+        this.features=data.features;
+        this.useCases=data.use_cases;
+        this.videoUrl=data.video_url
     }
 
     toData() {
@@ -65,7 +71,11 @@ export class APP {
             start_price: this.startPrice,
             fees_per: this.feesPer,
             price_model: this.priceModel,
-            devices: this.devices
+            devices: this.devices,
+            features:this.features,
+            use_cases:this.useCases,
+            video_url:this.videoUrl
+
         };
     }
 

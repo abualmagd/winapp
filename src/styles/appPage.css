@@ -280,6 +280,12 @@
     color: var(--aboutText);
 }
 
+.video-frame{
+    width: 620px;
+    height: 420px;
+    margin-bottom:20px;
+    border-radius: 10px;
+}
 
 
 
@@ -330,6 +336,12 @@
         width: 100%;
     }
 
+    .video-frame{
+        width: 420px;
+        height: 320px;
+    
+    }
+
 }
 
 
@@ -338,5 +350,11 @@
     .buttons div {
         padding: 10px 10px;
 
+    }
+
+    .video-frame{
+        width: 250px;
+        height: 200px;
+    
     }
 }

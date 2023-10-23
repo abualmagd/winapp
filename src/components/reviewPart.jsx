@@ -34,7 +34,6 @@ export default function ReviewsPart(props) {
             updateState('error');
             console.log(error.message);
         } else {
-            console.log(data);
             updateReviews(data);
             updateState('data');
 

@@ -110,14 +110,11 @@ export const toolJsonld = (app) => {
         "name": app['app_name'],
         "description": app['description'],
         "operatingSystem": app['devices'],
-        "applicationCategory": app['category'],
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue":app['avg_rating'] || 0,
-            "ratingCount": app['rating_count'] || 0,
-          },   
+        "applicationCategory": app['category'],        
     };
 
     return JSON.stringify(data);
 
 }
+
+

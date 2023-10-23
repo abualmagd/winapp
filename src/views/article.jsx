@@ -91,12 +91,12 @@ export default function Article() {
                     <meta property="article:published_time" content={dateFormat(article['created_at'])} />
                 </Helmet>
             
-                <h2 className="article-title-page">
+                <h1 className="article-title-page">
                     {article['title']}
-                </h2>
-                <h1 className="description-article-page">
-                    {article['description']}
                 </h1>
+                <h2 className="description-article-page">
+                    {article['description']}
+                </h2>
                 <div className="creat-at" style={{ display: "flex" }}>
                     {dateFormat(article['created_at'])}
                     <SharerIcon url={url} description={article['description']} title={article['title']} />

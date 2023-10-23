@@ -182,6 +182,9 @@ function AddTool() {
         start_price: '',
         fees_per: 'month',
         price_model: '[]',
+        use_cases:'',
+        features:'',
+        video_url:'',
 
     });
 
@@ -211,8 +214,17 @@ function AddTool() {
     function handleInputChange(event) {
         const { name, value } = event.target;
         setValues({ ...allValues, [name]: value });//here seting the value per name
-
     };
+
+
+    //listing before update changes of use_cases and features
+    function handleInputChangeLister(event) {
+        const { name, value } = event.target;
+        const list=value.split(/\s*,\s*/);
+        console.log(list);
+        setValues({ ...allValues, [name]: list });//here seting the value per name
+    };
+
 
     function handleCategoryChange(event) {
         const { name, value } = event.target;
@@ -236,7 +248,7 @@ function AddTool() {
         const myApp = new APP(id, allValues.category_id, allValues.plan_name, allValues.app_name, allValues.app_url, allValues.calendly_url,
             allValues.what_app, allValues.description, allValues.contact_email, '', allValues.who_need,
             allValues.why_use, allValues.alternatives, allValues.start_price, allValues.fees_per,
-            '', priceModels, selectedDevices);
+            '', priceModels, selectedDevices,allValues.features,allValues.use_cases,allValues.video_url);
         const newData = myApp.toData();
         const { error, data } = await createNewApp(newData);
         if (error) {
@@ -312,20 +324,22 @@ function AddTool() {
             }}>
                 <div className="right">
 
-                    <label>App Name :</label>
+                    <label>App Name:</label>
                     <input required name="app_name" value={allValues.app_name} onChange={handleInputChange} type="text" className="appName" placeholder="donnot use white space " />
-                    <label>App Url :</label>
+                    <label>App Url:</label>
                     <input required name="app_url" value={allValues.app_url} onChange={handleInputChange} type="text" className="appUrl" placeholder="https://solutrend.com" pattern="^(https?:\/\/).+$" />
                     <label >Choose your app category :</label>
                     <select required name="category_id" value={allValues.category_id} id="#category" className="category-sel" onChange={handleCategoryChange}>
                         {categoryOption}
                     </select>
-                    <label>Whats your app :</label>
+                    <label>Whats your app:</label>
                     <input required name="what_app" value={allValues.what_app} onChange={handleInputChange} type="text" className="appUrl" placeholder="little words define your app " />
-                    <label >App description :</label>
-                    <textarea name="description" value={allValues.description} onChange={handleInputChange} id="#about" maxLength={250} cols="10" rows="6" placeholder="write about your app"
+                    <label >App description:</label>
+                    <textarea name="description" value={allValues.description} onChange={handleInputChange} id="#about" maxLength={500} cols="10" rows="6" placeholder="write about your app"
                         required></textarea>
-                    <label>Contact Email : <span >optional</span></label>
+                        <label>Use cases:</label>
+                    <input  name="use_cases" value={allValues.use_cases} onChange={handleInputChangeLister} type="text" className="appUrl" placeholder="frist case, second case, must seperate by comma, " />
+                    <label>Contact Email: <span >optional</span></label>
                     <input type="text" name="contact_email" value={allValues.contact_email} onChange={handleInputChange} className="email" placeholder="hi@solutrend.com" />
                     <div className="devices" style={{ marginTop: '5px' }}> Supported Platforms :</div>
                     <div className="device-checkboxes">
@@ -341,15 +355,20 @@ function AddTool() {
                 </div>
                 <div className="left">
 
-                    <label>Calendly Link : <span >optional</span></label>
+                    <label>Calendly Link: <span >optional</span></label>
                     <input type="text" name="calendly_url" value={allValues.calendly_url} onChange={handleInputChange} className="calendly" placeholder="https://www.calendly.com/yourname" />
-                    <label>Who need your app : </label>
+                    <label>Youtube video id: <span >optional</span></label>
+                    <input type="text" name="video_url" value={allValues.video_url} onChange={handleInputChange} className="calendly" placeholder="78845547" />
+                    <label>Who need your app: </label>
                     <input type="text" name="who_need" value={allValues.who_need} onChange={handleInputChange} className="job" placeholder="developrs , teachers ,...etc" />
-                    <label >Why  use your app ?</label>
-                    <textarea name="why_use" value={allValues.why_use} onChange={handleInputChange} id="#about" maxLength={250} cols="10" rows="6" placeholder="write the needs make others use your app"
+                    <label >Why  use your app?</label>
+                    <textarea name="why_use" value={allValues.why_use} onChange={handleInputChange} id="#about" maxLength={400} cols="10" rows="6" placeholder="write the needs make others use your app"
                         required></textarea>
-                    <label>Your app is alternative to : </label>
-                    <input type="text" name="alternatives" value={allValues.alternatives} onChange={handleInputChange} className="job" placeholder="notion , salesforse , firebase , ...etc" />
+                    <label>Your app is alternative to: </label>
+                    <input type="text" name="alternatives" value={allValues.alternatives} onChange={handleInputChange} className="job" placeholder="notion, salesforse, firebase, ...etc" />
+                    <label >Best Features:</label>
+                    <textarea name="features" value={allValues.features} onChange={handleInputChangeLister} id="#about" maxLength={600} cols="10" rows="6" placeholder="write the best features of your tool, seperated by comma, "
+                        required></textarea>
                     <label>Price starts from : </label>
                     <div className="priceStarts">
                         <input required type="text" name="start_price" value={allValues.start_price} onChange={handleInputChange} className="creator" placeholder="in dollars.." />

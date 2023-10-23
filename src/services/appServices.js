@@ -42,12 +42,12 @@ export async function getNewApps() {
 //TODO: add rating and alternatives  as columns come in this data
 export async function getAPPInfo(appName) {
     const userId = getToken();
-    return await mybase.rpc('get_app_infos', { 'appname': appName, 'userid': userId });//add status
+    return await mybase.rpc('get_app_infor', { 'appname': appName, 'userid': userId });//add status
     //check parameters  names  small letter supabase perefer small letters only
 }
 
-export async function updateApp(updatedData, id) {
-    return mybase.from('apps').update(updatedData).eq('id', id).select('*');
+export async function updateApp(updatedData, appId) {
+    return mybase.from('apps').update(updatedData).eq('id', appId).select('*');
 }
 
 

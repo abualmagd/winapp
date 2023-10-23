@@ -18,6 +18,7 @@ import { ShareButtonsForApp } from "../components/shareButtons";
 import { maxString, myUrl, truncateString } from "../services/global";
 import { getLocalUser } from "../services/userServices";
 import { toolJsonld } from "../services/jsonld";
+import { List } from "../components/monthTools";
 
 
 
@@ -207,11 +208,12 @@ function AppPage() {
                 <AppBar />
                 <img className="imageApp" src={app['shot_url']} alt={app['description']} style={{ backgroundColor: "grey" }} />
                 <div className="buttons">
-                    <div className="visit" onClick={() => window.open(app['app_url'], '_blank')}>
+                <a href={app['app_url']}  style={{color:"var(--textColor"}}>  <div className="visit">
                         <span className="icony">
                             <FontAwesomeIcon icon={faLink} color="#000" />
                         </span>
-                        Visit {truncateString(name)} Website</div>
+                       Visit {truncateString(name)} Website </div>
+                </a>
                     {app['calendly_url'] && <div className="call" onClick={() => window.open(app['calendly_url'], '_blank')}>
                         <span className="icony">
                             <FontAwesomeIcon icon={faCalendar} color="#000" />
@@ -277,6 +279,14 @@ function AppPage() {
                                 return <div className="platform-one" key={index}>{device}</div>
                             })}
                         </div>
+                        {app['features']&&<h6 className="whoUse">Best Features:</h6>}
+                        {app['features']&&<div className="whoUse">
+                        <List dataList={app['features']}/>
+                        </div>}
+                        {app['use_cases']&&<h6 className="whoUse">Use Cases:</h6>}
+                        {app['use_cases']&&<div className="whoUse">
+                           <List dataList={app['use_cases']}/>
+                        </div>}
                         <h6 className="whoUse">Alternative to :</h6>
                         <div className="whoUse">
                             {app['alternatives']}
@@ -335,6 +345,11 @@ function AppPage() {
             <div className="reviewPart" >
                 {app && <ReviewsPart id={app['id']} build={build} />}
             </div>
+         
+           {app['video_url']&& <center>
+               <iframe title="tool video" className="video-frame" src={"https://www.youtube.com/embed/"+app['video_url']}>
+            </iframe>  
+            </center>}
             <div className="suggestion">
 
                 {app && <Suggestion id={app['category_id']} appId={app['id']} />}
@@ -348,6 +363,8 @@ function AppPage() {
                     Visit {maxString(name)} Website
                 </div>
             </div>
+         
+           
 
         </div>
     );
